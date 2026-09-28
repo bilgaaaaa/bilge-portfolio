@@ -1,309 +1,408 @@
-const translations = {
-  en: {
-    "meta.title": "Bilge Ozcanbaz | Software Developer",
-    "meta.description":
-      "Bilge Ozcanbaz is a software developer in Padova, Italy, working across Android, backend services, retail systems, SQL, RabbitMQ, and production debugging.",
-    "brand.home": "Bilge Ozcanbaz home",
-    "nav.label": "Primary navigation",
-    "nav.about": "About",
-    "nav.experience": "Experience",
-    "nav.work": "Software",
-    "nav.skills": "Skills",
-    "nav.direction": "Direction",
-    "nav.contact": "Contact",
-    "language.label": "Language selector",
-    "hero.eyebrow": "Software developer based in Padova, Italy",
-    "hero.greeting": "hi, ",
-    "hero.here": " here.",
-    "hero.intro":
-      "I build and maintain software where reliability matters: Android apps used in stores, backend services, SQL-backed workflows, RabbitMQ integrations, and device-facing systems connected to scanners, printers, and POS operations.",
-    "actions.primary": "Primary actions",
-    "actions.email": "Email me",
-    "actions.github": "GitHub",
-    "actions.cv": "Download CV (EN)",
-    "actions.cvAria": "Download CV in English",
-    "panel.label": "Profile summary",
-    "panel.availability": "Open to remote-first roles in Italy",
-    "panel.focusLabel": "Focus",
-    "panel.focusValue": "Android, Java, Kotlin, .NET, SQL, APIs",
-    "panel.domainsLabel": "Domains",
-    "panel.domainsValue": "RetailTech, enterprise systems, integrations",
-    "panel.languagesLabel": "Languages",
-    "panel.languagesValue": "Turkish native, English professional, Italian A2-B1",
-    "proof.eyebrow": "What I bring",
-    "proof.title": "/ about me",
-    "proof.lede":
-      "I like software that has to work in the real world: devices, logs, stores, pressure, and all the details that make a system actually usable.",
-    "proof.mobileTitle": "Production mobile delivery",
-    "proof.mobileBody": "Android work in Java and Kotlin for store operations, barcode workflows, local data, and device use.",
-    "proof.backendTitle": "Backend and data systems",
-    "proof.backendBody": "C#/.NET, Java/Spring, REST APIs, SQL Server, PostgreSQL, SQLite, and integration-heavy maintenance.",
-    "proof.debugTitle": "Debugging under pressure",
-    "proof.debugBody": "Comfortable reading logs, reproducing edge cases, and fixing practical failures in live business flows.",
-    "experience.eyebrow": "Current and previous work",
-    "experience.title": "/ experience",
-    "experience.systemRetailDate": "Jun 2024 - Present",
-    "experience.systemRetailTitle": "Software Development Specialist @ System Retail / ONEStore SMART",
-    "experience.systemRetailBody":
-      "Android, backend, SQL, RabbitMQ, reporting, POS, scanners, printers, and production debugging for retail operations.",
-    "experience.ifinDate": "Mar 2023 - Jun 2024",
-    "experience.ifinTitle": "Junior Software Developer @ Ifin Sistemi Srl",
-    "experience.ifinBody":
-      "Java/Spring, Hibernate/JPA, SQL Server/MySQL, SOAP/REST, JSP/JSTL, Vaadin, Tomcat, Ant, and Maven.",
-    "experience.iasonDate": "Oct 2022 - Feb 2023",
-    "experience.iasonTitle": "Software Development Intern @ Iason SRL",
-    "experience.iasonBody": "Internship in software development while completing the MSc path at the University of Padova.",
-    "work.eyebrow": "Selected work themes",
-    "work.title": "/ software",
-    "work.lede": "A portfolio built around evidence, not inflated claims.",
-    "work.mobileTitle": "Retail Android operations",
-    "work.mobileBody":
-      "Production Android application work for store teams, including workflows around inventory, movements, receiving, barcode scanning, local persistence, and device-specific behavior.",
-    "work.mobileTags": "Retail Android technologies",
-    "work.backendTitle": "Backend services and integrations",
-    "work.backendBody":
-      "Enterprise work across .NET, Java/Spring, REST APIs, SQL-backed workflows, messaging, and service maintenance for retail and business systems.",
-    "work.backendTags": "Backend technologies",
-    "work.hardwareTitle": "POS, printers, and hardware-facing flows",
-    "work.hardwareBody":
-      "Retail software debugging and feature work involving fiscal printers, line displays, scanners, logs, configuration, and the messy boundary between software and physical devices.",
-    "work.hardwareTags": "Hardware integration technologies",
-    "work.productTitle": "PaceTasks and product thinking",
-    "work.productBody":
-      "A personal product direction focused on multilingual task management and practical AI-assisted workflows. It is in progress, and I treat it as a place to sharpen product judgment.",
-    "work.productTags": "Product interests",
-    "tags.java": "Java",
-    "tags.kotlin": "Kotlin",
-    "tags.sqlite": "SQLite",
-    "tags.barcode": "Barcode scanning",
-    "tags.dotnet": "C#/.NET",
-    "tags.spring": "Java Spring",
-    "tags.rest": "REST APIs",
-    "tags.rabbit": "RabbitMQ",
-    "tags.pos": "POS",
-    "tags.printers": "Fiscal printers",
-    "tags.config": "Device config",
-    "tags.logs": "Production logs",
-    "tags.ios": "iOS users",
-    "tags.ai": "AI workflows",
-    "tags.multilingual": "Multilingual UX",
-    "tags.strategy": "Product strategy",
-    "skills.eyebrow": "Technical foundation",
-    "skills.title": "Useful across mobile, backend, data, and integration layers.",
-    "skills.mobileTitle": "Mobile",
-    "skills.mobileBody": "Android, Java, Kotlin, barcode flows, device behavior, local storage, production bug fixing.",
-    "skills.backendTitle": "Backend",
-    "skills.backendBody": "C#/.NET, Java, Spring Boot, REST APIs, enterprise integrations, maintenance, debugging.",
-    "skills.dataTitle": "Data and messaging",
-    "skills.dataBody": "SQL Server, PostgreSQL, SQLite, RabbitMQ, persistence, stored data flows, reporting support.",
-    "skills.habitsTitle": "Engineering habits",
-    "skills.habitsBody": "Git, Azure DevOps, clear written traceability, cautious claims, and practical problem solving.",
-    "direction.eyebrow": "Next direction",
-    "direction.title": "I am looking for teams where mobile and backend work meet real product ownership.",
-    "direction.body":
-      "The best fit is a remote-first or sustainable hybrid role in Italy, in an international or product-minded team, with space to deepen backend, mobile, cloud, CI/CD, and AI-enabled engineering practice over time.",
-    "contact.eyebrow": "Contact",
-    "contact.title": "Have a role or project where practical engineering matters?",
-    "contact.body":
-      "I am especially interested in backend, Android/mobile, .NET, Java/Spring, API integration, and product engineering roles that can hire someone based in Italy.",
-    "footer.body": "Built as a living portfolio for Bilge Ozcanbaz.",
-    "footer.top": "Back to top"
-  },
-  it: {
-    "meta.title": "Bilge Ozcanbaz | Software Developer",
-    "meta.description":
-      "Bilge Ozcanbaz è uno sviluppatore software con base a Padova, attivo su Android, backend, sistemi retail, SQL, RabbitMQ e debugging in produzione.",
-    "brand.home": "Home di Bilge Ozcanbaz",
-    "nav.label": "Navigazione principale",
-    "nav.about": "Chi sono",
-    "nav.experience": "Esperienza",
-    "nav.work": "Software",
-    "nav.skills": "Competenze",
-    "nav.direction": "Direzione",
-    "nav.contact": "Contatto",
-    "language.label": "Selettore lingua",
-    "hero.eyebrow": "Software developer con base a Padova",
-    "hero.greeting": "ciao, sono ",
-    "hero.here": ".",
-    "hero.intro":
-      "Sviluppo e mantengo software dove l'affidabilità conta: app Android usate nei negozi, servizi backend, workflow basati su SQL, integrazioni RabbitMQ e sistemi collegati a scanner, stampanti e operazioni POS.",
-    "actions.primary": "Azioni principali",
-    "actions.email": "Scrivimi",
-    "actions.github": "GitHub",
-    "actions.cv": "Scarica CV (IT)",
-    "actions.cvAria": "Scarica il CV in italiano",
-    "panel.label": "Sintesi profilo",
-    "panel.availability": "Disponibile per ruoli remote-first in Italia",
-    "panel.focusLabel": "Focus",
-    "panel.focusValue": "Android, Java, Kotlin, .NET, SQL, API",
-    "panel.domainsLabel": "Settori",
-    "panel.domainsValue": "RetailTech, sistemi enterprise, integrazioni",
-    "panel.languagesLabel": "Lingue",
-    "panel.languagesValue": "Turco madrelingua, inglese professionale, italiano A2-B1",
-    "proof.eyebrow": "Cosa porto",
-    "proof.title": "/ chi sono",
-    "proof.lede":
-      "Mi piace il software che deve funzionare nel mondo reale: device, log, negozi, pressione e tutti i dettagli che rendono un sistema davvero usabile.",
-    "proof.mobileTitle": "Sviluppo mobile in produzione",
-    "proof.mobileBody": "Lavoro Android in Java e Kotlin per operazioni di negozio, barcode, dati locali e uso dei device.",
-    "proof.backendTitle": "Backend e sistemi dati",
-    "proof.backendBody": "C#/.NET, Java/Spring, API REST, SQL Server, PostgreSQL, SQLite e manutenzione orientata alle integrazioni.",
-    "proof.debugTitle": "Debugging sotto pressione",
-    "proof.debugBody": "A mio agio con log, riproduzione di edge case e correzione di problemi pratici nei flussi business live.",
-    "experience.eyebrow": "Esperienza attuale e precedente",
-    "experience.title": "/ esperienza",
-    "experience.systemRetailDate": "Giu 2024 - Presente",
-    "experience.systemRetailTitle": "Software Development Specialist @ System Retail / ONEStore SMART",
-    "experience.systemRetailBody":
-      "Android, backend, SQL, RabbitMQ, reporting, POS, scanner, stampanti e debugging in produzione per operazioni retail.",
-    "experience.ifinDate": "Mar 2023 - Giu 2024",
-    "experience.ifinTitle": "Junior Software Developer @ Ifin Sistemi Srl",
-    "experience.ifinBody":
-      "Java/Spring, Hibernate/JPA, SQL Server/MySQL, SOAP/REST, JSP/JSTL, Vaadin, Tomcat, Ant e Maven.",
-    "experience.iasonDate": "Ott 2022 - Feb 2023",
-    "experience.iasonTitle": "Software Development Intern @ Iason SRL",
-    "experience.iasonBody": "Stage in sviluppo software durante il percorso MSc presso l'Universita di Padova.",
-    "work.eyebrow": "Temi di lavoro",
-    "work.title": "/ software",
-    "work.lede": "Un portfolio costruito su evidenze, non su claim gonfiati.",
-    "work.mobileTitle": "Operazioni retail su Android",
-    "work.mobileBody":
-      "Sviluppo Android in produzione per team di negozio, con workflow su inventario, movimenti, ricezione merci, barcode scanning, persistenza locale e comportamento specifico dei device.",
-    "work.mobileTags": "Tecnologie Android retail",
-    "work.backendTitle": "Servizi backend e integrazioni",
-    "work.backendBody":
-      "Lavoro enterprise su .NET, Java/Spring, API REST, workflow basati su SQL, messaging e manutenzione di servizi per sistemi retail e business.",
-    "work.backendTags": "Tecnologie backend",
-    "work.hardwareTitle": "POS, stampanti e flussi collegati all'hardware",
-    "work.hardwareBody":
-      "Debugging e sviluppo software retail su stampanti fiscali, line display, scanner, log, configurazioni e sul confine pratico tra software e device fisici.",
-    "work.hardwareTags": "Tecnologie di integrazione hardware",
-    "work.productTitle": "PaceTasks e pensiero di prodotto",
-    "work.productBody":
-      "Una direzione personale di prodotto focalizzata su task management multilingua e workflow pratici assistiti dall'AI. È in corso e lo tratto come spazio per affinare giudizio di prodotto.",
-    "work.productTags": "Interessi di prodotto",
-    "tags.java": "Java",
-    "tags.kotlin": "Kotlin",
-    "tags.sqlite": "SQLite",
-    "tags.barcode": "Barcode scanning",
-    "tags.dotnet": "C#/.NET",
-    "tags.spring": "Java Spring",
-    "tags.rest": "API REST",
-    "tags.rabbit": "RabbitMQ",
-    "tags.pos": "POS",
-    "tags.printers": "Stampanti fiscali",
-    "tags.config": "Configurazione device",
-    "tags.logs": "Log di produzione",
-    "tags.ios": "Utenti iOS",
-    "tags.ai": "Workflow AI",
-    "tags.multilingual": "UX multilingua",
-    "tags.strategy": "Strategia prodotto",
-    "skills.eyebrow": "Base tecnica",
-    "skills.title": "Utile su mobile, backend, dati e livelli di integrazione.",
-    "skills.mobileTitle": "Mobile",
-    "skills.mobileBody": "Android, Java, Kotlin, barcode, comportamento device, storage locale, bug fixing in produzione.",
-    "skills.backendTitle": "Backend",
-    "skills.backendBody": "C#/.NET, Java, Spring Boot, API REST, integrazioni enterprise, manutenzione, debugging.",
-    "skills.dataTitle": "Dati e messaging",
-    "skills.dataBody": "SQL Server, PostgreSQL, SQLite, RabbitMQ, persistenza, flussi dati, supporto reporting.",
-    "skills.habitsTitle": "Abitudini engineering",
-    "skills.habitsBody": "Git, Azure DevOps, tracciabilità scritta chiara, claim prudenti e problem solving pratico.",
-    "direction.eyebrow": "Direzione futura",
-    "direction.title": "Cerco team dove mobile e backend incontrano responsabilità reale di prodotto.",
-    "direction.body":
-      "Il contesto migliore è un ruolo remote-first o hybrid sostenibile in Italia, in un team internazionale o product-minded, con spazio per approfondire backend, mobile, cloud, CI/CD e pratica engineering abilitata dall'AI.",
-    "contact.eyebrow": "Contatto",
-    "contact.title": "Hai un ruolo o progetto dove conta l'ingegneria pratica?",
-    "contact.body":
-      "Sono particolarmente interessata a ruoli backend, Android/mobile, .NET, Java/Spring, integrazione API e product engineering che possano assumere una persona con base in Italia.",
-    "footer.body": "Costruito come portfolio vivo per Bilge Ozcanbaz.",
-    "footer.top": "Torna su"
+// Renders the portfolio from content.js and wires up language, typing, tabs, menu and scroll reveal.
+
+const STORAGE_KEY = "portfolioLanguage";
+const SUPPORTED_LANGUAGES = ["en", "it"];
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+let currentLanguage = "en";
+let activeExperienceId = experience[0].id;
+let hasTypedGreeting = false;
+
+// ---------- helpers ----------
+
+// Resolves a value that is either a plain string or a { en, it } object.
+function localize(value) {
+  if (value && typeof value === "object" && !Array.isArray(value)) {
+    return value[currentLanguage] ?? value.en;
   }
-};
-
-const cvFiles = {
-  en: {
-    href: "assets/cv/Bilge_Ozcanbaz_CV_EN.html",
-    fileName: "Bilge_Ozcanbaz_CV_EN.html"
-  },
-  it: {
-    href: "assets/cv/Bilge_Ozcanbaz_CV_IT.html",
-    fileName: "Bilge_Ozcanbaz_CV_IT.html"
-  }
-};
-
-function getCvFile(language) {
-  const embeddedCv = typeof window !== "undefined" && window.cvDownloads && window.cvDownloads[language];
-
-  if (embeddedCv && embeddedCv.base64) {
-    return {
-      href: `data:${embeddedCv.mime};base64,${embeddedCv.base64}`,
-      fileName: embeddedCv.fileName
-    };
-  }
-
-  return cvFiles[language];
+  return value;
 }
 
-const languageButtons = document.querySelectorAll("[data-language]");
-const translatableNodes = document.querySelectorAll("[data-i18n]");
-const translatableAttributes = document.querySelectorAll("[data-i18n-attr]");
-const cvLinks = [document.getElementById("cvDownload"), document.getElementById("contactCvDownload")].filter(Boolean);
+function t(key) {
+  return translations[currentLanguage][key] ?? translations.en[key] ?? "";
+}
+
+// Small element factory to keep rendering code readable.
+function el(tag, options = {}, children = []) {
+  const node = document.createElement(tag);
+  Object.entries(options).forEach(([name, value]) => {
+    if (value === undefined || value === null) return;
+    if (name === "className") node.className = value;
+    else if (name === "text") node.textContent = value;
+    else node.setAttribute(name, value);
+  });
+  children.forEach((child) => child && node.append(child));
+  return node;
+}
+
+function icon(name, className = "icon") {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("class", className);
+  svg.setAttribute("aria-hidden", "true");
+  const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+  use.setAttribute("href", `#icon-${name}`);
+  svg.append(use);
+  return svg;
+}
+
+function readSavedLanguage() {
+  try {
+    return localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function saveLanguage(language) {
+  try {
+    localStorage.setItem(STORAGE_KEY, language);
+  } catch {
+    // Storage can be blocked (private mode); the site still works without it.
+  }
+}
 
 function getInitialLanguage() {
-  const savedLanguage = localStorage.getItem("portfolioLanguage");
-  if (savedLanguage === "en" || savedLanguage === "it") {
-    return savedLanguage;
-  }
-
-  return navigator.language.toLowerCase().startsWith("it") ? "it" : "en";
+  const saved = readSavedLanguage();
+  if (SUPPORTED_LANGUAGES.includes(saved)) return saved;
+  return navigator.language?.toLowerCase().startsWith("it") ? "it" : "en";
 }
 
-function updateAttributes(node, dictionary) {
-  const pairs = node.dataset.i18nAttr.split(",");
+// ---------- hero greeting ----------
 
-  pairs.forEach((pair) => {
-    const [attribute, key] = pair.split(":").map((item) => item.trim());
-    const value = dictionary[key];
-
-    if (attribute && value) {
-      node.setAttribute(attribute, value);
-    }
+function renderGreeting(segments, charCount = Infinity) {
+  const target = document.getElementById("heroGreeting");
+  target.replaceChildren();
+  let remaining = charCount;
+  segments.forEach((segment) => {
+    if (remaining <= 0) return;
+    const text = segment.text.slice(0, remaining);
+    remaining -= text.length;
+    target.append(segment.accent ? el("span", { className: "accent", text }) : document.createTextNode(text));
   });
+}
+
+// Types the greeting once on first load; later language switches render it instantly.
+function typeGreeting() {
+  const segments = t("hero.greeting");
+  const total = segments.reduce((sum, segment) => sum + segment.text.length, 0);
+
+  if (hasTypedGreeting || prefersReducedMotion) {
+    renderGreeting(segments);
+    return;
+  }
+
+  hasTypedGreeting = true;
+  let typed = 0;
+  const timer = setInterval(() => {
+    typed += 1;
+    renderGreeting(t("hero.greeting"), typed);
+    if (typed >= total) clearInterval(timer);
+  }, 85);
+}
+
+// ---------- section renderers ----------
+
+function renderSocialLists() {
+  const items = [
+    { name: "github", href: profileLinks.github, label: "GitHub" },
+    { name: "linkedin", href: profileLinks.linkedin, label: "LinkedIn" },
+    { name: "tiktok", href: profileLinks.tiktok, label: "TikTok" },
+    { name: "mail", href: `mailto:${profileLinks.email}`, label: "Email" }
+  ];
+
+  document.querySelectorAll("[data-social-list]").forEach((list) => {
+    list.replaceChildren(
+      ...items.map((item) =>
+        el("li", {}, [
+          el("a", { href: item.href, "aria-label": item.label, target: item.name === "mail" ? null : "_blank", rel: "noopener" }, [icon(item.name)])
+        ])
+      )
+    );
+  });
+}
+
+function renderTechnologies() {
+  const list = document.querySelector("[data-tech-list]");
+  list.replaceChildren(...technologies.map((name) => el("li", { text: name })));
+  document.querySelector("[data-languages]").textContent = localize(languagesSpoken);
+}
+
+function selectExperience(id, focusTab = false) {
+  activeExperienceId = id;
+  document.querySelectorAll("[data-tab-list] [role=tab]").forEach((tab) => {
+    const isActive = tab.dataset.id === id;
+    tab.setAttribute("aria-selected", String(isActive));
+    tab.tabIndex = isActive ? 0 : -1;
+    if (isActive && focusTab) tab.focus();
+  });
+  document.querySelectorAll("[data-tab-panels] [role=tabpanel]").forEach((panel) => {
+    panel.hidden = panel.dataset.id !== id;
+  });
+
+  // Moves the highlight bar under the selected tab.
+  const index = experience.findIndex((job) => job.id === id);
+  document.querySelector("[data-tab-list]").style.setProperty("--active-index", index);
+}
+
+function renderExperience() {
+  const tabList = document.querySelector("[data-tab-list]");
+  const panels = document.querySelector("[data-tab-panels]");
+
+  tabList.replaceChildren(
+    ...experience.map((job) =>
+      el("button", { type: "button", role: "tab", id: `tab-${job.id}`, "aria-controls": `panel-${job.id}`, "data-id": job.id, text: job.tab })
+    ),
+    el("span", { className: "tab-highlight", "aria-hidden": "true" })
+  );
+
+  panels.replaceChildren(
+    ...experience.map((job) =>
+      el("div", { role: "tabpanel", id: `panel-${job.id}`, "aria-labelledby": `tab-${job.id}`, "data-id": job.id, tabindex: "0" }, [
+        el("h3", { className: "job-title" }, [
+          document.createTextNode(`${localize(job.role)} `),
+          el("span", { className: "accent", text: `@ ${job.company}` })
+        ]),
+        el("p", { className: "job-meta", text: `${localize(job.dates)} · ${localize(job.location)}` }),
+        el("ul", { className: "arrow-list" }, localize(job.bullets).map((bullet) => el("li", { text: bullet })))
+      ])
+    )
+  );
+
+  tabList.querySelectorAll("[role=tab]").forEach((tab) => tab.addEventListener("click", () => selectExperience(tab.dataset.id)));
+  selectExperience(activeExperienceId);
+
+  const educationList = document.querySelector("[data-education-list]");
+  educationList.replaceChildren(
+    ...education.map((item) =>
+      el("li", {}, [
+        el("span", { className: "education-degree", text: localize(item.degree) }),
+        el("span", { className: "education-school", text: localize(item.school) }),
+        el("span", { className: "education-dates", text: item.dates })
+      ])
+    )
+  );
+}
+
+// Arrow keys move between experience tabs, following the WAI-ARIA tabs pattern.
+function handleTabKeys(event) {
+  const keys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End"];
+  if (!keys.includes(event.key)) return;
+  event.preventDefault();
+  const index = experience.findIndex((job) => job.id === activeExperienceId);
+  const last = experience.length - 1;
+  const next = {
+    ArrowUp: index - 1, ArrowLeft: index - 1, ArrowDown: index + 1, ArrowRight: index + 1, Home: 0, End: last
+  }[event.key];
+  selectExperience(experience[(next + experience.length) % experience.length].id, true);
+}
+
+function projectVisual(kind) {
+  // Decorative illustrations for featured projects, drawn with CSS.
+  const visual = el("div", { className: `project-visual visual-${kind}`, "aria-hidden": "true" });
+  const layouts = { handheld: 6, receipt: 7, chart: 7 };
+  for (let i = 0; i < layouts[kind]; i += 1) visual.append(el("span"));
+  return visual;
+}
+
+function techList(items, className = "project-tech") {
+  return el("ul", { className }, items.map((item) => el("li", { text: item })));
+}
+
+function renderFeaturedProjects() {
+  const container = document.querySelector("[data-featured-list]");
+  container.replaceChildren(
+    ...featuredProjects.map((project, index) =>
+      el("article", { className: `featured-project reveal ${index % 2 ? "is-flipped" : ""}` }, [
+        projectVisual(project.visual),
+        el("div", { className: "featured-content" }, [
+          el("p", { className: "featured-label", text: t("work.featuredLabel") }),
+          el("h3", { className: "featured-title", text: localize(project.title) }),
+          el("div", { className: "featured-description" }, [el("p", { text: localize(project.description) })]),
+          techList(project.tech),
+          el("p", { className: "featured-private" }, [icon("lock"), document.createTextNode(t("work.privateNote"))])
+        ])
+      ])
+    )
+  );
+}
+
+function renderOtherProjects() {
+  const grid = document.querySelector("[data-project-grid]");
+  grid.replaceChildren(
+    ...otherProjects.map((project) => {
+      const title = localize(project.title);
+      const header = el("div", { className: "card-top" }, [
+        icon("folder", "icon folder-icon"),
+        project.link
+          ? el("a", { href: project.link, target: "_blank", rel: "noopener", "aria-label": `${t("work.viewCode")}: ${title}` }, [icon("github")])
+          : icon("lock", "icon muted-icon")
+      ]);
+      return el("li", { className: "project-card reveal" }, [
+        header,
+        el("h4", { className: "card-title", text: title }),
+        el("p", { className: "card-description", text: localize(project.description) }),
+        techList(project.tech, "card-tech")
+      ]);
+    })
+  );
+}
+
+function renderBeyond() {
+  const list = document.querySelector("[data-beyond-list]");
+  list.replaceChildren(
+    ...beyondItems.map((item) => {
+      const title = el("h3", { text: localize(item.title) });
+      const body = [icon(item.icon, "icon beyond-icon"), title, el("p", { text: localize(item.description) })];
+      if (item.link) {
+        return el("li", { className: "beyond-card reveal" }, [
+          el("a", { href: item.link, target: "_blank", rel: "noopener", className: "beyond-link" }, [...body, icon("external", "icon corner-icon")])
+        ]);
+      }
+      return el("li", { className: "beyond-card reveal" }, body);
+    })
+  );
+}
+
+// ---------- language ----------
+
+function applyStaticTranslations() {
+  document.querySelectorAll("[data-i18n]").forEach((node) => {
+    const value = t(node.dataset.i18n);
+    if (typeof value === "string" && value) node.textContent = value;
+  });
+
+  document.querySelectorAll("[data-i18n-attr]").forEach((node) => {
+    node.dataset.i18nAttr.split(",").forEach((pair) => {
+      const [attribute, key] = pair.split(":").map((part) => part.trim());
+      const value = t(key);
+      if (attribute && value) node.setAttribute(attribute, value);
+    });
+  });
+
+  document.querySelectorAll("[data-cv-link]").forEach((link) => {
+    link.href = cvFiles[currentLanguage].href;
+    link.download = cvFiles[currentLanguage].fileName;
+  });
+
+  document.title = t("meta.title");
+  document.querySelector('meta[name="description"]').setAttribute("content", t("meta.description"));
 }
 
 function setLanguage(language) {
-  const dictionary = translations[language] || translations.en;
-  document.documentElement.lang = language;
-  document.title = dictionary["meta.title"];
+  currentLanguage = SUPPORTED_LANGUAGES.includes(language) ? language : "en";
+  document.documentElement.lang = currentLanguage;
 
-  translatableNodes.forEach((node) => {
-    const value = dictionary[node.dataset.i18n];
+  applyStaticTranslations();
+  typeGreeting();
+  renderTechnologies();
+  renderExperience();
+  renderFeaturedProjects();
+  renderOtherProjects();
+  renderBeyond();
+  observeReveals();
 
-    if (value) {
-      node.textContent = value;
-    }
+  document.querySelectorAll("[data-language]").forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.language === currentLanguage));
   });
 
-  translatableAttributes.forEach((node) => updateAttributes(node, dictionary));
-
-  cvLinks.forEach((link) => {
-    const cv = getCvFile(language);
-    link.href = cv.href;
-    link.download = cv.fileName;
-  });
-
-  languageButtons.forEach((button) => {
-    const isActive = button.dataset.language === language;
-    button.classList.toggle("is-active", isActive);
-    button.setAttribute("aria-pressed", String(isActive));
-  });
-
-  localStorage.setItem("portfolioLanguage", language);
+  saveLanguage(currentLanguage);
 }
 
-languageButtons.forEach((button) => {
+// ---------- scroll behaviour ----------
+
+const revealObserver =
+  "IntersectionObserver" in window && !prefersReducedMotion
+    ? new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            // Also reveal elements the user already scrolled past (fast scroll or anchor jump).
+            if (!entry.isIntersecting && entry.boundingClientRect.top > 0) return;
+            revealNode(entry.target);
+          });
+        },
+        { threshold: 0.01, rootMargin: "0px 0px -40px 0px" }
+      )
+    : null;
+
+function revealNode(node) {
+  node.classList.add("is-visible");
+  revealObserver?.unobserve(node);
+}
+
+// Fades sections in as they enter the viewport; re-run after each render.
+function observeReveals() {
+  document.querySelectorAll(".reveal:not(.is-visible)").forEach((node) => {
+    if (revealObserver) revealObserver.observe(node);
+    else node.classList.add("is-visible");
+  });
+}
+
+// At the very bottom of the page nothing can scroll further into view, so show what remains.
+function revealRemainingAtBottom() {
+  const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+  if (atBottom) document.querySelectorAll(".reveal:not(.is-visible)").forEach(revealNode);
+}
+
+// Hides the header while scrolling down and shows it again when scrolling up.
+function setupHeaderScroll() {
+  const header = document.getElementById("siteHeader");
+  let lastY = window.scrollY;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      header.classList.toggle("is-scrolled", y > 10);
+      header.classList.toggle("is-hidden", y > lastY && y > 120 && !document.body.classList.contains("menu-open"));
+      lastY = y;
+      revealRemainingAtBottom();
+    },
+    { passive: true }
+  );
+}
+
+// Highlights the nav link of the section currently on screen.
+function setupScrollSpy() {
+  if (!("IntersectionObserver" in window)) return;
+  const links = [...document.querySelectorAll(".header-panel nav a")];
+  const spy = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        links.forEach((link) => link.classList.toggle("is-current", link.hash === `#${entry.target.id}`));
+      });
+    },
+    { rootMargin: "-45% 0px -50% 0px" }
+  );
+  links.forEach((link) => {
+    const section = document.querySelector(link.hash);
+    if (section) spy.observe(section);
+  });
+}
+
+function setupMenu() {
+  const toggle = document.getElementById("menuToggle");
+  const closeMenu = () => {
+    document.body.classList.remove("menu-open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  toggle.addEventListener("click", () => {
+    const isOpen = document.body.classList.toggle("menu-open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
+  document.querySelectorAll(".header-panel nav a").forEach((link) => link.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", (event) => event.key === "Escape" && closeMenu());
+}
+
+// ---------- boot ----------
+
+document.querySelectorAll("[data-language]").forEach((button) => {
   button.addEventListener("click", () => setLanguage(button.dataset.language));
 });
+document.querySelector("[data-tab-list]").addEventListener("keydown", handleTabKeys);
 
+renderSocialLists();
+setupMenu();
+setupHeaderScroll();
+setupScrollSpy();
 setLanguage(getInitialLanguage());

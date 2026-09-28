@@ -3,291 +3,178 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bilge Ozcanbaz | Software Developer</title>
     <meta
       name="description"
-      content="Bilge Ozcanbaz is a software developer in Padova, Italy, working across Android, backend services, retail systems, SQL, RabbitMQ, and production debugging."
-      data-i18n-attr="content:meta.description"
+      content="Bilge Ozcanbaz is a software developer in Padova, Italy, building Android apps, .NET services, RabbitMQ integrations and retail device drivers."
     />
-    <meta name="theme-color" content="#101113" />
-    <title>Bilge Ozcanbaz | Software Developer</title>
+    <meta name="theme-color" content="#0a192f" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Bilge Ozcanbaz | Software Developer" />
+    <meta
+      property="og:description"
+      content="Android, .NET and retail systems developer based in Padova, Italy."
+    />
+    <meta property="og:image" content="assets/og-image.png" />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
     <link rel="stylesheet" href="styles.css" />
+    <script src="content.js" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body>
-    <header class="site-header" id="top">
-      <a class="brand" href="#top" aria-label="Bilge Ozcanbaz home" data-i18n-attr="aria-label:brand.home">
-        <span class="brand-mark">BO</span>
-        <span>Bilge Ozcanbaz</span>
+    <!-- Icon sprite: every icon on the page is referenced from here with <use>. -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+      <symbol id="icon-github" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" />
+      </symbol>
+      <symbol id="icon-linkedin" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" />
+      </symbol>
+      <symbol id="icon-mail" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm18 2-10 7L2 6" />
+      </symbol>
+      <symbol id="icon-tiktok" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5M14 3c.4 2.6 2.3 4.5 5 4.8" />
+      </symbol>
+      <symbol id="icon-folder" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+      </symbol>
+      <symbol id="icon-lock" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4" />
+      </symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3" />
+      </symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+      </symbol>
+      <symbol id="icon-climb" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 21 10 7l4 6 3-4 4 12zM14 4.5a1.5 1.5 0 1 1 0 .01" />
+      </symbol>
+      <symbol id="icon-yarn" viewBox="0 0 24 24">
+        <circle cx="11" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6" />
+        <path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M5 8c4 1 9 5 11 11M4 13c3 0 7 3 8 7M8 4.8c3 2 6 6 10 7.5M19 12c1.5 2 2.5 5 2.5 8" />
+      </symbol>
+      <symbol id="icon-card" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 6h18v12H3zM7 10h6M7 14h4M16 10h2" />
+      </symbol>
+      <symbol id="icon-video" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 6h13v12H3zM16 10l5-3v10l-5-3" />
+      </symbol>
+    </svg>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" id="siteHeader">
+      <a class="brand" href="#top" aria-label="Bilge Ozcanbaz">
+        <span class="brand-mark">b</span>
       </a>
-      <div class="header-actions">
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav" data-i18n-attr="aria-label:nav.menu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="header-panel" id="siteNav">
         <nav aria-label="Primary navigation" data-i18n-attr="aria-label:nav.label">
           <a href="#about" data-i18n="nav.about">About</a>
           <a href="#experience" data-i18n="nav.experience">Experience</a>
           <a href="#work" data-i18n="nav.work">Software</a>
-          <a href="#skills" data-i18n="nav.skills">Skills</a>
+          <a href="#beyond" data-i18n="nav.beyond">Beyond code</a>
           <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
-        <div class="language-switch" aria-label="Language selector" data-i18n-attr="aria-label:language.label">
-          <button class="language-option is-active" type="button" data-language="en" aria-pressed="true">EN</button>
+        <div class="language-switch" role="group" aria-label="Language selector" data-i18n-attr="aria-label:language.label">
+          <button class="language-option" type="button" data-language="en" aria-pressed="true">EN</button>
           <button class="language-option" type="button" data-language="it" aria-pressed="false">IT</button>
         </div>
+        <a class="button small cv-link" href="assets/cv/Bilge_Ozcanbaz_CV_EN.pdf" download data-cv-link>
+          <span data-i18n="hero.cv">Download CV</span>
+        </a>
       </div>
     </header>
 
-    <aside class="side-nav" aria-label="Section shortcuts">
-      <a href="#top">/home</a>
-      <a href="#about">/about</a>
-      <a href="#experience">/experience</a>
-      <a href="#work">/software</a>
-      <a href="#contact">/contact</a>
+    <aside class="side-rail side-rail-left" aria-label="Social links" data-i18n-attr="aria-label:social.label">
+      <ul class="social-list" data-social-list></ul>
     </aside>
 
-    <main>
-      <section class="hero">
-        <div class="hero-visual" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
+    <aside class="side-rail side-rail-right" aria-hidden="true">
+      <a class="vertical-email" href="mailto:ozcanbazbilge@gmail.com" tabindex="-1">ozcanbazbilge@gmail.com</a>
+    </aside>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <h1 class="hero-title" aria-live="polite">
+          <span id="heroGreeting"></span><span class="cursor" aria-hidden="true">|</span>
+        </h1>
+        <p class="hero-subtitle reveal" data-i18n="hero.subtitle">I build software that has to work on the shop floor.</p>
+        <p class="hero-intro reveal" data-i18n="hero.intro"></p>
+        <div class="hero-actions reveal">
+          <a class="button" href="mailto:ozcanbazbilge@gmail.com">
+            <svg class="icon" aria-hidden="true"><use href="#icon-mail" /></svg>
+            <span data-i18n="hero.cta">Say hi</span>
+          </a>
+          <a class="button ghost" href="assets/cv/Bilge_Ozcanbaz_CV_EN.pdf" download data-cv-link>
+            <svg class="icon" aria-hidden="true"><use href="#icon-download" /></svg>
+            <span data-i18n="hero.cv">Download CV</span>
+          </a>
         </div>
-        <div class="hero-copy">
-          <p class="eyebrow" data-i18n="hero.eyebrow">Software developer based in Padova, Italy</p>
-          <h1 class="intro-title">
-            <span data-i18n="hero.greeting">hi, </span><span class="accent">bilge</span><span data-i18n="hero.here"> here.</span><span class="cursor">|</span>
-          </h1>
-          <p class="intro" data-i18n="hero.intro">
-            I build and maintain software where reliability matters: Android apps used in stores, backend services,
-            SQL-backed workflows, RabbitMQ integrations, and device-facing systems connected to scanners, printers,
-            and POS operations.
-          </p>
-          <div class="hero-actions" aria-label="Primary actions" data-i18n-attr="aria-label:actions.primary">
-            <a class="button primary" href="mailto:ozcanbazbilge@gmail.com" data-i18n="actions.email">Email me</a>
-            <a class="button secondary" href="https://github.com/bilgaaaaa" data-i18n="actions.github">GitHub</a>
-            <a
-              class="button tertiary"
-              id="cvDownload"
-              href="assets/cv/Bilge_Ozcanbaz_CV_EN.html"
-              download="Bilge_Ozcanbaz_CV_EN.html"
-              data-i18n="actions.cv"
-              data-i18n-attr="aria-label:actions.cvAria"
-              aria-label="Download CV in English"
-            >Download CV (EN)</a>
+      </section>
+
+      <section class="section" id="about" aria-labelledby="aboutTitle">
+        <h2 class="section-title reveal" id="aboutTitle"><span class="slash">/</span> <span data-i18n="about.title">about me</span></h2>
+        <div class="about-grid">
+          <div class="about-copy reveal">
+            <p data-i18n="about.p1"></p>
+            <p data-i18n="about.p2"></p>
+            <p data-i18n="about.p3"></p>
+            <ul class="tech-list" data-tech-list></ul>
+            <p class="about-aside" data-i18n="about.p4"></p>
+            <p class="about-languages" data-languages></p>
           </div>
-        </div>
-        <aside class="hero-panel" aria-label="Profile summary" data-i18n-attr="aria-label:panel.label">
-          <div class="availability" data-i18n="panel.availability">Open to remote-first roles in Italy</div>
-          <dl>
-            <div>
-              <dt data-i18n="panel.focusLabel">Focus</dt>
-              <dd data-i18n="panel.focusValue">Android, Java, Kotlin, .NET, SQL, APIs</dd>
-            </div>
-            <div>
-              <dt data-i18n="panel.domainsLabel">Domains</dt>
-              <dd data-i18n="panel.domainsValue">RetailTech, enterprise systems, integrations</dd>
-            </div>
-            <div>
-              <dt data-i18n="panel.languagesLabel">Languages</dt>
-              <dd data-i18n="panel.languagesValue">Turkish native, English professional, Italian A2-B1</dd>
-            </div>
-          </dl>
-        </aside>
-      </section>
-
-      <section class="section compact" id="about" aria-labelledby="proof-title">
-        <div class="section-heading">
-          <p class="eyebrow" data-i18n="proof.eyebrow">What I bring</p>
-          <h2 id="proof-title" data-i18n="proof.title">/ about me</h2>
-          <p class="section-lede" data-i18n="proof.lede">
-            I like software that has to work in the real world: devices, logs, stores, pressure, and all the details that make a system actually usable.
-          </p>
-        </div>
-        <div class="proof-grid">
-          <article>
-            <strong data-i18n="proof.mobileTitle">Production mobile delivery</strong>
-            <p data-i18n="proof.mobileBody">Android work in Java and Kotlin for store operations, barcode workflows, local data, and device use.</p>
-          </article>
-          <article>
-            <strong data-i18n="proof.backendTitle">Backend and data systems</strong>
-            <p data-i18n="proof.backendBody">C#/.NET, Java/Spring, REST APIs, SQL Server, PostgreSQL, SQLite, and integration-heavy maintenance.</p>
-          </article>
-          <article>
-            <strong data-i18n="proof.debugTitle">Debugging under pressure</strong>
-            <p data-i18n="proof.debugBody">Comfortable reading logs, reproducing edge cases, and fixing practical failures in live business flows.</p>
-          </article>
+          <figure class="about-photo reveal">
+            <!-- Replace assets/profile.svg with a real photo (e.g. assets/profile.jpg) and update src. -->
+            <img src="assets/profile.svg" width="320" height="320" alt="Illustrated portrait of Bilge Ozcanbaz" data-i18n-attr="alt:about.photoAlt" />
+          </figure>
         </div>
       </section>
 
-      <section class="section split experience" id="experience" aria-labelledby="experience-title">
-        <div class="section-heading sticky-heading">
-          <p class="eyebrow" data-i18n="experience.eyebrow">Current and previous work</p>
-          <h2 id="experience-title" data-i18n="experience.title">/ experience</h2>
+      <section class="section section-narrow" id="experience" aria-labelledby="experienceTitle">
+        <h2 class="section-title reveal" id="experienceTitle"><span class="slash">/</span> <span data-i18n="experience.title">experience</span></h2>
+        <div class="experience reveal">
+          <div class="tab-list" role="tablist" aria-orientation="vertical" data-i18n-attr="aria-label:experience.tabsLabel" data-tab-list></div>
+          <div class="tab-panels" data-tab-panels></div>
         </div>
-        <div class="timeline">
-          <article>
-            <p class="timeline-date" data-i18n="experience.systemRetailDate">Jun 2024 - Present</p>
-            <h3 data-i18n="experience.systemRetailTitle">Software Development Specialist @ System Retail / ONEStore SMART</h3>
-            <p data-i18n="experience.systemRetailBody">
-              Android, backend, SQL, RabbitMQ, reporting, POS, scanners, printers, and production debugging for retail operations.
-            </p>
-          </article>
-          <article>
-            <p class="timeline-date" data-i18n="experience.ifinDate">Mar 2023 - Jun 2024</p>
-            <h3 data-i18n="experience.ifinTitle">Junior Software Developer @ Ifin Sistemi Srl</h3>
-            <p data-i18n="experience.ifinBody">
-              Java/Spring, Hibernate/JPA, SQL Server/MySQL, SOAP/REST, JSP/JSTL, Vaadin, Tomcat, Ant, and Maven.
-            </p>
-          </article>
-          <article>
-            <p class="timeline-date" data-i18n="experience.iasonDate">Oct 2022 - Feb 2023</p>
-            <h3 data-i18n="experience.iasonTitle">Software Development Intern @ Iason SRL</h3>
-            <p data-i18n="experience.iasonBody">
-              Internship in software development while completing the MSc path at the University of Padova.
-            </p>
-          </article>
-        </div>
+        <h3 class="subsection-title reveal"><span class="slash">/</span> <span data-i18n="education.title">education</span></h3>
+        <ul class="education-list reveal" data-education-list></ul>
       </section>
 
-      <section class="section" id="work" aria-labelledby="work-title">
-        <div class="section-heading">
-          <p class="eyebrow" data-i18n="work.eyebrow">Selected work themes</p>
-          <h2 id="work-title" data-i18n="work.title">/ software</h2>
-          <p class="section-lede" data-i18n="work.lede">A portfolio built around evidence, not inflated claims.</p>
-        </div>
-
-        <div class="work-list">
-          <article class="work-item">
-            <div class="work-index">01</div>
-            <div>
-              <h3 data-i18n="work.mobileTitle">Retail Android operations</h3>
-              <p data-i18n="work.mobileBody">
-                Production Android application work for store teams, including workflows around inventory, movements,
-                receiving, barcode scanning, local persistence, and device-specific behavior.
-              </p>
-              <ul class="tag-list" aria-label="Retail Android technologies" data-i18n-attr="aria-label:work.mobileTags">
-                <li data-i18n="tags.java">Java</li>
-                <li data-i18n="tags.kotlin">Kotlin</li>
-                <li data-i18n="tags.sqlite">SQLite</li>
-                <li data-i18n="tags.barcode">Barcode scanning</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="work-item">
-            <div class="work-index">02</div>
-            <div>
-              <h3 data-i18n="work.backendTitle">Backend services and integrations</h3>
-              <p data-i18n="work.backendBody">
-                Enterprise work across .NET, Java/Spring, REST APIs, SQL-backed workflows, messaging, and service
-                maintenance for retail and business systems.
-              </p>
-              <ul class="tag-list" aria-label="Backend technologies" data-i18n-attr="aria-label:work.backendTags">
-                <li data-i18n="tags.dotnet">C#/.NET</li>
-                <li data-i18n="tags.spring">Java Spring</li>
-                <li data-i18n="tags.rest">REST APIs</li>
-                <li data-i18n="tags.rabbit">RabbitMQ</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="work-item">
-            <div class="work-index">03</div>
-            <div>
-              <h3 data-i18n="work.hardwareTitle">POS, printers, and hardware-facing flows</h3>
-              <p data-i18n="work.hardwareBody">
-                Retail software debugging and feature work involving fiscal printers, line displays, scanners, logs,
-                configuration, and the messy boundary between software and physical devices.
-              </p>
-              <ul class="tag-list" aria-label="Hardware integration technologies" data-i18n-attr="aria-label:work.hardwareTags">
-                <li data-i18n="tags.pos">POS</li>
-                <li data-i18n="tags.printers">Fiscal printers</li>
-                <li data-i18n="tags.config">Device config</li>
-                <li data-i18n="tags.logs">Production logs</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="work-item">
-            <div class="work-index">04</div>
-            <div>
-              <h3 data-i18n="work.productTitle">PaceTasks and product thinking</h3>
-              <p data-i18n="work.productBody">
-                A personal product direction focused on multilingual task management and practical AI-assisted
-                workflows. It is in progress, and I treat it as a place to sharpen product judgment.
-              </p>
-              <ul class="tag-list" aria-label="Product interests" data-i18n-attr="aria-label:work.productTags">
-                <li data-i18n="tags.ios">iOS users</li>
-                <li data-i18n="tags.ai">AI workflows</li>
-                <li data-i18n="tags.multilingual">Multilingual UX</li>
-                <li data-i18n="tags.strategy">Product strategy</li>
-              </ul>
-            </div>
-          </article>
-        </div>
+      <section class="section" id="work" aria-labelledby="workTitle">
+        <h2 class="section-title reveal" id="workTitle"><span class="slash">/</span> <span data-i18n="work.title">software creations</span></h2>
+        <div class="featured-list" data-featured-list></div>
+        <h3 class="subsection-title centered reveal" data-i18n="work.otherTitle">other things I've built</h3>
+        <ul class="project-grid" data-project-grid></ul>
       </section>
 
-      <section class="section split" id="skills" aria-labelledby="skills-title">
-        <div class="section-heading sticky-heading">
-          <p class="eyebrow" data-i18n="skills.eyebrow">Technical foundation</p>
-          <h2 id="skills-title" data-i18n="skills.title">Useful across mobile, backend, data, and integration layers.</h2>
-        </div>
-        <div class="skill-groups">
-          <article>
-            <h3 data-i18n="skills.mobileTitle">Mobile</h3>
-            <p data-i18n="skills.mobileBody">Android, Java, Kotlin, barcode flows, device behavior, local storage, production bug fixing.</p>
-          </article>
-          <article>
-            <h3 data-i18n="skills.backendTitle">Backend</h3>
-            <p data-i18n="skills.backendBody">C#/.NET, Java, Spring Boot, REST APIs, enterprise integrations, maintenance, debugging.</p>
-          </article>
-          <article>
-            <h3 data-i18n="skills.dataTitle">Data and messaging</h3>
-            <p data-i18n="skills.dataBody">SQL Server, PostgreSQL, SQLite, RabbitMQ, persistence, stored data flows, reporting support.</p>
-          </article>
-          <article>
-            <h3 data-i18n="skills.habitsTitle">Engineering habits</h3>
-            <p data-i18n="skills.habitsBody">Git, Azure DevOps, clear written traceability, cautious claims, and practical problem solving.</p>
-          </article>
-        </div>
+      <section class="section" id="beyond" aria-labelledby="beyondTitle">
+        <h2 class="section-title reveal" id="beyondTitle"><span class="slash">/</span> <span data-i18n="beyond.title">beyond code</span></h2>
+        <p class="section-lede reveal" data-i18n="beyond.lede"></p>
+        <ul class="beyond-grid" data-beyond-list></ul>
       </section>
 
-      <section class="section direction" id="direction" aria-labelledby="direction-title">
-        <div>
-          <p class="eyebrow" data-i18n="direction.eyebrow">Next direction</p>
-          <h2 id="direction-title" data-i18n="direction.title">I am looking for teams where mobile and backend work meet real product ownership.</h2>
-        </div>
-        <p data-i18n="direction.body">
-          The best fit is a remote-first or sustainable hybrid role in Italy, in an international or product-minded team,
-          with space to deepen backend, mobile, cloud, CI/CD, and AI-enabled engineering practice over time.
-        </p>
-      </section>
-
-      <section class="section contact" id="contact" aria-labelledby="contact-title">
-        <div>
-          <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
-          <h2 id="contact-title" data-i18n="contact.title">Have a role or project where practical engineering matters?</h2>
-          <p data-i18n="contact.body">
-            I am especially interested in backend, Android/mobile, .NET, Java/Spring, API integration, and product
-            engineering roles that can hire someone based in Italy.
-          </p>
-        </div>
-        <div class="contact-actions">
-          <a class="button primary" href="mailto:ozcanbazbilge@gmail.com">ozcanbazbilge@gmail.com</a>
-          <a class="button secondary" href="https://github.com/bilgaaaaa">github.com/bilgaaaaa</a>
-          <a
-            class="button tertiary"
-            id="contactCvDownload"
-            href="assets/cv/Bilge_Ozcanbaz_CV_EN.html"
-            download="Bilge_Ozcanbaz_CV_EN.html"
-            data-i18n="actions.cv"
-            data-i18n-attr="aria-label:actions.cvAria"
-            aria-label="Download CV in English"
-          >Download CV (EN)</a>
-        </div>
+      <section class="section contact" id="contact" aria-labelledby="contactTitle">
+        <p class="contact-eyebrow reveal" data-i18n="contact.eyebrow">What's next?</p>
+        <h2 class="contact-title reveal" id="contactTitle" data-i18n="contact.title">Get in touch</h2>
+        <p class="contact-body reveal" data-i18n="contact.body"></p>
+        <a class="button large reveal" href="mailto:ozcanbazbilge@gmail.com" data-i18n="contact.cta">Say hello</a>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p data-i18n="footer.body">Built as a living portfolio for Bilge Ozcanbaz.</p>
+      <ul class="social-list footer-social" data-social-list></ul>
+      <p data-i18n="footer.body">Designed and built by Bilge Ozcanbaz</p>
       <a href="#top" data-i18n="footer.top">Back to top</a>
     </footer>
   </body>
