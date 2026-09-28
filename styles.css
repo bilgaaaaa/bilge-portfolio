@@ -549,6 +549,10 @@ main {
   margin: 0 auto;
 }
 
+.about-photo picture {
+  display: block;
+}
+
 .about-photo img {
   position: relative;
   z-index: 1;

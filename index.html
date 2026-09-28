@@ -135,8 +135,11 @@
             <p class="about-languages" data-languages></p>
           </div>
           <figure class="about-photo reveal">
-            <!-- Replace assets/profile.svg with a real photo (e.g. assets/profile.jpg) and update src. -->
-            <img src="assets/profile.svg" width="320" height="320" alt="Illustrated portrait of Bilge Ozcanbaz" data-i18n-attr="alt:about.photoAlt" />
+            <!-- WebP for modern browsers, JPEG fallback; both 640x640. -->
+            <picture>
+              <source srcset="assets/profile.webp" type="image/webp" />
+              <img src="assets/profile.jpg" width="640" height="640" loading="lazy" decoding="async" alt="Portrait of Bilge Ozcanbaz" data-i18n-attr="alt:about.photoAlt" />
+            </picture>
           </figure>
         </div>
       </section>

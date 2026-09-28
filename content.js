@@ -41,7 +41,7 @@ const translations = {
     "about.p3": "Here are some technologies I've been working with:",
     "about.p4":
       "Outside of work I climb, crochet, and collect business cards from the restaurants and pasticcerie I love around Italy.",
-    "about.photoAlt": "Illustrated portrait of Bilge Ozcanbaz",
+    "about.photoAlt": "Portrait of Bilge Ozcanbaz",
     "experience.title": "experience",
     "experience.tabsLabel": "Companies",
     "education.title": "education",
@@ -87,7 +87,7 @@ const translations = {
     "about.p3": "Alcune tecnologie con cui lavoro:",
     "about.p4":
       "Fuori dal lavoro arrampico, lavoro all'uncinetto e colleziono i biglietti da visita dei ristoranti e delle pasticcerie che amo in giro per l'Italia.",
-    "about.photoAlt": "Ritratto illustrato di Bilge Ozcanbaz",
+    "about.photoAlt": "Ritratto di Bilge Ozcanbaz",
     "experience.title": "esperienza",
     "experience.tabsLabel": "Aziende",
     "education.title": "formazione",

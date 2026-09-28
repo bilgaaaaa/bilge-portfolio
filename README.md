@@ -22,7 +22,7 @@ Almost every change happens in `content.js`: every text entry has an `en` and `i
 
 - New job → add an object to `experience`.
 - New project → add to `featuredProjects` (big alternating cards) or `otherProjects` (grid).
-- Profile photo → drop `assets/profile.jpg` in and change the `src` of the `.about-photo img` in `index.html`.
+- Profile photo → replace `assets/profile.jpg` and `assets/profile.webp` (square, 640×640).
 
 ## CV
 
