@@ -1,37 +1,45 @@
-# Bilge Ozcanbaz Portfolio
+# Bilge Ozcanbaz — Portfolio
 
-A static personal portfolio for Bilge Ozcanbaz, focused on Android/mobile, backend services, retail systems, integrations, and production debugging.
+Personal portfolio for Bilge Ozcanbaz, software developer in Padova, Italy (Android, .NET, retail systems).
+Layout inspired by [gazijarin.com](https://www.gazijarin.com/).
 
-## Current scope
+## Stack
 
-- One-page responsive portfolio with a dark personal-site style inspired by the reference portfolio.
-- English and Italian language switcher.
-- Language-aware CV download links.
-- No build step and no external dependencies.
-- Ready for GitHub Pages, Netlify, Vercel static hosting, or a future custom domain.
+Plain HTML, CSS and JavaScript — no framework, no build step. Bilingual (EN / IT), responsive, keyboard accessible, respects `prefers-reduced-motion`.
+
+| File | Purpose |
+| --- | --- |
+| `index.html` | Page shell, section anchors and icon sprite |
+| `content.js` | **All text and data** — translations, experience, projects, links |
+| `script.js` | Renders `content.js`, language switch, typing greeting, tabs, menu, scroll reveal |
+| `styles.css` | Theme tokens and layout |
+| `assets/cv/` | Public CV in EN/IT (HTML + PDF, no phone number or birth date) |
+| `tools/build-cv.py` | Regenerates the CV HTML pages from one data source |
+
+## Editing content
+
+Almost every change happens in `content.js`: every text entry has an `en` and `it` value.
+
+- New job → add an object to `experience`.
+- New project → add to `featuredProjects` (big alternating cards) or `otherProjects` (grid).
+- Profile photo → drop `assets/profile.jpg` in and change the `src` of the `.about-photo img` in `index.html`.
+
+## CV
+
+```bash
+python3 tools/build-cv.py          # regenerate assets/cv/*.html
+```
+
+Then print each HTML page to PDF (A4) with the same file name.
 
 ## Local preview
 
-From this folder:
-
 ```bash
 python3 -m http.server 4173
+# open http://localhost:4173
 ```
 
-Then open:
+## Publishing
 
-```text
-http://localhost:4173
-```
-
-## Content rules
-
-The portfolio copy is intentionally conservative. It uses verified facts from the candidate truth bank and avoids claims that are not confirmed, such as launched products, seniority, advanced Italian, or cloud expertise.
-
-The CV files are stored in `assets/cv/`. The site updates the download link to the English or Italian CV based on the active language.
-
-## Suggested next updates
-
-- Add LinkedIn URL.
-- Replace project-theme sections with public case studies when safe, anonymized examples are ready.
-- Connect a custom domain after choosing the final hosting path.
+The site is static, so GitHub Pages works out of the box: **Settings → Pages → Deploy from branch → `main` / root**.
+For a custom domain, add a `CNAME` file containing the domain and point the DNS records to GitHub Pages.

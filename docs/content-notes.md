@@ -1,20 +1,19 @@
 # Content Notes
 
+Source of truth for facts on the site: the September 2026 CV (EN/IT).
+
 ## Verified positioning
 
-- Based in Padova, Italy.
-- Software Development Specialist at System Retail.
-- Around 3+ years of professional software-development experience.
-- Strongest evidence: Android/mobile delivery, Java/Kotlin, C#/.NET, Java/Spring, REST APIs, SQL, RabbitMQ, retail systems, POS/device integrations, and production debugging.
-- Languages: Turkish native, English professional, Italian A2-B1.
+- Software Development Specialist at System Retail, Padova (Jun 2024 – present).
+- 4+ years of experience; Java backend background, then Kotlin/Android and .NET/C#.
+- Sole developer of the ONEStore SMART Android app: Java → Kotlin, Jetpack Compose, GreenDAO → Room.
+- .NET microservices, RabbitMQ, Epson/Custom peripheral drivers, Blazor + DevExpress analytics app in production.
+- Previous: Ifin Sistemi (Mar 2023 – Apr 2024), Iason (Sep 2022 – Jan 2023), Ifin thesis internship (Feb – Jul 2022).
+- Languages: Turkish native, English professional, Italian B1–B2.
 
-## Do not claim yet
+## Public-site rules
 
-- Senior, lead, architect, or cloud expert.
-- Fluent or advanced Italian.
-- PaceTasks as launched, profitable, or professionally shipped.
-- Any private employer metrics not approved for public use.
-
-## Public portfolio tone
-
-Concrete, practical, and evidence-based. The site should make Bilge sound capable without exaggerating. Good audience: recruiters and engineering managers hiring for Android, backend, .NET, Java/Spring, API integration, and RetailTech roles.
+- No phone number, birth date, nationality or home address on the site or public CVs.
+- No customer names, ticket numbers or internal metrics from work projects.
+- Italian text uses feminine forms (sviluppatrice, sono arrivata, abituata).
+- Do not claim: senior/lead/architect titles, cloud expertise, PaceTasks as launched.
