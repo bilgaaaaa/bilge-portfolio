@@ -5,19 +5,22 @@ const translations = {
       "Bilge Ozcanbaz is a software developer in Padova, Italy, working across Android, backend services, retail systems, SQL, RabbitMQ, and production debugging.",
     "brand.home": "Bilge Ozcanbaz home",
     "nav.label": "Primary navigation",
-    "nav.work": "Work",
+    "nav.about": "About",
+    "nav.experience": "Experience",
+    "nav.work": "Software",
     "nav.skills": "Skills",
     "nav.direction": "Direction",
     "nav.contact": "Contact",
     "language.label": "Language selector",
     "hero.eyebrow": "Software developer based in Padova, Italy",
-    "hero.title": "Mobile and backend engineer for retail systems, integrations, and practical product work.",
+    "hero.greeting": "hi, ",
+    "hero.here": " here.",
     "hero.intro":
       "I build and maintain software where reliability matters: Android apps used in stores, backend services, SQL-backed workflows, RabbitMQ integrations, and device-facing systems connected to scanners, printers, and POS operations.",
     "actions.primary": "Primary actions",
     "actions.email": "Email me",
     "actions.github": "GitHub",
-    "actions.cv": "Download CV",
+    "actions.cv": "Download CV (EN)",
     "actions.cvAria": "Download CV in English",
     "panel.label": "Profile summary",
     "panel.availability": "Open to remote-first roles in Italy",
@@ -28,15 +31,31 @@ const translations = {
     "panel.languagesLabel": "Languages",
     "panel.languagesValue": "Turkish native, English professional, Italian A2-B1",
     "proof.eyebrow": "What I bring",
-    "proof.title": "I like software that has to work in the real world.",
+    "proof.title": "/ about me",
+    "proof.lede":
+      "I like software that has to work in the real world: devices, logs, stores, pressure, and all the details that make a system actually usable.",
     "proof.mobileTitle": "Production mobile delivery",
     "proof.mobileBody": "Android work in Java and Kotlin for store operations, barcode workflows, local data, and device use.",
     "proof.backendTitle": "Backend and data systems",
     "proof.backendBody": "C#/.NET, Java/Spring, REST APIs, SQL Server, PostgreSQL, SQLite, and integration-heavy maintenance.",
     "proof.debugTitle": "Debugging under pressure",
     "proof.debugBody": "Comfortable reading logs, reproducing edge cases, and fixing practical failures in live business flows.",
+    "experience.eyebrow": "Current and previous work",
+    "experience.title": "/ experience",
+    "experience.systemRetailDate": "Jun 2024 - Present",
+    "experience.systemRetailTitle": "Software Development Specialist @ System Retail / ONEStore SMART",
+    "experience.systemRetailBody":
+      "Android, backend, SQL, RabbitMQ, reporting, POS, scanners, printers, and production debugging for retail operations.",
+    "experience.ifinDate": "Mar 2023 - Jun 2024",
+    "experience.ifinTitle": "Junior Software Developer @ Ifin Sistemi Srl",
+    "experience.ifinBody":
+      "Java/Spring, Hibernate/JPA, SQL Server/MySQL, SOAP/REST, JSP/JSTL, Vaadin, Tomcat, Ant, and Maven.",
+    "experience.iasonDate": "Oct 2022 - Feb 2023",
+    "experience.iasonTitle": "Software Development Intern @ Iason SRL",
+    "experience.iasonBody": "Internship in software development while completing the MSc path at the University of Padova.",
     "work.eyebrow": "Selected work themes",
-    "work.title": "A portfolio built around evidence, not inflated claims.",
+    "work.title": "/ software",
+    "work.lede": "A portfolio built around evidence, not inflated claims.",
     "work.mobileTitle": "Retail Android operations",
     "work.mobileBody":
       "Production Android application work for store teams, including workflows around inventory, movements, receiving, barcode scanning, local persistence, and device-specific behavior.",
@@ -96,19 +115,22 @@ const translations = {
       "Bilge Ozcanbaz è uno sviluppatore software con base a Padova, attivo su Android, backend, sistemi retail, SQL, RabbitMQ e debugging in produzione.",
     "brand.home": "Home di Bilge Ozcanbaz",
     "nav.label": "Navigazione principale",
-    "nav.work": "Lavori",
+    "nav.about": "Chi sono",
+    "nav.experience": "Esperienza",
+    "nav.work": "Software",
     "nav.skills": "Competenze",
     "nav.direction": "Direzione",
     "nav.contact": "Contatto",
     "language.label": "Selettore lingua",
     "hero.eyebrow": "Software developer con base a Padova",
-    "hero.title": "Ingegnere mobile e backend per sistemi retail, integrazioni e prodotto concreto.",
+    "hero.greeting": "ciao, sono ",
+    "hero.here": ".",
     "hero.intro":
       "Sviluppo e mantengo software dove l'affidabilità conta: app Android usate nei negozi, servizi backend, workflow basati su SQL, integrazioni RabbitMQ e sistemi collegati a scanner, stampanti e operazioni POS.",
     "actions.primary": "Azioni principali",
     "actions.email": "Scrivimi",
     "actions.github": "GitHub",
-    "actions.cv": "Scarica CV",
+    "actions.cv": "Scarica CV (IT)",
     "actions.cvAria": "Scarica il CV in italiano",
     "panel.label": "Sintesi profilo",
     "panel.availability": "Disponibile per ruoli remote-first in Italia",
@@ -119,15 +141,31 @@ const translations = {
     "panel.languagesLabel": "Lingue",
     "panel.languagesValue": "Turco madrelingua, inglese professionale, italiano A2-B1",
     "proof.eyebrow": "Cosa porto",
-    "proof.title": "Mi piace il software che deve funzionare nel mondo reale.",
+    "proof.title": "/ chi sono",
+    "proof.lede":
+      "Mi piace il software che deve funzionare nel mondo reale: device, log, negozi, pressione e tutti i dettagli che rendono un sistema davvero usabile.",
     "proof.mobileTitle": "Sviluppo mobile in produzione",
     "proof.mobileBody": "Lavoro Android in Java e Kotlin per operazioni di negozio, barcode, dati locali e uso dei device.",
     "proof.backendTitle": "Backend e sistemi dati",
     "proof.backendBody": "C#/.NET, Java/Spring, API REST, SQL Server, PostgreSQL, SQLite e manutenzione orientata alle integrazioni.",
     "proof.debugTitle": "Debugging sotto pressione",
     "proof.debugBody": "A mio agio con log, riproduzione di edge case e correzione di problemi pratici nei flussi business live.",
+    "experience.eyebrow": "Esperienza attuale e precedente",
+    "experience.title": "/ esperienza",
+    "experience.systemRetailDate": "Giu 2024 - Presente",
+    "experience.systemRetailTitle": "Software Development Specialist @ System Retail / ONEStore SMART",
+    "experience.systemRetailBody":
+      "Android, backend, SQL, RabbitMQ, reporting, POS, scanner, stampanti e debugging in produzione per operazioni retail.",
+    "experience.ifinDate": "Mar 2023 - Giu 2024",
+    "experience.ifinTitle": "Junior Software Developer @ Ifin Sistemi Srl",
+    "experience.ifinBody":
+      "Java/Spring, Hibernate/JPA, SQL Server/MySQL, SOAP/REST, JSP/JSTL, Vaadin, Tomcat, Ant e Maven.",
+    "experience.iasonDate": "Ott 2022 - Feb 2023",
+    "experience.iasonTitle": "Software Development Intern @ Iason SRL",
+    "experience.iasonBody": "Stage in sviluppo software durante il percorso MSc presso l'Universita di Padova.",
     "work.eyebrow": "Temi di lavoro",
-    "work.title": "Un portfolio costruito su evidenze, non su claim gonfiati.",
+    "work.title": "/ software",
+    "work.lede": "Un portfolio costruito su evidenze, non su claim gonfiati.",
     "work.mobileTitle": "Operazioni retail su Android",
     "work.mobileBody":
       "Sviluppo Android in produzione per team di negozio, con workflow su inventario, movimenti, ricezione merci, barcode scanning, persistenza locale e comportamento specifico dei device.",
@@ -185,17 +223,17 @@ const translations = {
 
 const cvFiles = {
   en: {
-    href: "assets/cv/Bilge_Ozcanbaz_CV_EN.pdf",
-    fileName: "Bilge_Ozcanbaz_CV_EN.pdf"
+    href: "assets/cv/Bilge_Ozcanbaz_CV_EN.html",
+    fileName: "Bilge_Ozcanbaz_CV_EN.html"
   },
   it: {
-    href: "assets/cv/Bilge_Ozcanbaz_CV_IT.pdf",
-    fileName: "Bilge_Ozcanbaz_CV_IT.pdf"
+    href: "assets/cv/Bilge_Ozcanbaz_CV_IT.html",
+    fileName: "Bilge_Ozcanbaz_CV_IT.html"
   }
 };
 
 function getCvFile(language) {
-  const embeddedCv = window.cvDownloads && window.cvDownloads[language];
+  const embeddedCv = typeof window !== "undefined" && window.cvDownloads && window.cvDownloads[language];
 
   if (embeddedCv && embeddedCv.base64) {
     return {

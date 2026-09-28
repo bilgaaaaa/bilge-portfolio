@@ -6,101 +6,168 @@
     <meta
       name="description"
       content="Bilge Ozcanbaz is a software developer in Padova, Italy, working across Android, backend services, retail systems, SQL, RabbitMQ, and production debugging."
+      data-i18n-attr="content:meta.description"
     />
     <meta name="theme-color" content="#101113" />
     <title>Bilge Ozcanbaz | Software Developer</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
   </head>
   <body>
     <header class="site-header" id="top">
-      <a class="brand" href="#top" aria-label="Bilge Ozcanbaz home">
+      <a class="brand" href="#top" aria-label="Bilge Ozcanbaz home" data-i18n-attr="aria-label:brand.home">
         <span class="brand-mark">BO</span>
         <span>Bilge Ozcanbaz</span>
       </a>
-      <nav aria-label="Primary navigation">
-        <a href="#work">Work</a>
-        <a href="#skills">Skills</a>
-        <a href="#direction">Direction</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="header-actions">
+        <nav aria-label="Primary navigation" data-i18n-attr="aria-label:nav.label">
+          <a href="#about" data-i18n="nav.about">About</a>
+          <a href="#experience" data-i18n="nav.experience">Experience</a>
+          <a href="#work" data-i18n="nav.work">Software</a>
+          <a href="#skills" data-i18n="nav.skills">Skills</a>
+          <a href="#contact" data-i18n="nav.contact">Contact</a>
+        </nav>
+        <div class="language-switch" aria-label="Language selector" data-i18n-attr="aria-label:language.label">
+          <button class="language-option is-active" type="button" data-language="en" aria-pressed="true">EN</button>
+          <button class="language-option" type="button" data-language="it" aria-pressed="false">IT</button>
+        </div>
+      </div>
     </header>
+
+    <aside class="side-nav" aria-label="Section shortcuts">
+      <a href="#top">/home</a>
+      <a href="#about">/about</a>
+      <a href="#experience">/experience</a>
+      <a href="#work">/software</a>
+      <a href="#contact">/contact</a>
+    </aside>
 
     <main>
       <section class="hero">
+        <div class="hero-visual" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <div class="hero-copy">
-          <p class="eyebrow">Software developer based in Padova, Italy</p>
-          <h1>Mobile and backend engineer for retail systems, integrations, and practical product work.</h1>
-          <p class="intro">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Software developer based in Padova, Italy</p>
+          <h1 class="intro-title">
+            <span data-i18n="hero.greeting">hi, </span><span class="accent">bilge</span><span data-i18n="hero.here"> here.</span><span class="cursor">|</span>
+          </h1>
+          <p class="intro" data-i18n="hero.intro">
             I build and maintain software where reliability matters: Android apps used in stores, backend services,
             SQL-backed workflows, RabbitMQ integrations, and device-facing systems connected to scanners, printers,
             and POS operations.
           </p>
-          <div class="hero-actions" aria-label="Primary actions">
-            <a class="button primary" href="mailto:ozcanbazbilge@gmail.com">Email me</a>
-            <a class="button secondary" href="https://github.com/bilgaaaaa">GitHub</a>
+          <div class="hero-actions" aria-label="Primary actions" data-i18n-attr="aria-label:actions.primary">
+            <a class="button primary" href="mailto:ozcanbazbilge@gmail.com" data-i18n="actions.email">Email me</a>
+            <a class="button secondary" href="https://github.com/bilgaaaaa" data-i18n="actions.github">GitHub</a>
+            <a
+              class="button tertiary"
+              id="cvDownload"
+              href="assets/cv/Bilge_Ozcanbaz_CV_EN.html"
+              download="Bilge_Ozcanbaz_CV_EN.html"
+              data-i18n="actions.cv"
+              data-i18n-attr="aria-label:actions.cvAria"
+              aria-label="Download CV in English"
+            >Download CV (EN)</a>
           </div>
         </div>
-        <aside class="hero-panel" aria-label="Profile summary">
-          <div class="availability">Open to remote-first roles in Italy</div>
+        <aside class="hero-panel" aria-label="Profile summary" data-i18n-attr="aria-label:panel.label">
+          <div class="availability" data-i18n="panel.availability">Open to remote-first roles in Italy</div>
           <dl>
             <div>
-              <dt>Focus</dt>
-              <dd>Android, Java, Kotlin, .NET, SQL, APIs</dd>
+              <dt data-i18n="panel.focusLabel">Focus</dt>
+              <dd data-i18n="panel.focusValue">Android, Java, Kotlin, .NET, SQL, APIs</dd>
             </div>
             <div>
-              <dt>Domains</dt>
-              <dd>RetailTech, enterprise systems, integrations</dd>
+              <dt data-i18n="panel.domainsLabel">Domains</dt>
+              <dd data-i18n="panel.domainsValue">RetailTech, enterprise systems, integrations</dd>
             </div>
             <div>
-              <dt>Languages</dt>
-              <dd>Turkish native, English professional, Italian A2-B1</dd>
+              <dt data-i18n="panel.languagesLabel">Languages</dt>
+              <dd data-i18n="panel.languagesValue">Turkish native, English professional, Italian A2-B1</dd>
             </div>
           </dl>
         </aside>
       </section>
 
-      <section class="section compact" aria-labelledby="proof-title">
+      <section class="section compact" id="about" aria-labelledby="proof-title">
         <div class="section-heading">
-          <p class="eyebrow">What I bring</p>
-          <h2 id="proof-title">I like software that has to work in the real world.</h2>
+          <p class="eyebrow" data-i18n="proof.eyebrow">What I bring</p>
+          <h2 id="proof-title" data-i18n="proof.title">/ about me</h2>
+          <p class="section-lede" data-i18n="proof.lede">
+            I like software that has to work in the real world: devices, logs, stores, pressure, and all the details that make a system actually usable.
+          </p>
         </div>
         <div class="proof-grid">
           <article>
-            <strong>Production mobile delivery</strong>
-            <p>Android work in Java and Kotlin for store operations, barcode workflows, local data, and device use.</p>
+            <strong data-i18n="proof.mobileTitle">Production mobile delivery</strong>
+            <p data-i18n="proof.mobileBody">Android work in Java and Kotlin for store operations, barcode workflows, local data, and device use.</p>
           </article>
           <article>
-            <strong>Backend and data systems</strong>
-            <p>C#/.NET, Java/Spring, REST APIs, SQL Server, PostgreSQL, SQLite, and integration-heavy maintenance.</p>
+            <strong data-i18n="proof.backendTitle">Backend and data systems</strong>
+            <p data-i18n="proof.backendBody">C#/.NET, Java/Spring, REST APIs, SQL Server, PostgreSQL, SQLite, and integration-heavy maintenance.</p>
           </article>
           <article>
-            <strong>Debugging under pressure</strong>
-            <p>Comfortable reading logs, reproducing edge cases, and fixing practical failures in live business flows.</p>
+            <strong data-i18n="proof.debugTitle">Debugging under pressure</strong>
+            <p data-i18n="proof.debugBody">Comfortable reading logs, reproducing edge cases, and fixing practical failures in live business flows.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split experience" id="experience" aria-labelledby="experience-title">
+        <div class="section-heading sticky-heading">
+          <p class="eyebrow" data-i18n="experience.eyebrow">Current and previous work</p>
+          <h2 id="experience-title" data-i18n="experience.title">/ experience</h2>
+        </div>
+        <div class="timeline">
+          <article>
+            <p class="timeline-date" data-i18n="experience.systemRetailDate">Jun 2024 - Present</p>
+            <h3 data-i18n="experience.systemRetailTitle">Software Development Specialist @ System Retail / ONEStore SMART</h3>
+            <p data-i18n="experience.systemRetailBody">
+              Android, backend, SQL, RabbitMQ, reporting, POS, scanners, printers, and production debugging for retail operations.
+            </p>
+          </article>
+          <article>
+            <p class="timeline-date" data-i18n="experience.ifinDate">Mar 2023 - Jun 2024</p>
+            <h3 data-i18n="experience.ifinTitle">Junior Software Developer @ Ifin Sistemi Srl</h3>
+            <p data-i18n="experience.ifinBody">
+              Java/Spring, Hibernate/JPA, SQL Server/MySQL, SOAP/REST, JSP/JSTL, Vaadin, Tomcat, Ant, and Maven.
+            </p>
+          </article>
+          <article>
+            <p class="timeline-date" data-i18n="experience.iasonDate">Oct 2022 - Feb 2023</p>
+            <h3 data-i18n="experience.iasonTitle">Software Development Intern @ Iason SRL</h3>
+            <p data-i18n="experience.iasonBody">
+              Internship in software development while completing the MSc path at the University of Padova.
+            </p>
           </article>
         </div>
       </section>
 
       <section class="section" id="work" aria-labelledby="work-title">
         <div class="section-heading">
-          <p class="eyebrow">Selected work themes</p>
-          <h2 id="work-title">A portfolio built around evidence, not inflated claims.</h2>
+          <p class="eyebrow" data-i18n="work.eyebrow">Selected work themes</p>
+          <h2 id="work-title" data-i18n="work.title">/ software</h2>
+          <p class="section-lede" data-i18n="work.lede">A portfolio built around evidence, not inflated claims.</p>
         </div>
 
         <div class="work-list">
           <article class="work-item">
             <div class="work-index">01</div>
             <div>
-              <h3>Retail Android operations</h3>
-              <p>
+              <h3 data-i18n="work.mobileTitle">Retail Android operations</h3>
+              <p data-i18n="work.mobileBody">
                 Production Android application work for store teams, including workflows around inventory, movements,
                 receiving, barcode scanning, local persistence, and device-specific behavior.
               </p>
-              <ul class="tag-list" aria-label="Retail Android technologies">
-                <li>Java</li>
-                <li>Kotlin</li>
-                <li>SQLite</li>
-                <li>Barcode scanning</li>
+              <ul class="tag-list" aria-label="Retail Android technologies" data-i18n-attr="aria-label:work.mobileTags">
+                <li data-i18n="tags.java">Java</li>
+                <li data-i18n="tags.kotlin">Kotlin</li>
+                <li data-i18n="tags.sqlite">SQLite</li>
+                <li data-i18n="tags.barcode">Barcode scanning</li>
               </ul>
             </div>
           </article>
@@ -108,16 +175,16 @@
           <article class="work-item">
             <div class="work-index">02</div>
             <div>
-              <h3>Backend services and integrations</h3>
-              <p>
+              <h3 data-i18n="work.backendTitle">Backend services and integrations</h3>
+              <p data-i18n="work.backendBody">
                 Enterprise work across .NET, Java/Spring, REST APIs, SQL-backed workflows, messaging, and service
                 maintenance for retail and business systems.
               </p>
-              <ul class="tag-list" aria-label="Backend technologies">
-                <li>C#/.NET</li>
-                <li>Java Spring</li>
-                <li>REST APIs</li>
-                <li>RabbitMQ</li>
+              <ul class="tag-list" aria-label="Backend technologies" data-i18n-attr="aria-label:work.backendTags">
+                <li data-i18n="tags.dotnet">C#/.NET</li>
+                <li data-i18n="tags.spring">Java Spring</li>
+                <li data-i18n="tags.rest">REST APIs</li>
+                <li data-i18n="tags.rabbit">RabbitMQ</li>
               </ul>
             </div>
           </article>
@@ -125,16 +192,16 @@
           <article class="work-item">
             <div class="work-index">03</div>
             <div>
-              <h3>POS, printers, and hardware-facing flows</h3>
-              <p>
+              <h3 data-i18n="work.hardwareTitle">POS, printers, and hardware-facing flows</h3>
+              <p data-i18n="work.hardwareBody">
                 Retail software debugging and feature work involving fiscal printers, line displays, scanners, logs,
                 configuration, and the messy boundary between software and physical devices.
               </p>
-              <ul class="tag-list" aria-label="Hardware integration technologies">
-                <li>POS</li>
-                <li>Fiscal printers</li>
-                <li>Device config</li>
-                <li>Production logs</li>
+              <ul class="tag-list" aria-label="Hardware integration technologies" data-i18n-attr="aria-label:work.hardwareTags">
+                <li data-i18n="tags.pos">POS</li>
+                <li data-i18n="tags.printers">Fiscal printers</li>
+                <li data-i18n="tags.config">Device config</li>
+                <li data-i18n="tags.logs">Production logs</li>
               </ul>
             </div>
           </article>
@@ -142,16 +209,16 @@
           <article class="work-item">
             <div class="work-index">04</div>
             <div>
-              <h3>PaceTasks and product thinking</h3>
-              <p>
+              <h3 data-i18n="work.productTitle">PaceTasks and product thinking</h3>
+              <p data-i18n="work.productBody">
                 A personal product direction focused on multilingual task management and practical AI-assisted
                 workflows. It is in progress, and I treat it as a place to sharpen product judgment.
               </p>
-              <ul class="tag-list" aria-label="Product interests">
-                <li>iOS users</li>
-                <li>AI workflows</li>
-                <li>Multilingual UX</li>
-                <li>Product strategy</li>
+              <ul class="tag-list" aria-label="Product interests" data-i18n-attr="aria-label:work.productTags">
+                <li data-i18n="tags.ios">iOS users</li>
+                <li data-i18n="tags.ai">AI workflows</li>
+                <li data-i18n="tags.multilingual">Multilingual UX</li>
+                <li data-i18n="tags.strategy">Product strategy</li>
               </ul>
             </div>
           </article>
@@ -160,35 +227,35 @@
 
       <section class="section split" id="skills" aria-labelledby="skills-title">
         <div class="section-heading sticky-heading">
-          <p class="eyebrow">Technical foundation</p>
-          <h2 id="skills-title">Useful across mobile, backend, data, and integration layers.</h2>
+          <p class="eyebrow" data-i18n="skills.eyebrow">Technical foundation</p>
+          <h2 id="skills-title" data-i18n="skills.title">Useful across mobile, backend, data, and integration layers.</h2>
         </div>
         <div class="skill-groups">
           <article>
-            <h3>Mobile</h3>
-            <p>Android, Java, Kotlin, barcode flows, device behavior, local storage, production bug fixing.</p>
+            <h3 data-i18n="skills.mobileTitle">Mobile</h3>
+            <p data-i18n="skills.mobileBody">Android, Java, Kotlin, barcode flows, device behavior, local storage, production bug fixing.</p>
           </article>
           <article>
-            <h3>Backend</h3>
-            <p>C#/.NET, Java, Spring Boot, REST APIs, enterprise integrations, maintenance, debugging.</p>
+            <h3 data-i18n="skills.backendTitle">Backend</h3>
+            <p data-i18n="skills.backendBody">C#/.NET, Java, Spring Boot, REST APIs, enterprise integrations, maintenance, debugging.</p>
           </article>
           <article>
-            <h3>Data and messaging</h3>
-            <p>SQL Server, PostgreSQL, SQLite, RabbitMQ, persistence, stored data flows, reporting support.</p>
+            <h3 data-i18n="skills.dataTitle">Data and messaging</h3>
+            <p data-i18n="skills.dataBody">SQL Server, PostgreSQL, SQLite, RabbitMQ, persistence, stored data flows, reporting support.</p>
           </article>
           <article>
-            <h3>Engineering habits</h3>
-            <p>Git, Azure DevOps, clear written traceability, cautious claims, and practical problem solving.</p>
+            <h3 data-i18n="skills.habitsTitle">Engineering habits</h3>
+            <p data-i18n="skills.habitsBody">Git, Azure DevOps, clear written traceability, cautious claims, and practical problem solving.</p>
           </article>
         </div>
       </section>
 
       <section class="section direction" id="direction" aria-labelledby="direction-title">
         <div>
-          <p class="eyebrow">Next direction</p>
-          <h2 id="direction-title">I am looking for teams where mobile and backend work meet real product ownership.</h2>
+          <p class="eyebrow" data-i18n="direction.eyebrow">Next direction</p>
+          <h2 id="direction-title" data-i18n="direction.title">I am looking for teams where mobile and backend work meet real product ownership.</h2>
         </div>
-        <p>
+        <p data-i18n="direction.body">
           The best fit is a remote-first or sustainable hybrid role in Italy, in an international or product-minded team,
           with space to deepen backend, mobile, cloud, CI/CD, and AI-enabled engineering practice over time.
         </p>
@@ -196,9 +263,9 @@
 
       <section class="section contact" id="contact" aria-labelledby="contact-title">
         <div>
-          <p class="eyebrow">Contact</p>
-          <h2 id="contact-title">Have a role or project where practical engineering matters?</h2>
-          <p>
+          <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
+          <h2 id="contact-title" data-i18n="contact.title">Have a role or project where practical engineering matters?</h2>
+          <p data-i18n="contact.body">
             I am especially interested in backend, Android/mobile, .NET, Java/Spring, API integration, and product
             engineering roles that can hire someone based in Italy.
           </p>
@@ -206,13 +273,22 @@
         <div class="contact-actions">
           <a class="button primary" href="mailto:ozcanbazbilge@gmail.com">ozcanbazbilge@gmail.com</a>
           <a class="button secondary" href="https://github.com/bilgaaaaa">github.com/bilgaaaaa</a>
+          <a
+            class="button tertiary"
+            id="contactCvDownload"
+            href="assets/cv/Bilge_Ozcanbaz_CV_EN.html"
+            download="Bilge_Ozcanbaz_CV_EN.html"
+            data-i18n="actions.cv"
+            data-i18n-attr="aria-label:actions.cvAria"
+            aria-label="Download CV in English"
+          >Download CV (EN)</a>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>Built as a living portfolio for Bilge Ozcanbaz.</p>
-      <a href="#top">Back to top</a>
+      <p data-i18n="footer.body">Built as a living portfolio for Bilge Ozcanbaz.</p>
+      <a href="#top" data-i18n="footer.top">Back to top</a>
     </footer>
   </body>
 </html>
