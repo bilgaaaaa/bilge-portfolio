@@ -404,6 +404,9 @@ function setLanguage(language) {
   });
 
   saveLanguage(currentLanguage);
+
+  // Lets standalone widgets (e.g. the game) re-translate their dynamic text.
+  document.dispatchEvent(new CustomEvent("portfolio:languagechange", { detail: { language: currentLanguage } }));
 }
 
 // ---------- scroll behaviour ----------

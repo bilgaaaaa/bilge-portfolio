@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="content.js" defer></script>
     <script src="script.js" defer></script>
+    <script src="game.js" defer></script>
   </head>
   <body data-page="home">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -43,6 +44,7 @@
           <a href="#experience" data-i18n="nav.experience">Experience</a>
           <a href="#work" data-i18n="nav.work">Software</a>
           <a href="#beyond" data-i18n="nav.beyond">Beyond code</a>
+          <a href="#play" data-i18n="nav.play">Play</a>
           <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
         <div class="language-switch" role="group" aria-label="Language selector" data-i18n-attr="aria-label:language.label">
@@ -124,6 +126,35 @@
         <h2 class="section-title reveal" id="beyondTitle"><span class="slash">/</span> <span data-i18n="beyond.title">beyond code</span></h2>
         <p class="section-lede reveal" data-i18n="beyond.lede"></p>
         <ul class="beyond-grid" data-beyond-list></ul>
+      </section>
+
+      <section class="section" id="play" aria-labelledby="playTitle">
+        <h2 class="section-title reveal" id="playTitle"><span class="slash">/</span> <span data-i18n="game.title">play</span></h2>
+        <p class="section-lede reveal" data-i18n="game.lede"></p>
+        <div class="game reveal" data-game>
+          <div class="game-hud">
+            <span><span class="game-hud-label" data-i18n="game.score">Score</span> <strong data-game-score>0</strong></span>
+            <span><span class="game-hud-label" data-i18n="game.combo">Combo</span> <strong data-game-combo>0</strong></span>
+            <span><span class="game-hud-label" data-i18n="game.lives">Lives</span> <strong class="game-lives" data-game-lives></strong></span>
+            <span><span class="game-hud-label" data-i18n="game.best">Best</span> <strong data-game-best>0</strong></span>
+            <button class="game-sound" type="button" aria-pressed="true" data-game-sound>
+              <span data-i18n="game.sound">Sound</span>
+            </button>
+          </div>
+          <div class="game-stage" data-game-stage>
+            <canvas class="game-canvas" tabindex="0" role="img" aria-label="Scan Rush game" data-i18n-attr="aria-label:game.canvasLabel" data-game-canvas></canvas>
+            <div class="game-overlay" data-game-start>
+              <p class="game-name" data-i18n="game.name">Scan Rush</p>
+              <p class="game-instructions" data-i18n="game.instructions"></p>
+              <button class="button" type="button" data-game-play data-i18n="game.start">Start shift</button>
+            </div>
+            <div class="game-overlay game-over" data-game-over hidden>
+              <div class="receipt" data-game-receipt></div>
+              <button class="button" type="button" data-game-play data-i18n="game.again">Scan again</button>
+            </div>
+          </div>
+          <p class="game-hint" data-i18n="game.hint">Tap the belt or press Space to scan</p>
+        </div>
       </section>
 
       <section class="section contact" id="contact" aria-labelledby="contactTitle">

@@ -1054,9 +1054,7 @@ main {
   .footer-social {
     display: flex;
   }
-}
 
-@media (max-width: 860px) {
   .menu-toggle {
     display: block;
   }
@@ -1102,7 +1100,9 @@ main {
     margin-bottom: 4px;
     text-align: center;
   }
+}
 
+@media (max-width: 860px) {
   .about-grid {
     grid-template-columns: 1fr;
   }
@@ -1613,5 +1613,209 @@ main {
   .featured-links,
   .is-flipped .featured-links {
     justify-content: flex-start;
+  }
+}
+
+/* ---------- Scan Rush game ---------- */
+
+.game {
+  max-width: 860px;
+}
+
+.game-hud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 26px;
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+.game-hud strong {
+  color: var(--slate-lightest);
+  font-weight: 500;
+}
+
+.game-hud-label {
+  color: var(--slate);
+}
+
+.game-lives {
+  color: #ff4d5e !important;
+  letter-spacing: 0.15em;
+}
+
+.game-sound {
+  margin-left: auto;
+  padding: 5px 10px;
+  border: 1px solid var(--navy-lighter);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.game-sound.is-off {
+  color: var(--slate);
+  text-decoration: line-through;
+}
+
+.game-stage {
+  position: relative;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  border: 1px solid var(--navy-lighter);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 32% 0%, rgba(255, 77, 94, 0.08), transparent 45%),
+    linear-gradient(180deg, #0d1f3a, var(--navy));
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.game-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.game-canvas:focus-visible {
+  outline-offset: -3px;
+}
+
+.game-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px;
+  background: rgba(10, 25, 47, 0.82);
+  text-align: center;
+}
+
+.game-overlay[hidden] {
+  display: none;
+}
+
+.game-name {
+  color: var(--slate-lightest);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 800;
+}
+
+.game-instructions {
+  max-width: 520px;
+  font-size: 0.92rem;
+}
+
+/* Receipt and "Scan again" sit side by side; they stack on small screens (see media query). */
+.game-over {
+  flex-direction: row;
+  gap: 28px;
+  overflow-y: auto;
+}
+
+.game-over .receipt {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.game-hint {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+/* Thermal-paper receipt printed at the end of a shift. */
+.receipt {
+  width: min(100%, 270px);
+  padding: 14px 16px 22px;
+  background: #f4f1e8;
+  color: #1d2433;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  text-align: left;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), 92% 100%, 84% calc(100% - 8px), 76% 100%, 68% calc(100% - 8px), 60% 100%, 52% calc(100% - 8px), 44% 100%, 36% calc(100% - 8px), 28% 100%, 20% calc(100% - 8px), 12% 100%, 4% calc(100% - 8px), 0 100%);
+}
+
+.receipt-title,
+.receipt-date,
+.receipt-best,
+.receipt-thanks {
+  text-align: center;
+}
+
+.receipt-title {
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.receipt-date {
+  margin-bottom: 8px;
+  color: #56607a;
+}
+
+.receipt-lines {
+  padding: 6px 0;
+  border-top: 1px dashed #9aa1b1;
+}
+
+.receipt-lines li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.receipt-total {
+  font-weight: 700;
+}
+
+.receipt-best {
+  margin-top: 4px;
+  color: #0f8f73;
+  font-weight: 700;
+}
+
+.receipt-thanks {
+  margin-top: 6px;
+  color: #56607a;
+}
+
+@media (max-width: 600px) {
+  .game-stage {
+    aspect-ratio: 1 / 1;
+  }
+
+  .game-over {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 14px;
+  }
+
+  .game-over .receipt {
+    max-height: none;
+    overflow: visible;
+  }
+
+  /* Keep "Scan again" reachable above the receipt on small screens. */
+  .game-over .button {
+    order: -1;
+    flex-shrink: 0;
+  }
+
+  .game-hud {
+    gap: 6px 16px;
+    font-size: 0.75rem;
   }
 }

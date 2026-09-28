@@ -13,6 +13,7 @@ Plain HTML, CSS and JavaScript — no framework, no build step. Bilingual (EN / 
 | `pacetasks.html` | PaceTasks case-study page |
 | `content.js` | **All text and data** — translations, experience, projects, links |
 | `script.js` | Renders `content.js` per page (`<body data-page>`), language switch, typing greeting, tabs, menu, scroll reveal |
+| `game.js` | Scan Rush mini-game (canvas), products in `scanRushProducts`, text in the `game.*` keys |
 | `styles.css` | Theme tokens and layout |
 | `assets/icons.svg` | Shared icon sprite (`assets/icons.svg#icon-<name>`) |
 | `assets/cv/` | Public CV in EN/IT (HTML + PDF, no phone number or birth date) |
