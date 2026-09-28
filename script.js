@@ -1,8 +1,10 @@
-// Renders the portfolio from content.js and wires up language, typing, tabs, menu and scroll reveal.
+// Renders every page from content.js and wires up language, typing, tabs, menu and scroll reveal.
+// Each page sets <body data-page="..."> so only its own renderers run.
 
 const STORAGE_KEY = "portfolioLanguage";
 const SUPPORTED_LANGUAGES = ["en", "it"];
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const currentPage = document.body.dataset.page || "home";
 
 let currentLanguage = "en";
 let activeExperienceId = experience[0].id;
@@ -26,7 +28,7 @@ function t(key) {
 function el(tag, options = {}, children = []) {
   const node = document.createElement(tag);
   Object.entries(options).forEach(([name, value]) => {
-    if (value === undefined || value === null) return;
+    if (value === undefined || value === null || value === false) return;
     if (name === "className") node.className = value;
     else if (name === "text") node.textContent = value;
     else node.setAttribute(name, value);
@@ -40,9 +42,20 @@ function icon(name, className = "icon") {
   svg.setAttribute("class", className);
   svg.setAttribute("aria-hidden", "true");
   const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-  use.setAttribute("href", `#icon-${name}`);
+  use.setAttribute("href", `assets/icons.svg#icon-${name}`);
   svg.append(use);
   return svg;
+}
+
+// Replaces the children of the element matching `selector`, if that element exists on this page.
+function fill(selector, children) {
+  const target = document.querySelector(selector);
+  if (target) target.replaceChildren(...children);
+  return target;
+}
+
+function externalLink(href, children, options = {}) {
+  return el("a", { href, target: "_blank", rel: "noopener", ...options }, children);
 }
 
 function readSavedLanguage() {
@@ -67,7 +80,34 @@ function getInitialLanguage() {
   return navigator.language?.toLowerCase().startsWith("it") ? "it" : "en";
 }
 
-// ---------- hero greeting ----------
+// ---------- shared renderers ----------
+
+function renderSocialLists() {
+  const items = [
+    { name: "github", href: profileLinks.github, label: "GitHub" },
+    { name: "linkedin", href: profileLinks.linkedin, label: "LinkedIn" },
+    { name: "tiktok", href: profileLinks.tiktok, label: "TikTok" },
+    { name: "mail", href: `mailto:${profileLinks.email}`, label: "Email" }
+  ];
+
+  document.querySelectorAll("[data-social-list]").forEach((list) => {
+    list.replaceChildren(
+      ...items.map((item) =>
+        el("li", {}, [
+          item.name === "mail"
+            ? el("a", { href: item.href, "aria-label": item.label }, [icon(item.name)])
+            : externalLink(item.href, [icon(item.name)], { "aria-label": item.label })
+        ])
+      )
+    );
+  });
+}
+
+function techList(items, className = "project-tech") {
+  return el("ul", { className }, items.map((item) => el("li", { text: item })));
+}
+
+// ---------- home: hero greeting ----------
 
 function renderGreeting(segments, charCount = Infinity) {
   const target = document.getElementById("heroGreeting");
@@ -83,6 +123,7 @@ function renderGreeting(segments, charCount = Infinity) {
 
 // Types the greeting once on first load; later language switches render it instantly.
 function typeGreeting() {
+  if (!document.getElementById("heroGreeting")) return;
   const segments = t("hero.greeting");
   const total = segments.reduce((sum, segment) => sum + segment.text.length, 0);
 
@@ -100,31 +141,12 @@ function typeGreeting() {
   }, 85);
 }
 
-// ---------- section renderers ----------
-
-function renderSocialLists() {
-  const items = [
-    { name: "github", href: profileLinks.github, label: "GitHub" },
-    { name: "linkedin", href: profileLinks.linkedin, label: "LinkedIn" },
-    { name: "tiktok", href: profileLinks.tiktok, label: "TikTok" },
-    { name: "mail", href: `mailto:${profileLinks.email}`, label: "Email" }
-  ];
-
-  document.querySelectorAll("[data-social-list]").forEach((list) => {
-    list.replaceChildren(
-      ...items.map((item) =>
-        el("li", {}, [
-          el("a", { href: item.href, "aria-label": item.label, target: item.name === "mail" ? null : "_blank", rel: "noopener" }, [icon(item.name)])
-        ])
-      )
-    );
-  });
-}
+// ---------- home: sections ----------
 
 function renderTechnologies() {
-  const list = document.querySelector("[data-tech-list]");
-  list.replaceChildren(...technologies.map((name) => el("li", { text: name })));
-  document.querySelector("[data-languages]").textContent = localize(languagesSpoken);
+  fill("[data-tech-list]", technologies.map((name) => el("li", { text: name })));
+  const languages = document.querySelector("[data-languages]");
+  if (languages) languages.textContent = localize(languagesSpoken);
 }
 
 function selectExperience(id, focusTab = false) {
@@ -145,18 +167,17 @@ function selectExperience(id, focusTab = false) {
 }
 
 function renderExperience() {
-  const tabList = document.querySelector("[data-tab-list]");
-  const panels = document.querySelector("[data-tab-panels]");
-
-  tabList.replaceChildren(
+  const tabList = fill("[data-tab-list]", [
     ...experience.map((job) =>
       el("button", { type: "button", role: "tab", id: `tab-${job.id}`, "aria-controls": `panel-${job.id}`, "data-id": job.id, text: job.tab })
     ),
     el("span", { className: "tab-highlight", "aria-hidden": "true" })
-  );
+  ]);
+  if (!tabList) return;
 
-  panels.replaceChildren(
-    ...experience.map((job) =>
+  fill(
+    "[data-tab-panels]",
+    experience.map((job) =>
       el("div", { role: "tabpanel", id: `panel-${job.id}`, "aria-labelledby": `tab-${job.id}`, "data-id": job.id, tabindex: "0" }, [
         el("h3", { className: "job-title" }, [
           document.createTextNode(`${localize(job.role)} `),
@@ -171,9 +192,9 @@ function renderExperience() {
   tabList.querySelectorAll("[role=tab]").forEach((tab) => tab.addEventListener("click", () => selectExperience(tab.dataset.id)));
   selectExperience(activeExperienceId);
 
-  const educationList = document.querySelector("[data-education-list]");
-  educationList.replaceChildren(
-    ...education.map((item) =>
+  fill(
+    "[data-education-list]",
+    education.map((item) =>
       el("li", {}, [
         el("span", { className: "education-degree", text: localize(item.degree) }),
         el("span", { className: "education-school", text: localize(item.school) }),
@@ -196,30 +217,39 @@ function handleTabKeys(event) {
   selectExperience(experience[(next + experience.length) % experience.length].id, true);
 }
 
+// Decorative illustrations for featured projects, drawn with CSS spans.
 function projectVisual(kind) {
-  // Decorative illustrations for featured projects, drawn with CSS.
+  const spanCount = { handheld: 6, receipt: 7, chart: 7, tasks: 7 };
   const visual = el("div", { className: `project-visual visual-${kind}`, "aria-hidden": "true" });
-  const layouts = { handheld: 6, receipt: 7, chart: 7 };
-  for (let i = 0; i < layouts[kind]; i += 1) visual.append(el("span"));
+  for (let i = 0; i < spanCount[kind]; i += 1) visual.append(el("span"));
   return visual;
 }
 
-function techList(items, className = "project-tech") {
-  return el("ul", { className }, items.map((item) => el("li", { text: item })));
+// Public projects get case-study and code links; work projects get a private-code note.
+function featuredFooter(project) {
+  if (!project.caseStudy && !project.repo) {
+    return el("p", { className: "featured-private" }, [icon("lock"), document.createTextNode(t("work.privateNote"))]);
+  }
+  return el("div", { className: "featured-links" }, [
+    project.caseStudy && el("a", { className: "button small", href: project.caseStudy, text: t("work.caseStudy") }),
+    project.repo && externalLink(project.repo, [icon("github")], { className: "icon-link", "aria-label": `${t("work.viewCode")}: ${localize(project.title)}` })
+  ]);
 }
 
 function renderFeaturedProjects() {
-  const container = document.querySelector("[data-featured-list]");
-  container.replaceChildren(
-    ...featuredProjects.map((project, index) =>
+  fill(
+    "[data-featured-list]",
+    featuredProjects.map((project, index) =>
       el("article", { className: `featured-project reveal ${index % 2 ? "is-flipped" : ""}` }, [
         projectVisual(project.visual),
         el("div", { className: "featured-content" }, [
-          el("p", { className: "featured-label", text: t("work.featuredLabel") }),
-          el("h3", { className: "featured-title", text: localize(project.title) }),
+          el("p", { className: "featured-label", text: t(project.personal ? "work.personalLabel" : "work.featuredLabel") }),
+          el("h3", { className: "featured-title" }, [
+            project.caseStudy ? el("a", { href: project.caseStudy, text: localize(project.title) }) : document.createTextNode(localize(project.title))
+          ]),
           el("div", { className: "featured-description" }, [el("p", { text: localize(project.description) })]),
           techList(project.tech),
-          el("p", { className: "featured-private" }, [icon("lock"), document.createTextNode(t("work.privateNote"))])
+          featuredFooter(project)
         ])
       ])
     )
@@ -227,14 +257,14 @@ function renderFeaturedProjects() {
 }
 
 function renderOtherProjects() {
-  const grid = document.querySelector("[data-project-grid]");
-  grid.replaceChildren(
-    ...otherProjects.map((project) => {
+  fill(
+    "[data-project-grid]",
+    otherProjects.map((project) => {
       const title = localize(project.title);
       const header = el("div", { className: "card-top" }, [
         icon("folder", "icon folder-icon"),
         project.link
-          ? el("a", { href: project.link, target: "_blank", rel: "noopener", "aria-label": `${t("work.viewCode")}: ${title}` }, [icon("github")])
+          ? externalLink(project.link, [icon("github")], { "aria-label": `${t("work.viewCode")}: ${title}` })
           : icon("lock", "icon muted-icon")
       ]);
       return el("li", { className: "project-card reveal" }, [
@@ -248,19 +278,85 @@ function renderOtherProjects() {
 }
 
 function renderBeyond() {
-  const list = document.querySelector("[data-beyond-list]");
-  list.replaceChildren(
-    ...beyondItems.map((item) => {
-      const title = el("h3", { text: localize(item.title) });
-      const body = [icon(item.icon, "icon beyond-icon"), title, el("p", { text: localize(item.description) })];
-      if (item.link) {
-        return el("li", { className: "beyond-card reveal" }, [
-          el("a", { href: item.link, target: "_blank", rel: "noopener", className: "beyond-link" }, [...body, icon("external", "icon corner-icon")])
-        ]);
-      }
-      return el("li", { className: "beyond-card reveal" }, body);
+  fill(
+    "[data-beyond-list]",
+    beyondItems.map((item) => {
+      const body = [icon(item.icon, "icon beyond-icon"), el("h3", { text: localize(item.title) }), el("p", { text: localize(item.description) })];
+      const content = item.link ? [externalLink(item.link, [...body, icon("external", "icon corner-icon")], { className: "beyond-link" })] : body;
+      return el("li", { className: "beyond-card reveal" }, content);
     })
   );
+}
+
+function renderHome() {
+  typeGreeting();
+  renderTechnologies();
+  renderExperience();
+  renderFeaturedProjects();
+  renderOtherProjects();
+  renderBeyond();
+}
+
+// ---------- PaceTasks case study ----------
+
+// Illustrated "Today" screen in the app's own sage/cream theme.
+function renderPhoneMockup() {
+  const { mockup } = pacetasksCaseStudy;
+  const taskRow = (task) =>
+    el("li", { className: `pt-task ${task.done ? "is-done" : ""}` }, [
+      el("span", { className: "pt-check", "aria-hidden": "true" }),
+      el("span", { className: "pt-task-text" }, [
+        el("span", { className: "pt-task-title", text: localize(task.title) }),
+        el("span", { className: "pt-task-meta" }, [
+          el("span", { className: `pt-dot cat-${task.category}`, "aria-hidden": "true" }),
+          document.createTextNode(localize(task.meta))
+        ])
+      ]),
+      task.focus && el("span", { className: "pt-badge", text: "FOCUS" }),
+      task.running && el("span", { className: "pt-timer", text: "12:40" })
+    ]);
+
+  fill("[data-phone-mockup]", [
+    el("div", { className: "pt-screen" }, [
+      el("p", { className: "pt-eyebrow", text: localize(mockup.greeting).toUpperCase() }),
+      el("p", { className: "pt-title", text: localize(mockup.title) }),
+      el("div", { className: "pt-quickadd", text: localize(mockup.placeholder) }),
+      el("ul", { className: "pt-tasks" }, mockup.tasks.map(taskRow)),
+      el("div", { className: "pt-tabbar" }, localize(mockup.tabs).map((tab, index) => el("span", { className: index === 0 ? "is-active" : "", text: tab })))
+    ])
+  ]);
+}
+
+function renderCaseStudy() {
+  const study = pacetasksCaseStudy;
+  renderPhoneMockup();
+  fill("[data-pt-stack]", study.stack.map((item) => el("li", { text: item })));
+
+  fill(
+    "[data-pt-features]",
+    study.features.map((feature, index) =>
+      el("li", { className: "pt-feature reveal" }, [
+        el("span", { className: "pt-feature-index", text: String(index + 1).padStart(2, "0") }),
+        el("h3", { text: localize(feature.title) }),
+        el("p", { text: localize(feature.body) })
+      ])
+    )
+  );
+
+  fill(
+    "[data-pt-layers]",
+    study.layers.map((layer) =>
+      el("li", { className: "pt-layer reveal" }, [
+        el("h3", { text: localize(layer.name) }),
+        el("p", { text: localize(layer.detail) }),
+        el("ul", {}, layer.items.map((item) => el("li", { text: item })))
+      ])
+    )
+  );
+
+  fill("[data-pt-decisions]", study.decisions.map((decision) => el("li", { text: localize(decision) })));
+  fill("[data-pt-next]", study.next.map((item) => el("li", { text: localize(item) })));
+  document.querySelectorAll("[data-pt-repo]").forEach((link) => (link.href = study.repo));
 }
 
 // ---------- language ----------
@@ -284,21 +380,23 @@ function applyStaticTranslations() {
     link.download = cvFiles[currentLanguage].fileName;
   });
 
-  document.title = t("meta.title");
-  document.querySelector('meta[name="description"]').setAttribute("content", t("meta.description"));
+  // Each page declares which translation keys hold its title and description.
+  const metaPrefix = document.body.dataset.metaPrefix || "meta";
+  document.title = t(`${metaPrefix}.title`);
+  document.querySelector('meta[name="description"]').setAttribute("content", t(`${metaPrefix}.description`));
 }
+
+const pageRenderers = {
+  home: renderHome,
+  pacetasks: renderCaseStudy
+};
 
 function setLanguage(language) {
   currentLanguage = SUPPORTED_LANGUAGES.includes(language) ? language : "en";
   document.documentElement.lang = currentLanguage;
 
   applyStaticTranslations();
-  typeGreeting();
-  renderTechnologies();
-  renderExperience();
-  renderFeaturedProjects();
-  renderOtherProjects();
-  renderBeyond();
+  pageRenderers[currentPage]?.();
   observeReveals();
 
   document.querySelectorAll("[data-language]").forEach((button) => {
@@ -360,10 +458,10 @@ function setupHeaderScroll() {
   );
 }
 
-// Highlights the nav link of the section currently on screen.
+// Highlights the nav link of the section currently on screen (in-page links only).
 function setupScrollSpy() {
   if (!("IntersectionObserver" in window)) return;
-  const links = [...document.querySelectorAll(".header-panel nav a")];
+  const links = [...document.querySelectorAll(".header-panel nav a")].filter((link) => link.getAttribute("href").startsWith("#"));
   const spy = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -399,7 +497,7 @@ function setupMenu() {
 document.querySelectorAll("[data-language]").forEach((button) => {
   button.addEventListener("click", () => setLanguage(button.dataset.language));
 });
-document.querySelector("[data-tab-list]").addEventListener("keydown", handleTabKeys);
+document.querySelector("[data-tab-list]")?.addEventListener("keydown", handleTabKeys);
 
 renderSocialLists();
 setupMenu();

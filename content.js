@@ -50,6 +50,30 @@ const translations = {
     "work.otherTitle": "other things I've built",
     "work.privateNote": "Private codebase — details shared in interviews.",
     "work.viewCode": "View code",
+    "work.caseStudy": "Read the case study",
+    "work.personalLabel": "Personal project",
+    "nav.home": "Home",
+    "pt.meta.title": "PaceTasks — case study | Bilge Ozcanbaz",
+    "pt.meta.description": "PaceTasks: a task app for people with a fixed work schedule, built by Bilge Ozcanbaz with Expo, React Native, TypeScript and Supabase.",
+    "pt.back": "Back to portfolio",
+    "pt.eyebrow": "Personal project · in progress",
+    "pt.tagline": "A task app for people with a fixed work schedule.",
+    "pt.intro": "Capture a task the moment you think of it, knock it out before or after work, and compete only with your own past pace — not anyone else's.",
+    "pt.roleLabel": "Role",
+    "pt.roleValue": "Solo — product, design, mobile and backend",
+    "pt.stackLabel": "Stack",
+    "pt.statusLabel": "Status",
+    "pt.statusValue": "In active development",
+    "pt.problemTitle": "why I built it",
+    "pt.problem1": "I work a fixed eight-hour day. Personal tasks pop into my head in the middle of it — book the dentist, pay a bill, call the bank — and most to-do apps ask for a title, a date, a priority and a list before they let me save anything.",
+    "pt.problem2": "I wanted the opposite: a capture bar that never blocks, a list that knows whether something belongs before or after work, and stats that only compare me with myself.",
+    "pt.featuresTitle": "what it does",
+    "pt.architectureTitle": "how it's built",
+    "pt.architectureLede": "Three layers, each with one job — so the upcoming Siri shortcut and AI Brain Dump can plug in without touching the screens.",
+    "pt.decisionsTitle": "engineering decisions",
+    "pt.nextTitle": "what's next",
+    "pt.mockupLabel": "PaceTasks today screen, illustrated",
+    "pt.cta": "View the code on GitHub",
     "beyond.title": "beyond code",
     "beyond.lede": "The things that keep me curious when the IDE is closed.",
     "contact.eyebrow": "What's next?",
@@ -96,6 +120,30 @@ const translations = {
     "work.otherTitle": "altri progetti",
     "work.privateNote": "Codice privato — dettagli disponibili in colloquio.",
     "work.viewCode": "Vedi codice",
+    "work.caseStudy": "Leggi il case study",
+    "work.personalLabel": "Progetto personale",
+    "nav.home": "Home",
+    "pt.meta.title": "PaceTasks — case study | Bilge Ozcanbaz",
+    "pt.meta.description": "PaceTasks: un'app di attività per chi ha un orario di lavoro fisso, sviluppata da Bilge Ozcanbaz con Expo, React Native, TypeScript e Supabase.",
+    "pt.back": "Torna al portfolio",
+    "pt.eyebrow": "Progetto personale · in corso",
+    "pt.tagline": "Un'app di attività per chi ha un orario di lavoro fisso.",
+    "pt.intro": "Annota un'attività nel momento in cui ti viene in mente, completala prima o dopo il lavoro e competi solo con il tuo ritmo passato — non con quello degli altri.",
+    "pt.roleLabel": "Ruolo",
+    "pt.roleValue": "Da sola — prodotto, design, mobile e backend",
+    "pt.stackLabel": "Stack",
+    "pt.statusLabel": "Stato",
+    "pt.statusValue": "In sviluppo attivo",
+    "pt.problemTitle": "perché l'ho creata",
+    "pt.problem1": "Lavoro otto ore al giorno con orario fisso. Le cose personali mi vengono in mente proprio nel mezzo — prenotare il dentista, pagare una bolletta, chiamare la banca — e la maggior parte delle app chiede titolo, data, priorità e lista prima di salvare qualcosa.",
+    "pt.problem2": "Volevo l'opposto: una barra di inserimento che non blocca mai, una lista che sa se un'attività va fatta prima o dopo il lavoro, e statistiche che mi confrontano solo con me stessa.",
+    "pt.featuresTitle": "cosa fa",
+    "pt.architectureTitle": "come è costruita",
+    "pt.architectureLede": "Tre livelli, ciascuno con un solo compito — così la scorciatoia Siri e l'AI Brain Dump in arrivo si collegano senza toccare le schermate.",
+    "pt.decisionsTitle": "scelte tecniche",
+    "pt.nextTitle": "prossimi passi",
+    "pt.mockupLabel": "Schermata Oggi di PaceTasks, illustrata",
+    "pt.cta": "Vedi il codice su GitHub",
     "beyond.title": "oltre il codice",
     "beyond.lede": "Quello che mi tiene curiosa quando l'IDE è chiuso.",
     "contact.eyebrow": "E adesso?",
@@ -247,6 +295,19 @@ const featuredProjects = [
       en: "A Blazor and DevExpress web app, now in production, that lets retail chains analyse and compare performance across their stores.",
       it: "Un'applicazione web Blazor e DevExpress, oggi in produzione, che permette alle catene retail di analizzare e confrontare le performance dei propri negozi."
     }
+  },
+  {
+    id: "pacetasks",
+    title: "PaceTasks",
+    visual: "tasks",
+    personal: true,
+    caseStudy: "pacetasks.html",
+    repo: "https://github.com/bilgaaaaa/pacetasks",
+    tech: ["Expo", "React Native", "TypeScript", "Supabase"],
+    description: {
+      en: "My own mobile app: a calm task list for people with a fixed work schedule. Quick capture that never blocks, a timer that learns how long each task really takes, and stats that only compare you with yourself.",
+      it: "La mia app mobile: una lista di attività tranquilla per chi ha un orario di lavoro fisso. Inserimento rapido che non blocca mai, un timer che impara quanto dura davvero ogni attività e statistiche che ti confrontano solo con te stessa."
+    }
   }
 ];
 
@@ -281,15 +342,6 @@ const otherProjects = [
     description: {
       en: "My MSc thesis: moving browser test execution from local machines to remote browsers, cutting testing effort by 25%.",
       it: "La mia tesi magistrale: spostare l'esecuzione dei test da browser locali a remoti, riducendo del 25% lo sforzo di test."
-    }
-  },
-  {
-    title: "PaceTasks",
-    tech: ["Mobile", "AI", "Multilingual UX"],
-    link: "https://github.com/bilgaaaaa/pacetasks",
-    description: {
-      en: "A personal side project in progress: a multilingual task manager with AI-assisted planning.",
-      it: "Un progetto personale in corso: un task manager multilingua con pianificazione assistita dall'AI."
     }
   },
   {
@@ -342,4 +394,115 @@ const beyondItems = [
 const languagesSpoken = {
   en: "Turkish (native) · English (professional) · Italian (B1–B2, daily at work)",
   it: "Turco (madrelingua) · Inglese (professionale) · Italiano (B1–B2, uso quotidiano al lavoro)"
+};
+
+// PaceTasks case-study page (pacetasks.html).
+const pacetasksCaseStudy = {
+  repo: "https://github.com/bilgaaaaa/pacetasks",
+  stack: ["Expo SDK 57", "React Native 0.86", "TypeScript", "Supabase", "Postgres + RLS", "Realtime", "Jest", "pgTAP"],
+  mockup: {
+    greeting: { en: "Tuesday · good morning", it: "Martedì · buongiorno" },
+    title: { en: "Today", it: "Oggi" },
+    placeholder: { en: "What's on your mind?", it: "Cosa ti viene in mente?" },
+    tasks: [
+      { title: { en: "Book the dentist", it: "Prenotare il dentista" }, meta: { en: "Before work · 10 min", it: "Prima del lavoro · 10 min" }, category: "health" },
+      { title: { en: "Groceries", it: "Spesa" }, meta: { en: "After work · 25–40 min", it: "Dopo il lavoro · 25–40 min" }, category: "shopping", running: true },
+      { title: { en: "Portfolio: add case study", it: "Portfolio: aggiungere case study" }, meta: { en: "After work · 18:30", it: "Dopo il lavoro · 18:30" }, category: "personal", focus: true },
+      { title: { en: "Pay the electricity bill", it: "Pagare la bolletta" }, meta: { en: "Anytime · 5 min", it: "Quando vuoi · 5 min" }, category: "home", done: true }
+    ],
+    tabs: { en: ["Tasks", "Stats", "Settings"], it: ["Attività", "Statistiche", "Impostazioni"] }
+  },
+  features: [
+    {
+      title: { en: "Quick add with memory", it: "Inserimento rapido con memoria" },
+      body: {
+        en: "Only the name is needed. Type a task you've done before and it autocompletes, then fills in its usual timing and suggests its min / last / max time.",
+        it: "Serve solo il nome. Se scrivi un'attività già fatta, viene completata in automatico con la sua fascia abituale e il tempo minimo / ultimo / massimo."
+      }
+    },
+    {
+      title: { en: "Range timer", it: "Timer a intervallo" },
+      body: {
+        en: "Tap the minutes pill to count down from the time a task usually takes at most. It turns green once you pass the minimum, so you know you're on pace.",
+        it: "Tocca i minuti per un conto alla rovescia dal tempo massimo abituale. Diventa verde quando superi il minimo, così sai di essere nei tempi."
+      }
+    },
+    {
+      title: { en: "Focus sessions", it: "Sessioni di concentrazione" },
+      body: {
+        en: "Give a task a fixed time and it becomes a Pomodoro focus session with a full-screen countdown that logs the real minutes spent.",
+        it: "Assegna un orario fisso e l'attività diventa una sessione Pomodoro a schermo intero che registra i minuti reali."
+      }
+    },
+    {
+      title: { en: "One calm list", it: "Una sola lista tranquilla" },
+      body: {
+        en: "Today's tasks ordered before work → anytime → after work. Finished ones sink to the bottom; future ones stay hidden until their day.",
+        it: "Le attività di oggi ordinate prima del lavoro → quando vuoi → dopo il lavoro. Quelle completate scendono in fondo, quelle future restano nascoste fino al loro giorno."
+      }
+    },
+    {
+      title: { en: "Your pace", it: "Il tuo ritmo" },
+      body: {
+        en: "Streaks, best day, estimate accuracy and a 13-week weekday heatmap — the only competitor is you.",
+        it: "Serie, giorno migliore, precisione delle stime e una mappa di 13 settimane — l'unica avversaria sei tu."
+      }
+    },
+    {
+      title: { en: "Live sync", it: "Sincronizzazione live" },
+      body: {
+        en: "Tasks added from another device appear instantly through Supabase Realtime, without duplicates from your own writes.",
+        it: "Le attività aggiunte da un altro dispositivo compaiono subito grazie a Supabase Realtime, senza duplicati delle proprie scritture."
+      }
+    }
+  ],
+  layers: [
+    {
+      name: { en: "App", it: "App" },
+      detail: { en: "Screens → hooks → API modules", it: "Schermate → hook → moduli API" },
+      items: ["TaskListScreen", "useTasks · useSettings", "tasksApi · settingsApi"]
+    },
+    {
+      name: { en: "Shared domain", it: "Dominio condiviso" },
+      detail: { en: "Pure TypeScript, no dependencies", it: "TypeScript puro, senza dipendenze" },
+      items: ["task model", "local dates", "task history"]
+    },
+    {
+      name: { en: "Supabase", it: "Supabase" },
+      detail: { en: "Postgres, RLS, Realtime", it: "Postgres, RLS, Realtime" },
+      items: ["create_task RPC", "migrations", "pgTAP tests"]
+    }
+  ],
+  decisions: [
+    {
+      en: "One way in: every task is created through a single create_task database function, so the app, the upcoming Siri shortcut and AI Brain Dump all share the same rules.",
+      it: "Un solo ingresso: ogni attività nasce da un'unica funzione create_task nel database, così app, scorciatoia Siri e AI Brain Dump condividono le stesse regole."
+    },
+    {
+      en: "Domain logic lives in a pure TypeScript module that both the React Native app and Supabase Edge Functions import — one source of truth for what \"today\" means.",
+      it: "La logica di dominio vive in un modulo TypeScript puro importato sia dall'app React Native sia dalle Edge Function di Supabase — un'unica fonte di verità su cosa significa \"oggi\"."
+    },
+    {
+      en: "\"Today\" is always the phone's local calendar day, never a UTC slice — tests run pinned to Europe/Rome to catch midnight bugs.",
+      it: "\"Oggi\" è sempre il giorno locale del telefono, mai una data UTC — i test girano con fuso Europe/Rome per scovare i bug di mezzanotte."
+    },
+    {
+      en: "No login screen: each device signs in anonymously, row-level security isolates every user, and only the publishable key ships in the app.",
+      it: "Nessuna schermata di login: ogni dispositivo accede in modo anonimo, la row-level security isola ogni utente e nell'app c'è solo la chiave pubblica."
+    },
+    {
+      en: "Screens stay dumb: all data access goes through hooks and API modules, and every colour and spacing value comes from one theme file.",
+      it: "Schermate semplici: l'accesso ai dati passa solo da hook e moduli API, e ogni colore e spaziatura arriva da un unico file di tema."
+    }
+  ],
+  next: [
+    {
+      en: "AI Brain Dump — type or say everything on your mind and get it back as sorted tasks.",
+      it: "AI Brain Dump — scrivi o detta tutto quello che hai in testa e ricevilo come attività già ordinate."
+    },
+    {
+      en: "Siri shortcut — \"Hey Siri, add groceries after work\".",
+      it: "Scorciatoia Siri — \"Ehi Siri, aggiungi la spesa dopo il lavoro\"."
+    }
+  ]
 };

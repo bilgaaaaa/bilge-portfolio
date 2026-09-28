@@ -9,10 +9,12 @@ Plain HTML, CSS and JavaScript — no framework, no build step. Bilingual (EN / 
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | Page shell, section anchors and icon sprite |
+| `index.html` | Home page shell and section anchors |
+| `pacetasks.html` | PaceTasks case-study page |
 | `content.js` | **All text and data** — translations, experience, projects, links |
-| `script.js` | Renders `content.js`, language switch, typing greeting, tabs, menu, scroll reveal |
+| `script.js` | Renders `content.js` per page (`<body data-page>`), language switch, typing greeting, tabs, menu, scroll reveal |
 | `styles.css` | Theme tokens and layout |
+| `assets/icons.svg` | Shared icon sprite (`assets/icons.svg#icon-<name>`) |
 | `assets/cv/` | Public CV in EN/IT (HTML + PDF, no phone number or birth date) |
 | `tools/build-cv.py` | Regenerates the CV HTML pages from one data source |
 
@@ -21,7 +23,8 @@ Plain HTML, CSS and JavaScript — no framework, no build step. Bilingual (EN / 
 Almost every change happens in `content.js`: every text entry has an `en` and `it` value.
 
 - New job → add an object to `experience`.
-- New project → add to `featuredProjects` (big alternating cards) or `otherProjects` (grid).
+- New project → add to `featuredProjects` (big alternating cards) or `otherProjects` (grid). Give a featured project `caseStudy` and `repo` to show its links.
+- PaceTasks page text → `pacetasksCaseStudy` and the `pt.*` keys in `translations`.
 - Profile photo → replace `assets/profile.jpg` and `assets/profile.webp` (square, 640×640).
 
 ## CV
