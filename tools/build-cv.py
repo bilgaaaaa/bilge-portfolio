@@ -1,20 +1,20 @@
 """Generates the public EN/IT CV HTML pages in assets/cv from one data source.
 
-Public version: no phone number or birth date. Run: python3 tools/build-cv.py
+Public version: no birth date or home address. Run: python3 tools/build-cv.py
 """
 from html import escape
 from pathlib import Path
 
 OUT_DIR = Path(__file__).resolve().parent.parent / "assets" / "cv"
 
-CONTACT = "Padova, Italy · ozcanbazbilge@gmail.com · linkedin.com/in/bilge-ozcanbaz-692652114 · github.com/bilgaaaaa"
+CONTACT = "Padova, Italy · +39 339 204 7793 · ozcanbazbilge@gmail.com · linkedin.com/in/bilge-ozcanbaz-692652114 · github.com/bilgaaaaa"
 
 CV = {
     "en": {
         "title": "Software Developer · Android, Java & .NET",
         "contact": CONTACT,
         "sections": {"summary": "Professional summary", "skills": "Technical skills", "experience": "Professional experience",
-                     "education": "Education", "languages": "Languages & availability"},
+                     "education": "Education", "languages": "Languages"},
         "summary": "Software Developer with 4+ years of experience building Android applications and backend services for retail and enterprise software companies in Italy. Sole developer on a production Android retail application, which I migrated from Java to Kotlin and rebuilt in Jetpack Compose, while working daily on .NET (C#) microservices, SQL databases and RabbitMQ messaging. Earlier experience in Java backend development with Spring Boot, Hibernate, PostgreSQL and MySQL. Comfortable owning a feature end to end, from device integration through to the service behind it.",
         "skills": [
             ("Languages", "Kotlin, Java, C# / .NET 8, SQL, JavaScript, HTML/CSS"),
@@ -51,13 +51,13 @@ CV = {
             ("MSc in ICT for Internet and Multimedia", "University of Padova — Padova, Italy", "Aug 2020 – Dec 2022"),
             ("BSc in Electrical & Electronics Engineering", "University of Turkish Aeronautical Association — Ankara, Turkey", "Aug 2014 – Jun 2018"),
         ],
-        "languages": "Turkish: native · English: professional working proficiency · Italian: B1–B2, used daily at work. Authorised to work in Italy, no sponsorship required. References available on request.",
+        "languages": "Turkish: native · English: professional working proficiency · Italian: B1–B2, used daily at work.",
     },
     "it": {
         "title": "Sviluppatrice Software · Android, Java e .NET",
         "contact": CONTACT.replace("Italy", "Italia"),
         "sections": {"summary": "Profilo professionale", "skills": "Competenze tecniche", "experience": "Esperienza professionale",
-                     "education": "Formazione", "languages": "Lingue e disponibilità"},
+                     "education": "Formazione", "languages": "Lingue"},
         "summary": "Sviluppatrice software con oltre 4 anni di esperienza nello sviluppo di applicazioni Android e servizi backend per aziende italiane del settore retail e software enterprise. Sono l'unica sviluppatrice di un'applicazione Android di produzione, che ho migrato da Java a Kotlin ricostruendola in Jetpack Compose, e lavoro quotidianamente su microservizi .NET (C#), database SQL e messaggistica RabbitMQ. In precedenza ho maturato esperienza di sviluppo backend Java con Spring Boot, Hibernate, PostgreSQL e MySQL. Sono abituata a seguire una funzionalità dall'inizio alla fine, dai dispositivi fino ai servizi backend.",
         "skills": [
             ("Linguaggi", "Kotlin, Java, C# / .NET 8, SQL, JavaScript, HTML/CSS"),
@@ -94,7 +94,7 @@ CV = {
             ("Laurea Magistrale in ICT for Internet and Multimedia", "Università degli Studi di Padova", "Ago 2020 – Dic 2022"),
             ("Laurea in Ingegneria Elettrica ed Elettronica", "University of Turkish Aeronautical Association — Ankara, Turchia", "Ago 2014 – Giu 2018"),
         ],
-        "languages": "Turco: madrelingua · Inglese: livello professionale · Italiano: B1–B2, uso quotidiano al lavoro. Autorizzata a lavorare in Italia, nessuna sponsorizzazione necessaria. Referenze disponibili su richiesta.",
+        "languages": "Turco: madrelingua · Inglese: livello professionale · Italiano: B1–B2, uso quotidiano al lavoro.",
     },
 }
 
