@@ -22,6 +22,8 @@ const translations = {
     "meta.description":
       "Bilge Ozcanbaz is a software developer in Padova, Italy, building Android apps, .NET services, RabbitMQ integrations and retail device drivers.",
     "brand.role": "Software developer",
+    "brand.aka": "aka bilga",
+    "brand.akaTitle": "Friends call me Bilga — you'll find me online as bilga, bilgaaa or bilgaaaaa",
     "nav.label": "Primary navigation",
     "nav.work": "Work",
     "nav.about": "About",
@@ -73,6 +75,8 @@ const translations = {
       "I started as a Java backend developer, writing Spring Boot services for electronic invoicing and banking. Today I'm the sole developer of a production Android app for retail chains at System Retail, working directly with the product manager and owning features from the device all the way to the service behind it.",
     "about.p2":
       "When I joined, the app was pure Java. I moved it to Kotlin, rebuilt every screen in Jetpack Compose and migrated the local database from GreenDAO to Room on devices already in stores. The rest of my week goes to .NET microservices, RabbitMQ messaging and drivers for printers, scanners and customer displays.",
+    "about.p3":
+      "Friends call me Bilga — it's also my handle almost everywhere online: bilga, bilgaaa or bilgaaaaa, depending on how early I got there.",
     "about.languagesLabel": "Languages",
     "about.educationLabel": "Education",
     "about.cv": "Download CV",
@@ -111,7 +115,7 @@ const translations = {
     "footer.explore": "Explore",
     "footer.connect": "Let's connect",
     "footer.rights": "© 2026 Bilge Ozcanbaz",
-    "footer.credit": "Inspired by gazijarin.com",
+    "footer.credit": "Built in a few hours with AI (ChatGPT & Claude) — directed, reviewed and tested by me · Inspired by gazijarin.com",
     "footer.top": "Back to top",
 
     "gameMode.toggle": "game mode",
@@ -160,6 +164,8 @@ const translations = {
     "meta.description":
       "Bilge Ozcanbaz è una sviluppatrice software a Padova: app Android, servizi .NET, integrazioni RabbitMQ e driver per dispositivi retail.",
     "brand.role": "Sviluppatrice software",
+    "brand.aka": "detta bilga",
+    "brand.akaTitle": "Gli amici mi chiamano Bilga — online mi trovi come bilga, bilgaaa o bilgaaaaa",
     "nav.label": "Navigazione principale",
     "nav.work": "Progetti",
     "nav.about": "Chi sono",
@@ -211,6 +217,8 @@ const translations = {
       "Ho iniziato come sviluppatrice backend Java, scrivendo servizi Spring Boot per la fatturazione elettronica e il settore bancario. Oggi in System Retail sono l'unica sviluppatrice di un'app Android in produzione per catene retail: lavoro a stretto contatto con il product manager e seguo ogni funzionalità dal dispositivo fino al servizio che la supporta.",
     "about.p2":
       "Quando sono arrivata l'app era interamente in Java: l'ho migrata a Kotlin, ho ricostruito tutte le schermate in Jetpack Compose e ho portato il database locale da GreenDAO a Room su dispositivi già installati nei negozi. Il resto della settimana lo dedico a microservizi .NET, messaggistica RabbitMQ e driver per stampanti, scanner e display cliente.",
+    "about.p3":
+      "Gli amici mi chiamano Bilga — ed è anche il mio nome quasi ovunque online: bilga, bilgaaa o bilgaaaaa, a seconda di quanto presto sono arrivata.",
     "about.languagesLabel": "Lingue",
     "about.educationLabel": "Formazione",
     "about.cv": "Scarica il CV",
@@ -249,7 +257,7 @@ const translations = {
     "footer.explore": "Esplora",
     "footer.connect": "Contatti",
     "footer.rights": "© 2026 Bilge Ozcanbaz",
-    "footer.credit": "Ispirato a gazijarin.com",
+    "footer.credit": "Costruito in poche ore con l'AI (ChatGPT e Claude) — guidata, revisionata e testata da me · Ispirato a gazijarin.com",
     "footer.top": "Torna su",
 
     "gameMode.toggle": "modalità gioco",
@@ -386,11 +394,11 @@ const otherProjects = [
   },
   {
     title: { en: "This portfolio", it: "Questo portfolio" },
-    tech: ["HTML", "CSS", "JavaScript"],
+    tech: ["AI pair-programming", "HTML", "CSS", "JavaScript"],
     link: "https://github.com/bilgaaaaa/bilge-portfolio",
     description: {
-      en: "A dependency-free, bilingual static site — with a game mode hidden in the corner.",
-      it: "Un sito statico bilingue senza dipendenze — con una modalità gioco nascosta nell'angolo."
+      en: "Built in a few hours with AI (ChatGPT & Claude): I set the design, content and game mode, AI wrote most of the code, and I reviewed and tested every change.",
+      it: "Costruito in poche ore con l'AI (ChatGPT e Claude): io ho deciso design, contenuti e modalità gioco, l'AI ha scritto gran parte del codice e io ho revisionato e testato ogni modifica."
     }
   }
 ];

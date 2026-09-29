@@ -14,6 +14,8 @@ Source of truth for facts on the site: the September 2026 CV (EN/IT).
 ## Public-site rules
 
 - Purpose: being known, not job hunting — no "open to work", availability or sponsorship wording.
+- Nickname: "aka bilga" (IT: "detta bilga") next to the name; handles are bilga / bilgaaa / bilgaaaaa.
+- AI: say openly the site was built in a few hours with ChatGPT & Claude — framed as directed, reviewed and tested by Bilge.
 - Public contact: email, phone +39 339 204 7793 and WhatsApp (wa.me link). No TikTok.
 - No birth date, nationality or home address on the site or public CVs.
 - No customer names, ticket numbers or internal metrics from work projects.
