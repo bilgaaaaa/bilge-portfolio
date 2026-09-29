@@ -7,12 +7,26 @@ from pathlib import Path
 
 OUT_DIR = Path(__file__).resolve().parent.parent / "assets" / "cv"
 
-CONTACT = "Padova, Italy · +39 339 204 7793 · ozcanbazbilge@gmail.com · linkedin.com/in/bilge-ozcanbaz-692652114 · github.com/bilgaaaaa"
+# Change WEBSITE here once the custom domain is live; everything else follows.
+WEBSITE = "bilgaaaaa.github.io/bilge-portfolio"
+
+# Contact items as (label, link), one list per line of the CV header.
+CONTACT_LINES = [
+    [
+        ("+39 339 204 7793", "tel:+393392047793"),
+        ("ozcanbazbilge@gmail.com", "mailto:ozcanbazbilge@gmail.com"),
+    ],
+    [
+        (WEBSITE, f"https://{WEBSITE}/"),
+        ("linkedin.com/in/bilge-ozcanbaz-692652114", "https://www.linkedin.com/in/bilge-ozcanbaz-692652114"),
+        ("github.com/bilgaaaaa", "https://github.com/bilgaaaaa"),
+    ],
+]
 
 CV = {
     "en": {
         "title": "Software Developer · Android, Java & .NET",
-        "contact": CONTACT,
+        "location": "Padova, Italy",
         "sections": {"summary": "Professional summary", "skills": "Technical skills", "experience": "Professional experience",
                      "education": "Education", "languages": "Languages"},
         "summary": "Software Developer with 4+ years of experience building Android applications and backend services for retail and enterprise software companies in Italy. Sole developer on a production Android retail application, which I migrated from Java to Kotlin and rebuilt in Jetpack Compose, while working daily on .NET (C#) microservices, SQL databases and RabbitMQ messaging. Earlier experience in Java backend development with Spring Boot, Hibernate, PostgreSQL and MySQL. Comfortable owning a feature end to end, from device integration through to the service behind it.",
@@ -55,7 +69,7 @@ CV = {
     },
     "it": {
         "title": "Sviluppatrice Software · Android, Java e .NET",
-        "contact": CONTACT.replace("Italy", "Italia"),
+        "location": "Padova, Italia",
         "sections": {"summary": "Profilo professionale", "skills": "Competenze tecniche", "experience": "Esperienza professionale",
                      "education": "Formazione", "languages": "Lingue"},
         "summary": "Sviluppatrice software con oltre 4 anni di esperienza nello sviluppo di applicazioni Android e servizi backend per aziende italiane del settore retail e software enterprise. Sono l'unica sviluppatrice di un'applicazione Android di produzione, che ho migrato da Java a Kotlin ricostruendola in Jetpack Compose, e lavoro quotidianamente su microservizi .NET (C#), database SQL e messaggistica RabbitMQ. In precedenza ho maturato esperienza di sviluppo backend Java con Spring Boot, Hibernate, PostgreSQL e MySQL. Sono abituata a seguire una funzionalità dall'inizio alla fine, dai dispositivi fino ai servizi backend.",
@@ -106,6 +120,7 @@ main { max-width: 820px; margin: 0 auto; padding: 32px 24px; }
 h1 { margin: 0; font-size: 24pt; color: #0a192f; }
 .role { margin: 2px 0 6px; color: #0f8f73; font-size: 12pt; font-weight: 600; }
 .contact { margin: 0 0 6px; color: #56607a; font-size: 9pt; }
+.contact a { color: inherit; text-decoration: none; }
 h2 { margin: 16px 0 6px; padding-bottom: 3px; border-bottom: 1.5px solid #0f8f73; color: #0a192f; font-size: 10pt; letter-spacing: .12em; text-transform: uppercase; }
 p { margin: 0; }
 .skills { display: grid; grid-template-columns: 130px 1fr; gap: 3px 12px; }
@@ -119,6 +134,16 @@ ul { margin: 4px 0 0; padding-left: 16px; }
 li { margin: 2px 0; }
 @media print { main { padding: 0; } a { color: inherit; text-decoration: none; } }
 """
+
+
+def render_contact(location: str) -> str:
+    """Builds the two-line contact header (details, then web links); links stay clickable in the PDF."""
+    def link(label: str, href: str) -> str:
+        return f'<a href="{escape(href)}">{escape(label)}</a>'
+
+    details = [escape(location)] + [link(label, href) for label, href in CONTACT_LINES[0]]
+    web = [link(label, href) for label, href in CONTACT_LINES[1]]
+    return " · ".join(details) + "<br />" + " · ".join(web)
 
 
 def render(lang: str, data: dict) -> str:
@@ -147,7 +172,7 @@ def render(lang: str, data: dict) -> str:
 <main>
 <h1>Bilge Ozcanbaz</h1>
 <p class="role">{escape(data["title"])}</p>
-<p class="contact">{escape(data["contact"])}</p>
+<p class="contact">{render_contact(data["location"])}</p>
 <h2>{escape(s["summary"])}</h2><p>{escape(data["summary"])}</p>
 <h2>{escape(s["skills"])}</h2><dl class="skills">{skills}</dl>
 <h2>{escape(s["experience"])}</h2>{jobs}
