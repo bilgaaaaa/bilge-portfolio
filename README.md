@@ -1,7 +1,7 @@
 # Bilge Ozcanbaz — Portfolio
 
 Personal portfolio for Bilge Ozcanbaz, software developer in Padova, Italy (Android, .NET, retail systems).
-Layout inspired by [gazijarin.com](https://www.gazijarin.com/).
+Layout inspired by [gazijarin.com](https://www.gazijarin.com/) (including its Game mode) and a plum/rose glass design.
 
 ## Stack
 
@@ -13,8 +13,10 @@ Plain HTML, CSS and JavaScript — no framework, no build step. Bilingual (EN / 
 | `pacetasks.html` | PaceTasks case-study page |
 | `content.js` | **All text and data** — translations, experience, projects, links |
 | `script.js` | Renders `content.js` per page (`<body data-page>`), language switch, typing greeting, tabs, menu, scroll reveal |
-| `game.js` | Scan Rush mini-game (canvas), products in `scanRushProducts`, text in the `game.*` keys |
-| `styles.css` | Theme tokens and layout |
+| `gamemode.js` | Page-wide Game mode: pixel Bilge jumps across the text to squash 5 bugs (text in `gameMode.*` keys) |
+| `styles.css` | Plum palette tokens (`--plum-*`, `--rose-300`, `--cream-100`), glass components and layout |
+| `assets/portrait.webp` | Hero portrait (background removed, colour-graded into the palette) |
+| `assets/arch.svg` | Archway illustration used in the process and contact sections |
 | `assets/icons.svg` | Shared icon sprite (`assets/icons.svg#icon-<name>`) |
 | `assets/cv/` | Public CV in EN/IT (HTML + PDF, no phone number or birth date) |
 | `tools/build-cv.py` | Regenerates the CV HTML pages from one data source |

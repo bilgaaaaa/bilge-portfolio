@@ -13,7 +13,9 @@ Source of truth for facts on the site: the September 2026 CV (EN/IT).
 
 ## Public-site rules
 
-- No phone number, birth date, nationality or home address on the site or public CVs.
+- Purpose: being known, not job hunting — no "open to work", availability or sponsorship wording.
+- Public contact: email, phone +39 339 204 7793 and WhatsApp (wa.me link). No TikTok.
+- No birth date, nationality or home address on the site or public CVs.
 - No customer names, ticket numbers or internal metrics from work projects.
 - Italian text uses feminine forms (sviluppatrice, sono arrivata, abituata).
 - Do not claim: senior/lead/architect titles, cloud expertise, PaceTasks as launched.

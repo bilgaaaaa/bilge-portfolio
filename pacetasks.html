@@ -8,7 +8,7 @@
       name="description"
       content="PaceTasks: a task app for people with a fixed work schedule, built by Bilge Ozcanbaz with Expo, React Native, TypeScript and Supabase."
     />
-    <meta name="theme-color" content="#0a192f" />
+    <meta name="theme-color" content="#190019" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="PaceTasks — case study" />
     <meta property="og:description" content="A task app for people with a fixed work schedule." />
@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap"
     />
     <link rel="stylesheet" href="styles.css" />
     <script src="content.js" defer></script>
@@ -29,108 +29,130 @@
 
     <header class="site-header" id="siteHeader">
       <a class="brand" href="index.html" aria-label="Bilge Ozcanbaz">
-        <span class="brand-mark">b</span>
+        <span class="brand-mark" aria-hidden="true">B</span>
+        <span class="brand-text">
+          <span class="brand-name">Bilge</span>
+          <span class="brand-role" data-i18n="brand.role">Software developer</span>
+        </span>
       </a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav" data-i18n-attr="aria-label:nav.menu" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
       <div class="header-panel" id="siteNav">
         <nav aria-label="Primary navigation" data-i18n-attr="aria-label:nav.label">
+          <a href="index.html#work" data-i18n="nav.work">Work</a>
           <a href="index.html#about" data-i18n="nav.about">About</a>
           <a href="index.html#experience" data-i18n="nav.experience">Experience</a>
-          <a href="index.html#work" data-i18n="nav.work">Software</a>
           <a href="index.html#beyond" data-i18n="nav.beyond">Beyond code</a>
-          <a href="index.html#play" data-i18n="nav.play">Play</a>
           <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
         </nav>
         <div class="language-switch" role="group" aria-label="Language selector" data-i18n-attr="aria-label:language.label">
           <button class="language-option" type="button" data-language="en" aria-pressed="true">EN</button>
           <button class="language-option" type="button" data-language="it" aria-pressed="false">IT</button>
         </div>
+        <a class="pill-button" href="index.html#contact" data-i18n="nav.connect">Let's connect</a>
       </div>
     </header>
 
-    <aside class="side-rail side-rail-left" aria-label="Social links" data-i18n-attr="aria-label:social.label">
-      <ul class="social-list" data-social-list></ul>
-    </aside>
-
-    <aside class="side-rail side-rail-right" aria-hidden="true">
-      <a class="vertical-email" href="mailto:ozcanbazbilge@gmail.com" tabindex="-1">ozcanbazbilge@gmail.com</a>
-    </aside>
-
     <main id="main">
+      <!-- Hero: project summary and facts on the left, illustrated app screen on the right. -->
       <section class="pt-hero">
-        <div class="pt-hero-copy">
+        <div>
           <a class="back-link" href="index.html#work">← <span data-i18n="pt.back">Back to portfolio</span></a>
-          <p class="featured-label" data-i18n="pt.eyebrow">Personal project · in progress</p>
-          <h1 class="pt-name">PaceTasks</h1>
-          <p class="hero-subtitle" data-i18n="pt.tagline">A task app for people with a fixed work schedule.</p>
-          <p class="hero-intro" data-i18n="pt.intro"></p>
+          <p class="eyebrow eyebrow-bracket" data-i18n="pt.eyebrow">Personal project · in progress</p>
+          <h1 class="display pt-name">PaceTasks</h1>
+          <p class="pt-tagline" data-i18n="pt.tagline">A task app for people with a fixed work schedule.</p>
+          <p class="hero-intro pt-intro" data-i18n="pt.intro"></p>
           <dl class="pt-facts">
             <div>
-              <dt data-i18n="pt.roleLabel">Role</dt>
+              <dt class="eyebrow" data-i18n="pt.roleLabel">Role</dt>
               <dd data-i18n="pt.roleValue"></dd>
             </div>
             <div>
-              <dt data-i18n="pt.statusLabel">Status</dt>
+              <dt class="eyebrow" data-i18n="pt.statusLabel">Status</dt>
               <dd data-i18n="pt.statusValue"></dd>
             </div>
             <div>
-              <dt data-i18n="pt.stackLabel">Stack</dt>
-              <dd><ul class="project-tech pt-stack" data-pt-stack></ul></dd>
+              <dt class="eyebrow" data-i18n="pt.stackLabel">Stack</dt>
+              <dd><ul class="tag-list pt-stack" data-pt-stack></ul></dd>
             </div>
           </dl>
-          <div class="hero-actions">
-            <a class="button" href="https://github.com/bilgaaaaa/pacetasks" target="_blank" rel="noopener" data-pt-repo>
-              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-github" /></svg>
-              <span data-i18n="pt.cta">View the code on GitHub</span>
-            </a>
-          </div>
+          <a class="button button-primary" href="https://github.com/bilgaaaaa/pacetasks" target="_blank" rel="noopener" data-pt-repo>
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-github" /></svg>
+            <span data-i18n="pt.cta">View the code on GitHub</span>
+          </a>
         </div>
         <div class="phone" role="img" aria-label="PaceTasks today screen, illustrated" data-i18n-attr="aria-label:pt.mockupLabel" data-phone-mockup></div>
       </section>
 
-      <section class="section section-narrow" aria-labelledby="ptProblemTitle">
-        <h2 class="section-title reveal" id="ptProblemTitle"><span class="slash">/</span> <span data-i18n="pt.problemTitle">why I built it</span></h2>
-        <div class="pt-prose reveal">
+      <section class="section" aria-labelledby="ptProblemTitle">
+        <h2 class="display section-title reveal" id="ptProblemTitle" data-i18n="pt.problemTitle">why I built it</h2>
+        <div class="prose reveal">
           <p data-i18n="pt.problem1"></p>
           <p data-i18n="pt.problem2"></p>
         </div>
       </section>
 
       <section class="section" aria-labelledby="ptFeaturesTitle">
-        <h2 class="section-title reveal" id="ptFeaturesTitle"><span class="slash">/</span> <span data-i18n="pt.featuresTitle">what it does</span></h2>
+        <h2 class="display section-title reveal" id="ptFeaturesTitle" data-i18n="pt.featuresTitle">what it does</h2>
         <ul class="pt-features" data-pt-features></ul>
       </section>
 
       <section class="section" aria-labelledby="ptArchitectureTitle">
-        <h2 class="section-title reveal" id="ptArchitectureTitle"><span class="slash">/</span> <span data-i18n="pt.architectureTitle">how it's built</span></h2>
-        <p class="section-lede reveal" data-i18n="pt.architectureLede"></p>
+        <h2 class="display section-title reveal" id="ptArchitectureTitle" data-i18n="pt.architectureTitle">how it's built</h2>
+        <p class="prose reveal" data-i18n="pt.architectureLede"></p>
         <ol class="pt-layers" data-pt-layers></ol>
       </section>
 
-      <section class="section section-narrow" aria-labelledby="ptDecisionsTitle">
-        <h2 class="section-title reveal" id="ptDecisionsTitle"><span class="slash">/</span> <span data-i18n="pt.decisionsTitle">engineering decisions</span></h2>
-        <ul class="arrow-list pt-decisions reveal" data-pt-decisions></ul>
+      <section class="section" aria-labelledby="ptDecisionsTitle">
+        <h2 class="display section-title reveal" id="ptDecisionsTitle" data-i18n="pt.decisionsTitle">engineering decisions</h2>
+        <ul class="bullet-list pt-decisions reveal" data-pt-decisions></ul>
       </section>
 
-      <section class="section section-narrow" aria-labelledby="ptNextTitle">
-        <h2 class="section-title reveal" id="ptNextTitle"><span class="slash">/</span> <span data-i18n="pt.nextTitle">what's next</span></h2>
-        <ul class="arrow-list reveal" data-pt-next></ul>
+      <section class="section" aria-labelledby="ptNextTitle">
+        <h2 class="display section-title reveal" id="ptNextTitle" data-i18n="pt.nextTitle">what's next</h2>
+        <ul class="bullet-list reveal" data-pt-next></ul>
         <div class="pt-footer-actions reveal">
-          <a class="button" href="https://github.com/bilgaaaaa/pacetasks" target="_blank" rel="noopener" data-pt-repo>
+          <a class="button button-primary" href="https://github.com/bilgaaaaa/pacetasks" target="_blank" rel="noopener" data-pt-repo>
             <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-github" /></svg>
             <span data-i18n="pt.cta">View the code on GitHub</span>
           </a>
-          <a class="button ghost" href="index.html#work">← <span data-i18n="pt.back">Back to portfolio</span></a>
+          <a class="button button-ghost" href="index.html#work">← <span data-i18n="pt.back">Back to portfolio</span></a>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <ul class="social-list footer-social" data-social-list></ul>
-      <p data-i18n="footer.body">Designed and built by Bilge Ozcanbaz</p>
-      <a href="#main" data-i18n="footer.top">Back to top</a>
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="Bilge Ozcanbaz">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span class="brand-text">
+            <span class="brand-name">Bilge</span>
+            <span class="brand-role" data-i18n="brand.role">Software developer</span>
+          </span>
+        </a>
+        <p data-i18n="footer.tagline"></p>
+      </div>
+      <div class="footer-col">
+        <p class="eyebrow" data-i18n="footer.explore">Explore</p>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="index.html#work" data-i18n="nav.work">Work</a>
+          <a href="index.html#about" data-i18n="nav.about">About</a>
+          <a href="index.html#experience" data-i18n="nav.experience">Experience</a>
+          <a href="pacetasks.html">PaceTasks</a>
+          <a href="index.html#beyond" data-i18n="nav.beyond">Beyond code</a>
+          <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="eyebrow" data-i18n="footer.connect">Let's connect</p>
+        <ul class="social-list" data-social-list></ul>
+      </div>
+      <div class="footer-bottom">
+        <span data-i18n="footer.rights">© 2026 Bilge Ozcanbaz</span>
+        <span data-i18n="footer.credit">Inspired by gazijarin.com</span>
+        <a href="#main" data-i18n="footer.top">Back to top</a>
+      </div>
     </footer>
   </body>
 </html>

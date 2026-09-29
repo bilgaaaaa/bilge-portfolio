@@ -1,11 +1,14 @@
-// Bilingual site content: UI strings, experience, education and projects in one place.
-// Edit this file to update the portfolio text; script.js only renders it.
+// Bilingual site content: UI strings, projects, experience and game text in one place.
+// Edit this file to update the portfolio; script.js and gamemode.js only render it.
 
 const profileLinks = {
   email: "ozcanbazbilge@gmail.com",
+  phoneDisplay: "+39 339 204 7793",
+  phone: "+393392047793",
+  whatsapp: "https://wa.me/393392047793",
   github: "https://github.com/bilgaaaaa",
   linkedin: "https://www.linkedin.com/in/bilge-ozcanbaz-692652114",
-  tiktok: "https://www.tiktok.com/@bilgalog"
+  location: { en: "Padova, Italy", it: "Padova, Italia" }
 };
 
 const cvFiles = {
@@ -18,41 +21,118 @@ const translations = {
     "meta.title": "Bilge Ozcanbaz | Software Developer",
     "meta.description":
       "Bilge Ozcanbaz is a software developer in Padova, Italy, building Android apps, .NET services, RabbitMQ integrations and retail device drivers.",
+    "brand.role": "Software developer",
     "nav.label": "Primary navigation",
+    "nav.work": "Work",
     "nav.about": "About",
     "nav.experience": "Experience",
-    "nav.work": "Software",
     "nav.beyond": "Beyond code",
     "nav.contact": "Contact",
+    "nav.connect": "Let's connect",
     "nav.menu": "Open menu",
     "language.label": "Language selector",
     "social.label": "Social links",
-    "hero.greeting": [{ text: "hi, " }, { text: "bilge", accent: true }, { text: " here." }],
-    "hero.subtitle": "I build software that has to work on the shop floor.",
+
+    "hero.eyebrow": "Software developer",
+    "hero.titleStart": "I build software that works",
+    "hero.titleAccent": "on the shop floor.",
     "hero.intro":
-      "I'm a software developer in Padova, Italy. I build the Android app store teams use every day, and the .NET services, message queues and device drivers behind it — from a barcode scan on a handheld to the receipt the fiscal printer hands the customer.",
-    "hero.cta": "Say hi",
-    "hero.cv": "Download CV",
-    "about.title": "about me",
+      "Android apps that store teams use every day, and the .NET services, message queues and device drivers behind them — from a barcode scan on a handheld to the receipt the fiscal printer hands the customer.",
+    "hero.work": "View my work",
+    "hero.about": "About me",
+    "hero.status": "Based in Padova, Italy",
+    "hero.statusSub": "Building retail software at System Retail.",
+    "hero.portraitAlt": "Portrait of Bilge Ozcanbaz",
+    "hero.cardExperienceLabel": "Experience",
+    "hero.cardExperienceValue": "4+ years",
+    "hero.cardExperienceBody": "building retail and enterprise software",
+    "hero.cardCraftLabel": "Building",
+    "hero.cardCraftBody": "with care and curiosity.",
+    "hero.cardFocusLabel": "Focus areas",
+
+    "work.eyebrow": "Selected work",
+    "work.titleStart": "Software that",
+    "work.titleAccent": "quietly works",
+    "work.titleEnd": "every day in stores.",
+    "work.viewAll": "View on GitHub",
+    "work.open": "Open",
+    "work.caseStudy": "Read the case study",
+    "work.viewCode": "View code",
+    "work.private": "Private codebase",
+    "work.moreTitle": "More things I've built",
+
+    "services.eyebrow": "What I do",
+    "services.titleStart": "End-to-end software,",
+    "services.titleAccent": "from device to database.",
+    "services.tools": "Tools I use",
+
+    "about.eyebrow": "About me",
+    "about.titleStart": "From Java backends",
+    "about.titleAccent": "to the shop floor.",
     "about.p1":
       "I started as a Java backend developer, writing Spring Boot services for electronic invoicing and banking. Today I'm the sole developer of a production Android app for retail chains at System Retail, working directly with the product manager and owning features from the device all the way to the service behind it.",
     "about.p2":
       "When I joined, the app was pure Java. I moved it to Kotlin, rebuilt every screen in Jetpack Compose and migrated the local database from GreenDAO to Room on devices already in stores. The rest of my week goes to .NET microservices, RabbitMQ messaging and drivers for printers, scanners and customer displays.",
-    "about.p3": "Here are some technologies I've been working with:",
-    "about.p4":
-      "Outside of work I climb, crochet, and collect business cards from the restaurants and pasticcerie I love around Italy.",
-    "about.photoAlt": "Portrait of Bilge Ozcanbaz",
-    "experience.title": "experience",
+    "about.languagesLabel": "Languages",
+    "about.educationLabel": "Education",
+    "about.cv": "Download CV",
+
+    "experience.eyebrow": "Experience",
+    "experience.titleStart": "Where I've been",
+    "experience.titleAccent": "building.",
     "experience.tabsLabel": "Companies",
-    "education.title": "education",
-    "work.title": "software creations",
-    "work.featuredLabel": "Featured project",
-    "work.otherTitle": "other things I've built",
-    "work.privateNote": "Private codebase — details shared in interviews.",
-    "work.viewCode": "View code",
-    "work.caseStudy": "Read the case study",
-    "work.personalLabel": "Personal project",
-    "nav.home": "Home",
+
+    "process.eyebrow": "My process",
+    "process.titleStart": "A",
+    "process.titleAccent": "practical",
+    "process.titleEnd": "approach to shipping software.",
+
+    "beyond.eyebrow": "Beyond code",
+    "beyond.titleStart": "What keeps me",
+    "beyond.titleAccent": "curious.",
+
+    "contact.side": "Let's connect",
+    "contact.eyebrow": "Say hello",
+    "contact.titleStart": "Let's build something",
+    "contact.titleAccent": "meaningful",
+    "contact.titleEnd": "together.",
+    "contact.body":
+      "Have a question, an idea, or just want to talk Android, .NET or retail tech? Write me — I'm always happy to connect.",
+    "contact.whatsapp": "WhatsApp",
+    "contact.nameLabel": "Your name",
+    "contact.messageLabel": "Your message",
+    "contact.messagePlaceholder": "Tell me what's on your mind",
+    "contact.sendWhatsapp": "Send on WhatsApp",
+    "contact.sendEmail": "Send by email",
+    "contact.greeting": "Hi Bilge, I'm",
+    "contact.subject": "Hello from your portfolio",
+
+    "footer.tagline": "Building software that just works, one release at a time.",
+    "footer.explore": "Explore",
+    "footer.connect": "Let's connect",
+    "footer.rights": "© 2026 Bilge Ozcanbaz",
+    "footer.credit": "Inspired by gazijarin.com",
+    "footer.top": "Back to top",
+
+    "gameMode.toggle": "game mode",
+    "gameMode.info": "How to play",
+    "gameMode.howTo": "how to play",
+    "gameMode.move": "move",
+    "gameMode.jump": "jump",
+    "gameMode.explore": "explore the page",
+    "gameMode.goal": "Squash the 5 bugs hiding on the page. Jump across the text — every heading and paragraph is a platform.",
+    "gameMode.counter": "bugs",
+    "gameMode.fellTitle": "you fell",
+    "gameMode.fellSub": "the bugs got away",
+    "gameMode.retry": "try again",
+    "gameMode.retryHint": "or press space",
+    "gameMode.wonTitle": "all bugs squashed",
+    "gameMode.wonSub": "5 of 5 fixed — ready to ship",
+    "gameMode.again": "play again",
+    "gameMode.left": "Move left",
+    "gameMode.right": "Move right",
+    "gameMode.jumpButton": "Jump",
+
     "pt.meta.title": "PaceTasks — case study | Bilge Ozcanbaz",
     "pt.meta.description": "PaceTasks: a task app for people with a fixed work schedule, built by Bilge Ozcanbaz with Expo, React Native, TypeScript and Supabase.",
     "pt.back": "Back to portfolio",
@@ -74,81 +154,123 @@ const translations = {
     "pt.nextTitle": "what's next",
     "pt.mockupLabel": "PaceTasks today screen, illustrated",
     "pt.cta": "View the code on GitHub",
-    "beyond.title": "beyond code",
-    "beyond.lede": "The things that keep me curious when the IDE is closed.",
-    "nav.play": "Play",
-    "game.title": "play",
-    "game.lede": "Take a break with a quick shift at the checkout: scan each product the moment its barcode crosses the laser.",
-    "game.name": "Scan Rush",
-    "game.instructions": "Tap the belt, click, or press Space when a barcode is on the red laser. Perfect timing scores double, and every 5 scans in a row raise your multiplier. Three mistakes and your shift is over.",
-    "game.start": "Start shift",
-    "game.again": "Scan again",
-    "game.score": "Score",
-    "game.combo": "Combo",
-    "game.lives": "Lives",
-    "game.best": "Best",
-    "game.hint": "Tap the belt or press Space to scan",
-    "game.perfect": "PERFECT",
-    "game.good": "GOOD",
-    "game.miss": "MISS",
-    "game.missed": "MISSED",
-    "game.paused": "Paused — tap to continue",
-    "game.receiptTitle": "Scan Rush · Checkout 01",
-    "game.itemsLabel": "items",
-    "game.totalLabel": "TOTAL",
-    "game.scoreLabel": "Score",
-    "game.comboLabel": "Best combo",
-    "game.newBest": "New personal best!",
-    "game.thanks": "Thank you, come again!",
-    "game.canvasLabel": "Scan Rush game: products move along a conveyor belt towards a barcode laser",
-    "game.sound": "Sound",
-    "contact.eyebrow": "What's next?",
-    "contact.title": "Get in touch",
-    "contact.body":
-      "I'm interested in Android, backend and product engineering roles where mobile and services sit close together — remote-first or hybrid from Padova. My inbox is always open, whether it's a role, a question or just to say hi.",
-    "contact.cta": "Say hello",
-    "footer.body": "Designed and built by Bilge Ozcanbaz · Inspired by gazijarin.com",
-    "footer.top": "Back to top"
   },
   it: {
     "meta.title": "Bilge Ozcanbaz | Sviluppatrice Software",
     "meta.description":
       "Bilge Ozcanbaz è una sviluppatrice software a Padova: app Android, servizi .NET, integrazioni RabbitMQ e driver per dispositivi retail.",
+    "brand.role": "Sviluppatrice software",
     "nav.label": "Navigazione principale",
+    "nav.work": "Progetti",
     "nav.about": "Chi sono",
     "nav.experience": "Esperienza",
-    "nav.work": "Software",
     "nav.beyond": "Oltre il codice",
     "nav.contact": "Contatti",
+    "nav.connect": "Parliamone",
     "nav.menu": "Apri menu",
     "language.label": "Selettore lingua",
     "social.label": "Link social",
-    "hero.greeting": [{ text: "ciao, sono " }, { text: "bilge", accent: true }, { text: "." }],
-    "hero.subtitle": "Sviluppo software che deve funzionare in negozio.",
+
+    "hero.eyebrow": "Sviluppatrice software",
+    "hero.titleStart": "Sviluppo software che funziona",
+    "hero.titleAccent": "in negozio, ogni giorno.",
     "hero.intro":
-      "Sono una sviluppatrice software a Padova. Sviluppo l'app Android che i team di negozio usano ogni giorno, insieme ai servizi .NET, alle code di messaggi e ai driver che ci stanno dietro — dalla lettura di un barcode sul palmare allo scontrino che la stampante fiscale consegna al cliente.",
-    "hero.cta": "Scrivimi",
-    "hero.cv": "Scarica CV",
-    "about.title": "chi sono",
+      "App Android che i team di negozio usano ogni giorno, e i servizi .NET, le code di messaggi e i driver che ci stanno dietro — dalla lettura di un barcode sul palmare allo scontrino che la stampante fiscale consegna al cliente.",
+    "hero.work": "Guarda i progetti",
+    "hero.about": "Chi sono",
+    "hero.status": "Vivo a Padova",
+    "hero.statusSub": "Sviluppo software retail in System Retail.",
+    "hero.portraitAlt": "Ritratto di Bilge Ozcanbaz",
+    "hero.cardExperienceLabel": "Esperienza",
+    "hero.cardExperienceValue": "4+ anni",
+    "hero.cardExperienceBody": "di software retail ed enterprise",
+    "hero.cardCraftLabel": "Sviluppo",
+    "hero.cardCraftBody": "con cura e curiosità.",
+    "hero.cardFocusLabel": "Aree di lavoro",
+
+    "work.eyebrow": "Progetti scelti",
+    "work.titleStart": "Software che",
+    "work.titleAccent": "lavora in silenzio",
+    "work.titleEnd": "ogni giorno nei negozi.",
+    "work.viewAll": "Vedi su GitHub",
+    "work.open": "Apri",
+    "work.caseStudy": "Leggi il case study",
+    "work.viewCode": "Vedi codice",
+    "work.private": "Codice privato",
+    "work.moreTitle": "Altri progetti",
+
+    "services.eyebrow": "Cosa faccio",
+    "services.titleStart": "Software completo,",
+    "services.titleAccent": "dal dispositivo al database.",
+    "services.tools": "Strumenti",
+
+    "about.eyebrow": "Chi sono",
+    "about.titleStart": "Dal backend Java",
+    "about.titleAccent": "al negozio.",
     "about.p1":
       "Ho iniziato come sviluppatrice backend Java, scrivendo servizi Spring Boot per la fatturazione elettronica e il settore bancario. Oggi in System Retail sono l'unica sviluppatrice di un'app Android in produzione per catene retail: lavoro a stretto contatto con il product manager e seguo ogni funzionalità dal dispositivo fino al servizio che la supporta.",
     "about.p2":
       "Quando sono arrivata l'app era interamente in Java: l'ho migrata a Kotlin, ho ricostruito tutte le schermate in Jetpack Compose e ho portato il database locale da GreenDAO a Room su dispositivi già installati nei negozi. Il resto della settimana lo dedico a microservizi .NET, messaggistica RabbitMQ e driver per stampanti, scanner e display cliente.",
-    "about.p3": "Alcune tecnologie con cui lavoro:",
-    "about.p4":
-      "Fuori dal lavoro arrampico, lavoro all'uncinetto e colleziono i biglietti da visita dei ristoranti e delle pasticcerie che amo in giro per l'Italia.",
-    "about.photoAlt": "Ritratto di Bilge Ozcanbaz",
-    "experience.title": "esperienza",
+    "about.languagesLabel": "Lingue",
+    "about.educationLabel": "Formazione",
+    "about.cv": "Scarica il CV",
+
+    "experience.eyebrow": "Esperienza",
+    "experience.titleStart": "Dove ho",
+    "experience.titleAccent": "costruito.",
     "experience.tabsLabel": "Aziende",
-    "education.title": "formazione",
-    "work.title": "progetti software",
-    "work.featuredLabel": "Progetto in evidenza",
-    "work.otherTitle": "altri progetti",
-    "work.privateNote": "Codice privato — dettagli disponibili in colloquio.",
-    "work.viewCode": "Vedi codice",
-    "work.caseStudy": "Leggi il case study",
-    "work.personalLabel": "Progetto personale",
-    "nav.home": "Home",
+
+    "process.eyebrow": "Il mio metodo",
+    "process.titleStart": "Un approccio",
+    "process.titleAccent": "pratico",
+    "process.titleEnd": "per rilasciare software.",
+
+    "beyond.eyebrow": "Oltre il codice",
+    "beyond.titleStart": "Cosa mi tiene",
+    "beyond.titleAccent": "curiosa.",
+
+    "contact.side": "Parliamone",
+    "contact.eyebrow": "Scrivimi",
+    "contact.titleStart": "Costruiamo qualcosa di",
+    "contact.titleAccent": "significativo",
+    "contact.titleEnd": "insieme.",
+    "contact.body":
+      "Hai una domanda, un'idea o vuoi parlare di Android, .NET o tecnologia per il retail? Scrivimi — mi fa sempre piacere conoscere persone nuove.",
+    "contact.whatsapp": "WhatsApp",
+    "contact.nameLabel": "Il tuo nome",
+    "contact.messageLabel": "Il tuo messaggio",
+    "contact.messagePlaceholder": "Raccontami cosa hai in mente",
+    "contact.sendWhatsapp": "Invia su WhatsApp",
+    "contact.sendEmail": "Invia per email",
+    "contact.greeting": "Ciao Bilge, sono",
+    "contact.subject": "Ciao dal tuo portfolio",
+
+    "footer.tagline": "Software che funziona, un rilascio alla volta.",
+    "footer.explore": "Esplora",
+    "footer.connect": "Contatti",
+    "footer.rights": "© 2026 Bilge Ozcanbaz",
+    "footer.credit": "Ispirato a gazijarin.com",
+    "footer.top": "Torna su",
+
+    "gameMode.toggle": "modalità gioco",
+    "gameMode.info": "Come si gioca",
+    "gameMode.howTo": "come si gioca",
+    "gameMode.move": "muoviti",
+    "gameMode.jump": "salta",
+    "gameMode.explore": "esplora la pagina",
+    "gameMode.goal": "Schiaccia i 5 bug nascosti nella pagina. Salta sul testo — ogni titolo e paragrafo è una piattaforma.",
+    "gameMode.counter": "bug",
+    "gameMode.fellTitle": "Bilge è caduta",
+    "gameMode.fellSub": "i bug sono scappati",
+    "gameMode.retry": "riprova",
+    "gameMode.retryHint": "o premi spazio",
+    "gameMode.wonTitle": "tutti i bug schiacciati",
+    "gameMode.wonSub": "5 su 5 risolti — pronto per il rilascio",
+    "gameMode.again": "gioca ancora",
+    "gameMode.left": "Vai a sinistra",
+    "gameMode.right": "Vai a destra",
+    "gameMode.jumpButton": "Salta",
+
     "pt.meta.title": "PaceTasks — case study | Bilge Ozcanbaz",
     "pt.meta.description": "PaceTasks: un'app di attività per chi ha un orario di lavoro fisso, sviluppata da Bilge Ozcanbaz con Expo, React Native, TypeScript e Supabase.",
     "pt.back": "Torna al portfolio",
@@ -170,54 +292,205 @@ const translations = {
     "pt.nextTitle": "prossimi passi",
     "pt.mockupLabel": "Schermata Oggi di PaceTasks, illustrata",
     "pt.cta": "Vedi il codice su GitHub",
-    "beyond.title": "oltre il codice",
-    "beyond.lede": "Quello che mi tiene curiosa quando l'IDE è chiuso.",
-    "nav.play": "Gioca",
-    "game.title": "gioca",
-    "game.lede": "Fai una pausa con un turno veloce alla cassa: scansiona ogni prodotto nel momento in cui il codice a barre passa sul laser.",
-    "game.name": "Scan Rush",
-    "game.instructions": "Tocca il nastro, clicca o premi Spazio quando un codice a barre è sul laser rosso. Il tempismo perfetto vale doppio e ogni 5 scansioni di fila aumentano il moltiplicatore. Tre errori e il turno finisce.",
-    "game.start": "Inizia il turno",
-    "game.again": "Scansiona ancora",
-    "game.score": "Punti",
-    "game.combo": "Combo",
-    "game.lives": "Vite",
-    "game.best": "Record",
-    "game.hint": "Tocca il nastro o premi Spazio per scansionare",
-    "game.perfect": "PERFETTO",
-    "game.good": "BUONO",
-    "game.miss": "ERRORE",
-    "game.missed": "PERSO",
-    "game.paused": "In pausa — tocca per continuare",
-    "game.receiptTitle": "Scan Rush · Cassa 01",
-    "game.itemsLabel": "articoli",
-    "game.totalLabel": "TOTALE",
-    "game.scoreLabel": "Punti",
-    "game.comboLabel": "Combo migliore",
-    "game.newBest": "Nuovo record personale!",
-    "game.thanks": "Grazie e arrivederci!",
-    "game.canvasLabel": "Gioco Scan Rush: i prodotti scorrono su un nastro verso un laser per codici a barre",
-    "game.sound": "Suono",
-    "contact.eyebrow": "E adesso?",
-    "contact.title": "Contattami",
-    "contact.body":
-      "Mi interessano ruoli Android, backend e product engineering dove mobile e servizi lavorano fianco a fianco — full remote o ibridi da Padova. Scrivimi per un'opportunità, una domanda o anche solo per un saluto.",
-    "contact.cta": "Scrivimi",
-    "footer.body": "Progettato e sviluppato da Bilge Ozcanbaz · Ispirato a gazijarin.com",
-    "footer.top": "Torna su"
   }
 };
 
-const technologies = [
-  "Kotlin & Jetpack Compose",
-  "Java & Spring Boot",
-  "C# / .NET 8",
-  "Room & SQLite",
-  "Blazor & DevExpress",
-  "SQL Server & PostgreSQL",
-  "RabbitMQ",
-  "Docker & Azure Pipelines"
+// Short labels for the hero "focus areas" card.
+const focusAreas = {
+  en: ["Android apps", ".NET services", "Device drivers", "Messaging & data"],
+  it: ["App Android", "Servizi .NET", "Driver per dispositivi", "Messaggistica e dati"]
+};
+
+// Case-study cards in "Selected work"; `visual` picks the CSS illustration.
+const featuredProjects = [
+  {
+    id: "smart",
+    title: "ONEStore SMART",
+    subtitle: { en: "Retail handheld app", it: "App per palmari retail" },
+    visual: "handheld",
+    tech: ["Kotlin", "Compose", "Room"],
+    description: {
+      en: "The Android app store staff use for inventory, receiving, price checks and label printing — moved from Java + GreenDAO to Kotlin, Compose and Room without breaking devices in the field.",
+      it: "L'app Android per inventari, ricevimento merci, verifica prezzi e stampa etichette — portata da Java + GreenDAO a Kotlin, Compose e Room senza fermare i dispositivi in campo."
+    }
+  },
+  {
+    id: "pos-drivers",
+    title: { en: "POS drivers", it: "Driver di cassa" },
+    subtitle: { en: "Printers, scanners, displays", it: "Stampanti, scanner, display" },
+    visual: "receipt",
+    tech: ["C#", ".NET", "TCP / serial"],
+    description: {
+      en: "Direct drivers replacing OPOS for fiscal and receipt printers, scanners and customer displays — payment tenders, logos and CRC-checked image transfer, verified on real hardware.",
+      it: "Driver diretti al posto di OPOS per stampanti fiscali e di scontrini, scanner e display cliente — forme di pagamento, loghi e trasferimento immagini con CRC, verificati su hardware reale."
+    }
+  },
+  {
+    id: "analytics",
+    title: { en: "Store analytics", it: "Analisi negozi" },
+    subtitle: { en: "Multi-store web app", it: "Web app multi-negozio" },
+    visual: "chart",
+    tech: ["Blazor", "DevExpress", "SQL Server"],
+    description: {
+      en: "A Blazor and DevExpress web app, now in production, that lets retail chains analyse and compare performance across their stores.",
+      it: "Un'applicazione web Blazor e DevExpress, oggi in produzione, per analizzare e confrontare le performance dei negozi di una catena."
+    }
+  },
+  {
+    id: "pacetasks",
+    title: "PaceTasks",
+    subtitle: { en: "Personal mobile app", it: "App mobile personale" },
+    visual: "tasks",
+    caseStudy: "pacetasks.html",
+    repo: "https://github.com/bilgaaaaa/pacetasks",
+    tech: ["Expo", "TypeScript", "Supabase"],
+    description: {
+      en: "My own task app for people with a fixed work schedule: quick capture that never blocks, a timer that learns how long tasks really take, and stats that compare you only with yourself.",
+      it: "La mia app di attività per chi ha un orario fisso: inserimento rapido che non blocca mai, un timer che impara quanto durano davvero le attività e statistiche che misurano solo i tuoi progressi."
+    }
+  }
 ];
+
+const otherProjects = [
+  {
+    title: { en: "Handheld sync service", it: "Sincronizzazione palmari" },
+    tech: [".NET", "RabbitMQ", "EF Core"],
+    description: {
+      en: "The daemon that turns handheld messages into back-office documents, with server-side deduplication of inventory documents.",
+      it: "Il demone che trasforma i messaggi dei palmari in documenti di back-office, con deduplicazione lato server degli inventari."
+    }
+  },
+  {
+    title: "Invoice Channel",
+    tech: ["Java 17", "Spring Boot", "Maven"],
+    description: {
+      en: "Electronic invoicing microservices with ERP integration: Ant → Maven, Java 8 → 17 and legal-archive integration.",
+      it: "Microservizi di fatturazione elettronica integrati con gli ERP: Ant → Maven, Java 8 → 17 e conservazione sostitutiva."
+    }
+  },
+  {
+    title: { en: "Credit limit calculator", it: "Calcolo del fido" },
+    tech: ["Spring Boot", "Hibernate"],
+    description: {
+      en: "A banking application with user data management, a credit limit calculator and secure authentication.",
+      it: "Un'applicazione bancaria con gestione dati utente, calcolo del fido e autenticazione sicura."
+    }
+  },
+  {
+    title: { en: "Remote test automation", it: "Automazione test remota" },
+    tech: ["Test automation", "Remote browsers"],
+    description: {
+      en: "My MSc thesis: moving browser tests from local machines to remote browsers, cutting testing effort by 25%.",
+      it: "La mia tesi magistrale: test spostati da browser locali a remoti, con il 25% di sforzo in meno."
+    }
+  },
+  {
+    title: { en: "This portfolio", it: "Questo portfolio" },
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "https://github.com/bilgaaaaa/bilge-portfolio",
+    description: {
+      en: "A dependency-free, bilingual static site — with a game mode hidden in the corner.",
+      it: "Un sito statico bilingue senza dipendenze — con una modalità gioco nascosta nell'angolo."
+    }
+  }
+];
+
+// "What I do" columns; `icon` refers to a symbol in assets/icons.svg.
+const services = [
+  {
+    icon: "phone",
+    title: { en: "Android apps", it: "App Android" },
+    body: { en: "Kotlin, Jetpack Compose and Room apps that keep working offline on busy shop floors.", it: "App Kotlin, Jetpack Compose e Room che funzionano anche offline nei negozi." }
+  },
+  {
+    icon: "server",
+    title: { en: "Backend services", it: "Servizi backend" },
+    body: { en: ".NET and Spring Boot services and REST APIs behind the devices.", it: "Servizi .NET e Spring Boot e API REST dietro ai dispositivi." }
+  },
+  {
+    icon: "printer",
+    title: { en: "Device integration", it: "Integrazione dispositivi" },
+    body: { en: "Drivers for fiscal printers, scanners and customer displays over TCP and serial.", it: "Driver per stampanti fiscali, scanner e display cliente via TCP e seriale." }
+  },
+  {
+    icon: "flow",
+    title: { en: "Messaging & data", it: "Messaggistica e dati" },
+    body: { en: "RabbitMQ pipelines and SQL databases connecting stores to the back office.", it: "Pipeline RabbitMQ e database SQL che collegano i negozi al back-office." }
+  }
+];
+
+// Tool tiles: a short monogram and a tint from the palette.
+const tools = [
+  { short: "Kt", name: "Kotlin", tint: "#854F6C" },
+  { short: "Jc", name: "Compose", tint: "#522B5B" },
+  { short: "Jv", name: "Java", tint: "#DFB6B2" },
+  { short: "C#", name: "C#", tint: "#854F6C" },
+  { short: ".N", name: ".NET", tint: "#522B5B" },
+  { short: "Bz", name: "Blazor", tint: "#DFB6B2" },
+  { short: "Sq", name: "SQL", tint: "#854F6C" },
+  { short: "Mq", name: "RabbitMQ", tint: "#522B5B" },
+  { short: "Dk", name: "Docker", tint: "#DFB6B2" }
+];
+
+const processSteps = [
+  {
+    icon: "search",
+    title: { en: "Understand", it: "Capire" },
+    body: { en: "Learn the real workflow and the people who depend on it.", it: "Capire il flusso reale e chi ci lavora ogni giorno." }
+  },
+  {
+    icon: "pen",
+    title: { en: "Design", it: "Progettare" },
+    body: { en: "Map the data flow and the edge cases before writing code.", it: "Disegnare il flusso dei dati e i casi limite prima del codice." }
+  },
+  {
+    icon: "code",
+    title: { en: "Build", it: "Sviluppare" },
+    body: { en: "Small, reviewable steps with clean and consistent naming.", it: "Passi piccoli e revisionabili, con nomi chiari e coerenti." }
+  },
+  {
+    icon: "check",
+    title: { en: "Test", it: "Testare" },
+    body: { en: "Unit tests, then real hardware on the bench — not just the emulator.", it: "Test unitari, poi hardware reale sul banco — non solo l'emulatore." }
+  },
+  {
+    icon: "rocket",
+    title: { en: "Ship & support", it: "Rilasciare e supportare" },
+    body: { en: "Release, watch the logs and fix fast in production.", it: "Rilasciare, leggere i log e correggere in fretta in produzione." }
+  }
+];
+
+const beyondItems = [
+  {
+    icon: "climb",
+    title: { en: "Climbing", it: "Arrampicata" },
+    description: {
+      en: "Bouldering problems are just debugging with chalk: read the route, try, fall, adjust.",
+      it: "Un blocco di boulder è debugging con la magnesite: leggi la via, prova, cadi, correggi."
+    }
+  },
+  {
+    icon: "yarn",
+    title: { en: "Crochet & knitting", it: "Uncinetto e maglia" },
+    description: {
+      en: "Patterns, loops and the occasional off-by-one stitch — the most relaxing kind of code.",
+      it: "Schemi, cicli e ogni tanto un punto sbagliato di uno — il codice più rilassante che ci sia."
+    }
+  },
+  {
+    icon: "card",
+    title: { en: "A card collection", it: "Una collezione di biglietti" },
+    description: {
+      en: "Business cards from every restaurant and pasticceria in Italy worth remembering.",
+      it: "Biglietti da visita di ogni ristorante e pasticceria d'Italia che vale la pena ricordare."
+    }
+  }
+];
+
+const languagesSpoken = {
+  en: "Turkish (native) · English (professional) · Italian (B1–B2, daily at work)",
+  it: "Turco (madrelingua) · Inglese (professionale) · Italiano (B1–B2, uso quotidiano al lavoro)"
+};
 
 const experience = [
   {
@@ -317,138 +590,6 @@ const education = [
   }
 ];
 
-const featuredProjects = [
-  {
-    id: "smart",
-    title: "ONEStore SMART",
-    visual: "handheld",
-    tech: ["Kotlin", "Jetpack Compose", "Room", "RabbitMQ", "Ktor"],
-    description: {
-      en: "The handheld Android app store staff use for inventory, receiving, price checks, label printing and stock movements. I took it from Java + GreenDAO to Kotlin, Compose and Room without breaking the devices already in the field.",
-      it: "L'app Android per palmari usata dal personale di negozio per inventari, ricevimento merci, verifica prezzi, stampa etichette e movimenti di magazzino. L'ho portata da Java + GreenDAO a Kotlin, Compose e Room senza interrompere i dispositivi già in campo."
-    }
-  },
-  {
-    id: "pos-drivers",
-    title: { en: "POS device drivers", it: "Driver per dispositivi di cassa" },
-    visual: "receipt",
-    tech: ["C#", ".NET", "Spring.NET", "TCP / serial"],
-    description: {
-      en: "Direct drivers that replace OPOS for fiscal printers, receipt printers, scanners and customer displays in the OneStore POS — payment tenders, printer status, logos and a CRC-checked image transfer, all verified on real hardware.",
-      it: "Driver diretti che sostituiscono OPOS per stampanti fiscali, stampanti di scontrini, scanner e display cliente nella cassa OneStore — forme di pagamento, stato stampante, loghi e trasferimento immagini con verifica CRC, tutto verificato su hardware reale."
-    }
-  },
-  {
-    id: "analytics",
-    title: { en: "Multi-store analytics", it: "Analisi multi-negozio" },
-    visual: "chart",
-    tech: ["Blazor", "DevExpress", "EF Core", "SQL Server"],
-    description: {
-      en: "A Blazor and DevExpress web app, now in production, that lets retail chains analyse and compare performance across their stores.",
-      it: "Un'applicazione web Blazor e DevExpress, oggi in produzione, che permette alle catene retail di analizzare e confrontare le performance dei propri negozi."
-    }
-  },
-  {
-    id: "pacetasks",
-    title: "PaceTasks",
-    visual: "tasks",
-    personal: true,
-    caseStudy: "pacetasks.html",
-    repo: "https://github.com/bilgaaaaa/pacetasks",
-    tech: ["Expo", "React Native", "TypeScript", "Supabase"],
-    description: {
-      en: "My own mobile app: a calm task list for people with a fixed work schedule. Quick capture that never blocks, a timer that learns how long each task really takes, and stats that only compare you with yourself.",
-      it: "La mia app mobile: una lista di attività tranquilla per chi ha un orario di lavoro fisso. Inserimento rapido che non blocca mai, un timer che impara quanto dura davvero ogni attività e statistiche che ti confrontano solo con te stessa."
-    }
-  }
-];
-
-const otherProjects = [
-  {
-    title: { en: "Handheld sync service", it: "Servizio di sincronizzazione palmari" },
-    tech: [".NET", "RabbitMQ", "EF Core"],
-    description: {
-      en: "The daemon that turns handheld messages into back-office documents. Fixed duplicate inventory documents with server-side deduplication.",
-      it: "Il demone che trasforma i messaggi dei palmari in documenti di back-office. Ho eliminato i documenti di inventario duplicati con una deduplicazione lato server."
-    }
-  },
-  {
-    title: "Invoice Channel",
-    tech: ["Java 17", "Spring Boot", "Hibernate", "Maven"],
-    description: {
-      en: "Electronic invoicing microservices with ERP integration. Led the Ant → Maven and Java 8 → 17 upgrade and added legal-archive integration.",
-      it: "Microservizi di fatturazione elettronica integrati con gli ERP. Ho guidato il passaggio Ant → Maven e Java 8 → 17 e aggiunto l'integrazione con la conservazione sostitutiva."
-    }
-  },
-  {
-    title: { en: "Credit limit calculator", it: "Calcolo del fido" },
-    tech: ["Spring Boot", "Hibernate", "Java"],
-    description: {
-      en: "A banking application with user data management, a credit limit calculator and secure authentication, built during my internship at Iason.",
-      it: "Un'applicazione bancaria con gestione dati utente, calcolo del fido e autenticazione sicura, sviluppata durante lo stage in Iason."
-    }
-  },
-  {
-    title: { en: "Remote test automation", it: "Automazione test remota" },
-    tech: ["Test automation", "Remote browsers"],
-    description: {
-      en: "My MSc thesis: moving browser test execution from local machines to remote browsers, cutting testing effort by 25%.",
-      it: "La mia tesi magistrale: spostare l'esecuzione dei test da browser locali a remoti, riducendo del 25% lo sforzo di test."
-    }
-  },
-  {
-    title: { en: "This portfolio", it: "Questo portfolio" },
-    tech: ["HTML", "CSS", "JavaScript"],
-    link: "https://github.com/bilgaaaaa/bilge-portfolio",
-    description: {
-      en: "A dependency-free, bilingual static site. No framework, no build step — just fast.",
-      it: "Un sito statico bilingue senza dipendenze. Nessun framework, nessuna build — solo veloce."
-    }
-  }
-];
-
-const beyondItems = [
-  {
-    icon: "climb",
-    title: { en: "Climbing", it: "Arrampicata" },
-    description: {
-      en: "Bouldering problems are just debugging with chalk.",
-      it: "Un blocco di boulder è solo debugging con la magnesite."
-    }
-  },
-  {
-    icon: "yarn",
-    title: { en: "Crochet & knitting", it: "Uncinetto e maglia" },
-    description: {
-      en: "Patterns, loops and the occasional off-by-one stitch.",
-      it: "Schemi, cicli e ogni tanto un punto sbagliato di uno."
-    }
-  },
-  {
-    icon: "card",
-    title: { en: "A card collection", it: "Una collezione di biglietti" },
-    description: {
-      en: "Business cards from every restaurant and pasticceria worth remembering.",
-      it: "Biglietti da visita di ogni ristorante e pasticceria da ricordare."
-    }
-  },
-  {
-    icon: "video",
-    title: "bilgalog",
-    link: profileLinks.tiktok,
-    description: {
-      en: "Short videos about building apps, developer life and everyday Italy.",
-      it: "Brevi video sullo sviluppo di app, la vita da developer e l'Italia di tutti i giorni."
-    }
-  }
-];
-
-const languagesSpoken = {
-  en: "Turkish (native) · English (professional) · Italian (B1–B2, daily at work)",
-  it: "Turco (madrelingua) · Inglese (professionale) · Italiano (B1–B2, uso quotidiano al lavoro)"
-};
-
-// PaceTasks case-study page (pacetasks.html).
 const pacetasksCaseStudy = {
   repo: "https://github.com/bilgaaaaa/pacetasks",
   stack: ["Expo SDK 57", "React Native 0.86", "TypeScript", "Supabase", "Postgres + RLS", "Realtime", "Jest", "pgTAP"],
@@ -497,7 +638,7 @@ const pacetasksCaseStudy = {
       title: { en: "Your pace", it: "Il tuo ritmo" },
       body: {
         en: "Streaks, best day, estimate accuracy and a 13-week weekday heatmap — the only competitor is you.",
-        it: "Serie, giorno migliore, precisione delle stime e una mappa di 13 settimane — l'unica avversaria sei tu."
+        it: "Serie, giorno migliore, precisione delle stime e una mappa di 13 settimane — gareggi solo contro il tuo passato."
       }
     },
     {
@@ -558,15 +699,3 @@ const pacetasksCaseStudy = {
     }
   ]
 };
-
-// Scan Rush game (game.js): products on the belt, with shelf prices in euro.
-const scanRushProducts = [
-  { name: { en: "Milk", it: "Latte" }, price: 1.29, color: "#e6f1ff", shape: "bottle" },
-  { name: { en: "Spaghetti", it: "Spaghetti" }, price: 0.99, color: "#3d6ee0", shape: "box" },
-  { name: { en: "Espresso coffee", it: "Caffè espresso" }, price: 3.49, color: "#8b5a3c", shape: "bag" },
-  { name: { en: "Tomato passata", it: "Passata di pomodoro" }, price: 1.19, color: "#d64545", shape: "can" },
-  { name: { en: "Olive oil", it: "Olio d'oliva" }, price: 7.9, color: "#9bb04a", shape: "bottle" },
-  { name: { en: "Parmigiano", it: "Parmigiano" }, price: 5.6, color: "#f2c14e", shape: "box" },
-  { name: { en: "Biscotti", it: "Biscotti" }, price: 2.1, color: "#d98a3d", shape: "bag" },
-  { name: { en: "Ball of yarn", it: "Gomitolo di lana" }, price: 4.5, color: "#b388eb", shape: "round" }
-];

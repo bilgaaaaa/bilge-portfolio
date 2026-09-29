@@ -1,14 +1,14 @@
-// Renders every page from content.js and wires up language, typing, tabs, menu and scroll reveal.
+// Renders every page from content.js and wires up language, tabs, menu, contact form and scroll reveal.
 // Each page sets <body data-page="..."> so only its own renderers run.
 
 const STORAGE_KEY = "portfolioLanguage";
 const SUPPORTED_LANGUAGES = ["en", "it"];
+const ICON_SPRITE = "assets/icons.svg";
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const currentPage = document.body.dataset.page || "home";
 
 let currentLanguage = "en";
 let activeExperienceId = experience[0].id;
-let hasTypedGreeting = false;
 
 // ---------- helpers ----------
 
@@ -24,7 +24,7 @@ function t(key) {
   return translations[currentLanguage][key] ?? translations.en[key] ?? "";
 }
 
-// Small element factory to keep rendering code readable.
+// Small element factory to keep rendering code readable; falsy children are skipped.
 function el(tag, options = {}, children = []) {
   const node = document.createElement(tag);
   Object.entries(options).forEach(([name, value]) => {
@@ -42,7 +42,7 @@ function icon(name, className = "icon") {
   svg.setAttribute("class", className);
   svg.setAttribute("aria-hidden", "true");
   const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-  use.setAttribute("href", `assets/icons.svg#icon-${name}`);
+  use.setAttribute("href", `${ICON_SPRITE}#icon-${name}`);
   svg.append(use);
   return svg;
 }
@@ -50,12 +50,16 @@ function icon(name, className = "icon") {
 // Replaces the children of the element matching `selector`, if that element exists on this page.
 function fill(selector, children) {
   const target = document.querySelector(selector);
-  if (target) target.replaceChildren(...children);
+  if (target) target.replaceChildren(...children.filter(Boolean));
   return target;
 }
 
 function externalLink(href, children, options = {}) {
   return el("a", { href, target: "_blank", rel: "noopener", ...options }, children);
+}
+
+function tagList(items, className = "tag-list") {
+  return el("ul", { className }, items.map((item) => el("li", { text: item })));
 }
 
 function readSavedLanguage() {
@@ -84,70 +88,161 @@ function getInitialLanguage() {
 
 function renderSocialLists() {
   const items = [
-    { name: "github", href: profileLinks.github, label: "GitHub" },
-    { name: "linkedin", href: profileLinks.linkedin, label: "LinkedIn" },
-    { name: "tiktok", href: profileLinks.tiktok, label: "TikTok" },
-    { name: "mail", href: `mailto:${profileLinks.email}`, label: "Email" }
+    { name: "github", href: profileLinks.github, label: "GitHub", external: true },
+    { name: "linkedin", href: profileLinks.linkedin, label: "LinkedIn", external: true },
+    { name: "whatsapp", href: profileLinks.whatsapp, label: "WhatsApp", external: true },
+    { name: "mail", href: `mailto:${profileLinks.email}`, label: "Email", external: false }
   ];
 
   document.querySelectorAll("[data-social-list]").forEach((list) => {
     list.replaceChildren(
-      ...items.map((item) =>
-        el("li", {}, [
-          item.name === "mail"
-            ? el("a", { href: item.href, "aria-label": item.label }, [icon(item.name)])
-            : externalLink(item.href, [icon(item.name)], { "aria-label": item.label })
-        ])
-      )
+      ...items.map((item) => {
+        const content = [icon(item.name)];
+        const options = { "aria-label": item.label, className: "icon-button" };
+        return el("li", {}, [item.external ? externalLink(item.href, content, options) : el("a", { href: item.href, ...options }, content)]);
+      })
     );
   });
 }
 
-function techList(items, className = "project-tech") {
-  return el("ul", { className }, items.map((item) => el("li", { text: item })));
+// ---------- home: hero & about ----------
+
+function renderHeroCards() {
+  fill("[data-focus-list]", localize(focusAreas).map((area) => el("li", { text: area })));
 }
 
-// ---------- home: hero greeting ----------
-
-function renderGreeting(segments, charCount = Infinity) {
-  const target = document.getElementById("heroGreeting");
-  target.replaceChildren();
-  let remaining = charCount;
-  segments.forEach((segment) => {
-    if (remaining <= 0) return;
-    const text = segment.text.slice(0, remaining);
-    remaining -= text.length;
-    target.append(segment.accent ? el("span", { className: "accent", text }) : document.createTextNode(text));
-  });
-}
-
-// Types the greeting once on first load; later language switches render it instantly.
-function typeGreeting() {
-  if (!document.getElementById("heroGreeting")) return;
-  const segments = t("hero.greeting");
-  const total = segments.reduce((sum, segment) => sum + segment.text.length, 0);
-
-  if (hasTypedGreeting || prefersReducedMotion) {
-    renderGreeting(segments);
-    return;
-  }
-
-  hasTypedGreeting = true;
-  let typed = 0;
-  const timer = setInterval(() => {
-    typed += 1;
-    renderGreeting(t("hero.greeting"), typed);
-    if (typed >= total) clearInterval(timer);
-  }, 85);
-}
-
-// ---------- home: sections ----------
-
-function renderTechnologies() {
-  fill("[data-tech-list]", technologies.map((name) => el("li", { text: name })));
+function renderAbout() {
   const languages = document.querySelector("[data-languages]");
   if (languages) languages.textContent = localize(languagesSpoken);
+
+  fill(
+    "[data-education-list]",
+    education.map((item) =>
+      el("li", {}, [
+        el("span", { className: "facts-strong", text: localize(item.degree) }),
+        el("span", { text: `${localize(item.school)} · ${item.dates}` })
+      ])
+    )
+  );
 }
+
+// ---------- home: work ----------
+
+// Decorative illustrations for project cards, drawn with CSS spans.
+function projectVisual(kind) {
+  const spanCount = { handheld: 6, receipt: 7, chart: 7, tasks: 7 };
+  const visual = el("div", { className: `case-visual visual-${kind}`, "aria-hidden": "true" });
+  for (let i = 0; i < spanCount[kind]; i += 1) visual.append(el("span"));
+  return visual;
+}
+
+// Public projects link to their case study and code; work projects show a private-code note.
+function caseCardFooter(project) {
+  const title = localize(project.title);
+  if (!project.caseStudy) {
+    return el("p", { className: "case-private" }, [icon("lock"), document.createTextNode(t("work.private"))]);
+  }
+  return el("div", { className: "case-links" }, [
+    project.repo && externalLink(project.repo, [icon("github")], { className: "icon-button", "aria-label": `${t("work.viewCode")}: ${title}` }),
+    el("a", { className: "round-arrow", href: project.caseStudy, "aria-label": `${t("work.caseStudy")}: ${title}` }, [icon("arrow")])
+  ]);
+}
+
+function renderFeaturedProjects() {
+  fill(
+    "[data-featured-list]",
+    featuredProjects.map((project, index) =>
+      el("article", { className: "case-card reveal" }, [
+        projectVisual(project.visual),
+        el("div", { className: "case-body" }, [
+          el("p", { className: "case-index", text: String(index + 1).padStart(2, "0") }),
+          el("h3", { className: "case-title" }, [
+            project.caseStudy ? el("a", { href: project.caseStudy, text: localize(project.title) }) : document.createTextNode(localize(project.title))
+          ]),
+          el("p", { className: "case-subtitle", text: localize(project.subtitle) }),
+          el("p", { className: "case-description", text: localize(project.description) }),
+          el("div", { className: "case-footer" }, [tagList(project.tech), caseCardFooter(project)])
+        ])
+      ])
+    )
+  );
+}
+
+function renderOtherProjects() {
+  fill(
+    "[data-project-grid]",
+    otherProjects.map((project) => {
+      const title = localize(project.title);
+      return el("li", { className: "mini-card reveal" }, [
+        el("div", { className: "mini-card-top" }, [
+          icon("folder", "icon folder-icon"),
+          project.link
+            ? externalLink(project.link, [icon("github")], { className: "icon-button", "aria-label": `${t("work.viewCode")}: ${title}` })
+            : icon("lock", "icon muted-icon")
+        ]),
+        el("h4", { className: "mini-card-title", text: title }),
+        el("p", { text: localize(project.description) }),
+        tagList(project.tech, "tag-list tag-list-plain")
+      ]);
+    })
+  );
+}
+
+// ---------- home: services, process, beyond ----------
+
+function renderServices() {
+  fill(
+    "[data-services-list]",
+    services.map((service) =>
+      el("li", { className: "service" }, [
+        el("span", { className: "icon-ring" }, [icon(service.icon)]),
+        el("h3", { text: localize(service.title) }),
+        el("p", { text: localize(service.body) })
+      ])
+    )
+  );
+
+  fill(
+    "[data-tool-grid]",
+    tools.map((tool) =>
+      el("li", { className: "tool", style: `--tint: ${tool.tint}` }, [
+        el("span", { className: "tool-mark", text: tool.short, "aria-hidden": "true" }),
+        el("span", { className: "tool-name", text: tool.name })
+      ])
+    )
+  );
+}
+
+function renderProcess() {
+  fill(
+    "[data-process-steps]",
+    processSteps.map((step, index) =>
+      el("li", { className: "process-step reveal" }, [
+        el("span", { className: "icon-ring icon-ring-large" }, [icon(step.icon)]),
+        el("p", { className: "process-title" }, [
+          el("span", { className: "process-index", text: String(index + 1).padStart(2, "0") }),
+          document.createTextNode(localize(step.title))
+        ]),
+        el("p", { className: "process-body", text: localize(step.body) })
+      ])
+    )
+  );
+}
+
+function renderBeyond() {
+  fill(
+    "[data-beyond-list]",
+    beyondItems.map((item) =>
+      el("li", { className: "glass-card beyond-card reveal" }, [
+        el("span", { className: "icon-ring" }, [icon(item.icon)]),
+        el("h3", { text: localize(item.title) }),
+        el("p", { text: localize(item.description) })
+      ])
+    )
+  );
+}
+
+// ---------- home: experience tabs ----------
 
 function selectExperience(id, focusTab = false) {
   activeExperienceId = id;
@@ -161,7 +256,7 @@ function selectExperience(id, focusTab = false) {
     panel.hidden = panel.dataset.id !== id;
   });
 
-  // Moves the highlight bar under the selected tab.
+  // Moves the highlight bar next to the selected tab.
   const index = experience.findIndex((job) => job.id === id);
   document.querySelector("[data-tab-list]").style.setProperty("--active-index", index);
 }
@@ -181,27 +276,16 @@ function renderExperience() {
       el("div", { role: "tabpanel", id: `panel-${job.id}`, "aria-labelledby": `tab-${job.id}`, "data-id": job.id, tabindex: "0" }, [
         el("h3", { className: "job-title" }, [
           document.createTextNode(`${localize(job.role)} `),
-          el("span", { className: "accent", text: `@ ${job.company}` })
+          el("em", { text: `@ ${job.company}` })
         ]),
         el("p", { className: "job-meta", text: `${localize(job.dates)} · ${localize(job.location)}` }),
-        el("ul", { className: "arrow-list" }, localize(job.bullets).map((bullet) => el("li", { text: bullet })))
+        el("ul", { className: "bullet-list job-bullets" }, localize(job.bullets).map((bullet) => el("li", { text: bullet })))
       ])
     )
   );
 
   tabList.querySelectorAll("[role=tab]").forEach((tab) => tab.addEventListener("click", () => selectExperience(tab.dataset.id)));
   selectExperience(activeExperienceId);
-
-  fill(
-    "[data-education-list]",
-    education.map((item) =>
-      el("li", {}, [
-        el("span", { className: "education-degree", text: localize(item.degree) }),
-        el("span", { className: "education-school", text: localize(item.school) }),
-        el("span", { className: "education-dates", text: item.dates })
-      ])
-    )
-  );
 }
 
 // Arrow keys move between experience tabs, following the WAI-ARIA tabs pattern.
@@ -217,84 +301,47 @@ function handleTabKeys(event) {
   selectExperience(experience[(next + experience.length) % experience.length].id, true);
 }
 
-// Decorative illustrations for featured projects, drawn with CSS spans.
-function projectVisual(kind) {
-  const spanCount = { handheld: 6, receipt: 7, chart: 7, tasks: 7 };
-  const visual = el("div", { className: `project-visual visual-${kind}`, "aria-hidden": "true" });
-  for (let i = 0; i < spanCount[kind]; i += 1) visual.append(el("span"));
-  return visual;
-}
+// ---------- home: contact ----------
 
-// Public projects get case-study and code links; work projects get a private-code note.
-function featuredFooter(project) {
-  if (!project.caseStudy && !project.repo) {
-    return el("p", { className: "featured-private" }, [icon("lock"), document.createTextNode(t("work.privateNote"))]);
-  }
-  return el("div", { className: "featured-links" }, [
-    project.caseStudy && el("a", { className: "button small", href: project.caseStudy, text: t("work.caseStudy") }),
-    project.repo && externalLink(project.repo, [icon("github")], { className: "icon-link", "aria-label": `${t("work.viewCode")}: ${localize(project.title)}` })
+function renderContactList() {
+  fill("[data-contact-list]", [
+    el("li", {}, [el("a", { href: `mailto:${profileLinks.email}` }, [icon("mail"), document.createTextNode(profileLinks.email)])]),
+    el("li", {}, [externalLink(profileLinks.whatsapp, [icon("whatsapp"), document.createTextNode(`${t("contact.whatsapp")} · ${profileLinks.phoneDisplay}`)])]),
+    el("li", {}, [el("span", {}, [icon("pin"), document.createTextNode(localize(profileLinks.location))])])
   ]);
 }
 
-function renderFeaturedProjects() {
-  fill(
-    "[data-featured-list]",
-    featuredProjects.map((project, index) =>
-      el("article", { className: `featured-project reveal ${index % 2 ? "is-flipped" : ""}` }, [
-        projectVisual(project.visual),
-        el("div", { className: "featured-content" }, [
-          el("p", { className: "featured-label", text: t(project.personal ? "work.personalLabel" : "work.featuredLabel") }),
-          el("h3", { className: "featured-title" }, [
-            project.caseStudy ? el("a", { href: project.caseStudy, text: localize(project.title) }) : document.createTextNode(localize(project.title))
-          ]),
-          el("div", { className: "featured-description" }, [el("p", { text: localize(project.description) })]),
-          techList(project.tech),
-          featuredFooter(project)
-        ])
-      ])
-    )
-  );
-}
+// The form has no backend: it opens WhatsApp or the mail app with the message pre-filled.
+function setupContactForm() {
+  const form = document.querySelector("[data-contact-form]");
+  if (!form) return;
 
-function renderOtherProjects() {
-  fill(
-    "[data-project-grid]",
-    otherProjects.map((project) => {
-      const title = localize(project.title);
-      const header = el("div", { className: "card-top" }, [
-        icon("folder", "icon folder-icon"),
-        project.link
-          ? externalLink(project.link, [icon("github")], { "aria-label": `${t("work.viewCode")}: ${title}` })
-          : icon("lock", "icon muted-icon")
-      ]);
-      return el("li", { className: "project-card reveal" }, [
-        header,
-        el("h4", { className: "card-title", text: title }),
-        el("p", { className: "card-description", text: localize(project.description) }),
-        techList(project.tech, "card-tech")
-      ]);
-    })
-  );
-}
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const channel = event.submitter?.dataset.send || "whatsapp";
+    const name = form.elements.name.value.trim();
+    const message = form.elements.message.value.trim();
+    const text = [name && `${t("contact.greeting")} ${name}.`, message].filter(Boolean).join("\n\n");
 
-function renderBeyond() {
-  fill(
-    "[data-beyond-list]",
-    beyondItems.map((item) => {
-      const body = [icon(item.icon, "icon beyond-icon"), el("h3", { text: localize(item.title) }), el("p", { text: localize(item.description) })];
-      const content = item.link ? [externalLink(item.link, [...body, icon("external", "icon corner-icon")], { className: "beyond-link" })] : body;
-      return el("li", { className: "beyond-card reveal" }, content);
-    })
-  );
+    if (channel === "email") {
+      const params = new URLSearchParams({ subject: t("contact.subject"), body: text });
+      window.location.href = `mailto:${profileLinks.email}?${params.toString().replace(/\+/g, "%20")}`;
+    } else {
+      window.open(`${profileLinks.whatsapp}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+    }
+  });
 }
 
 function renderHome() {
-  typeGreeting();
-  renderTechnologies();
-  renderExperience();
+  renderHeroCards();
   renderFeaturedProjects();
   renderOtherProjects();
+  renderServices();
+  renderAbout();
+  renderExperience();
+  renderProcess();
   renderBeyond();
+  renderContactList();
 }
 
 // ---------- PaceTasks case study ----------
@@ -335,8 +382,8 @@ function renderCaseStudy() {
   fill(
     "[data-pt-features]",
     study.features.map((feature, index) =>
-      el("li", { className: "pt-feature reveal" }, [
-        el("span", { className: "pt-feature-index", text: String(index + 1).padStart(2, "0") }),
+      el("li", { className: "glass-card pt-feature reveal" }, [
+        el("span", { className: "case-index", text: String(index + 1).padStart(2, "0") }),
         el("h3", { text: localize(feature.title) }),
         el("p", { text: localize(feature.body) })
       ])
@@ -346,7 +393,7 @@ function renderCaseStudy() {
   fill(
     "[data-pt-layers]",
     study.layers.map((layer) =>
-      el("li", { className: "pt-layer reveal" }, [
+      el("li", { className: "glass-card pt-layer reveal" }, [
         el("h3", { text: localize(layer.name) }),
         el("p", { text: localize(layer.detail) }),
         el("ul", {}, layer.items.map((item) => el("li", { text: item })))
@@ -405,7 +452,7 @@ function setLanguage(language) {
 
   saveLanguage(currentLanguage);
 
-  // Lets standalone widgets (e.g. the game) re-translate their dynamic text.
+  // Lets standalone widgets (e.g. game mode) re-translate their dynamic text.
   document.dispatchEvent(new CustomEvent("portfolio:languagechange", { detail: { language: currentLanguage } }));
 }
 
@@ -444,7 +491,7 @@ function revealRemainingAtBottom() {
   if (atBottom) document.querySelectorAll(".reveal:not(.is-visible)").forEach(revealNode);
 }
 
-// Hides the header while scrolling down and shows it again when scrolling up.
+// Adds a backdrop once scrolled, and hides the header while scrolling down (unless game mode needs it).
 function setupHeaderScroll() {
   const header = document.getElementById("siteHeader");
   let lastY = window.scrollY;
@@ -452,8 +499,9 @@ function setupHeaderScroll() {
     "scroll",
     () => {
       const y = window.scrollY;
+      const keepVisible = document.body.classList.contains("menu-open");
       header.classList.toggle("is-scrolled", y > 10);
-      header.classList.toggle("is-hidden", y > lastY && y > 120 && !document.body.classList.contains("menu-open"));
+      header.classList.toggle("is-hidden", y > lastY && y > 120 && !keepVisible);
       lastY = y;
       revealRemainingAtBottom();
     },
@@ -491,7 +539,7 @@ function setupMenu() {
     const isOpen = document.body.classList.toggle("menu-open");
     toggle.setAttribute("aria-expanded", String(isOpen));
   });
-  document.querySelectorAll(".header-panel nav a").forEach((link) => link.addEventListener("click", closeMenu));
+  document.querySelectorAll(".header-panel a").forEach((link) => link.addEventListener("click", closeMenu));
   document.addEventListener("keydown", (event) => event.key === "Escape" && closeMenu());
 }
 
@@ -506,4 +554,5 @@ renderSocialLists();
 setupMenu();
 setupHeaderScroll();
 setupScrollSpy();
+setupContactForm();
 setLanguage(getInitialLanguage());
