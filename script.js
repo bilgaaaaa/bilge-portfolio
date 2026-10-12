@@ -1,5 +1,5 @@
 // Renders every page from content.js and wires up language, tabs, menu, contact form and scroll reveal.
-// Each page sets <body data-page="..."> so only its own renderers run.
+// Each page sets <body data-page="..."> so only its own renderers run; simulations.js adds the interactive demos.
 
 const STORAGE_KEY = "portfolioLanguage";
 const SUPPORTED_LANGUAGES = ["en", "it"];
@@ -128,10 +128,10 @@ function renderAbout() {
 
 // ---------- home: work ----------
 
-// Decorative illustrations for project cards, drawn with CSS spans.
+// Illustrations for project cards, drawn with CSS spans; simulations.js turns them into tap-to-try demos.
 function projectVisual(kind) {
   const spanCount = { handheld: 6, receipt: 7, chart: 7, tasks: 7 };
-  const visual = el("div", { className: `case-visual visual-${kind}`, "aria-hidden": "true" });
+  const visual = el("div", { className: `case-visual visual-${kind}`, "data-visual": kind, "aria-hidden": "true" });
   for (let i = 0; i < spanCount[kind]; i += 1) visual.append(el("span"));
   return visual;
 }
@@ -152,7 +152,7 @@ function renderFeaturedProjects() {
   fill(
     "[data-featured-list]",
     featuredProjects.map((project, index) =>
-      el("article", { className: "case-card reveal" }, [
+      el("article", { className: "case-card reveal", "data-project-id": project.id }, [
         projectVisual(project.visual),
         el("div", { className: "case-body" }, [
           el("p", { className: "case-index", text: String(index + 1).padStart(2, "0") }),
@@ -173,7 +173,7 @@ function renderOtherProjects() {
     "[data-project-grid]",
     otherProjects.map((project) => {
       const title = localize(project.title);
-      return el("li", { className: "mini-card reveal" }, [
+      return el("li", { className: "mini-card reveal", "data-project-id": project.id }, [
         el("div", { className: "mini-card-top" }, [
           icon("folder", "icon folder-icon"),
           project.link
@@ -236,7 +236,8 @@ function renderBeyond() {
       el("li", { className: "glass-card beyond-card reveal" }, [
         el("span", { className: "icon-ring" }, [icon(item.icon)]),
         el("h3", { text: localize(item.title) }),
-        el("p", { text: localize(item.description) })
+        el("p", { text: localize(item.description) }),
+        item.demo && el("div", { className: "beyond-demo", "data-beyond-demo": item.demo })
       ])
     )
   );
@@ -279,7 +280,8 @@ function renderExperience() {
           el("em", { text: `@ ${job.company}` })
         ]),
         el("p", { className: "job-meta", text: `${localize(job.dates)} · ${localize(job.location)}` }),
-        el("ul", { className: "bullet-list job-bullets" }, localize(job.bullets).map((bullet) => el("li", { text: bullet })))
+        el("ul", { className: "bullet-list job-bullets" }, localize(job.bullets).map((bullet) => el("li", { text: bullet }))),
+        job.demo && el("div", { className: "job-demo", "data-job-demo": job.demo })
       ])
     )
   );
@@ -346,37 +348,8 @@ function renderHome() {
 
 // ---------- PaceTasks case study ----------
 
-// Illustrated "Today" screen in the app's own sage/cream theme.
-function renderPhoneMockup() {
-  const { mockup } = pacetasksCaseStudy;
-  const taskRow = (task) =>
-    el("li", { className: `pt-task ${task.done ? "is-done" : ""}` }, [
-      el("span", { className: "pt-check", "aria-hidden": "true" }),
-      el("span", { className: "pt-task-text" }, [
-        el("span", { className: "pt-task-title", text: localize(task.title) }),
-        el("span", { className: "pt-task-meta" }, [
-          el("span", { className: `pt-dot cat-${task.category}`, "aria-hidden": "true" }),
-          document.createTextNode(localize(task.meta))
-        ])
-      ]),
-      task.focus && el("span", { className: "pt-badge", text: "FOCUS" }),
-      task.running && el("span", { className: "pt-timer", text: "12:40" })
-    ]);
-
-  fill("[data-phone-mockup]", [
-    el("div", { className: "pt-screen" }, [
-      el("p", { className: "pt-eyebrow", text: localize(mockup.greeting).toUpperCase() }),
-      el("p", { className: "pt-title", text: localize(mockup.title) }),
-      el("div", { className: "pt-quickadd", text: localize(mockup.placeholder) }),
-      el("ul", { className: "pt-tasks" }, mockup.tasks.map(taskRow)),
-      el("div", { className: "pt-tabbar" }, localize(mockup.tabs).map((tab, index) => el("span", { className: index === 0 ? "is-active" : "", text: tab })))
-    ])
-  ]);
-}
-
 function renderCaseStudy() {
   const study = pacetasksCaseStudy;
-  renderPhoneMockup();
   fill("[data-pt-stack]", study.stack.map((item) => el("li", { text: item })));
 
   fill(

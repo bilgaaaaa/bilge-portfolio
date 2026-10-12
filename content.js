@@ -26,6 +26,7 @@ const translations = {
     "brand.akaTitle": "Friends call me Bilga — you'll find me online as bilga, bilgaaa or bilgaaaaa",
     "nav.label": "Primary navigation",
     "nav.work": "Work",
+    "nav.lab": "Live demo",
     "nav.about": "About",
     "nav.experience": "Experience",
     "nav.beyond": "Beyond code",
@@ -51,6 +52,7 @@ const translations = {
     "hero.cardCraftLabel": "Building",
     "hero.cardCraftBody": "with care and curiosity.",
     "hero.cardFocusLabel": "Focus areas",
+    "hero.tickerLabel": "simulated store feed",
 
     "work.eyebrow": "Selected work",
     "work.titleStart": "Software that",
@@ -137,6 +139,116 @@ const translations = {
     "gameMode.right": "Move right",
     "gameMode.jumpButton": "Jump",
 
+    "lab.eyebrow": "Live demo",
+    "lab.titleStart": "Follow one sale",
+    "lab.titleAccent": "from scan to receipt.",
+    "lab.lede":
+      "An interactive, simplified model of the stack I work on every day: an Android handheld that keeps selling offline, a RabbitMQ queue, a .NET service that never saves the same message twice and a fiscal printer at the end of the line. Scan a few items, check out, then switch the Wi-Fi off.",
+    "lab.note": "Illustrative simulation — simplified, runs entirely in your browser.",
+    "lab.nodeHandheld": "Handheld",
+    "lab.nodeHandheldSub": "Android · Room",
+    "lab.nodeQueue": "RabbitMQ",
+    "lab.nodeQueueSub": "store.events → sales",
+    "lab.nodeService": ".NET service",
+    "lab.nodeServiceSub": "C# consumer",
+    "lab.nodeDatabase": "SQL Server",
+    "lab.nodeDatabaseSub": "Back office",
+    "lab.nodePrinter": "Fiscal printer",
+    "lab.nodePrinterSub": "Epson · Custom",
+    "lab.statHandheld": "{n} in outbox",
+    "lab.statQueue": "{n} queued",
+    "lab.statService": "duplicates skipped: {n}",
+    "lab.statDatabase": "documents: {n}",
+    "lab.statPrinter": "receipts: {n}",
+    "lab.handheldTitle": "Sale {id}",
+    "lab.cartEmpty": "Scan an item to start a sale.",
+    "lab.total": "Total",
+    "lab.scan": "Scan item",
+    "lab.checkout": "Checkout",
+    "lab.online": "Wi-Fi on",
+    "lab.offline": "Wi-Fi off",
+    "lab.networkLabel": "Store Wi-Fi",
+    "lab.retry": "Resend last sale",
+    "lab.receiptTitle": "Receipt",
+    "lab.receiptEmpty": "Receipts print here.",
+    "lab.receiptShop": "BILGA MARKET · PADOVA",
+    "lab.receiptFooter": "Thank you, see you soon",
+    "lab.logTitle": "Event log",
+    "lab.logEmpty": "Events will appear here.",
+    "lab.log.scan": "scan {ean} → {name} {price}",
+    "lab.log.cartEmpty": "nothing to check out — scan an item first",
+    "lab.log.publish": "publish {id} · exchange store.events · key sale.created",
+    "lab.log.offline": "no network — {id} saved to the Room outbox ({n} pending)",
+    "lab.log.networkOff": "store Wi-Fi off — the app keeps working offline",
+    "lab.log.networkOn": "store Wi-Fi back — syncing {n} pending",
+    "lab.log.consume": "consumed {id} · total {total} · lines: {lines}",
+    "lab.log.duplicate": "{id} already processed — duplicate skipped, ack sent",
+    "lab.log.saved": "INSERT sales_document {id}",
+    "lab.log.printed": "receipt {id} printed · CRC ok",
+    "lab.log.retry": "network timeout — resending {id}",
+    "lab.log.nothingToRetry": "no sale sent yet",
+
+    "demo.tryHint": "tap to try",
+    "demo.label": "Interactive demo: {name}",
+    "demo.receiptReadout": "Logo sent · CRC ✓",
+    "demo.chartReadout": "Store {store} · last 6 weeks",
+    "demo.tasksReadout": "{done} of {total} done · on pace",
+    "demo.simulated": "simulated",
+
+    "demo.migration.title": "Try it: ship a Room schema migration",
+    "demo.migration.body": "Handhelds in stores sit on different schema versions. Ship v4 and watch each device run only the migrations it is missing — without losing a row.",
+    "demo.migration.ship": "Ship release v4",
+    "demo.migration.reset": "Reset devices",
+    "demo.migration.device": "Store {n}",
+    "demo.migration.idle": "{n} of {total} devices need the update",
+    "demo.migration.done": "{total} of {total} devices on v4 · {rows} rows kept",
+
+    "demo.invoice.title": "Try it: send an electronic invoice",
+    "demo.invoice.body": "An invoice leaves the ERP as FatturaPA XML, gets validated, delivered and preserved in the legal archive. Break it on purpose to see validation stop it.",
+    "demo.invoice.send": "Send invoice",
+    "demo.invoice.break": "Leave the VAT number empty",
+    "demo.invoice.ok": "Delivered and preserved · hash {hash}",
+    "demo.invoice.error": "Stopped at validation: the VAT number is missing.",
+
+    "demo.credit.title": "Try it: a credit limit calculator",
+    "demo.credit.body": "A simplified version of the idea — not the bank's real rules.",
+    "demo.credit.income": "Monthly net income",
+    "demo.credit.commitments": "Monthly commitments",
+    "demo.credit.ratio": "Debt-to-income",
+    "demo.credit.limit": "Suggested credit limit",
+    "demo.credit.approved": "Within policy",
+    "demo.credit.review": "Needs manual review",
+    "demo.credit.declined": "Over the limit",
+
+    "demo.tests.title": "Try it: local vs remote browsers",
+    "demo.tests.body": "The same 12 UI tests, first on one local browser, then on two remote browsers in parallel — and no developer machine blocked while they run.",
+    "demo.tests.run": "Run 12 tests",
+    "demo.tests.local": "Local browser",
+    "demo.tests.remote": "Remote browsers ×2",
+    "demo.tests.minutes": "{n} min",
+    "demo.tests.result": "Remote run: {saved}% less time",
+
+    "skills.title": "Skill map",
+    "skills.hint": "Pick a skill to see where I've used it.",
+    "skills.usedIn": "Where I used {skill}",
+
+    "process.run": "Ship a feature",
+    "process.runAgain": "Ship another",
+    "process.example": "An example ticket, step by step",
+
+    "beyond.climb.try": "Attempt the route",
+    "beyond.climb.idle": "Five holds, one problem.",
+    "beyond.climb.fell": "Fell at hold {n} — read the route again, adjust.",
+    "beyond.climb.sent": "Sent it! Debugging works.",
+    "beyond.stitch.add": "Crochet a row",
+    "beyond.stitch.fix": "Frog the row",
+    "beyond.stitch.idle": "Every row should have 10 stitches.",
+    "beyond.stitch.ok": "Row {n}: 10 stitches",
+    "beyond.stitch.bug": "Row {n}: 11 stitches — off by one!",
+    "beyond.stitch.fixed": "Row {n} redone: 10 stitches",
+    "beyond.cards.draw": "Draw a card",
+    "beyond.cards.idle": "A box full of cards, one per memorable meal.",
+
     "pt.meta.title": "PaceTasks — case study | Bilge Ozcanbaz",
     "pt.meta.description": "PaceTasks: a task app for people with a fixed work schedule, built by Bilge Ozcanbaz with Expo, React Native, TypeScript and Supabase.",
     "pt.back": "Back to portfolio",
@@ -156,7 +268,9 @@ const translations = {
     "pt.architectureLede": "Three layers, each with one job — so the upcoming Siri shortcut and AI Brain Dump can plug in without touching the screens.",
     "pt.decisionsTitle": "engineering decisions",
     "pt.nextTitle": "what's next",
-    "pt.mockupLabel": "PaceTasks today screen, illustrated",
+    "pt.mockupLabel": "PaceTasks today screen, interactive",
+    "pt.mockupHint": "Try it: tap a task to finish it, or type a new one.",
+    "pt.newTaskMeta": "Anytime · new",
     "pt.cta": "View the code on GitHub",
   },
   it: {
@@ -168,6 +282,7 @@ const translations = {
     "brand.akaTitle": "Gli amici mi chiamano Bilga — online mi trovi come bilga, bilgaaa o bilgaaaaa",
     "nav.label": "Navigazione principale",
     "nav.work": "Progetti",
+    "nav.lab": "Demo live",
     "nav.about": "Chi sono",
     "nav.experience": "Esperienza",
     "nav.beyond": "Oltre il codice",
@@ -193,6 +308,7 @@ const translations = {
     "hero.cardCraftLabel": "Sviluppo",
     "hero.cardCraftBody": "con cura e curiosità.",
     "hero.cardFocusLabel": "Aree di lavoro",
+    "hero.tickerLabel": "feed simulato del negozio",
 
     "work.eyebrow": "Progetti scelti",
     "work.titleStart": "Software che",
@@ -279,6 +395,116 @@ const translations = {
     "gameMode.right": "Vai a destra",
     "gameMode.jumpButton": "Salta",
 
+    "lab.eyebrow": "Demo live",
+    "lab.titleStart": "Segui una vendita",
+    "lab.titleAccent": "dalla scansione allo scontrino.",
+    "lab.lede":
+      "Un modello interattivo e semplificato dello stack su cui lavoro ogni giorno: un palmare Android che continua a vendere anche offline, una coda RabbitMQ, un servizio .NET che non salva mai due volte lo stesso messaggio e una stampante fiscale in fondo alla catena. Scansiona qualche articolo, chiudi la vendita, poi spegni il Wi-Fi.",
+    "lab.note": "Simulazione illustrativa — semplificata, gira interamente nel tuo browser.",
+    "lab.nodeHandheld": "Palmare",
+    "lab.nodeHandheldSub": "Android · Room",
+    "lab.nodeQueue": "RabbitMQ",
+    "lab.nodeQueueSub": "store.events → sales",
+    "lab.nodeService": "Servizio .NET",
+    "lab.nodeServiceSub": "Consumer C#",
+    "lab.nodeDatabase": "SQL Server",
+    "lab.nodeDatabaseSub": "Back-office",
+    "lab.nodePrinter": "Stampante fiscale",
+    "lab.nodePrinterSub": "Epson · Custom",
+    "lab.statHandheld": "{n} in outbox",
+    "lab.statQueue": "{n} in coda",
+    "lab.statService": "duplicati scartati: {n}",
+    "lab.statDatabase": "documenti: {n}",
+    "lab.statPrinter": "scontrini: {n}",
+    "lab.handheldTitle": "Vendita {id}",
+    "lab.cartEmpty": "Scansiona un articolo per iniziare una vendita.",
+    "lab.total": "Totale",
+    "lab.scan": "Scansiona",
+    "lab.checkout": "Chiudi vendita",
+    "lab.online": "Wi-Fi attivo",
+    "lab.offline": "Wi-Fi spento",
+    "lab.networkLabel": "Wi-Fi del negozio",
+    "lab.retry": "Reinvia l'ultima vendita",
+    "lab.receiptTitle": "Scontrino",
+    "lab.receiptEmpty": "Gli scontrini escono qui.",
+    "lab.receiptShop": "BILGA MARKET · PADOVA",
+    "lab.receiptFooter": "Grazie e arrivederci",
+    "lab.logTitle": "Registro eventi",
+    "lab.logEmpty": "Qui compariranno gli eventi.",
+    "lab.log.scan": "scansione {ean} → {name} {price}",
+    "lab.log.cartEmpty": "niente da chiudere — scansiona prima un articolo",
+    "lab.log.publish": "pubblica {id} · exchange store.events · chiave sale.created",
+    "lab.log.offline": "rete assente — {id} salvata nell'outbox Room ({n} in attesa)",
+    "lab.log.networkOff": "Wi-Fi spento — l'app continua a funzionare offline",
+    "lab.log.networkOn": "Wi-Fi tornato — sincronizzo {n} in attesa",
+    "lab.log.consume": "consumata {id} · totale {total} · righe: {lines}",
+    "lab.log.duplicate": "{id} già elaborata — duplicato scartato, ack inviato",
+    "lab.log.saved": "INSERT sales_document {id}",
+    "lab.log.printed": "scontrino {id} stampato · CRC ok",
+    "lab.log.retry": "timeout di rete — reinvio {id}",
+    "lab.log.nothingToRetry": "nessuna vendita ancora inviata",
+
+    "demo.tryHint": "tocca per provare",
+    "demo.label": "Demo interattiva: {name}",
+    "demo.receiptReadout": "Logo inviato · CRC ✓",
+    "demo.chartReadout": "Negozio {store} · ultime 6 settimane",
+    "demo.tasksReadout": "{done} su {total} fatte · nei tempi",
+    "demo.simulated": "simulazione",
+
+    "demo.migration.title": "Prova: rilascia una migrazione di schema Room",
+    "demo.migration.body": "I palmari nei negozi sono su versioni di schema diverse. Rilascia la v4 e guarda ogni dispositivo eseguire solo le migrazioni che gli mancano — senza perdere una riga.",
+    "demo.migration.ship": "Rilascia la v4",
+    "demo.migration.reset": "Ripristina dispositivi",
+    "demo.migration.device": "Negozio {n}",
+    "demo.migration.idle": "{n} dispositivi su {total} da aggiornare",
+    "demo.migration.done": "{total} dispositivi su {total} sulla v4 · {rows} righe conservate",
+
+    "demo.invoice.title": "Prova: invia una fattura elettronica",
+    "demo.invoice.body": "La fattura esce dall'ERP come XML FatturaPA, viene validata, consegnata e messa in conservazione. Rompila apposta per vedere la validazione fermarla.",
+    "demo.invoice.send": "Invia fattura",
+    "demo.invoice.break": "Lascia vuota la partita IVA",
+    "demo.invoice.ok": "Consegnata e conservata · hash {hash}",
+    "demo.invoice.error": "Bloccata in validazione: manca la partita IVA.",
+
+    "demo.credit.title": "Prova: un calcolatore del fido",
+    "demo.credit.body": "Una versione semplificata dell'idea — non le regole reali della banca.",
+    "demo.credit.income": "Reddito netto mensile",
+    "demo.credit.commitments": "Impegni mensili",
+    "demo.credit.ratio": "Rapporto rate/reddito",
+    "demo.credit.limit": "Fido suggerito",
+    "demo.credit.approved": "Nei limiti",
+    "demo.credit.review": "Da valutare manualmente",
+    "demo.credit.declined": "Oltre il limite",
+
+    "demo.tests.title": "Prova: browser locali o remoti",
+    "demo.tests.body": "Gli stessi 12 test di interfaccia, prima su un browser locale, poi su due browser remoti in parallelo — senza bloccare il computer di chi sviluppa.",
+    "demo.tests.run": "Esegui 12 test",
+    "demo.tests.local": "Browser locale",
+    "demo.tests.remote": "Browser remoti ×2",
+    "demo.tests.minutes": "{n} min",
+    "demo.tests.result": "Esecuzione remota: {saved}% di tempo in meno",
+
+    "skills.title": "Mappa delle competenze",
+    "skills.hint": "Scegli una competenza per vedere dove l'ho usata.",
+    "skills.usedIn": "Dove ho usato {skill}",
+
+    "process.run": "Rilascia una funzionalità",
+    "process.runAgain": "Rilasciane un'altra",
+    "process.example": "Un ticket d'esempio, passo dopo passo",
+
+    "beyond.climb.try": "Prova la via",
+    "beyond.climb.idle": "Cinque prese, un problema.",
+    "beyond.climb.fell": "Caduta alla presa {n} — rileggo la via e correggo.",
+    "beyond.climb.sent": "Chiusa! Il debugging funziona.",
+    "beyond.stitch.add": "Fai un giro",
+    "beyond.stitch.fix": "Disfa il giro",
+    "beyond.stitch.idle": "Ogni giro deve avere 10 punti.",
+    "beyond.stitch.ok": "Giro {n}: 10 punti",
+    "beyond.stitch.bug": "Giro {n}: 11 punti — uno di troppo!",
+    "beyond.stitch.fixed": "Giro {n} rifatto: 10 punti",
+    "beyond.cards.draw": "Pesca un biglietto",
+    "beyond.cards.idle": "Una scatola piena di biglietti, uno per ogni pasto da ricordare.",
+
     "pt.meta.title": "PaceTasks — case study | Bilge Ozcanbaz",
     "pt.meta.description": "PaceTasks: un'app di attività per chi ha un orario di lavoro fisso, sviluppata da Bilge Ozcanbaz con Expo, React Native, TypeScript e Supabase.",
     "pt.back": "Torna al portfolio",
@@ -298,7 +524,9 @@ const translations = {
     "pt.architectureLede": "Tre livelli, ciascuno con un solo compito — così la scorciatoia Siri e l'AI Brain Dump in arrivo si collegano senza toccare le schermate.",
     "pt.decisionsTitle": "scelte tecniche",
     "pt.nextTitle": "prossimi passi",
-    "pt.mockupLabel": "Schermata Oggi di PaceTasks, illustrata",
+    "pt.mockupLabel": "Schermata Oggi di PaceTasks, interattiva",
+    "pt.mockupHint": "Prova: tocca un'attività per completarla o scrivine una nuova.",
+    "pt.newTaskMeta": "Quando vuoi · nuova",
     "pt.cta": "Vedi il codice su GitHub",
   }
 };
@@ -361,6 +589,7 @@ const featuredProjects = [
 
 const otherProjects = [
   {
+    id: "sync-service",
     title: { en: "Handheld sync service", it: "Sincronizzazione palmari" },
     tech: [".NET", "RabbitMQ", "EF Core"],
     description: {
@@ -369,6 +598,7 @@ const otherProjects = [
     }
   },
   {
+    id: "invoice-channel",
     title: "Invoice Channel",
     tech: ["Java 17", "Spring Boot", "Maven"],
     description: {
@@ -377,6 +607,7 @@ const otherProjects = [
     }
   },
   {
+    id: "credit-calculator",
     title: { en: "Credit limit calculator", it: "Calcolo del fido" },
     tech: ["Spring Boot", "Hibernate"],
     description: {
@@ -385,6 +616,7 @@ const otherProjects = [
     }
   },
   {
+    id: "remote-tests",
     title: { en: "Remote test automation", it: "Automazione test remota" },
     tech: ["Test automation", "Remote browsers"],
     description: {
@@ -393,6 +625,7 @@ const otherProjects = [
     }
   },
   {
+    id: "portfolio",
     title: { en: "This portfolio", it: "Questo portfolio" },
     tech: ["AI pair-programming", "HTML", "CSS", "JavaScript"],
     link: "https://github.com/bilgaaaaa/bilge-portfolio",
@@ -418,7 +651,7 @@ const services = [
   {
     icon: "printer",
     title: { en: "Device integration", it: "Integrazione dispositivi" },
-    body: { en: "Drivers for fiscal printers, scanners and customer displays over TCP and serial.", it: "Driver per stampanti fiscali, scanner e display cliente via TCP e seriale." }
+    body: { en: "Drivers for Epson and Custom fiscal printers, scanners and customer displays over TCP and serial.", it: "Driver per stampanti fiscali Epson e Custom, scanner e display cliente via TCP e seriale." }
   },
   {
     icon: "flow",
@@ -440,37 +673,149 @@ const tools = [
   { short: "Dk", name: "Docker", tint: "#DFB6B2" }
 ];
 
+// Rotating lines in the hero's simulated store feed.
+const heroTicker = {
+  en: [
+    "handheld-03 · scan 8001234567890 → price check",
+    "rabbitmq · sale.created → sales (2 queued)",
+    "service · sale-1042 saved · duplicate skipped",
+    "printer · receipt printed · CRC ok",
+    "room · migration 3 → 4 done on store 07",
+    "analytics · store comparison refreshed"
+  ],
+  it: [
+    "palmare-03 · scansione 8001234567890 → verifica prezzo",
+    "rabbitmq · sale.created → sales (2 in coda)",
+    "servizio · sale-1042 salvata · duplicato scartato",
+    "stampante · scontrino stampato · CRC ok",
+    "room · migrazione 3 → 4 completata nel negozio 07",
+    "analytics · confronto negozi aggiornato"
+  ]
+};
+
+// Products the live demo can scan (prices in EUR, barcodes are made up).
+const labProducts = [
+  { ean: "8001234567890", name: { en: "Espresso beans", it: "Caffè in grani" }, price: 7.9 },
+  { ean: "8009876543210", name: { en: "Fresh pasta", it: "Pasta fresca" }, price: 2.49 },
+  { ean: "8005551234567", name: { en: "Olive oil", it: "Olio d'oliva" }, price: 8.75 },
+  { ean: "8007778889990", name: { en: "Notebook", it: "Quaderno" }, price: 3.2 },
+  { ean: "8003334445556", name: { en: "Sparkling water", it: "Acqua frizzante" }, price: 0.59 },
+  { ean: "8002223334441", name: { en: "Parmigiano 200 g", it: "Parmigiano 200 g" }, price: 4.95 }
+];
+
+// Weekly bar heights (in %) for the store analytics card demo.
+const chartStores = [
+  { name: "A", bars: [28, 46, 36, 56, 42, 64] },
+  { name: "B", bars: [52, 38, 60, 44, 70, 58] },
+  { name: "C", bars: [34, 62, 48, 30, 66, 50] }
+];
+
+// Steps of the electronic invoicing demo; `validation` is where a missing VAT number is caught.
+const invoiceSteps = [
+  { id: "erp", name: { en: "ERP export", it: "Export ERP" } },
+  { id: "xml", name: { en: "FatturaPA XML", it: "XML FatturaPA" } },
+  { id: "validation", name: { en: "Validation", it: "Validazione" } },
+  { id: "delivery", name: { en: "Delivery", it: "Consegna" } },
+  { id: "archive", name: { en: "Legal archive", it: "Conservazione" } }
+];
+
+// Skill groups from the CV; `usedIn` points at experience ids and project ids on the page.
+const skillGroups = [
+  {
+    title: { en: "Languages", it: "Linguaggi" },
+    skills: [
+      { name: "Kotlin", usedIn: ["system-retail", "smart"] },
+      { name: "Java", usedIn: ["ifin", "iason", "invoice-channel", "credit-calculator", "smart"] },
+      { name: "C# / .NET 8", usedIn: ["system-retail", "pos-drivers", "sync-service", "analytics"] },
+      { name: "SQL", usedIn: ["system-retail", "ifin", "analytics", "sync-service"] },
+      { name: "TypeScript", usedIn: ["pacetasks"] },
+      { name: "JavaScript", usedIn: ["portfolio"] }
+    ]
+  },
+  {
+    title: { en: "Mobile", it: "Mobile" },
+    skills: [
+      { name: "Android SDK", usedIn: ["system-retail", "smart"] },
+      { name: "Jetpack Compose", usedIn: ["system-retail", "smart"] },
+      { name: "MVVM", usedIn: ["system-retail", "smart"] },
+      { name: "Room", usedIn: ["system-retail", "smart"] },
+      { name: "GreenDAO", usedIn: ["system-retail", "smart"] },
+      { name: { en: "Peripheral integration", it: "Integrazione periferiche" }, usedIn: ["system-retail", "pos-drivers", "smart"] },
+      { name: "Expo / React Native", usedIn: ["pacetasks"] }
+    ]
+  },
+  {
+    title: { en: "Backend", it: "Backend" },
+    skills: [
+      { name: "REST APIs", usedIn: ["system-retail", "ifin", "sync-service"] },
+      { name: "Spring Boot", usedIn: ["ifin", "iason", "invoice-channel", "credit-calculator"] },
+      { name: "Hibernate", usedIn: ["ifin", "iason", "credit-calculator"] },
+      { name: "EF Core", usedIn: ["system-retail", "sync-service"] },
+      { name: "Blazor", usedIn: ["system-retail", "analytics"] },
+      { name: "DevExpress", usedIn: ["system-retail", "analytics"] },
+      { name: "Supabase", usedIn: ["pacetasks"] }
+    ]
+  },
+  {
+    title: { en: "Data & messaging", it: "Dati e messaggistica" },
+    skills: [
+      { name: "RabbitMQ", usedIn: ["system-retail", "sync-service"] },
+      { name: "SQL Server", usedIn: ["system-retail", "analytics"] },
+      { name: "PostgreSQL", usedIn: ["ifin", "invoice-channel", "pacetasks"] },
+      { name: "MySQL", usedIn: ["ifin"] },
+      { name: "SQLite", usedIn: ["system-retail", "smart"] }
+    ]
+  },
+  {
+    title: { en: "Practices & tools", it: "Pratiche e strumenti" },
+    skills: [
+      { name: "Azure Pipelines", usedIn: ["system-retail"] },
+      { name: "Docker", usedIn: ["system-retail"] },
+      { name: "Maven", usedIn: ["ifin", "invoice-channel"] },
+      { name: { en: "Unit & UI testing", it: "Test unitari e UI" }, usedIn: ["ifin", "ifin-thesis", "remote-tests", "pacetasks"] },
+      { name: { en: "Test automation", it: "Automazione dei test" }, usedIn: ["ifin-thesis", "remote-tests"] },
+      { name: "Agile / Scrum", usedIn: ["ifin", "system-retail"] }
+    ]
+  }
+];
+
 const processSteps = [
   {
     icon: "search",
     title: { en: "Understand", it: "Capire" },
-    body: { en: "Learn the real workflow and the people who depend on it.", it: "Capire il flusso reale e chi ci lavora ogni giorno." }
+    body: { en: "Learn the real workflow and the people who depend on it.", it: "Capire il flusso reale e chi ci lavora ogni giorno." },
+    log: { en: "Ticket: “price check feels slow”. I watch it happen on a real handheld in a store.", it: "Ticket: “la verifica prezzi è lenta”. La guardo succedere su un palmare reale in negozio." }
   },
   {
     icon: "pen",
     title: { en: "Design", it: "Progettare" },
-    body: { en: "Map the data flow and the edge cases before writing code.", it: "Disegnare il flusso dei dati e i casi limite prima del codice." }
+    body: { en: "Map the data flow and the edge cases before writing code.", it: "Disegnare il flusso dei dati e i casi limite prima del codice." },
+    log: { en: "Every scan hits the network. Plan: cache prices in Room, refresh them in the background.", it: "Ogni scansione va in rete. Piano: prezzi in cache su Room, aggiornati in background." }
   },
   {
     icon: "code",
     title: { en: "Build", it: "Sviluppare" },
-    body: { en: "Small, reviewable steps with clean and consistent naming.", it: "Passi piccoli e revisionabili, con nomi chiari e coerenti." }
+    body: { en: "Small, reviewable steps with clean and consistent naming.", it: "Passi piccoli e revisionabili, con nomi chiari e coerenti." },
+    log: { en: "A small PR: Room cache, a sync worker and names that match the rest of the app.", it: "Una PR piccola: cache Room, un worker di sincronizzazione e nomi coerenti con il resto dell'app." }
   },
   {
     icon: "check",
     title: { en: "Test", it: "Testare" },
-    body: { en: "Unit tests, then real hardware on the bench — not just the emulator.", it: "Test unitari, poi hardware reale sul banco — non solo l'emulatore." }
+    body: { en: "Unit tests, then real hardware on the bench — not just the emulator.", it: "Test unitari, poi hardware reale sul banco — non solo l'emulatore." },
+    log: { en: "Unit tests green, then a few hundred scans on the bench handheld, Wi-Fi on and off.", it: "Test unitari verdi, poi qualche centinaio di scansioni sul palmare di prova, con Wi-Fi acceso e spento." }
   },
   {
     icon: "rocket",
     title: { en: "Ship & support", it: "Rilasciare e supportare" },
-    body: { en: "Release, watch the logs and fix fast in production.", it: "Rilasciare, leggere i log e correggere in fretta in produzione." }
+    body: { en: "Release, watch the logs and fix fast in production.", it: "Rilasciare, leggere i log e correggere in fretta in produzione." },
+    log: { en: "Release through Azure Pipelines, then a week of watching crash and ANR reports.", it: "Rilascio con Azure Pipelines, poi una settimana a controllare i report di crash e ANR." }
   }
 ];
 
 const beyondItems = [
   {
     icon: "climb",
+    demo: "climb",
     title: { en: "Climbing", it: "Arrampicata" },
     description: {
       en: "Bouldering problems are just debugging with chalk: read the route, try, fall, adjust.",
@@ -479,6 +824,7 @@ const beyondItems = [
   },
   {
     icon: "yarn",
+    demo: "stitch",
     title: { en: "Crochet & knitting", it: "Uncinetto e maglia" },
     description: {
       en: "Patterns, loops and the occasional off-by-one stitch — the most relaxing kind of code.",
@@ -487,12 +833,24 @@ const beyondItems = [
   },
   {
     icon: "card",
+    demo: "cards",
     title: { en: "A card collection", it: "Una collezione di biglietti" },
     description: {
       en: "Business cards from every restaurant and pasticceria in Italy worth remembering.",
       it: "Biglietti da visita di ogni ristorante e pasticceria d'Italia che vale la pena ricordare."
     }
   }
+];
+
+// Cards the "card collection" demo can draw: kinds of places and cities, no real names.
+const beyondCards = [
+  { kind: { en: "Pasticceria", it: "Pasticceria" }, city: "Padova" },
+  { kind: { en: "Trattoria", it: "Trattoria" }, city: "Bologna" },
+  { kind: { en: "Gelateria", it: "Gelateria" }, city: "Verona" },
+  { kind: { en: "Osteria", it: "Osteria" }, city: "Venezia" },
+  { kind: { en: "Pizzeria", it: "Pizzeria" }, city: "Napoli" },
+  { kind: { en: "Pasticceria", it: "Pasticceria" }, city: "Torino" },
+  { kind: { en: "Ristorante", it: "Ristorante" }, city: "Trieste" }
 ];
 
 const languagesSpoken = {
@@ -503,6 +861,7 @@ const languagesSpoken = {
 const experience = [
   {
     id: "system-retail",
+    demo: "migration",
     tab: "System Retail",
     company: "System Retail",
     location: { en: "Padova, Italy", it: "Padova" },
@@ -515,7 +874,8 @@ const experience = [
         "Planned and shipped the local database migration from GreenDAO to Room, including SQLite schema migrations on devices already in the field.",
         "Build and maintain .NET (C#) microservices, REST APIs and a RabbitMQ pipeline connecting handhelds, in-store POS and back-office services.",
         "Write drivers for Epson and Custom peripherals — fiscal and receipt printers, barcode scanners and customer displays — over TCP and serial.",
-        "Developed a Blazor + DevExpress web app, now in production, for multi-store performance analysis; support releases with Azure Pipelines and Docker."
+        "Developed a Blazor + DevExpress web app, now in production, for multi-store performance analysis.",
+        "Support the app in production: crash and ANR investigation, releases with Azure Pipelines and Docker."
       ],
       it: [
         "Unica sviluppatrice di un'app Android in produzione per catene retail, in diretto raccordo con il product manager e responsabile della consegna end to end.",
@@ -523,12 +883,14 @@ const experience = [
         "Ho pianificato e realizzato la migrazione del database locale da GreenDAO a Room, incluse le migrazioni di schema SQLite sui dispositivi già in campo.",
         "Sviluppo e mantengo microservizi .NET (C#), API REST e una pipeline RabbitMQ che collega palmari, casse in negozio e servizi di back-office.",
         "Scrivo driver per periferiche Epson e Custom — stampanti fiscali e di scontrini, scanner barcode e display cliente — via TCP e seriale.",
-        "Ho sviluppato un'applicazione web Blazor + DevExpress, oggi in produzione, per l'analisi delle performance multi-negozio; supporto i rilasci con Azure Pipelines e Docker."
+        "Ho sviluppato un'applicazione web Blazor + DevExpress, oggi in produzione, per l'analisi delle performance multi-negozio.",
+        "Supporto l'app in produzione: analisi di crash e ANR, rilasci con Azure Pipelines e Docker."
       ]
     }
   },
   {
     id: "ifin",
+    demo: "invoice",
     tab: "Ifin Sistemi",
     company: "Ifin Sistemi",
     location: { en: "Padova, Italy", it: "Padova" },
@@ -551,6 +913,7 @@ const experience = [
   },
   {
     id: "iason",
+    demo: "credit",
     tab: "Iason",
     company: "Iason",
     location: { en: "Milan, Italy", it: "Milano" },
@@ -567,6 +930,7 @@ const experience = [
   },
   {
     id: "ifin-thesis",
+    demo: "tests",
     tab: "Ifin (MSc thesis)",
     company: "Ifin Sistemi",
     location: { en: "Padova, Italy", it: "Padova" },

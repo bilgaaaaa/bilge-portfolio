@@ -24,6 +24,7 @@
     <script src="content.js" defer></script>
     <script src="script.js" defer></script>
     <script src="gamemode.js" defer></script>
+    <script src="simulations.js" defer></script>
   </head>
   <body data-page="home">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -42,6 +43,7 @@
       <div class="header-panel" id="siteNav">
         <nav aria-label="Primary navigation" data-i18n-attr="aria-label:nav.label">
           <a href="#work" data-i18n="nav.work">Work</a>
+          <a href="#lab" data-i18n="nav.lab">Live demo</a>
           <a href="#about" data-i18n="nav.about">About</a>
           <a href="#experience" data-i18n="nav.experience">Experience</a>
           <a href="#beyond" data-i18n="nav.beyond">Beyond code</a>
@@ -81,6 +83,10 @@
               <strong data-i18n="hero.status">Based in Padova, Italy</strong>
               <span data-i18n="hero.statusSub">Building retail software at System Retail.</span>
             </span>
+          </p>
+          <p class="hero-ticker reveal" aria-hidden="true">
+            <span class="hero-ticker-label" data-i18n="hero.tickerLabel">simulated store feed</span>
+            <code class="hero-ticker-line" data-hero-ticker></code>
           </p>
         </div>
 
@@ -126,6 +132,17 @@
         <ul class="project-grid" data-project-grid></ul>
       </section>
 
+      <!-- Live demo: an interactive scan → RabbitMQ → .NET → SQL → fiscal printer pipeline (simulations.js). -->
+      <section class="section" id="lab" aria-labelledby="labTitle">
+        <p class="eyebrow reveal" data-i18n="lab.eyebrow">Live demo</p>
+        <h2 class="display section-title reveal" id="labTitle">
+          <span data-i18n="lab.titleStart">Follow one sale</span>
+          <em data-i18n="lab.titleAccent">from scan to receipt.</em>
+        </h2>
+        <p class="lab-lede reveal" data-i18n="lab.lede"></p>
+        <div class="glass-panel lab reveal" data-lab></div>
+      </section>
+
       <!-- What I do: intro, four service columns and tool tiles in one glass panel. -->
       <section class="section" aria-labelledby="servicesTitle">
         <div class="glass-panel services-panel reveal">
@@ -142,6 +159,7 @@
             <p class="eyebrow" data-i18n="services.tools">Tools I use</p>
             <ul class="tool-grid" data-tool-grid></ul>
           </div>
+          <div class="skill-map" data-skill-map></div>
         </div>
       </section>
 
@@ -196,6 +214,7 @@
             <span data-i18n="process.titleEnd">approach to shipping software.</span>
           </h2>
           <ol class="process-steps" data-process-steps></ol>
+          <div class="process-run reveal" data-process-run></div>
         </div>
         <img class="arch-art reveal" src="assets/arch.svg" width="320" height="400" alt="" />
       </section>
@@ -264,6 +283,7 @@
         <p class="eyebrow" data-i18n="footer.explore">Explore</p>
         <nav class="footer-links" aria-label="Footer">
           <a href="#work" data-i18n="nav.work">Work</a>
+          <a href="#lab" data-i18n="nav.lab">Live demo</a>
           <a href="#about" data-i18n="nav.about">About</a>
           <a href="#experience" data-i18n="nav.experience">Experience</a>
           <a href="pacetasks.html">PaceTasks</a>

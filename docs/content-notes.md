@@ -21,3 +21,4 @@ Source of truth for facts on the site: the September 2026 CV (EN/IT).
 - No customer names, ticket numbers or internal metrics from work projects.
 - Italian text uses feminine forms (sviluppatrice, sono arrivata, abituata).
 - Do not claim: senior/lead/architect titles, cloud expertise, PaceTasks as launched.
+- Simulations are illustrative and labelled "simulated": no real customer data, internal metrics or production rules (the credit calculator says it is not the bank's real policy).
