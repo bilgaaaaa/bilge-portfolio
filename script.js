@@ -208,7 +208,10 @@ function renderServices() {
       el("li", { className: "tool", style: `--tint: ${tool.tint}`, tabindex: "0", "aria-describedby": `toolTip${index}` }, [
         el("span", { className: "tool-mark", text: tool.short, "aria-hidden": "true" }),
         el("span", { className: "tool-name", text: tool.name }),
-        el("span", { className: "tool-tip", role: "tooltip", id: `toolTip${index}`, text: localize(tool.about) })
+        el("span", { className: "tool-tip", role: "tooltip", id: `toolTip${index}` }, [
+          el("strong", { text: tool.name }),
+          document.createTextNode(localize(tool.about))
+        ])
       ])
     )
   );
@@ -246,15 +249,41 @@ function renderProcess() {
   );
 }
 
+// A stack of photos with a caption; simulations.js cycles through them on hover.
+function photoStack(photos) {
+  return el("figure", { className: "photo-stack", "data-photo-stack": "" }, [
+    ...photos.map((photo, index) =>
+      el("img", {
+        className: index === 0 ? "is-current" : "",
+        src: photo.src,
+        alt: localize(photo.caption),
+        loading: "lazy",
+        decoding: "async",
+        style: `object-position: ${photo.position}`
+      })
+    ),
+    el("figcaption", { className: "photo-caption", "aria-live": "polite", text: localize(photos[0].caption) })
+  ]);
+}
+
 function renderBeyond() {
   fill(
     "[data-beyond-list]",
     beyondItems.map((item) =>
-      el("li", { className: "glass-card beyond-card reveal" }, [
-        el("span", { className: "icon-ring" }, [icon(item.icon)]),
-        el("h3", { text: localize(item.title) }),
-        el("p", { text: localize(item.description) }),
-        item.demo && el("div", { className: "beyond-demo", "data-beyond-demo": item.demo })
+      el("li", { className: `glass-card beyond-card reveal ${item.wide ? "beyond-card-wide" : ""}`, "data-beyond-id": item.id }, [
+        item.photos && photoStack(item.photos),
+        el("div", { className: "beyond-body" }, [
+          el("span", { className: "icon-ring" }, [icon(item.icon)]),
+          el("h3", { text: localize(item.title) }),
+          el("p", { text: localize(item.description) }),
+          item.facts &&
+            el(
+              "dl",
+              { className: "beyond-facts" },
+              item.facts.map((fact) => el("div", {}, [el("dt", { text: localize(fact.label) }), el("dd", { text: localize(fact.value) })]))
+            ),
+          item.demo && el("div", { className: "beyond-demo", "data-beyond-demo": item.demo })
+        ])
       ])
     )
   );

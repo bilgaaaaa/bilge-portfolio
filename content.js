@@ -49,8 +49,9 @@ const translations = {
     "hero.cardExperienceLabel": "Experience",
     "hero.cardExperienceValue": "4+ years",
     "hero.cardExperienceBody": "building mobile and backend software",
-    "hero.cardCraftLabel": "Building",
-    "hero.cardCraftBody": "with care and curiosity.",
+    "hero.releaseLabel": "release notes",
+    "hero.releaseNext": "next release",
+    "hero.releaseNextLabel": "Show the next version of me",
     "hero.cardFocusLabel": "Focus areas",
     "hero.tickerLabel": "behind the scenes",
 
@@ -247,6 +248,18 @@ const translations = {
     "beyond.stitch.fixed": "Row {n} redone: 10 stitches",
     "beyond.cards.draw": "Draw a card",
     "beyond.cards.idle": "A box full of cards, one per memorable meal.",
+    "beyond.photoNext": "Show the next photo",
+    "beyond.treat.give": "Give Bruno a treat",
+    "beyond.bake.start": "Bake a batch",
+    "beyond.bake.preheat": "Preheating to 180°C…",
+    "beyond.bake.baking": "Baking… {n}%",
+    "beyond.bake.done": "{build} passed: golden brown ✓",
+
+    "bruno.toggle": "Bruno",
+    "bruno.toggleOn": "Bruno is following you — click to send him to his bed",
+    "bruno.toggleOff": "Bring Bruno back",
+    "bruno.hello": "woof! I'm Bruno",
+    "bruno.treat": "♥ yum!",
 
     "pt.meta.title": "PaceTasks — case study | Bilge Ozcanbaz",
     "pt.meta.description": "PaceTasks: a task app for people with a fixed work schedule, built by Bilge Ozcanbaz with Expo, React Native, TypeScript and Supabase.",
@@ -304,8 +317,9 @@ const translations = {
     "hero.cardExperienceLabel": "Esperienza",
     "hero.cardExperienceValue": "4+ anni",
     "hero.cardExperienceBody": "di software mobile e backend",
-    "hero.cardCraftLabel": "Sviluppo",
-    "hero.cardCraftBody": "con cura e curiosità.",
+    "hero.releaseLabel": "note di rilascio",
+    "hero.releaseNext": "prossima versione",
+    "hero.releaseNextLabel": "Mostra la prossima versione di me",
     "hero.cardFocusLabel": "Aree di lavoro",
     "hero.tickerLabel": "dietro le quinte",
 
@@ -502,6 +516,18 @@ const translations = {
     "beyond.stitch.fixed": "Giro {n} rifatto: 10 punti",
     "beyond.cards.draw": "Pesca un biglietto",
     "beyond.cards.idle": "Una scatola piena di biglietti, uno per ogni pasto da ricordare.",
+    "beyond.photoNext": "Mostra la foto successiva",
+    "beyond.treat.give": "Dai un biscottino a Bruno",
+    "beyond.bake.start": "Inforna una teglia",
+    "beyond.bake.preheat": "Preriscaldo a 180°C…",
+    "beyond.bake.baking": "In forno… {n}%",
+    "beyond.bake.done": "{build} superata: ben dorata ✓",
+
+    "bruno.toggle": "Bruno",
+    "bruno.toggleOn": "Bruno ti sta seguendo — clicca per mandarlo nella sua cuccia",
+    "bruno.toggleOff": "Richiama Bruno",
+    "bruno.hello": "bau! sono Bruno",
+    "bruno.treat": "♥ gnam!",
 
     "pt.meta.title": "PaceTasks — case study | Bilge Ozcanbaz",
     "pt.meta.description": "PaceTasks: un'app di attività per chi ha un orario di lavoro fisso, sviluppata da Bilge Ozcanbaz con Expo, React Native, TypeScript e Supabase.",
@@ -660,15 +686,42 @@ const services = [
 
 // Tool tiles: a short monogram and a tint from the palette.
 const tools = [
-  { short: "Kt", name: "Kotlin", tint: "#854F6C", about: { en: "My main language for Android today.", it: "Il mio linguaggio principale per Android oggi." } },
-  { short: "Jc", name: "Compose", tint: "#522B5B", about: { en: "Jetpack Compose: how I build every Android screen.", it: "Jetpack Compose: così costruisco ogni schermata Android." } },
-  { short: "Jv", name: "Java", tint: "#DFB6B2", about: { en: "Where I started: Spring Boot backends for invoicing and banking.", it: "Da qui sono partita: backend Spring Boot per fatture e banche." } },
-  { short: "C#", name: "C#", tint: "#854F6C", about: { en: "Microservices, device drivers and tools on .NET.", it: "Microservizi, driver per dispositivi e strumenti su .NET." } },
-  { short: ".N", name: ".NET", tint: "#522B5B", about: { en: ".NET 8 services with EF Core and REST APIs.", it: "Servizi .NET 8 con EF Core e API REST." } },
-  { short: "Bz", name: "Blazor", tint: "#DFB6B2", about: { en: "Web apps with Blazor and DevExpress, like an analytics tool in production.", it: "Web app con Blazor e DevExpress, come uno strumento di analisi in produzione." } },
-  { short: "Sq", name: "SQL", tint: "#854F6C", about: { en: "SQL Server, PostgreSQL, MySQL and SQLite — wherever the data lives.", it: "SQL Server, PostgreSQL, MySQL e SQLite — ovunque stiano i dati." } },
-  { short: "Mq", name: "RabbitMQ", tint: "#522B5B", about: { en: "Message queues that connect devices to back-office services.", it: "Code di messaggi che collegano i dispositivi ai servizi di back-office." } },
-  { short: "Dk", name: "Docker", tint: "#DFB6B2", about: { en: "Containers for repeatable builds and releases.", it: "Container per build e rilasci ripetibili." } }
+  {
+    short: "Kt", name: "Kotlin", tint: "#854F6C",
+    about: { en: "A modern programming language for Android apps — my main language today.", it: "Un linguaggio di programmazione moderno per app Android — oggi il mio principale." }
+  },
+  {
+    short: "Jc", name: "Jetpack Compose", tint: "#522B5B",
+    about: { en: "Google's toolkit for building Android screens in Kotlin code instead of XML layouts.", it: "Il toolkit di Google per costruire le schermate Android in Kotlin invece che con layout XML." }
+  },
+  {
+    short: "Jv", name: "Java", tint: "#DFB6B2",
+    about: { en: "A classic language for backends and Android — where I started, with Spring Boot.", it: "Un linguaggio classico per backend e Android — da qui sono partita, con Spring Boot." }
+  },
+  {
+    short: "C#", name: "C#", tint: "#854F6C",
+    about: { en: "Microsoft's main language for .NET — I write services and device drivers in it.", it: "Il linguaggio principale di Microsoft per .NET — lo uso per servizi e driver." }
+  },
+  {
+    short: ".N", name: ".NET", tint: "#522B5B",
+    about: { en: "Microsoft's platform for running C# services, APIs and web apps.", it: "La piattaforma Microsoft per far girare servizi, API e web app in C#." }
+  },
+  {
+    short: "Bz", name: "Blazor", tint: "#DFB6B2",
+    about: { en: "A .NET framework for building web apps in C# instead of JavaScript.", it: "Un framework .NET per creare web app in C# invece che in JavaScript." }
+  },
+  {
+    short: "Sq", name: "SQL", tint: "#854F6C",
+    about: { en: "The language for storing and querying data in databases like SQL Server and PostgreSQL.", it: "Il linguaggio per salvare e interrogare i dati in database come SQL Server e PostgreSQL." }
+  },
+  {
+    short: "Mq", name: "RabbitMQ", tint: "#522B5B",
+    about: { en: "A message broker that passes messages reliably between apps and services.", it: "Un message broker che consegna in modo affidabile i messaggi tra app e servizi." }
+  },
+  {
+    short: "Dk", name: "Docker", tint: "#DFB6B2",
+    about: { en: "Packs an app with everything it needs into a container that runs the same everywhere.", it: "Impacchetta un'app con tutto ciò che le serve in un container che gira uguale ovunque." }
+  }
 ];
 
 // Rotating lines in the hero's "behind the scenes" feed: a mix of everything I work on.
@@ -810,8 +863,53 @@ const processSteps = [
   }
 ];
 
+// "Beyond code" cards; `photos` cycle on hover, `demo` picks the small interactive in simulations.js.
 const beyondItems = [
   {
+    id: "bruno",
+    icon: "paw",
+    wide: true,
+    demo: "treat",
+    title: { en: "Bruno", it: "Bruno" },
+    description: {
+      en: "My dog, my most loyal code reviewer and the reason I take my breaks. He's the one following your mouse around this page.",
+      it: "Il mio cane, il mio code reviewer più fedele e il motivo per cui faccio le pause. È lui che segue il tuo mouse in questa pagina."
+    },
+    facts: [
+      { label: { en: "Role", it: "Ruolo" }, value: { en: "Chief Morale Officer", it: "Responsabile del morale" } },
+      { label: { en: "Superpower", it: "Superpotere" }, value: { en: "Hears a treat bag from two rooms away", it: "Sente un sacchetto di biscotti da due stanze di distanza" } },
+      { label: { en: "Review style", it: "Stile di review" }, value: { en: "Naps on the desk until I take a break", it: "Dorme sulla scrivania finché non faccio una pausa" } }
+    ],
+    photos: [
+      { src: "assets/beyond/bruno-reviewer.webp", position: "50% 70%", caption: { en: "Senior code reviewer — approves every PR by falling asleep on it.", it: "Senior code reviewer — approva ogni PR addormentandosi sopra." } },
+      { src: "assets/beyond/bruno-standup.webp", position: "50% 45%", caption: { en: "Daily stand-up: never late, always on the table.", it: "Daily stand-up: mai in ritardo, sempre sul tavolo." } },
+      { src: "assets/beyond/bruno-puppy.webp", position: "50% 45%", caption: { en: "Bruno v0.1 — the puppy build, chocolate edition.", it: "Bruno v0.1 — la build cucciolo, edizione cioccolato." } },
+      { src: "assets/beyond/bruno-tests.webp", position: "50% 45%", caption: { en: "Status: all tests passing.", it: "Stato: tutti i test passano." } },
+      { src: "assets/beyond/bruno-monday.webp", position: "40% 50%", caption: { en: "Monday mornings, accurately.", it: "Il lunedì mattina, in modo accurato." } },
+      { src: "assets/beyond/bruno-weekend.webp", position: "50% 70%", caption: { en: "Weekend mode: on.", it: "Modalità weekend: attiva." } }
+    ]
+  },
+  {
+    id: "baking",
+    icon: "bake",
+    demo: "bake",
+    title: { en: "Cooking & baking", it: "Cucina e forno" },
+    description: {
+      en: "Turkish classics and fresh bread from my kitchen — every batch is a release with its own build number.",
+      it: "Classici turchi e pane fresco dalla mia cucina — ogni teglia è un rilascio con il suo numero di build."
+    },
+    photos: [
+      { src: "assets/beyond/bake-buns.webp", position: "50% 50%", caption: { en: "Build #1 · Sesame buns — 16 of 16 passed QA.", it: "Build #1 · Panini al sesamo — 16 su 16 hanno passato il QA." } },
+      { src: "assets/beyond/bake-borek.webp", position: "50% 50%", caption: { en: "Build #2 · Börek — layered like a clean architecture.", it: "Build #2 · Börek — a strati come una clean architecture." } },
+      { src: "assets/beyond/bake-berry-cake.webp", position: "50% 40%", caption: { en: "Build #3 · Berry cake — shipped straight from the oven.", it: "Build #3 · Torta ai frutti di bosco — rilasciata direttamente dal forno." } },
+      { src: "assets/beyond/bake-spiral.webp", position: "50% 60%", caption: { en: "Build #4 · Spiral pastry — recursion you can eat.", it: "Build #4 · Sfoglia a spirale — ricorsione da mangiare." } },
+      { src: "assets/beyond/bake-lahmacun.webp", position: "50% 45%", caption: { en: "Build #5 · Lahmacun — thin, crispy, zero bugs.", it: "Build #5 · Lahmacun — sottile, croccante, zero bug." } },
+      { src: "assets/beyond/bake-cookies.webp", position: "50% 50%", caption: { en: "Build #6 · Sugar-dusted cookies — a sweet release.", it: "Build #6 · Biscotti allo zucchero — un rilascio dolce." } },
+      { src: "assets/beyond/bake-simit.webp", position: "50% 45%", caption: { en: "Build #7 · Simit — Istanbul's favourite ring buffer.", it: "Build #7 · Simit — il ring buffer preferito di Istanbul." } }
+    ]
+  },
+  {
+    id: "climbing",
     icon: "climb",
     demo: "climb",
     title: { en: "Climbing", it: "Arrampicata" },
@@ -821,6 +919,7 @@ const beyondItems = [
     }
   },
   {
+    id: "crochet",
     icon: "yarn",
     demo: "stitch",
     title: { en: "Crochet & knitting", it: "Uncinetto e maglia" },
@@ -830,6 +929,7 @@ const beyondItems = [
     }
   },
   {
+    id: "cards",
     icon: "card",
     demo: "cards",
     title: { en: "A card collection", it: "Una collezione di biglietti" },
@@ -838,6 +938,28 @@ const beyondItems = [
       it: "Biglietti da visita di ogni ristorante e pasticceria d'Italia che vale la pena ricordare."
     }
   }
+];
+
+// What Bruno says after each treat in his card; the last line repeats with the count.
+const brunoTreatLines = {
+  en: ["Woof! Thank you.", "Another one? He says yes.", "Treat #{n} — you're officially his favourite.", "Treat #{n}. He'd still say yes. He always says yes."],
+  it: ["Bau! Grazie.", "Un altro? Dice di sì.", "Biscottino n. {n} — ora sei ufficialmente il suo preferito.", "Biscottino n. {n}. Direbbe ancora di sì. Dice sempre di sì."]
+};
+
+// Little speech bubbles Bruno shows when he sits down next to the mouse.
+const brunoLines = {
+  en: ["woof!", "*sniff sniff*", "treat?", "is that a bug?", "ship it!", "walk later?"],
+  it: ["bau!", "*sniff sniff*", "biscottino?", "è un bug?", "rilascialo!", "passeggiata dopo?"]
+};
+
+// Hero portrait "releases": each look has a version and a short release note.
+const portraitLooks = [
+  { src: "assets/portrait.webp", version: "v1.0", alt: { en: "Bilge in a blue cardigan and sunglasses", it: "Bilge con un cardigan azzurro e occhiali da sole" }, note: { en: "The original release.", it: "La versione originale." } },
+  { src: "assets/looks/look-office.webp", version: "v1.1", alt: { en: "Bilge in a white office shirt making heart hands", it: "Bilge con una camicia bianca che fa un cuore con le mani" }, note: { en: "Office mode: shirt ironed, bugs not.", it: "Modalità ufficio: camicia stirata, bug no." } },
+  { src: "assets/looks/look-curly.webp", version: "v2.0", alt: { en: "Bilge with big curly hair and round glasses", it: "Bilge con grandi ricci e occhiali tondi" }, note: { en: "Curly mode enabled. Humidity is a feature.", it: "Modalità ricci attivata. L'umidità è una feature." } },
+  { src: "assets/looks/look-sunglasses.webp", version: "v2.1", alt: { en: "Bilge with long red hair and sunglasses", it: "Bilge con lunghi capelli rossi e occhiali da sole" }, note: { en: "Dark mode, now on my face too.", it: "Dark mode, ora anche sulla mia faccia." } },
+  { src: "assets/looks/look-round.webp", version: "v3.0", alt: { en: "Bilge smiling with new round glasses", it: "Bilge sorridente con nuovi occhiali tondi" }, note: { en: "New frames, same bugs.", it: "Montatura nuova, stessi bug." } },
+  { src: "assets/looks/look-bruno.webp", version: "v4.0", alt: { en: "Bilge holding Bruno with a surprised face", it: "Bilge con Bruno in braccio e una faccia sorpresa" }, note: { en: "Breaking change: Bruno merged into main.", it: "Breaking change: Bruno è entrato in main." } }
 ];
 
 // Cards the "card collection" demo can draw: kinds of places and cities, no real names.

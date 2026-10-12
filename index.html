@@ -25,6 +25,7 @@
     <script src="script.js" defer></script>
     <script src="gamemode.js" defer></script>
     <script src="simulations.js" defer></script>
+    <script src="bruno.js" defer></script>
   </head>
   <body data-page="home">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -93,16 +94,23 @@
         <div class="hero-visual">
           <div class="moon" aria-hidden="true"></div>
           <div class="orbit" aria-hidden="true"></div>
-          <img class="portrait" src="assets/portrait.webp" width="720" height="886" alt="Portrait of Bilge Ozcanbaz" data-i18n-attr="alt:hero.portraitAlt" />
+          <!-- Portrait "releases": simulations.js swaps in the other looks from portraitLooks. -->
+          <div class="portrait-stack" data-portrait-stack>
+            <img class="portrait is-current" src="assets/portrait.webp" width="720" height="886" alt="Portrait of Bilge Ozcanbaz" data-i18n-attr="alt:hero.portraitAlt" />
+          </div>
           <div class="glass-card float-card card-experience">
             <p class="card-label" data-i18n="hero.cardExperienceLabel">Experience</p>
             <p class="card-value" data-i18n="hero.cardExperienceValue">4+ years</p>
             <p class="card-body" data-i18n="hero.cardExperienceBody"></p>
           </div>
-          <div class="glass-card float-card card-craft">
-            <p class="card-label" data-i18n="hero.cardCraftLabel">Building</p>
-            <p class="card-body" data-i18n="hero.cardCraftBody"></p>
-            <svg class="icon heart" aria-hidden="true"><use href="assets/icons.svg#icon-heart" /></svg>
+          <div class="glass-card float-card card-craft card-release" data-release-card>
+            <p class="card-label" data-i18n="hero.releaseLabel">release notes</p>
+            <p class="release-version" data-release-version>v1.0</p>
+            <p class="card-body release-note" data-release-note aria-live="polite"></p>
+            <button class="release-next" type="button" data-release-next data-i18n-attr="aria-label:hero.releaseNextLabel" aria-label="Show the next version of me">
+              <span data-i18n="hero.releaseNext">next release</span>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow" /></svg>
+            </button>
           </div>
           <div class="glass-card float-card card-focus">
             <p class="card-label" data-i18n="hero.cardFocusLabel">Focus areas</p>

@@ -1,5 +1,5 @@
-// Interactive simulations: hero feed, live retail-stack demo, project card demos, skill map, job demos, process run,
-// beyond-code demos and the PaceTasks phone. Depends on content.js and script.js; re-mounts on every language change.
+// Interactive simulations: hero feed and portrait releases, live retail-stack demo, project card demos, skill map,
+// job demos, process run, beyond-code photos and demos, and the PaceTasks phone. Re-mounts on every language change.
 
 (() => {
   // Reduced motion keeps every demo working but makes the steps near-instant.
@@ -8,12 +8,15 @@
   const LAB_LOG_LIMIT = 60;
   const TICKER_MS = 2800;
   const CARD_HOVER_MS = 1400;
+  const PHOTO_HOVER_MS = 2200;
+  const PORTRAIT_HOVER_GAP_MS = 900;
 
   // Bumped on every mount so async demo loops from an older render stop quietly.
   let mountGeneration = 0;
   let tickerTimer = null;
   let phoneTimer = null;
   const hoverTimers = new Set();
+  const photoStacks = new WeakMap();
 
   // ---------- helpers ----------
 
@@ -66,6 +69,34 @@
     });
   }
 
+  // Repeats `step` while the mouse is over `hoverTarget`; the first step runs immediately.
+  function loopWhileHovered(hoverTarget, step, intervalMs) {
+    let timer = null;
+    const start = () => {
+      if (timer) return;
+      step();
+      timer = setInterval(step, intervalMs);
+      hoverTimers.add(timer);
+    };
+    const stop = () => {
+      clearInterval(timer);
+      hoverTimers.delete(timer);
+      timer = null;
+    };
+    hoverTarget.addEventListener("pointerenter", (event) => event.pointerType === "mouse" && start());
+    hoverTarget.addEventListener("pointerleave", stop);
+    return { start, stop };
+  }
+
+  // Makes a focusable element run `action` on Enter or Space, like a button.
+  function activateOnKeys(target, action) {
+    target.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      action();
+    });
+  }
+
   // ---------- hero: behind-the-scenes feed ----------
 
   function mountHeroTicker() {
@@ -81,6 +112,54 @@
     };
     show();
     tickerTimer = setInterval(show, TICKER_MS);
+  }
+
+  // ---------- hero: portrait "releases" ----------
+
+  const portrait = { index: 0, lastHoverAt: 0 };
+
+  // Other looks load lazily: the current one and the next are fetched, so a swap never shows an empty frame.
+  function ensureLookLoaded(image, look) {
+    if (!image.getAttribute("src")) image.src = look.src;
+  }
+
+  function mountPortraitReleases() {
+    const stack = document.querySelector("[data-portrait-stack]");
+    const card = document.querySelector("[data-release-card]");
+    if (!stack || !card) return;
+
+    if (stack.children.length === 1) {
+      portraitLooks.slice(1).forEach(() => stack.append(el("img", { className: "portrait", width: "720", height: "886", alt: "", decoding: "async" })));
+    }
+    const images = [...stack.querySelectorAll("img")];
+
+    const show = (index) => {
+      portrait.index = index;
+      ensureLookLoaded(images[index], portraitLooks[index]);
+      const nextIndex = (index + 1) % portraitLooks.length;
+      ensureLookLoaded(images[nextIndex], portraitLooks[nextIndex]);
+      images.forEach((image, imageIndex) => {
+        const isCurrent = imageIndex === index;
+        image.classList.toggle("is-current", isCurrent);
+        image.alt = isCurrent ? localize(portraitLooks[imageIndex].alt) : "";
+      });
+      card.querySelector("[data-release-version]").textContent = portraitLooks[index].version;
+      card.querySelector("[data-release-note]").textContent = localize(portraitLooks[index].note);
+    };
+    const next = () => show((portrait.index + 1) % portraitLooks.length);
+
+    // Listeners are attached once: the hero markup is static and survives language changes.
+    if (!stack.dataset.ready) {
+      stack.dataset.ready = "true";
+      stack.addEventListener("pointerenter", (event) => {
+        if (event.pointerType !== "mouse" || performance.now() - portrait.lastHoverAt < PORTRAIT_HOVER_GAP_MS) return;
+        portrait.lastHoverAt = performance.now();
+        next();
+      });
+      stack.addEventListener("click", (event) => event.pointerType !== "mouse" && next());
+      card.querySelector("[data-release-next]").addEventListener("click", next);
+    }
+    show(portrait.index);
   }
 
   // ---------- live demo: scan → RabbitMQ → .NET → SQL Server → fiscal printer ----------
@@ -418,29 +497,11 @@
 
       // Hovering the card (or focusing its visual) keeps the demo moving; a tap or Enter plays one step.
       const activate = createDemo(visual, readout);
-      let timer = null;
-      const start = () => {
-        if (timer) return;
-        activate();
-        timer = setInterval(activate, CARD_HOVER_MS);
-        hoverTimers.add(timer);
-      };
-      const stop = () => {
-        clearInterval(timer);
-        hoverTimers.delete(timer);
-        timer = null;
-      };
-
-      card.addEventListener("pointerenter", (event) => event.pointerType === "mouse" && start());
-      card.addEventListener("pointerleave", stop);
-      visual.addEventListener("focus", start);
-      visual.addEventListener("blur", stop);
+      const loop = loopWhileHovered(card, activate, CARD_HOVER_MS);
+      visual.addEventListener("focus", loop.start);
+      visual.addEventListener("blur", loop.stop);
       visual.addEventListener("click", (event) => event.pointerType !== "mouse" && activate());
-      visual.addEventListener("keydown", (event) => {
-        if (event.key !== "Enter" && event.key !== " ") return;
-        event.preventDefault();
-        activate();
-      });
+      activateOnKeys(visual, activate);
     });
   }
 
@@ -912,7 +973,82 @@
     container.replaceChildren(card, el("div", { className: "demo-actions" }, [action]));
   }
 
-  const beyondDemos = { climb: mountClimbDemo, stitch: mountStitchDemo, cards: mountCardsDemo };
+  // Bruno's card: every treat gets a reply, a heart on the photo and a happy jump from the Bruno following the mouse.
+  function mountTreatDemo(container) {
+    let treats = 0;
+    const status = el("p", { className: "demo-status", "aria-live": "polite" });
+    const action = button(t("beyond.treat.give"), { className: "button button-primary button-small" }, [icon("heart")]);
+    const stack = container.closest(".beyond-card")?.querySelector("[data-photo-stack]");
+
+    action.addEventListener("click", () => {
+      treats += 1;
+      const lines = localize(brunoTreatLines);
+      status.textContent = format(lines[Math.min(treats, lines.length) - 1], { n: treats });
+      document.dispatchEvent(new CustomEvent("bruno:treat"));
+      if (!stack) return;
+      const heart = el("span", { className: "heart-pop", "aria-hidden": "true" }, [icon("heart")]);
+      heart.addEventListener("animationend", () => heart.remove());
+      stack.append(heart);
+    });
+
+    container.replaceChildren(el("div", { className: "demo-actions" }, [action, status]));
+  }
+
+  // Baking: preheat, bake with a progress bar, then "ship" the next photo as the new build.
+  function mountBakeDemo(container, generation) {
+    const PREHEAT_MS = 600;
+    const STEP_MS = 160;
+    const fillBar = el("span", { className: "oven-fill" });
+    const status = el("p", { className: "demo-status", "aria-live": "polite" });
+    const action = button(t("beyond.bake.start"), {}, [icon("bake")]);
+    const stack = container.closest(".beyond-card")?.querySelector("[data-photo-stack]");
+
+    action.addEventListener("click", async () => {
+      action.disabled = true;
+      fillBar.style.width = "0%";
+      status.textContent = t("beyond.bake.preheat");
+      await wait(PREHEAT_MS);
+      for (let percent = 10; percent <= 100; percent += 10) {
+        if (isStale(generation)) return;
+        fillBar.style.width = `${percent}%`;
+        status.textContent = format(t("beyond.bake.baking"), { n: percent });
+        await wait(STEP_MS);
+      }
+      if (isStale(generation)) return;
+      const index = photoStacks.get(stack)?.next() ?? 0;
+      status.textContent = format(t("beyond.bake.done"), { build: `Build #${index + 1}` });
+      action.disabled = false;
+    });
+
+    container.replaceChildren(el("div", { className: "oven", "aria-hidden": "true" }, [fillBar]), el("div", { className: "demo-actions" }, [action, status]));
+  }
+
+  // Photo stacks cross-fade to the next photo while hovered, on tap, or with Enter on the focused photo.
+  function mountPhotoStacks() {
+    document.querySelectorAll("[data-photo-stack]").forEach((stack) => {
+      const images = [...stack.querySelectorAll("img")];
+      const caption = stack.querySelector(".photo-caption");
+      let index = 0;
+
+      const next = () => {
+        images[index].classList.remove("is-current");
+        index = (index + 1) % images.length;
+        images[index].classList.add("is-current");
+        caption.textContent = images[index].alt;
+        return index;
+      };
+
+      stack.setAttribute("role", "button");
+      stack.setAttribute("tabindex", "0");
+      stack.setAttribute("aria-label", t("beyond.photoNext"));
+      loopWhileHovered(stack, next, PHOTO_HOVER_MS);
+      stack.addEventListener("click", (event) => event.pointerType !== "mouse" && next());
+      activateOnKeys(stack, next);
+      photoStacks.set(stack, { next });
+    });
+  }
+
+  const beyondDemos = { climb: mountClimbDemo, stitch: mountStitchDemo, cards: mountCardsDemo, treat: mountTreatDemo, bake: mountBakeDemo };
 
   function mountBeyondDemos(generation) {
     document.querySelectorAll("[data-beyond-demo]").forEach((container) => beyondDemos[container.dataset.beyondDemo]?.(container, generation));
@@ -1003,11 +1139,13 @@
     const generation = mountGeneration;
     try {
       mountHeroTicker();
+      mountPortraitReleases();
       renderLab();
       mountCardDemos();
       mountSkillMap();
       mountJobDemos(generation);
       mountProcessRun(generation);
+      mountPhotoStacks();
       mountBeyondDemos(generation);
       mountPhone();
     } catch (error) {

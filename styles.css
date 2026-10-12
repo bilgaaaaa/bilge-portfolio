@@ -1187,6 +1187,16 @@ main {
   pointer-events: none;
 }
 
+.tool-tip strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--accent);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .tool:hover .tool-tip,
 .tool:focus-visible .tool-tip {
   display: block;
@@ -3111,6 +3121,442 @@ button.pt-task:focus-visible {
   outline-color: var(--pt-green);
 }
 
+/* ---------- personal: portrait releases ---------- */
+
+.portrait-stack {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+}
+
+.portrait-stack .portrait {
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+
+.portrait-stack .portrait.is-current {
+  opacity: 1;
+}
+
+.card-release {
+  width: 176px;
+}
+
+/* Hold the floating card still while someone reads or clicks it. */
+.card-release:hover {
+  animation-play-state: paused;
+}
+
+.release-version {
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.release-note {
+  min-height: 3em;
+  margin: 2px 0 10px;
+}
+
+.release-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.release-next .icon {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.25s var(--ease);
+}
+
+.release-next:hover .icon {
+  transform: translateX(3px);
+}
+
+/* ---------- personal: beyond code photos ---------- */
+
+.beyond-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.beyond-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Bruno's card is twice as wide: photo on the left, story and treats on the right. */
+.beyond-card-wide {
+  display: grid;
+  grid-column: span 2;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+.beyond-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.beyond-body .beyond-demo {
+  margin-top: auto;
+}
+
+.beyond-body p + .beyond-demo {
+  margin-top: 18px;
+}
+
+.beyond-facts {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+}
+
+.beyond-facts div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+  font-size: 0.84rem;
+}
+
+.beyond-facts dt {
+  color: var(--accent);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 2;
+  text-transform: uppercase;
+}
+
+.beyond-facts dd {
+  margin: 0;
+  color: var(--text);
+}
+
+.photo-stack {
+  position: relative;
+  margin: -22px -22px 18px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--plum-800);
+  cursor: pointer;
+}
+
+.beyond-card-wide .photo-stack {
+  aspect-ratio: auto;
+  min-height: 340px;
+  margin: -22px 0 -22px -22px;
+}
+
+.photo-stack img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.7s var(--ease), transform 1.2s var(--ease);
+}
+
+.photo-stack img.is-current {
+  opacity: 1;
+  transform: none;
+}
+
+.photo-caption {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  padding: 7px 11px;
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  background: rgba(25, 0, 25, 0.82);
+  color: var(--cream-100);
+  font-size: 0.74rem;
+  line-height: 1.4;
+}
+
+.photo-stack:focus-visible {
+  outline-offset: -4px;
+}
+
+.heart-pop {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  color: #e07a8a;
+  animation: heart-pop 1.1s var(--ease) forwards;
+  pointer-events: none;
+}
+
+.heart-pop .icon {
+  width: 34px;
+  height: 34px;
+  fill: currentColor;
+}
+
+@keyframes heart-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 10px) scale(0.6);
+  }
+  25% {
+    opacity: 1;
+    transform: translate(-50%, -10px) scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -80px) scale(1);
+  }
+}
+
+.oven {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(223, 182, 178, 0.15);
+}
+
+.oven-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f0b27a, #d98a3d, #e07a8a);
+  box-shadow: 0 0 12px rgba(217, 138, 61, 0.6);
+  transition: width 0.15s linear;
+}
+
+/* ---------- personal: Bruno follows the mouse ---------- */
+
+.bruno {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 58;
+  width: 80px;
+  height: 60px;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.bruno[hidden],
+body.game-active .bruno,
+body.game-active .bruno-toggle {
+  display: none;
+}
+
+.bruno-sprite {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 4px 6px rgba(8, 0, 10, 0.55));
+  transition: transform 0.2s var(--ease);
+}
+
+.bruno.is-left .bruno-sprite {
+  transform: scaleX(-1);
+}
+
+.bruno-leg {
+  transform-box: fill-box;
+  transform-origin: 50% 10%;
+}
+
+.bruno-tail {
+  transform-box: fill-box;
+  transform-origin: 90% 80%;
+  animation: bruno-wag 0.5s ease-in-out infinite alternate;
+}
+
+.bruno-eye-closed,
+.bruno-tongue {
+  display: none;
+}
+
+.bruno[data-mood="running"] .bruno-sprite {
+  animation: bruno-bob 0.3s ease-in-out infinite alternate;
+}
+
+.bruno[data-mood="running"] .leg-back-near,
+.bruno[data-mood="running"] .leg-front-far {
+  animation: bruno-step 0.3s ease-in-out infinite alternate;
+}
+
+.bruno[data-mood="running"] .leg-back-far,
+.bruno[data-mood="running"] .leg-front-near {
+  animation: bruno-step 0.3s ease-in-out infinite alternate-reverse;
+}
+
+.bruno[data-mood="running"] .bruno-tongue {
+  display: block;
+}
+
+.bruno[data-mood="running"] .bruno-tail {
+  animation-duration: 0.22s;
+}
+
+.bruno[data-mood="sleeping"] .bruno-eye-open {
+  display: none;
+}
+
+.bruno[data-mood="sleeping"] .bruno-eye-closed {
+  display: block;
+}
+
+.bruno[data-mood="sleeping"] .bruno-tail {
+  animation: none;
+}
+
+.bruno[data-mood="sleeping"] .bruno-body {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: bruno-breathe 2.4s ease-in-out infinite;
+}
+
+.bruno.is-happy .bruno-sprite {
+  animation: bruno-jump 0.6s var(--ease);
+}
+
+@keyframes bruno-wag {
+  from {
+    transform: rotate(-16deg);
+  }
+  to {
+    transform: rotate(18deg);
+  }
+}
+
+@keyframes bruno-step {
+  from {
+    transform: rotate(-24deg);
+  }
+  to {
+    transform: rotate(24deg);
+  }
+}
+
+@keyframes bruno-bob {
+  to {
+    translate: 0 -2px;
+  }
+}
+
+@keyframes bruno-breathe {
+  50% {
+    transform: scaleY(1.05);
+  }
+}
+
+@keyframes bruno-jump {
+  40% {
+    translate: 0 -18px;
+  }
+  70% {
+    translate: 0 2px;
+  }
+}
+
+.bruno-bubble {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  padding: 4px 10px;
+  border: 1px solid rgba(223, 182, 178, 0.45);
+  border-radius: 999px;
+  background: rgba(25, 0, 25, 0.9);
+  color: var(--cream-100);
+  font-size: 0.7rem;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.bruno.has-bubble .bruno-bubble {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.bruno.bubble-start .bruno-bubble {
+  left: 0;
+  transform: translate(0, 4px);
+}
+
+.bruno.bubble-end .bruno-bubble {
+  right: 0;
+  left: auto;
+  transform: translate(0, 4px);
+}
+
+.bruno.bubble-start.has-bubble .bruno-bubble,
+.bruno.bubble-end.has-bubble .bruno-bubble {
+  transform: none;
+}
+
+.bruno-toggle {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  background: rgba(25, 0, 25, 0.75);
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+
+.bruno-toggle .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--accent);
+}
+
+.bruno-toggle[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.bruno-toggle-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-soft);
+}
+
+.bruno-toggle[aria-pressed="true"] .bruno-toggle-dot {
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
 /* ---------- motion preferences ---------- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -3139,13 +3585,20 @@ button.pt-task:focus-visible {
   .stitch-rows li:last-child span,
   .collect-card.is-flipping,
   .demo-badge,
-  .tool:hover .tool-tip {
+  .tool:hover .tool-tip,
+  .bruno-tail,
+  .bruno-sprite,
+  .bruno .bruno-leg,
+  .bruno .bruno-body,
+  .heart-pop {
     animation: none;
   }
 
   .climb-climber,
   .visual-chart span,
-  .demo-meter-fill {
+  .demo-meter-fill,
+  .portrait-stack .portrait,
+  .photo-stack img {
     transition: none;
   }
 }
@@ -3487,5 +3940,50 @@ button.pt-task:focus-visible {
 
   .hero-ticker {
     border-radius: var(--radius-small);
+  }
+}
+
+/* ---------- personal: responsive ---------- */
+
+@media (max-width: 860px) {
+  .beyond-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .beyond-card-wide {
+    display: flex;
+  }
+
+  .beyond-card-wide .photo-stack {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+    margin: -22px -22px 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .beyond-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .beyond-card-wide {
+    grid-column: auto;
+  }
+
+  /* The focus card is hidden on phones, so release notes take its corner, clear of the face. */
+  .card-release {
+    top: auto;
+    right: 0;
+    bottom: 4%;
+    width: 150px;
+  }
+
+  .release-note {
+    font-size: 0.74rem;
+  }
+
+  .bruno-toggle {
+    right: 14px;
+    bottom: 14px;
   }
 }
