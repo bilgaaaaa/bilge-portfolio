@@ -20,7 +20,7 @@ const translations = {
   en: {
     "meta.title": "Bilge Ozcanbaz | Software Developer",
     "meta.description":
-      "Bilge Ozcanbaz is a software developer in Padova, Italy, building Android apps, .NET services, RabbitMQ integrations and retail device drivers.",
+      "Bilge Ozcanbaz is a software developer in Padova, Italy, building Android apps, .NET and Java backend services, message queues and device integrations.",
     "brand.role": "Software developer",
     "brand.aka": "aka bilga",
     "brand.akaTitle": "Friends call me Bilga — you'll find me online as bilga, bilgaaa or bilgaaaaa",
@@ -37,27 +37,27 @@ const translations = {
     "social.label": "Social links",
 
     "hero.eyebrow": "Software developer",
-    "hero.titleStart": "I build software that works",
-    "hero.titleAccent": "on the shop floor.",
+    "hero.titleStart": "I build software that just works,",
+    "hero.titleAccent": "from device to database.",
     "hero.intro":
-      "Android apps that store teams use every day, and the .NET services, message queues and device drivers behind them — from a barcode scan on a handheld to the receipt the fiscal printer hands the customer.",
+      "Android apps people rely on every day, and the backend services, message queues and integrations behind them. Today that means retail software; before, it was electronic invoicing and banking.",
     "hero.work": "View my work",
     "hero.about": "About me",
     "hero.status": "Based in Padova, Italy",
-    "hero.statusSub": "Building retail software at System Retail.",
+    "hero.statusSub": "Currently a developer at System Retail.",
     "hero.portraitAlt": "Portrait of Bilge Ozcanbaz",
     "hero.cardExperienceLabel": "Experience",
     "hero.cardExperienceValue": "4+ years",
-    "hero.cardExperienceBody": "building retail and enterprise software",
+    "hero.cardExperienceBody": "building mobile and backend software",
     "hero.cardCraftLabel": "Building",
     "hero.cardCraftBody": "with care and curiosity.",
     "hero.cardFocusLabel": "Focus areas",
-    "hero.tickerLabel": "simulated store feed",
+    "hero.tickerLabel": "behind the scenes",
 
     "work.eyebrow": "Selected work",
     "work.titleStart": "Software that",
     "work.titleAccent": "quietly works",
-    "work.titleEnd": "every day in stores.",
+    "work.titleEnd": "every day.",
     "work.viewAll": "View on GitHub",
     "work.open": "Open",
     "work.caseStudy": "Read the case study",
@@ -72,7 +72,7 @@ const translations = {
 
     "about.eyebrow": "About me",
     "about.titleStart": "From Java backends",
-    "about.titleAccent": "to the shop floor.",
+    "about.titleAccent": "to Android and beyond.",
     "about.p1":
       "I started as a Java backend developer, writing Spring Boot services for electronic invoicing and banking. Today I'm the sole developer of a production Android app for retail chains at System Retail, working directly with the product manager and owning features from the device all the way to the service behind it.",
     "about.p2":
@@ -103,7 +103,7 @@ const translations = {
     "contact.titleAccent": "meaningful",
     "contact.titleEnd": "together.",
     "contact.body":
-      "Have a question, an idea, or just want to talk Android, .NET or retail tech? Write me — I'm always happy to connect.",
+      "Have a question, an idea, or just want to talk Android, .NET or backend systems? Write me — I'm always happy to connect.",
     "contact.whatsapp": "WhatsApp",
     "contact.nameLabel": "Your name",
     "contact.messageLabel": "Your message",
@@ -144,7 +144,7 @@ const translations = {
     "lab.titleAccent": "from scan to receipt.",
     "lab.lede":
       "An interactive, simplified model of the stack I work on every day: an Android handheld that keeps selling offline, a RabbitMQ queue, a .NET service that never saves the same message twice and a fiscal printer at the end of the line. Scan a few items, check out, then switch the Wi-Fi off.",
-    "lab.note": "Illustrative simulation — simplified, runs entirely in your browser.",
+    "lab.note": "A simplified model of the real thing — it runs entirely in your browser.",
     "lab.nodeHandheld": "Handheld",
     "lab.nodeHandheldSub": "Android · Room",
     "lab.nodeQueue": "RabbitMQ",
@@ -188,12 +188,11 @@ const translations = {
     "lab.log.retry": "network timeout — resending {id}",
     "lab.log.nothingToRetry": "no sale sent yet",
 
-    "demo.tryHint": "tap to try",
     "demo.label": "Interactive demo: {name}",
     "demo.receiptReadout": "Logo sent · CRC ✓",
     "demo.chartReadout": "Store {store} · last 6 weeks",
     "demo.tasksReadout": "{done} of {total} done · on pace",
-    "demo.simulated": "simulated",
+    "demo.badge": "Interactive",
 
     "demo.migration.title": "Try it: ship a Room schema migration",
     "demo.migration.body": "Handhelds in stores sit on different schema versions. Ship v4 and watch each device run only the migrations it is missing — without losing a row.",
@@ -276,7 +275,7 @@ const translations = {
   it: {
     "meta.title": "Bilge Ozcanbaz | Sviluppatrice Software",
     "meta.description":
-      "Bilge Ozcanbaz è una sviluppatrice software a Padova: app Android, servizi .NET, integrazioni RabbitMQ e driver per dispositivi retail.",
+      "Bilge Ozcanbaz è una sviluppatrice software a Padova: app Android, servizi backend .NET e Java, code di messaggi e integrazioni con dispositivi.",
     "brand.role": "Sviluppatrice software",
     "brand.aka": "detta bilga",
     "brand.akaTitle": "Gli amici mi chiamano Bilga — online mi trovi come bilga, bilgaaa o bilgaaaaa",
@@ -293,27 +292,27 @@ const translations = {
     "social.label": "Link social",
 
     "hero.eyebrow": "Sviluppatrice software",
-    "hero.titleStart": "Sviluppo software che funziona",
-    "hero.titleAccent": "in negozio, ogni giorno.",
+    "hero.titleStart": "Sviluppo software che funziona,",
+    "hero.titleAccent": "dal dispositivo al database.",
     "hero.intro":
-      "App Android che i team di negozio usano ogni giorno, e i servizi .NET, le code di messaggi e i driver che ci stanno dietro — dalla lettura di un barcode sul palmare allo scontrino che la stampante fiscale consegna al cliente.",
+      "App Android su cui le persone contano ogni giorno, e i servizi backend, le code di messaggi e le integrazioni che ci stanno dietro. Oggi lavoro nel software per il retail; prima, nella fatturazione elettronica e nel settore bancario.",
     "hero.work": "Guarda i progetti",
     "hero.about": "Chi sono",
     "hero.status": "Vivo a Padova",
-    "hero.statusSub": "Sviluppo software retail in System Retail.",
+    "hero.statusSub": "Oggi sviluppatrice in System Retail.",
     "hero.portraitAlt": "Ritratto di Bilge Ozcanbaz",
     "hero.cardExperienceLabel": "Esperienza",
     "hero.cardExperienceValue": "4+ anni",
-    "hero.cardExperienceBody": "di software retail ed enterprise",
+    "hero.cardExperienceBody": "di software mobile e backend",
     "hero.cardCraftLabel": "Sviluppo",
     "hero.cardCraftBody": "con cura e curiosità.",
     "hero.cardFocusLabel": "Aree di lavoro",
-    "hero.tickerLabel": "feed simulato del negozio",
+    "hero.tickerLabel": "dietro le quinte",
 
     "work.eyebrow": "Progetti scelti",
     "work.titleStart": "Software che",
     "work.titleAccent": "lavora in silenzio",
-    "work.titleEnd": "ogni giorno nei negozi.",
+    "work.titleEnd": "ogni giorno.",
     "work.viewAll": "Vedi su GitHub",
     "work.open": "Apri",
     "work.caseStudy": "Leggi il case study",
@@ -328,7 +327,7 @@ const translations = {
 
     "about.eyebrow": "Chi sono",
     "about.titleStart": "Dal backend Java",
-    "about.titleAccent": "al negozio.",
+    "about.titleAccent": "ad Android e oltre.",
     "about.p1":
       "Ho iniziato come sviluppatrice backend Java, scrivendo servizi Spring Boot per la fatturazione elettronica e il settore bancario. Oggi in System Retail sono l'unica sviluppatrice di un'app Android in produzione per catene retail: lavoro a stretto contatto con il product manager e seguo ogni funzionalità dal dispositivo fino al servizio che la supporta.",
     "about.p2":
@@ -359,7 +358,7 @@ const translations = {
     "contact.titleAccent": "significativo",
     "contact.titleEnd": "insieme.",
     "contact.body":
-      "Hai una domanda, un'idea o vuoi parlare di Android, .NET o tecnologia per il retail? Scrivimi — mi fa sempre piacere conoscere persone nuove.",
+      "Hai una domanda, un'idea o vuoi parlare di Android, .NET o sistemi backend? Scrivimi — mi fa sempre piacere conoscere persone nuove.",
     "contact.whatsapp": "WhatsApp",
     "contact.nameLabel": "Il tuo nome",
     "contact.messageLabel": "Il tuo messaggio",
@@ -400,7 +399,7 @@ const translations = {
     "lab.titleAccent": "dalla scansione allo scontrino.",
     "lab.lede":
       "Un modello interattivo e semplificato dello stack su cui lavoro ogni giorno: un palmare Android che continua a vendere anche offline, una coda RabbitMQ, un servizio .NET che non salva mai due volte lo stesso messaggio e una stampante fiscale in fondo alla catena. Scansiona qualche articolo, chiudi la vendita, poi spegni il Wi-Fi.",
-    "lab.note": "Simulazione illustrativa — semplificata, gira interamente nel tuo browser.",
+    "lab.note": "Un modello semplificato della realtà — gira interamente nel tuo browser.",
     "lab.nodeHandheld": "Palmare",
     "lab.nodeHandheldSub": "Android · Room",
     "lab.nodeQueue": "RabbitMQ",
@@ -444,12 +443,11 @@ const translations = {
     "lab.log.retry": "timeout di rete — reinvio {id}",
     "lab.log.nothingToRetry": "nessuna vendita ancora inviata",
 
-    "demo.tryHint": "tocca per provare",
     "demo.label": "Demo interattiva: {name}",
     "demo.receiptReadout": "Logo inviato · CRC ✓",
     "demo.chartReadout": "Negozio {store} · ultime 6 settimane",
     "demo.tasksReadout": "{done} su {total} fatte · nei tempi",
-    "demo.simulated": "simulazione",
+    "demo.badge": "Interattiva",
 
     "demo.migration.title": "Prova: rilascia una migrazione di schema Room",
     "demo.migration.body": "I palmari nei negozi sono su versioni di schema diverse. Rilascia la v4 e guarda ogni dispositivo eseguire solo le migrazioni che gli mancano — senza perdere una riga.",
@@ -641,7 +639,7 @@ const services = [
   {
     icon: "phone",
     title: { en: "Android apps", it: "App Android" },
-    body: { en: "Kotlin, Jetpack Compose and Room apps that keep working offline on busy shop floors.", it: "App Kotlin, Jetpack Compose e Room che funzionano anche offline nei negozi." }
+    body: { en: "Kotlin, Jetpack Compose and Room apps that keep working offline, wherever they are used.", it: "App Kotlin, Jetpack Compose e Room che funzionano anche offline, ovunque vengano usate." }
   },
   {
     icon: "server",
@@ -656,40 +654,40 @@ const services = [
   {
     icon: "flow",
     title: { en: "Messaging & data", it: "Messaggistica e dati" },
-    body: { en: "RabbitMQ pipelines and SQL databases connecting stores to the back office.", it: "Pipeline RabbitMQ e database SQL che collegano i negozi al back-office." }
+    body: { en: "RabbitMQ pipelines and SQL databases that keep devices and back-office systems in sync.", it: "Pipeline RabbitMQ e database SQL che tengono sincronizzati dispositivi e sistemi di back-office." }
   }
 ];
 
 // Tool tiles: a short monogram and a tint from the palette.
 const tools = [
-  { short: "Kt", name: "Kotlin", tint: "#854F6C" },
-  { short: "Jc", name: "Compose", tint: "#522B5B" },
-  { short: "Jv", name: "Java", tint: "#DFB6B2" },
-  { short: "C#", name: "C#", tint: "#854F6C" },
-  { short: ".N", name: ".NET", tint: "#522B5B" },
-  { short: "Bz", name: "Blazor", tint: "#DFB6B2" },
-  { short: "Sq", name: "SQL", tint: "#854F6C" },
-  { short: "Mq", name: "RabbitMQ", tint: "#522B5B" },
-  { short: "Dk", name: "Docker", tint: "#DFB6B2" }
+  { short: "Kt", name: "Kotlin", tint: "#854F6C", about: { en: "My main language for Android today.", it: "Il mio linguaggio principale per Android oggi." } },
+  { short: "Jc", name: "Compose", tint: "#522B5B", about: { en: "Jetpack Compose: how I build every Android screen.", it: "Jetpack Compose: così costruisco ogni schermata Android." } },
+  { short: "Jv", name: "Java", tint: "#DFB6B2", about: { en: "Where I started: Spring Boot backends for invoicing and banking.", it: "Da qui sono partita: backend Spring Boot per fatture e banche." } },
+  { short: "C#", name: "C#", tint: "#854F6C", about: { en: "Microservices, device drivers and tools on .NET.", it: "Microservizi, driver per dispositivi e strumenti su .NET." } },
+  { short: ".N", name: ".NET", tint: "#522B5B", about: { en: ".NET 8 services with EF Core and REST APIs.", it: "Servizi .NET 8 con EF Core e API REST." } },
+  { short: "Bz", name: "Blazor", tint: "#DFB6B2", about: { en: "Web apps with Blazor and DevExpress, like an analytics tool in production.", it: "Web app con Blazor e DevExpress, come uno strumento di analisi in produzione." } },
+  { short: "Sq", name: "SQL", tint: "#854F6C", about: { en: "SQL Server, PostgreSQL, MySQL and SQLite — wherever the data lives.", it: "SQL Server, PostgreSQL, MySQL e SQLite — ovunque stiano i dati." } },
+  { short: "Mq", name: "RabbitMQ", tint: "#522B5B", about: { en: "Message queues that connect devices to back-office services.", it: "Code di messaggi che collegano i dispositivi ai servizi di back-office." } },
+  { short: "Dk", name: "Docker", tint: "#DFB6B2", about: { en: "Containers for repeatable builds and releases.", it: "Container per build e rilasci ripetibili." } }
 ];
 
-// Rotating lines in the hero's simulated store feed.
+// Rotating lines in the hero's "behind the scenes" feed: a mix of everything I work on.
 const heroTicker = {
   en: [
-    "handheld-03 · scan 8001234567890 → price check",
+    "android · Compose screen rendered in 12 ms",
     "rabbitmq · sale.created → sales (2 queued)",
-    "service · sale-1042 saved · duplicate skipped",
-    "printer · receipt printed · CRC ok",
-    "room · migration 3 → 4 done on store 07",
-    "analytics · store comparison refreshed"
+    "room · migration 3 → 4 done, 0 rows lost",
+    "invoice · FatturaPA XML validated",
+    "pacetasks · task synced through Realtime",
+    "pipeline · build green, release ready"
   ],
   it: [
-    "palmare-03 · scansione 8001234567890 → verifica prezzo",
+    "android · schermata Compose disegnata in 12 ms",
     "rabbitmq · sale.created → sales (2 in coda)",
-    "servizio · sale-1042 salvata · duplicato scartato",
-    "stampante · scontrino stampato · CRC ok",
-    "room · migrazione 3 → 4 completata nel negozio 07",
-    "analytics · confronto negozi aggiornato"
+    "room · migrazione 3 → 4 completata, 0 righe perse",
+    "fattura · XML FatturaPA validato",
+    "pacetasks · attività sincronizzata con Realtime",
+    "pipeline · build verde, rilascio pronto"
   ]
 };
 
@@ -784,31 +782,31 @@ const processSteps = [
     icon: "search",
     title: { en: "Understand", it: "Capire" },
     body: { en: "Learn the real workflow and the people who depend on it.", it: "Capire il flusso reale e chi ci lavora ogni giorno." },
-    log: { en: "Ticket: “price check feels slow”. I watch it happen on a real handheld in a store.", it: "Ticket: “la verifica prezzi è lenta”. La guardo succedere su un palmare reale in negozio." }
+    log: { en: "Ticket: “the app feels slow on older devices”. I reproduce it on a real one first.", it: "Ticket: “l'app è lenta sui dispositivi più vecchi”. Prima la riproduco su uno vero." }
   },
   {
     icon: "pen",
     title: { en: "Design", it: "Progettare" },
     body: { en: "Map the data flow and the edge cases before writing code.", it: "Disegnare il flusso dei dati e i casi limite prima del codice." },
-    log: { en: "Every scan hits the network. Plan: cache prices in Room, refresh them in the background.", it: "Ogni scansione va in rete. Piano: prezzi in cache su Room, aggiornati in background." }
+    log: { en: "Each screen reloads everything over the network. Plan: cache locally, refresh in the background.", it: "Ogni schermata ricarica tutto dalla rete. Piano: cache locale, aggiornata in background." }
   },
   {
     icon: "code",
     title: { en: "Build", it: "Sviluppare" },
     body: { en: "Small, reviewable steps with clean and consistent naming.", it: "Passi piccoli e revisionabili, con nomi chiari e coerenti." },
-    log: { en: "A small PR: Room cache, a sync worker and names that match the rest of the app.", it: "Una PR piccola: cache Room, un worker di sincronizzazione e nomi coerenti con il resto dell'app." }
+    log: { en: "A small PR: a local cache, a sync worker and names that match the rest of the code.", it: "Una PR piccola: cache locale, un worker di sincronizzazione e nomi coerenti con il resto del codice." }
   },
   {
     icon: "check",
     title: { en: "Test", it: "Testare" },
     body: { en: "Unit tests, then real hardware on the bench — not just the emulator.", it: "Test unitari, poi hardware reale sul banco — non solo l'emulatore." },
-    log: { en: "Unit tests green, then a few hundred scans on the bench handheld, Wi-Fi on and off.", it: "Test unitari verdi, poi qualche centinaio di scansioni sul palmare di prova, con Wi-Fi acceso e spento." }
+    log: { en: "Unit tests green, then the real device on the bench, online and offline.", it: "Test unitari verdi, poi il dispositivo reale sul banco, online e offline." }
   },
   {
     icon: "rocket",
     title: { en: "Ship & support", it: "Rilasciare e supportare" },
     body: { en: "Release, watch the logs and fix fast in production.", it: "Rilasciare, leggere i log e correggere in fretta in produzione." },
-    log: { en: "Release through Azure Pipelines, then a week of watching crash and ANR reports.", it: "Rilascio con Azure Pipelines, poi una settimana a controllare i report di crash e ANR." }
+    log: { en: "Release through the pipeline, then a week of watching crash reports and logs.", it: "Rilascio dalla pipeline, poi una settimana a controllare report di crash e log." }
   }
 ];
 

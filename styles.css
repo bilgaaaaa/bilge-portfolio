@@ -1146,10 +1146,51 @@ main {
 }
 
 .tool {
+  position: relative;
   display: grid;
   justify-items: center;
   gap: 4px;
+  border-radius: 10px;
   text-align: center;
+  cursor: help;
+}
+
+.tool-mark {
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+.tool:hover .tool-mark,
+.tool:focus-visible .tool-mark {
+  box-shadow: 0 0 18px -4px var(--glow);
+  transform: translateY(-2px);
+}
+
+/* One-sentence popup above a tool tile; --shift keeps it inside the screen. */
+.tool-tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  z-index: 5;
+  display: none;
+  width: max-content;
+  max-width: 200px;
+  padding: 8px 11px;
+  border: 1px solid rgba(223, 182, 178, 0.35);
+  border-radius: 10px;
+  background: rgba(25, 0, 25, 0.95);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  text-align: left;
+  transform: translateX(calc(-50% + var(--shift, 0px)));
+  pointer-events: none;
+}
+
+.tool:hover .tool-tip,
+.tool:focus-visible .tool-tip {
+  display: block;
+  animation: rise-in 0.2s var(--ease);
 }
 
 .tool-mark {
@@ -2053,15 +2094,30 @@ body.game-active .site-header.is-hidden {
   font-weight: 500;
 }
 
+/* A small glowing sparkle marks every interactive demo. */
 .demo-badge {
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: rgba(223, 182, 178, 0.16);
+  display: inline-grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border: 1px solid rgba(223, 182, 178, 0.4);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(223, 182, 178, 0.22), transparent 70%);
   color: var(--accent);
-  font-size: 0.58rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  box-shadow: 0 0 14px -4px var(--glow);
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.demo-badge .icon {
+  width: 14px;
+  height: 14px;
+}
+
+@keyframes twinkle {
+  50% {
+    transform: rotate(12deg) scale(1.08);
+    box-shadow: 0 0 20px -2px var(--glow);
+  }
 }
 
 .demo-body {
@@ -2429,26 +2485,6 @@ body.game-active .site-header.is-hidden {
 
 .case-visual[role="button"]:focus-visible {
   outline-offset: -4px;
-}
-
-.visual-hint {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  padding: 3px 9px;
-  border: 1px solid rgba(251, 228, 216, 0.35);
-  border-radius: 999px;
-  background: rgba(25, 0, 25, 0.5);
-  color: var(--cream-100);
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0.75;
-  transition: opacity 0.25s var(--ease);
-}
-
-.case-card:hover .visual-hint {
-  opacity: 1;
 }
 
 .visual-readout {
@@ -3101,7 +3137,9 @@ button.pt-task:focus-visible {
   .is-flash,
   .process-log li,
   .stitch-rows li:last-child span,
-  .collect-card.is-flipping {
+  .collect-card.is-flipping,
+  .demo-badge,
+  .tool:hover .tool-tip {
     animation: none;
   }
 

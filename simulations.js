@@ -7,11 +7,13 @@
   const LAB_STEP_MS = 520;
   const LAB_LOG_LIMIT = 60;
   const TICKER_MS = 2800;
+  const CARD_HOVER_MS = 1400;
 
   // Bumped on every mount so async demo loops from an older render stop quietly.
   let mountGeneration = 0;
   let tickerTimer = null;
   let phoneTimer = null;
+  const hoverTimers = new Set();
 
   // ---------- helpers ----------
 
@@ -47,14 +49,24 @@
 
   function demoHeader(titleKey, bodyKey) {
     return el("div", { className: "demo-head" }, [
-      el("p", { className: "demo-title" }, [el("span", { className: "demo-badge", text: t("demo.simulated") }), document.createTextNode(t(titleKey))]),
+      el("p", { className: "demo-title" }, [
+        el("span", { className: "demo-badge", title: t("demo.badge"), "aria-hidden": "true" }, [icon("sparkle")]),
+        document.createTextNode(t(titleKey))
+      ]),
       bodyKey && el("p", { className: "demo-body", text: t(bodyKey) })
     ]);
   }
 
   const isStale = (generation) => generation !== mountGeneration;
 
-  // ---------- hero: simulated store feed ----------
+  // Runs a demo action when a mouse pointer moves onto `target`; touch users keep the buttons.
+  function playOnHover(target, action) {
+    target.addEventListener("pointerenter", (event) => {
+      if (event.pointerType === "mouse" && !action.disabled) action.click();
+    });
+  }
+
+  // ---------- hero: behind-the-scenes feed ----------
 
   function mountHeroTicker() {
     const line = document.querySelector("[data-hero-ticker]");
@@ -349,7 +361,7 @@
     }
   };
 
-  // ---------- project cards: tap-to-try illustrations ----------
+  // ---------- project cards: illustrations that play on hover ----------
 
   const cardDemos = {
     handheld(visual, readout) {
@@ -398,14 +410,32 @@
       if (!createDemo) return;
 
       const readout = el("p", { className: "visual-readout", "aria-live": "polite" });
-      visual.append(el("p", { className: "visual-hint", text: t("demo.tryHint"), "aria-hidden": "true" }), readout);
+      visual.append(readout);
       visual.removeAttribute("aria-hidden");
       visual.setAttribute("role", "button");
       visual.setAttribute("tabindex", "0");
       visual.setAttribute("aria-label", format(t("demo.label"), { name: card.querySelector(".case-title").textContent }));
 
+      // Hovering the card (or focusing its visual) keeps the demo moving; a tap or Enter plays one step.
       const activate = createDemo(visual, readout);
-      visual.addEventListener("click", activate);
+      let timer = null;
+      const start = () => {
+        if (timer) return;
+        activate();
+        timer = setInterval(activate, CARD_HOVER_MS);
+        hoverTimers.add(timer);
+      };
+      const stop = () => {
+        clearInterval(timer);
+        hoverTimers.delete(timer);
+        timer = null;
+      };
+
+      card.addEventListener("pointerenter", (event) => event.pointerType === "mouse" && start());
+      card.addEventListener("pointerleave", stop);
+      visual.addEventListener("focus", start);
+      visual.addEventListener("blur", stop);
+      visual.addEventListener("click", (event) => event.pointerType !== "mouse" && activate());
       visual.addEventListener("keydown", (event) => {
         if (event.key !== "Enter" && event.key !== " ") return;
         event.preventDefault();
@@ -819,6 +849,7 @@
     });
 
     place({ x: 50, y: 96 });
+    playOnHover(wall, action);
     container.replaceChildren(wall, el("div", { className: "demo-actions" }, [action, status]));
   }
 
@@ -855,6 +886,7 @@
       render();
     });
 
+    playOnHover(rowList, action);
     container.replaceChildren(rowList, el("div", { className: "demo-actions" }, [action, status]));
     render();
   }
@@ -876,6 +908,7 @@
       restartClass(card, "is-flipping");
     });
 
+    playOnHover(card, action);
     container.replaceChildren(card, el("div", { className: "demo-actions" }, [action]));
   }
 
@@ -965,6 +998,8 @@
 
   function mountAll() {
     mountGeneration += 1;
+    hoverTimers.forEach(clearInterval);
+    hoverTimers.clear();
     const generation = mountGeneration;
     try {
       mountHeroTicker();

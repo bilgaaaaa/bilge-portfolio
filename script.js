@@ -128,7 +128,7 @@ function renderAbout() {
 
 // ---------- home: work ----------
 
-// Illustrations for project cards, drawn with CSS spans; simulations.js turns them into tap-to-try demos.
+// Illustrations for project cards, drawn with CSS spans; simulations.js makes them play on hover.
 function projectVisual(kind) {
   const spanCount = { handheld: 6, receipt: 7, chart: 7, tasks: 7 };
   const visual = el("div", { className: `case-visual visual-${kind}`, "data-visual": kind, "aria-hidden": "true" });
@@ -204,13 +204,30 @@ function renderServices() {
 
   fill(
     "[data-tool-grid]",
-    tools.map((tool) =>
-      el("li", { className: "tool", style: `--tint: ${tool.tint}` }, [
+    tools.map((tool, index) =>
+      el("li", { className: "tool", style: `--tint: ${tool.tint}`, tabindex: "0", "aria-describedby": `toolTip${index}` }, [
         el("span", { className: "tool-mark", text: tool.short, "aria-hidden": "true" }),
-        el("span", { className: "tool-name", text: tool.name })
+        el("span", { className: "tool-name", text: tool.name }),
+        el("span", { className: "tool-tip", role: "tooltip", id: `toolTip${index}`, text: localize(tool.about) })
       ])
     )
   );
+  document.querySelectorAll("[data-tool-grid] .tool").forEach((tool) => {
+    tool.addEventListener("pointerenter", () => placeToolTip(tool));
+    tool.addEventListener("focus", () => placeToolTip(tool));
+  });
+}
+
+// Shifts a tool popup sideways so it never runs off the edge of the screen.
+function placeToolTip(tool) {
+  const tip = tool.querySelector(".tool-tip");
+  const margin = 12;
+  tip.style.setProperty("--shift", "0px");
+  tip.style.display = "block";
+  const rect = tip.getBoundingClientRect();
+  tip.style.display = "";
+  const shift = Math.max(margin - rect.left, 0) - Math.max(rect.right - (document.documentElement.clientWidth - margin), 0);
+  tip.style.setProperty("--shift", `${shift}px`);
 }
 
 function renderProcess() {
