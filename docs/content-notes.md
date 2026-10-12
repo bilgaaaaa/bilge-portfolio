@@ -23,3 +23,7 @@ Source of truth for facts on the site: the September 2026 CV (EN/IT).
 - Do not claim: senior/lead/architect titles, cloud expertise, PaceTasks as launched.
 - Positioning: a software developer (Android, backend, integrations); retail is the current job, not the whole profile.
 - Demos are simplified models (the live demo says so in its note): no real customer data, internal metrics or production rules; the credit calculator says it is not the bank's real policy. Don't use the word "simulated" in the UI.
+
+## Pending
+
+- Beyond code: Bilge will send real photos (climbing, crochet/knitting, card collection, and possibly baking and Bruno) to replace the icon-only cards. Use them as `assets/beyond/<name>.webp`, colour-graded into the plum palette like the portrait.
