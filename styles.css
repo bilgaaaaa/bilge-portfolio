@@ -3219,6 +3219,17 @@ button.pt-task:focus-visible {
   margin-top: 18px;
 }
 
+.icon-ring-photo {
+  overflow: hidden;
+  padding: 0;
+}
+
+.icon-ring-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .beyond-facts {
   display: grid;
   gap: 10px;
@@ -3349,8 +3360,8 @@ button.pt-task:focus-visible {
   top: 0;
   left: 0;
   z-index: 58;
-  width: 80px;
-  height: 60px;
+  width: 72px;
+  height: 76px;
   pointer-events: none;
   will-change: transform;
 }
@@ -3362,114 +3373,90 @@ body.game-active .bruno-toggle {
 }
 
 .bruno-sprite {
-  display: block;
+  position: relative;
   width: 100%;
   height: 100%;
-  overflow: visible;
-  filter: drop-shadow(0 4px 6px rgba(8, 0, 10, 0.55));
-  transition: transform 0.2s var(--ease);
+  filter: drop-shadow(0 6px 8px rgba(8, 0, 10, 0.55));
+  transform-origin: 50% 100%;
 }
 
-.bruno.is-left .bruno-sprite {
-  transform: scaleX(-1);
+.bruno.is-flipped .bruno-sprite {
+  scale: -1 1;
 }
 
-.bruno-leg {
-  transform-box: fill-box;
-  transform-origin: 50% 10%;
+.bruno-pose {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  height: 100%;
+  width: auto;
+  translate: -50% 0;
+  user-select: none;
 }
 
-.bruno-tail {
-  transform-box: fill-box;
-  transform-origin: 90% 80%;
-  animation: bruno-wag 0.5s ease-in-out infinite alternate;
-}
-
-.bruno-eye-closed,
-.bruno-tongue {
-  display: none;
+.pose-nap {
+  height: 84%;
+  opacity: 0;
 }
 
 .bruno[data-mood="running"] .bruno-sprite {
-  animation: bruno-bob 0.3s ease-in-out infinite alternate;
+  animation: bruno-hop 0.34s ease-in-out infinite;
 }
 
-.bruno[data-mood="running"] .leg-back-near,
-.bruno[data-mood="running"] .leg-front-far {
-  animation: bruno-step 0.3s ease-in-out infinite alternate;
+.bruno[data-mood="sitting"] .bruno-sprite {
+  animation: bruno-tilt 4.5s ease-in-out infinite;
 }
 
-.bruno[data-mood="running"] .leg-back-far,
-.bruno[data-mood="running"] .leg-front-near {
-  animation: bruno-step 0.3s ease-in-out infinite alternate-reverse;
+.bruno[data-mood="sleeping"] .pose-awake {
+  opacity: 0;
 }
 
-.bruno[data-mood="running"] .bruno-tongue {
-  display: block;
-}
-
-.bruno[data-mood="running"] .bruno-tail {
-  animation-duration: 0.22s;
-}
-
-.bruno[data-mood="sleeping"] .bruno-eye-open {
-  display: none;
-}
-
-.bruno[data-mood="sleeping"] .bruno-eye-closed {
-  display: block;
-}
-
-.bruno[data-mood="sleeping"] .bruno-tail {
-  animation: none;
-}
-
-.bruno[data-mood="sleeping"] .bruno-body {
-  transform-box: fill-box;
+.bruno[data-mood="sleeping"] .pose-nap {
+  opacity: 1;
   transform-origin: 50% 100%;
-  animation: bruno-breathe 2.4s ease-in-out infinite;
+  animation: bruno-breathe 2.6s ease-in-out infinite;
 }
 
 .bruno.is-happy .bruno-sprite {
   animation: bruno-jump 0.6s var(--ease);
 }
 
-@keyframes bruno-wag {
-  from {
-    transform: rotate(-16deg);
+@keyframes bruno-hop {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
   }
-  to {
-    transform: rotate(18deg);
-  }
-}
-
-@keyframes bruno-step {
-  from {
-    transform: rotate(-24deg);
-  }
-  to {
-    transform: rotate(24deg);
+  50% {
+    transform: translateY(-10px) rotate(4deg);
   }
 }
 
-@keyframes bruno-bob {
-  to {
-    translate: 0 -2px;
+@keyframes bruno-tilt {
+  0%,
+  70%,
+  100% {
+    transform: rotate(0);
+  }
+  80% {
+    transform: rotate(-6deg);
+  }
+  90% {
+    transform: rotate(3deg);
   }
 }
 
 @keyframes bruno-breathe {
   50% {
-    transform: scaleY(1.05);
+    transform: scaleY(1.04);
   }
 }
 
 @keyframes bruno-jump {
   40% {
-    translate: 0 -18px;
+    transform: translateY(-22px) rotate(-8deg);
   }
   70% {
-    translate: 0 2px;
+    transform: translateY(2px);
   }
 }
 
@@ -3534,10 +3521,15 @@ body.game-active .bruno-toggle {
   transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
 }
 
-.bruno-toggle .icon {
-  width: 16px;
-  height: 16px;
-  color: var(--accent);
+.bruno-toggle {
+  padding-left: 6px;
+}
+
+.bruno-toggle-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(223, 182, 178, 0.5);
 }
 
 .bruno-toggle[aria-pressed="true"] {
@@ -3586,10 +3578,8 @@ body.game-active .bruno-toggle {
   .collect-card.is-flipping,
   .demo-badge,
   .tool:hover .tool-tip,
-  .bruno-tail,
   .bruno-sprite,
-  .bruno .bruno-leg,
-  .bruno .bruno-body,
+  .bruno-pose,
   .heart-pop {
     animation: none;
   }

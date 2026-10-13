@@ -8,7 +8,6 @@
   const LAB_LOG_LIMIT = 60;
   const TICKER_MS = 2800;
   const CARD_HOVER_MS = 1400;
-  const PHOTO_HOVER_MS = 2200;
   const PORTRAIT_HOVER_GAP_MS = 900;
 
   // Bumped on every mount so async demo loops from an older render stop quietly.
@@ -86,6 +85,13 @@
     hoverTarget.addEventListener("pointerenter", (event) => event.pointerType === "mouse" && start());
     hoverTarget.addEventListener("pointerleave", stop);
     return { start, stop };
+  }
+
+  // Hover triggers on static containers are attached once and always run the latest mounted action.
+  function onHoverOnce(target, key, run) {
+    if (!target || target.dataset[key]) return;
+    target.dataset[key] = "true";
+    target.addEventListener("pointerenter", (event) => event.pointerType === "mouse" && run());
   }
 
   // Makes a focusable element run `action` on Enter or Space, like a button.
@@ -186,8 +192,56 @@
     lastSale: null,
     receipt: null,
     log: [],
-    chain: Promise.resolve()
+    chain: Promise.resolve(),
+    autoPlaying: false,
+    scenarioIndex: 0
   };
+
+  // Scenarios played when the mouse arrives on the live demo: a normal sale, an offline sale, then a retried sale.
+  const LAB_SCENARIOS = [
+    async () => {
+      if (!lab.online) labActions.network();
+      for (let item = 0; item < 3; item += 1) {
+        labActions.scan();
+        await wait(420);
+      }
+      labActions.checkout();
+    },
+    async () => {
+      if (lab.online) labActions.network();
+      await wait(500);
+      labActions.scan();
+      await wait(420);
+      labActions.scan();
+      await wait(420);
+      labActions.checkout();
+      await wait(1400);
+      labActions.network();
+    },
+    async () => {
+      if (!lab.online) labActions.network();
+      labActions.scan();
+      await wait(420);
+      labActions.checkout();
+      await lab.chain;
+      await wait(500);
+      labActions.retry();
+    }
+  ];
+
+  async function playLabScenario() {
+    if (lab.autoPlaying) return;
+    lab.autoPlaying = true;
+    try {
+      await LAB_SCENARIOS[lab.scenarioIndex % LAB_SCENARIOS.length]();
+      lab.scenarioIndex += 1;
+      await lab.chain;
+    } catch (error) {
+      console.error("[lab] scenario failed", error);
+    } finally {
+      lab.autoPlaying = false;
+    }
+  }
 
   function labStatValue(id) {
     return { handheld: lab.outbox.length, queue: lab.queued, service: lab.duplicates, database: lab.documents, printer: lab.receipts }[id];
@@ -212,6 +266,7 @@
   function renderLab() {
     const root = document.querySelector("[data-lab]");
     if (!root) return;
+    onHoverOnce(root, "hoverRun", playLabScenario);
 
     const pipeline = [];
     LAB_NODES.forEach((node, index) => {
@@ -585,14 +640,17 @@
 
     const chips = [...root.querySelectorAll(".skill-chip")];
     const skills = skillGroups.flatMap((group) => group.skills);
-    chips.forEach((chip, index) =>
-      chip.addEventListener("click", () => {
-        selectedSkill = skills[index];
-        chips.forEach((other) => other.setAttribute("aria-pressed", String(other === chip)));
-        highlightSkill(selectedSkill);
-        renderSkillUsage();
-      })
-    );
+    const selectChip = (chip, index) => {
+      if (selectedSkill === skills[index]) return;
+      selectedSkill = skills[index];
+      chips.forEach((other) => other.setAttribute("aria-pressed", String(other === chip)));
+      highlightSkill(selectedSkill);
+      renderSkillUsage();
+    };
+    chips.forEach((chip, index) => {
+      chip.addEventListener("click", () => selectChip(chip, index));
+      chip.addEventListener("pointerenter", (event) => event.pointerType === "mouse" && selectChip(chip, index));
+    });
 
     highlightSkill(selectedSkill);
     renderSkillUsage();
@@ -635,7 +693,6 @@
       status.textContent = allUpdated()
         ? format(t("demo.migration.done"), { total: DEVICE_COUNT, rows: number(rows) })
         : format(t("demo.migration.idle"), { n: pending, total: DEVICE_COUNT });
-      action.textContent = allUpdated() ? t("demo.migration.reset") : t("demo.migration.ship");
       action.disabled = running;
     }
 
@@ -652,13 +709,14 @@
       }
     }
 
+    // Each run starts from a fresh mix of versions once every device has been updated.
     action.addEventListener("click", async () => {
+      running = true;
       if (allUpdated()) {
         devices = createDevices();
         render();
-        return;
+        await wait(450);
       }
-      running = true;
       render();
       await Promise.all(devices.map((device, index) => migrate(device, index * 140)));
       if (isStale(generation)) return;
@@ -667,6 +725,7 @@
     });
 
     devices = createDevices();
+    playOnHover(container, action);
     container.replaceChildren(demoHeader("demo.migration.title", "demo.migration.body"), grid, el("div", { className: "demo-actions" }, [action, status]));
     render();
   }
@@ -701,6 +760,15 @@
       action.disabled = false;
     });
 
+    // Hovering alternates a valid invoice and one with the VAT number left empty, so both outcomes show.
+    let hoverRuns = 0;
+    container.addEventListener("pointerenter", (event) => {
+      if (event.pointerType !== "mouse" || action.disabled) return;
+      breakToggle.checked = hoverRuns % 2 === 1;
+      hoverRuns += 1;
+      action.click();
+    });
+
     container.replaceChildren(
       demoHeader("demo.invoice.title", "demo.invoice.body"),
       steps,
@@ -717,6 +785,16 @@
     const MAX_RATIO = 0.4;
     const REVIEW_RATIO = 0.3;
     const LIMIT_MONTHS = 6;
+    const SLIDE_MS = 700;
+    // Applicants the sliders glide to on hover: one per verdict, then a comfortable one.
+    const SCENARIOS = [
+      { income: 3200, commitments: 400 },
+      { income: 2600, commitments: 900 },
+      { income: 1800, commitments: 850 },
+      { income: 5200, commitments: 700 }
+    ];
+    let scenarioIndex = 0;
+    let sliding = false;
 
     const slider = (labelKey, min, max, step, value) => {
       const input = el("input", { type: "range", min, max, step, value });
@@ -746,7 +824,30 @@
       verdict.textContent = t(`demo.credit.${state}`);
     }
 
+    // Eases both sliders to the next applicant so the meter and verdict update live.
+    function slideToNextScenario() {
+      if (sliding) return;
+      sliding = true;
+      const target = SCENARIOS[scenarioIndex % SCENARIOS.length];
+      scenarioIndex += 1;
+      const from = { income: Number(income.input.value), commitments: Number(commitments.input.value) };
+      const startedAt = performance.now();
+      const duration = SLIDE_MS * SPEED;
+
+      const step = (now) => {
+        const progress = duration ? Math.min((now - startedAt) / duration, 1) : 1;
+        const eased = 1 - (1 - progress) ** 3;
+        income.input.value = Math.round(from.income + (target.income - from.income) * eased);
+        commitments.input.value = Math.round(from.commitments + (target.commitments - from.commitments) * eased);
+        update();
+        if (progress < 1) requestAnimationFrame(step);
+        else sliding = false;
+      };
+      requestAnimationFrame(step);
+    }
+
     [income.input, commitments.input].forEach((input) => input.addEventListener("input", update));
+    container.addEventListener("pointerenter", (event) => event.pointerType === "mouse" && slideToNextScenario());
     container.replaceChildren(
       demoHeader("demo.credit.title", "demo.credit.body"),
       el("div", { className: "demo-credit" }, [
@@ -810,6 +911,7 @@
       action.disabled = false;
     });
 
+    playOnHover(container, action);
     container.replaceChildren(
       demoHeader("demo.tests.title", "demo.tests.body"),
       el("div", { className: "test-lanes" }, [local.row, remote.row]),
@@ -825,6 +927,8 @@
 
   // ---------- process: one example ticket walks through the steps ----------
 
+  let processAction = null;
+
   function mountProcessRun(generation) {
     const root = document.querySelector("[data-process-run]");
     if (!root) return;
@@ -832,6 +936,8 @@
     const log = el("ol", { className: "process-log", "aria-live": "polite" });
     const action = button(t("process.run"), { className: "button button-primary button-small" }, [icon("rocket")]);
     const steps = () => [...document.querySelectorAll("[data-process-steps] .process-step")];
+    processAction = action;
+    onHoverOnce(root.closest(".process"), "hoverRun", () => !processAction.disabled && processAction.click());
 
     action.addEventListener("click", async () => {
       action.disabled = true;
@@ -910,7 +1016,7 @@
     });
 
     place({ x: 50, y: 96 });
-    playOnHover(wall, action);
+    playOnHover(container.closest(".beyond-card") ?? wall, action);
     container.replaceChildren(wall, el("div", { className: "demo-actions" }, [action, status]));
   }
 
@@ -947,7 +1053,7 @@
       render();
     });
 
-    playOnHover(rowList, action);
+    playOnHover(container.closest(".beyond-card") ?? rowList, action);
     container.replaceChildren(rowList, el("div", { className: "demo-actions" }, [action, status]));
     render();
   }
@@ -969,7 +1075,7 @@
       restartClass(card, "is-flipping");
     });
 
-    playOnHover(card, action);
+    playOnHover(container.closest(".beyond-card") ?? card, action);
     container.replaceChildren(card, el("div", { className: "demo-actions" }, [action]));
   }
 
@@ -991,6 +1097,7 @@
       stack.append(heart);
     });
 
+    playOnHover(container.closest(".beyond-body") ?? container, action);
     container.replaceChildren(el("div", { className: "demo-actions" }, [action, status]));
   }
 
@@ -1020,10 +1127,11 @@
       action.disabled = false;
     });
 
+    playOnHover(container.closest(".beyond-body") ?? container, action);
     container.replaceChildren(el("div", { className: "oven", "aria-hidden": "true" }, [fillBar]), el("div", { className: "demo-actions" }, [action, status]));
   }
 
-  // Photo stacks cross-fade to the next photo while hovered, on tap, or with Enter on the focused photo.
+  // Photo stacks cross-fade to the next photo each time the mouse arrives, on tap, or with Enter.
   function mountPhotoStacks() {
     document.querySelectorAll("[data-photo-stack]").forEach((stack) => {
       const images = [...stack.querySelectorAll("img")];
@@ -1041,7 +1149,7 @@
       stack.setAttribute("role", "button");
       stack.setAttribute("tabindex", "0");
       stack.setAttribute("aria-label", t("beyond.photoNext"));
-      loopWhileHovered(stack, next, PHOTO_HOVER_MS);
+      stack.addEventListener("pointerenter", (event) => event.pointerType === "mouse" && next());
       stack.addEventListener("click", (event) => event.pointerType !== "mouse" && next());
       activateOnKeys(stack, next);
       photoStacks.set(stack, { next });
@@ -1056,7 +1164,9 @@
 
   // ---------- PaceTasks: interactive "Today" screen ----------
 
-  const phone = { tasks: null, seconds: 12 * 60 + 40 };
+  const phone = { tasks: null, seconds: 12 * 60 + 40, playing: false, demoIndex: 0 };
+  const PHONE_TYPE_MS = 55;
+  const PHONE_MAX_TASKS = 7;
 
   function formatTimer(seconds) {
     return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
@@ -1114,10 +1224,44 @@
     });
   }
 
+  // Types a new task into quick add, saves it, then finishes the oldest open task.
+  async function playPhoneDemo() {
+    if (phone.playing) return;
+    phone.playing = true;
+    try {
+      const titles = localize(pacetasksCaseStudy.mockup.demoTasks);
+      const title = titles[phone.demoIndex % titles.length];
+      phone.demoIndex += 1;
+
+      for (let length = 1; length <= title.length; length += 1) {
+        const field = document.querySelector("[data-phone-mockup] .pt-quickadd");
+        if (field) field.value = title.slice(0, length);
+        await wait(PHONE_TYPE_MS);
+      }
+      await wait(300);
+      phone.tasks.unshift({ title, meta: { en: translations.en["pt.newTaskMeta"], it: translations.it["pt.newTaskMeta"] }, category: "personal" });
+      renderPhone();
+
+      await wait(800);
+      const open = sortedTasks().filter((task) => !task.done);
+      if (open.length > 1) open[open.length - 1].done = true;
+      // Keep the list short: the oldest finished task scrolls off.
+      if (phone.tasks.length > PHONE_MAX_TASKS) {
+        const lastDone = phone.tasks.findLastIndex((task) => task.done);
+        if (lastDone >= 0) phone.tasks.splice(lastDone, 1);
+      }
+      renderPhone();
+    } finally {
+      phone.playing = false;
+    }
+  }
+
   function mountPhone() {
-    if (!document.querySelector("[data-phone-mockup]")) return;
+    const root = document.querySelector("[data-phone-mockup]");
+    if (!root) return;
     phone.tasks = phone.tasks ?? pacetasksCaseStudy.mockup.tasks.map((task) => ({ ...task }));
     renderPhone();
+    onHoverOnce(root, "hoverRun", playPhoneDemo);
 
     // The running task counts down live, like the app's range timer.
     clearInterval(phoneTimer);

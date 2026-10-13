@@ -273,7 +273,9 @@ function renderBeyond() {
       el("li", { className: `glass-card beyond-card reveal ${item.wide ? "beyond-card-wide" : ""}`, "data-beyond-id": item.id }, [
         item.photos && photoStack(item.photos),
         el("div", { className: "beyond-body" }, [
-          el("span", { className: "icon-ring" }, [icon(item.icon)]),
+          el("span", { className: `icon-ring ${item.avatar ? "icon-ring-photo" : ""}` }, [
+            item.avatar ? el("img", { src: item.avatar, alt: "", width: "46", height: "46" }) : icon(item.icon)
+          ]),
           el("h3", { text: localize(item.title) }),
           el("p", { text: localize(item.description) }),
           item.facts &&

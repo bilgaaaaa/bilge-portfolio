@@ -144,7 +144,7 @@ const translations = {
     "lab.titleStart": "Follow one sale",
     "lab.titleAccent": "from scan to receipt.",
     "lab.lede":
-      "An interactive, simplified model of the stack I work on every day: an Android handheld that keeps selling offline, a RabbitMQ queue, a .NET service that never saves the same message twice and a fiscal printer at the end of the line. Scan a few items, check out, then switch the Wi-Fi off.",
+      "An interactive, simplified model of the stack I work on every day: an Android handheld that keeps selling offline, a RabbitMQ queue, a .NET service that never saves the same message twice and a fiscal printer at the end of the line. Move your mouse over it to watch a sale, an offline sale and a retry — or drive it yourself with the buttons.",
     "lab.note": "A simplified model of the real thing — it runs entirely in your browser.",
     "lab.nodeHandheld": "Handheld",
     "lab.nodeHandheldSub": "Android · Room",
@@ -198,7 +198,6 @@ const translations = {
     "demo.migration.title": "Try it: ship a Room schema migration",
     "demo.migration.body": "Handhelds in stores sit on different schema versions. Ship v4 and watch each device run only the migrations it is missing — without losing a row.",
     "demo.migration.ship": "Ship release v4",
-    "demo.migration.reset": "Reset devices",
     "demo.migration.device": "Store {n}",
     "demo.migration.idle": "{n} of {total} devices need the update",
     "demo.migration.done": "{total} of {total} devices on v4 · {rows} rows kept",
@@ -281,7 +280,7 @@ const translations = {
     "pt.decisionsTitle": "engineering decisions",
     "pt.nextTitle": "what's next",
     "pt.mockupLabel": "PaceTasks today screen, interactive",
-    "pt.mockupHint": "Try it: tap a task to finish it, or type a new one.",
+    "pt.mockupHint": "Move your mouse over the phone to watch it work, or tap a task to finish it.",
     "pt.newTaskMeta": "Anytime · new",
     "pt.cta": "View the code on GitHub",
   },
@@ -412,7 +411,7 @@ const translations = {
     "lab.titleStart": "Segui una vendita",
     "lab.titleAccent": "dalla scansione allo scontrino.",
     "lab.lede":
-      "Un modello interattivo e semplificato dello stack su cui lavoro ogni giorno: un palmare Android che continua a vendere anche offline, una coda RabbitMQ, un servizio .NET che non salva mai due volte lo stesso messaggio e una stampante fiscale in fondo alla catena. Scansiona qualche articolo, chiudi la vendita, poi spegni il Wi-Fi.",
+      "Un modello interattivo e semplificato dello stack su cui lavoro ogni giorno: un palmare Android che continua a vendere anche offline, una coda RabbitMQ, un servizio .NET che non salva mai due volte lo stesso messaggio e una stampante fiscale in fondo alla catena. Passa il mouse sopra per vedere una vendita, una vendita offline e un nuovo invio — oppure guidala tu con i pulsanti.",
     "lab.note": "Un modello semplificato della realtà — gira interamente nel tuo browser.",
     "lab.nodeHandheld": "Palmare",
     "lab.nodeHandheldSub": "Android · Room",
@@ -466,7 +465,6 @@ const translations = {
     "demo.migration.title": "Prova: rilascia una migrazione di schema Room",
     "demo.migration.body": "I palmari nei negozi sono su versioni di schema diverse. Rilascia la v4 e guarda ogni dispositivo eseguire solo le migrazioni che gli mancano — senza perdere una riga.",
     "demo.migration.ship": "Rilascia la v4",
-    "demo.migration.reset": "Ripristina dispositivi",
     "demo.migration.device": "Negozio {n}",
     "demo.migration.idle": "{n} dispositivi su {total} da aggiornare",
     "demo.migration.done": "{total} dispositivi su {total} sulla v4 · {rows} righe conservate",
@@ -549,7 +547,7 @@ const translations = {
     "pt.decisionsTitle": "scelte tecniche",
     "pt.nextTitle": "prossimi passi",
     "pt.mockupLabel": "Schermata Oggi di PaceTasks, interattiva",
-    "pt.mockupHint": "Prova: tocca un'attività per completarla o scrivine una nuova.",
+    "pt.mockupHint": "Passa il mouse sul telefono per vederlo in azione, o tocca un'attività per completarla.",
     "pt.newTaskMeta": "Quando vuoi · nuova",
     "pt.cta": "Vedi il codice su GitHub",
   }
@@ -868,6 +866,7 @@ const beyondItems = [
   {
     id: "bruno",
     icon: "paw",
+    avatar: "assets/bruno/bruno-avatar.webp",
     wide: true,
     demo: "treat",
     title: { en: "Bruno", it: "Bruno" },
@@ -884,9 +883,9 @@ const beyondItems = [
       { src: "assets/beyond/bruno-reviewer.webp", position: "50% 70%", caption: { en: "Senior code reviewer — approves every PR by falling asleep on it.", it: "Senior code reviewer — approva ogni PR addormentandosi sopra." } },
       { src: "assets/beyond/bruno-standup.webp", position: "50% 45%", caption: { en: "Daily stand-up: never late, always on the table.", it: "Daily stand-up: mai in ritardo, sempre sul tavolo." } },
       { src: "assets/beyond/bruno-puppy.webp", position: "50% 45%", caption: { en: "Bruno v0.1 — the puppy build, chocolate edition.", it: "Bruno v0.1 — la build cucciolo, edizione cioccolato." } },
-      { src: "assets/beyond/bruno-tests.webp", position: "50% 45%", caption: { en: "Status: all tests passing.", it: "Stato: tutti i test passano." } },
+      { src: "assets/beyond/bruno-tests.webp", position: "50% 45%", caption: { en: "Status: all tests passing. Treats pending.", it: "Stato: tutti i test passano. Biscottini in attesa." } },
       { src: "assets/beyond/bruno-monday.webp", position: "40% 50%", caption: { en: "Monday mornings, accurately.", it: "Il lunedì mattina, in modo accurato." } },
-      { src: "assets/beyond/bruno-weekend.webp", position: "50% 70%", caption: { en: "Weekend mode: on.", it: "Modalità weekend: attiva." } }
+      { src: "assets/beyond/bruno-weekend.webp", position: "50% 70%", caption: { en: "Weekend mode: on. Notifications: off.", it: "Modalità weekend: attiva. Notifiche: spente." } }
     ]
   },
   {
@@ -1095,7 +1094,12 @@ const pacetasksCaseStudy = {
       { title: { en: "Portfolio: add case study", it: "Portfolio: aggiungere case study" }, meta: { en: "After work · 18:30", it: "Dopo il lavoro · 18:30" }, category: "personal", focus: true },
       { title: { en: "Pay the electricity bill", it: "Pagare la bolletta" }, meta: { en: "Anytime · 5 min", it: "Quando vuoi · 5 min" }, category: "home", done: true }
     ],
-    tabs: { en: ["Tasks", "Stats", "Settings"], it: ["Attività", "Statistiche", "Impostazioni"] }
+    tabs: { en: ["Tasks", "Stats", "Settings"], it: ["Attività", "Statistiche", "Impostazioni"] },
+    // Typed into the quick-add bar when the mouse arrives on the phone.
+    demoTasks: {
+      en: ["Call the bank", "Walk Bruno", "Water the plants", "Book a haircut"],
+      it: ["Chiamare la banca", "Portare fuori Bruno", "Annaffiare le piante", "Prenotare il parrucchiere"]
+    }
   },
   features: [
     {

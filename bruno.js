@@ -1,9 +1,9 @@
-// Bruno, Bilge's dog, trots after the mouse (or to where you tap), sits when it stops and naps when you idle.
-// Depends on content.js (translations, brunoLines) and script.js (t, el, icon, localize, prefersReducedMotion).
+// Bruno, Bilge's dog, hops after the mouse (or to where you tap), sits when it stops and naps when you idle.
+// Depends on content.js (translations, brunoLines) and script.js (t, el, localize, prefersReducedMotion).
 
 (() => {
   const STORAGE_KEY = "portfolioBruno";
-  const SIZE = { width: 80, height: 60 };
+  const SIZE = { width: 72, height: 76 };
   const CONFIG = {
     maxSpeed: 520, // px/s
     acceleration: 7, // how quickly he catches up, per second
@@ -11,52 +11,18 @@
     sleepAfterMs: 9000,
     bubbleMs: 2200,
     chatChance: 0.3,
-    trailOffsetX: 54,
+    trailOffsetX: 52,
     trailOffsetY: 14,
     edgeMargin: 36,
     bubbleEdge: 90
   };
 
-  // Fur colours sampled from Bruno's photos: caramel-grey curls, darker ears, black nose.
-  const SPRITE = `
-    <svg class="bruno-sprite" viewBox="0 0 64 48" aria-hidden="true">
-      <g class="bruno-tail">
-        <circle cx="11" cy="20" r="4.6" fill="#b49a86" />
-        <circle cx="8.5" cy="17" r="3.4" fill="#c9b3a1" />
-        <circle cx="13.5" cy="23.5" r="3.6" fill="#a58b78" />
-      </g>
-      <rect class="bruno-leg leg-back-far" x="16" y="29" width="5.5" height="13" rx="2.8" fill="#8c705e" />
-      <rect class="bruno-leg leg-front-far" x="37" y="29" width="5.5" height="13" rx="2.8" fill="#8c705e" />
-      <g class="bruno-body">
-        <circle cx="20" cy="26" r="8.5" fill="#a58b78" />
-        <circle cx="29" cy="24.5" r="9.5" fill="#a58b78" />
-        <circle cx="37" cy="26" r="8.5" fill="#a58b78" />
-        <circle cx="18" cy="22" r="3.2" fill="#c9b3a1" />
-        <circle cx="26" cy="19" r="3.4" fill="#c9b3a1" />
-        <circle cx="33" cy="20" r="3" fill="#c9b3a1" />
-        <circle cx="23" cy="29" r="2.6" fill="#b49a86" />
-        <circle cx="31" cy="30" r="2.8" fill="#b49a86" />
-      </g>
-      <rect class="bruno-leg leg-back-near" x="21" y="30" width="6" height="13" rx="3" fill="#a58b78" />
-      <rect class="bruno-leg leg-front-near" x="41" y="30" width="6" height="13" rx="3" fill="#a58b78" />
-      <g class="bruno-head">
-        <path d="M37 25c3 2.4 7 2.6 10 .6" stroke="#c2566b" stroke-width="2.6" fill="none" stroke-linecap="round" />
-        <circle cx="45" cy="27.2" r="1.5" fill="#f3c9cf" />
-        <circle cx="46" cy="15.5" r="9.5" fill="#a58b78" />
-        <circle cx="41.5" cy="8" r="4.6" fill="#c9b3a1" />
-        <circle cx="47.5" cy="6.2" r="4.8" fill="#c9b3a1" />
-        <circle cx="53" cy="9" r="4" fill="#b49a86" />
-        <ellipse cx="39.5" cy="18.5" rx="4.6" ry="7.5" fill="#7d6454" />
-        <ellipse cx="54.5" cy="19.5" rx="6.2" ry="5" fill="#c9b3a1" />
-        <circle cx="59.6" cy="18" r="2.3" fill="#241418" />
-        <g class="bruno-eye-open">
-          <circle cx="50" cy="13.6" r="1.8" fill="#241418" />
-          <circle cx="50.6" cy="13" r="0.55" fill="#fbe4d8" />
-        </g>
-        <path class="bruno-eye-closed" d="M48.3 14c1 .9 2.4.9 3.4 0" stroke="#241418" stroke-width="1.2" fill="none" stroke-linecap="round" />
-        <ellipse class="bruno-tongue" cx="56.5" cy="24.5" rx="2" ry="2.8" fill="#e07a8a" />
-      </g>
-    </svg>`;
+  // Photo stickers of the real Bruno: sitting (awake, also used while he hops along) and lying down (napping).
+  const POSES = [
+    { mood: "awake", src: "assets/bruno/bruno-sit.webp" },
+    { mood: "nap", src: "assets/bruno/bruno-nap.webp" }
+  ];
+  const AVATAR = "assets/bruno/bruno-avatar.webp";
 
   const isFinePointer = window.matchMedia("(pointer: fine)").matches;
   const state = {
@@ -141,7 +107,8 @@
 
   function render() {
     ui.root.style.transform = `translate3d(${state.x - SIZE.width / 2}px, ${state.y - SIZE.height}px, 0)`;
-    ui.root.classList.toggle("is-left", state.facing < 0);
+    // The photo faces left, so he is mirrored while heading right.
+    ui.root.classList.toggle("is-flipped", state.facing > 0);
     // Keep the speech bubble on screen when Bruno is close to an edge.
     ui.root.classList.toggle("bubble-start", state.x < CONFIG.bubbleEdge);
     ui.root.classList.toggle("bubble-end", state.x > window.innerWidth - CONFIG.bubbleEdge);
@@ -217,14 +184,20 @@
   }
 
   function renderToggle() {
-    ui.toggle.replaceChildren(icon("paw"), el("span", { text: t("bruno.toggle") }), el("span", { className: "bruno-toggle-dot", "aria-hidden": "true" }));
+    ui.toggle.replaceChildren(
+      el("img", { className: "bruno-toggle-avatar", src: AVATAR, alt: "", width: "26", height: "26" }),
+      el("span", { text: t("bruno.toggle") }),
+      el("span", { className: "bruno-toggle-dot", "aria-hidden": "true" })
+    );
     applyEnabled();
   }
 
   // ---------- boot ----------
 
-  ui.root.innerHTML = SPRITE;
-  ui.root.append(ui.bubble);
+  ui.root.append(
+    el("div", { className: "bruno-sprite" }, POSES.map((pose) => el("img", { className: `bruno-pose pose-${pose.mood}`, src: pose.src, alt: "", draggable: "false" }))),
+    ui.bubble
+  );
   ui.root.dataset.mood = state.mood;
   document.body.append(ui.root, ui.toggle);
   render();
