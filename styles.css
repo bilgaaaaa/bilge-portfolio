@@ -3123,6 +3123,16 @@ button.pt-task:focus-visible {
 
 /* ---------- personal: portrait releases ---------- */
 
+.hero-photo {
+  position: absolute;
+  inset: 0;
+}
+
+/* A slightly smaller portrait keeps the floating cards on its edges, away from the face. */
+.portrait-stack .portrait {
+  width: 74%;
+}
+
 .portrait-stack {
   position: absolute;
   inset: 0;
@@ -3259,17 +3269,27 @@ button.pt-task:focus-visible {
 
 .photo-stack {
   position: relative;
+  display: flex;
+  flex-direction: column;
   margin: -22px -22px 18px;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: var(--plum-800);
   cursor: pointer;
 }
 
+.photo-frame {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--plum-800);
+}
+
 .beyond-card-wide .photo-stack {
-  aspect-ratio: auto;
-  min-height: 340px;
   margin: -22px 0 -22px -22px;
+}
+
+.beyond-card-wide .photo-frame {
+  flex: 1;
+  aspect-ratio: auto;
+  min-height: 320px;
 }
 
 .photo-stack img {
@@ -3289,16 +3309,14 @@ button.pt-task:focus-visible {
 }
 
 .photo-caption {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  left: 12px;
-  padding: 7px 11px;
-  border: 1px solid var(--glass-border);
-  border-radius: 10px;
-  background: rgba(25, 0, 25, 0.82);
+  min-height: 3.4em;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--glass-border);
+  background: rgba(25, 0, 25, 0.55);
   color: var(--cream-100);
-  font-size: 0.74rem;
+  font-family: var(--font-serif);
+  font-size: 0.86rem;
+  font-style: italic;
   line-height: 1.4;
 }
 
@@ -3945,9 +3963,12 @@ body.game-active .bruno-toggle {
   }
 
   .beyond-card-wide .photo-stack {
+    margin: -22px -22px 18px;
+  }
+
+  .beyond-card-wide .photo-frame {
     aspect-ratio: 4 / 3;
     min-height: 0;
-    margin: -22px -22px 18px;
   }
 }
 
@@ -3960,14 +3981,6 @@ body.game-active .bruno-toggle {
     grid-column: auto;
   }
 
-  /* The focus card is hidden on phones, so release notes take its corner, clear of the face. */
-  .card-release {
-    top: auto;
-    right: 0;
-    bottom: 4%;
-    width: 150px;
-  }
-
   .release-note {
     font-size: 0.74rem;
   }
@@ -3975,5 +3988,47 @@ body.game-active .bruno-toggle {
   .bruno-toggle {
     right: 14px;
     bottom: 14px;
+  }
+}
+
+/* ---------- personal: hero cards below the photo on small screens ---------- */
+
+@media (max-width: 1100px) {
+  .hero-visual {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    aspect-ratio: auto;
+  }
+
+  .hero-photo {
+    position: relative;
+    grid-column: 1 / -1;
+    aspect-ratio: 1 / 1.02;
+  }
+
+  .portrait-stack .portrait {
+    width: 82%;
+  }
+
+  .hero-visual .float-card {
+    position: static;
+    width: auto;
+    animation: none;
+  }
+
+  .hero-visual .card-focus {
+    display: block;
+    grid-column: 1 / -1;
+  }
+
+  .card-focus .bullet-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px 16px;
+  }
+
+  .card-focus .bullet-list li + li {
+    margin-top: 0;
   }
 }

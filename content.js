@@ -955,8 +955,7 @@ const brunoLines = {
 const portraitLooks = [
   { src: "assets/portrait.webp", version: "v1.0", alt: { en: "Bilge in a blue cardigan and sunglasses", it: "Bilge con un cardigan azzurro e occhiali da sole" }, note: { en: "The original release.", it: "La versione originale." } },
   { src: "assets/looks/look-office.webp", version: "v1.1", alt: { en: "Bilge in a white office shirt making heart hands", it: "Bilge con una camicia bianca che fa un cuore con le mani" }, note: { en: "Office mode: shirt ironed, bugs not.", it: "Modalità ufficio: camicia stirata, bug no." } },
-  { src: "assets/looks/look-curly.webp", version: "v2.0", alt: { en: "Bilge with big curly hair and round glasses", it: "Bilge con grandi ricci e occhiali tondi" }, note: { en: "Curly mode enabled. Humidity is a feature.", it: "Modalità ricci attivata. L'umidità è una feature." } },
-  { src: "assets/looks/look-sunglasses.webp", version: "v2.1", alt: { en: "Bilge with long red hair and sunglasses", it: "Bilge con lunghi capelli rossi e occhiali da sole" }, note: { en: "Dark mode, now on my face too.", it: "Dark mode, ora anche sulla mia faccia." } },
+  { src: "assets/looks/look-sunglasses.webp", version: "v2.0", alt: { en: "Bilge with long red hair and sunglasses", it: "Bilge con lunghi capelli rossi e occhiali da sole" }, note: { en: "Dark mode, now on my face too.", it: "Dark mode, ora anche sulla mia faccia." } },
   { src: "assets/looks/look-round.webp", version: "v3.0", alt: { en: "Bilge smiling with new round glasses", it: "Bilge sorridente con nuovi occhiali tondi" }, note: { en: "New frames, same bugs.", it: "Montatura nuova, stessi bug." } },
   { src: "assets/looks/look-bruno.webp", version: "v4.0", alt: { en: "Bilge holding Bruno with a surprised face", it: "Bilge con Bruno in braccio e una faccia sorpresa" }, note: { en: "Breaking change: Bruno merged into main.", it: "Breaking change: Bruno è entrato in main." } }
 ];

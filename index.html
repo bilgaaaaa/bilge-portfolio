@@ -92,11 +92,14 @@
         </div>
 
         <div class="hero-visual">
-          <div class="moon" aria-hidden="true"></div>
-          <div class="orbit" aria-hidden="true"></div>
-          <!-- Portrait "releases": simulations.js swaps in the other looks from portraitLooks. -->
-          <div class="portrait-stack" data-portrait-stack>
-            <img class="portrait is-current" src="assets/portrait.webp" width="720" height="886" alt="Portrait of Bilge Ozcanbaz" data-i18n-attr="alt:hero.portraitAlt" />
+          <!-- On small screens the cards move below this photo so nothing covers it. -->
+          <div class="hero-photo">
+            <div class="moon" aria-hidden="true"></div>
+            <div class="orbit" aria-hidden="true"></div>
+            <!-- Portrait "releases": simulations.js swaps in the other looks from portraitLooks. -->
+            <div class="portrait-stack" data-portrait-stack>
+              <img class="portrait is-current" src="assets/portrait.webp" width="720" height="886" alt="Portrait of Bilge Ozcanbaz" data-i18n-attr="alt:hero.portraitAlt" />
+            </div>
           </div>
           <div class="glass-card float-card card-experience">
             <p class="card-label" data-i18n="hero.cardExperienceLabel">Experience</p>

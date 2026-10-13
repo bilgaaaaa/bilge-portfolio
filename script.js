@@ -249,18 +249,22 @@ function renderProcess() {
   );
 }
 
-// A stack of photos with a caption; simulations.js cycles through them on hover.
+// A stack of photos with the caption underneath, never on the photo; simulations.js shows the next one on hover.
 function photoStack(photos) {
   return el("figure", { className: "photo-stack", "data-photo-stack": "" }, [
-    ...photos.map((photo, index) =>
-      el("img", {
-        className: index === 0 ? "is-current" : "",
-        src: photo.src,
-        alt: localize(photo.caption),
-        loading: "lazy",
-        decoding: "async",
-        style: `object-position: ${photo.position}`
-      })
+    el(
+      "div",
+      { className: "photo-frame" },
+      photos.map((photo, index) =>
+        el("img", {
+          className: index === 0 ? "is-current" : "",
+          src: photo.src,
+          alt: localize(photo.caption),
+          loading: "lazy",
+          decoding: "async",
+          style: `object-position: ${photo.position}`
+        })
+      )
     ),
     el("figcaption", { className: "photo-caption", "aria-live": "polite", text: localize(photos[0].caption) })
   ]);
