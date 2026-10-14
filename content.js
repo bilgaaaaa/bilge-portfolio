@@ -1,5 +1,5 @@
 // Bilingual site content: UI strings, projects, experience and game text in one place.
-// Edit this file to update the portfolio; script.js and gamemode.js only render it.
+// Edit this file to update the portfolio; script.js, simulations.js and game-walk.js only render it.
 
 const profileLinks = {
   email: "ozcanbazbilge@gmail.com",
@@ -30,6 +30,7 @@ const translations = {
     "nav.about": "About",
     "nav.experience": "Experience",
     "nav.beyond": "Beyond code",
+    "nav.play": "Play",
     "nav.contact": "Contact",
     "nav.connect": "Let's connect",
     "nav.menu": "Open menu",
@@ -121,13 +122,12 @@ const translations = {
     "footer.credit": "Built in a few hours with AI (ChatGPT & Claude) — directed, reviewed and tested by me · Inspired by gazijarin.com",
     "footer.top": "Back to top",
 
-    "gameMode.toggle": "game mode",
-    "gameMode.toggleTitle": "Play with Bruno",
-    "gameMode.pick": "pick a game",
-    "gameMode.close": "Close the game",
+    "play.eyebrow": "Play",
+    "play.titleStart": "Take Bruno for a walk,",
+    "play.titleAccent": "in code.",
+    "play.lede": "A tiny puzzle in Kotlin-style code: tap the commands, press Run and fix the bugs before Bruno gets his paws wet.",
 
     "walkGame.name": "Bruno's walk",
-    "walkGame.tagline": "Write a tiny program that walks Bruno to his treat.",
     "walkGame.level": "level {n} of {total}",
     "walkGame.levelButton": "Go to level {n}",
     "walkGame.hint1": "Tap walk() until Bruno reaches his treat, then press Run.",
@@ -147,7 +147,7 @@ const translations = {
     "walkGame.clear": "Clear",
     "walkGame.run": "Run",
     "walkGame.stop": "Stop",
-    "walkGame.keys": "Keys: ↑ walk · ← → turn · R repeat · Enter run · ⌫ undo",
+    "walkGame.keys": "Keyboard: click the game, then ↑ walk · ← → turn · R repeat · Enter run · ⌫ undo",
     "walkGame.empty": "Write some code first: tap walk().",
     "walkGame.passed": "Build passed ✓ Bruno got there in {steps} steps.",
     "walkGame.done": "All 5 levels green ✓ Bruno is officially a good boy.",
@@ -157,20 +157,6 @@ const translations = {
     "walkGame.shortMany": "Bruno stopped too early — {n} treats are still waiting.",
     "walkGame.next": "Next level",
     "walkGame.again": "Play again",
-
-    "runGame.name": "Bruno's run",
-    "runGame.tagline": "Run through Padova: jump over pigeons, bikes and puddles, grab the simit.",
-    "runGame.score": "score",
-    "runGame.best": "best",
-    "runGame.start": "Press space or tap to start",
-    "runGame.hint": "space / tap to jump · hold for a higher jump",
-    "runGame.paused": "Paused — press space or tap to go on",
-    "runGame.pigeon": "Bruno stopped to chase a pigeon",
-    "runGame.bike": "Bruno bumped into a bike",
-    "runGame.puddle": "Splash! Bruno found a puddle",
-    "runGame.result": "{score} points · best {best}",
-    "runGame.newBest": "New best: {score} points!",
-    "runGame.again": "Press space or tap to run again",
 
     "lab.eyebrow": "Live demo",
     "lab.titleStart": "Follow one sale",
@@ -323,6 +309,7 @@ const translations = {
     "nav.about": "Chi sono",
     "nav.experience": "Esperienza",
     "nav.beyond": "Oltre il codice",
+    "nav.play": "Gioca",
     "nav.contact": "Contatti",
     "nav.connect": "Parliamone",
     "nav.menu": "Apri menu",
@@ -414,13 +401,12 @@ const translations = {
     "footer.credit": "Costruito in poche ore con l'AI (ChatGPT e Claude) — guidata, revisionata e testata da me · Ispirato a gazijarin.com",
     "footer.top": "Torna su",
 
-    "gameMode.toggle": "modalità gioco",
-    "gameMode.toggleTitle": "Gioca con Bruno",
-    "gameMode.pick": "scegli un gioco",
-    "gameMode.close": "Chiudi il gioco",
+    "play.eyebrow": "Gioca",
+    "play.titleStart": "Porta Bruno a passeggio,",
+    "play.titleAccent": "con il codice.",
+    "play.lede": "Un piccolo puzzle in stile Kotlin: tocca i comandi, premi Esegui e correggi i bug prima che Bruno si bagni le zampe.",
 
     "walkGame.name": "La passeggiata di Bruno",
-    "walkGame.tagline": "Scrivi un piccolo programma che porta Bruno al suo biscottino.",
     "walkGame.level": "livello {n} di {total}",
     "walkGame.levelButton": "Vai al livello {n}",
     "walkGame.hint1": "Tocca walk() finché Bruno arriva al biscottino, poi premi Esegui.",
@@ -440,7 +426,7 @@ const translations = {
     "walkGame.clear": "Cancella",
     "walkGame.run": "Esegui",
     "walkGame.stop": "Ferma",
-    "walkGame.keys": "Tasti: ↑ cammina · ← → gira · R repeat · Invio esegui · ⌫ annulla",
+    "walkGame.keys": "Tastiera: clicca sul gioco, poi ↑ cammina · ← → gira · R repeat · Invio esegui · ⌫ annulla",
     "walkGame.empty": "Prima scrivi un po' di codice: tocca walk().",
     "walkGame.passed": "Build superata ✓ Bruno è arrivato in {steps} passi.",
     "walkGame.done": "Tutti e 5 i livelli verdi ✓ Bruno è ufficialmente un bravo cane.",
@@ -450,20 +436,6 @@ const translations = {
     "walkGame.shortMany": "Bruno si è fermato troppo presto — {n} biscottini lo aspettano ancora.",
     "walkGame.next": "Livello successivo",
     "walkGame.again": "Gioca ancora",
-
-    "runGame.name": "La corsa di Bruno",
-    "runGame.tagline": "Corri per Padova: salta piccioni, bici e pozzanghere, prendi i simit.",
-    "runGame.score": "punti",
-    "runGame.best": "record",
-    "runGame.start": "Premi spazio o tocca per partire",
-    "runGame.hint": "spazio / tocco per saltare · tieni premuto per saltare più in alto",
-    "runGame.paused": "In pausa — premi spazio o tocca per continuare",
-    "runGame.pigeon": "Bruno si è fermato a inseguire un piccione",
-    "runGame.bike": "Bruno ha sbattuto contro una bici",
-    "runGame.puddle": "Splash! Bruno ha trovato una pozzanghera",
-    "runGame.result": "{score} punti · record {best}",
-    "runGame.newBest": "Nuovo record: {score} punti!",
-    "runGame.again": "Premi spazio o tocca per correre ancora",
 
     "lab.eyebrow": "Demo live",
     "lab.titleStart": "Segui una vendita",
@@ -923,8 +895,8 @@ const beyondItems = [
     demo: "treat",
     title: { en: "Bruno", it: "Bruno" },
     description: {
-      en: "My dog, my most loyal code reviewer and the reason I take my breaks. Open game mode to code his walk or run with him through Padova.",
-      it: "Il mio cane, il mio code reviewer più fedele e il motivo per cui faccio le pause. Apri la modalità gioco per programmare la sua passeggiata o correre con lui per Padova."
+      en: "My dog, my most loyal code reviewer and the reason I take my breaks. Take him for a walk in code, just below.",
+      it: "Il mio cane, il mio code reviewer più fedele e il motivo per cui faccio le pause. Portalo a passeggio con il codice, qui sotto."
     },
     facts: [
       { label: { en: "Role", it: "Ruolo" }, value: { en: "Chief Morale Officer", it: "Responsabile del morale" } },

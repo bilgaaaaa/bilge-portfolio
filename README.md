@@ -14,13 +14,11 @@ Plain HTML, CSS and JavaScript — no framework, no build step. Bilingual (EN / 
 | `content.js` | **All text and data** — translations, experience, projects, links |
 | `script.js` | Renders `content.js` per page (`<body data-page>`), language switch, typing greeting, tabs, menu, scroll reveal |
 | `simulations.js` | Interactive demos: hero feed and portrait "releases", the scan → RabbitMQ → .NET → SQL → printer live demo, project cards that play on hover, skill map, one demo per job, process run, beyond-code photos and demos, and the PaceTasks phone |
-| `gamemode.js` | Game mode menu: the Bruno button lists his games, starts one and closes it with Escape (text in `gameMode.*` keys) |
-| `game-walk.js` | Bruno's walk: a coding puzzle where Kotlin-style commands (`walk`, `turnLeft`, `turnRight`, `repeat`) walk Bruno to his treats over 5 levels (text in `walkGame.*`) |
-| `game-run.js` | Bruno's run: an endless runner past Padova's skyline; jump over pigeons, bikes and puddles, grab simit; best score kept on the device (text in `runGame.*`) |
+| `game-walk.js` | Play section: Bruno's walk, a coding puzzle in the page where Kotlin-style commands (`walk`, `turnLeft`, `turnRight`, `repeat`) walk Bruno to his treats over 5 levels (text in `play.*` and `walkGame.*`) |
 | `styles.css` | Plum palette tokens (`--plum-*`, `--rose-300`, `--cream-100`), glass components and layout |
 | `assets/portrait.webp` | Hero portrait (background removed, colour-graded into the palette) |
 | `assets/looks/` | Other portrait looks shown by the "release notes" card, cut out and graded the same way |
-| `assets/bruno/` | Bruno's sitting sticker for the games and his round avatar, cut out from his photos |
+| `assets/bruno/` | Bruno's sitting sticker for the walk game and his round avatar, cut out from his photos |
 | `assets/beyond/` | Bruno and cooking photos for Beyond code (web size, no location data, screens blurred) |
 | `assets/arch.svg` | Archway illustration used in the process and contact sections |
 | `assets/icons.svg` | Shared icon sprite (`assets/icons.svg#icon-<name>`) |
@@ -36,7 +34,7 @@ Almost every change happens in `content.js`: every text entry has an `en` and `i
 - Simulation text → the `lab.*`, `demo.*`, `skills.*`, `process.*` and `beyond.*` keys; simulation data → `labProducts`, `chartStores`, `invoiceSteps`, `skillGroups`, `heroTicker`, `beyondCards`.
 - New skill → add it to a group in `skillGroups` with the experience/project ids it was used in (`usedIn`).
 - Job demo → set `demo` on an `experience` entry (`migration`, `invoice`, `credit`, `tests`).
-- Portrait looks → `portraitLooks` (version, release note, alt text); Bruno's treat replies → `brunoTreatLines`; game texts → the `gameMode.*`, `walkGame.*` and `runGame.*` keys.
+- Portrait looks → `portraitLooks` (version, release note, alt text); Bruno's treat replies → `brunoTreatLines`; game texts → the `play.*` and `walkGame.*` keys.
 - Beyond code cards → `beyondItems`; give a card `photos` (with `caption` and `position`) to show a photo stack.
 - PaceTasks page text → `pacetasksCaseStudy` and the `pt.*` keys in `translations`.
 - Profile photo → replace `assets/profile.jpg` and `assets/profile.webp` (square, 640×640).

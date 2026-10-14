@@ -1547,191 +1547,23 @@ main {
   font-size: 0.72rem;
 }
 
-/* ---------- game mode ---------- */
-
-.game-mode {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  z-index: 60;
-}
-
-/* While a game runs it has its own close button, so the launcher steps aside. */
-body.game-active .game-mode {
-  visibility: hidden;
-}
-
-.game-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 5px 16px 5px 5px;
-  border: 1px solid var(--glass-border);
-  border-radius: 999px;
-  background: rgba(25, 0, 25, 0.75);
-  color: var(--text-muted);
-  font: inherit;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  cursor: pointer;
-  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
-}
-
-.game-toggle:hover,
-.game-toggle[aria-expanded="true"] {
-  border-color: var(--accent);
-  color: var(--text);
-}
-
-/* Bruno's face on the button: he is the one who plays. */
-.game-toggle-avatar {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px rgba(223, 182, 178, 0.5);
-}
-
-.game-toggle-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--text-soft);
-  transition: background-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
-}
-
-.game-toggle[aria-expanded="true"] .game-toggle-dot {
-  background: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
-}
-
-.game-menu {
-  position: absolute;
-  bottom: calc(100% + 10px);
-  left: 0;
-  width: min(310px, calc(100vw - 28px));
-  padding: 14px;
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-small);
-  background: rgba(25, 0, 25, 0.98);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-.game-menu-title {
-  margin-bottom: 8px;
-  padding-left: 12px;
-  color: var(--accent);
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.game-menu-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  background: none;
-  color: var(--text);
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-  transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
-}
-
-.game-menu-item:hover,
-.game-menu-item:focus-visible {
-  border-color: rgba(223, 182, 178, 0.35);
-  background: rgba(82, 43, 91, 0.35);
-}
-
-.game-menu-item .icon {
-  flex: none;
-  width: 20px;
-  height: 20px;
-  margin-top: 3px;
-  color: var(--accent);
-}
-
-.game-menu-name {
-  display: block;
-  font-family: var(--font-serif);
-  font-size: 1.02rem;
-  font-style: italic;
-}
-
-.game-menu-desc {
-  display: block;
-  margin-top: 2px;
-  color: var(--text-muted);
-  font-size: 0.76rem;
-  line-height: 1.45;
-}
-
-/* Close button shared by both games. */
-.game-close {
-  display: grid;
-  place-items: center;
-  flex: none;
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--glass-border);
-  border-radius: 50%;
-  background: rgba(43, 18, 76, 0.5);
-  color: var(--text);
-  font: inherit;
-  font-size: 1.25rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: border-color 0.2s var(--ease);
-}
-
-.game-close:hover {
-  border-color: var(--accent);
-}
-
-/* ---------- game: Bruno's walk (coding puzzle) ---------- */
-
-.walk-game {
-  width: min(780px, calc(100vw - 24px));
-  max-width: none;
-  max-height: calc(100dvh - 24px);
-  padding: 22px 24px;
-  overflow-y: auto;
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius);
-  background: linear-gradient(160deg, var(--plum-800), var(--plum-900));
-  color: var(--text);
-  box-shadow: var(--shadow);
-}
+/* ---------- play: Bruno's walk (coding puzzle) ---------- */
 
 .walk-game:focus {
   outline: none;
 }
 
-.walk-game::backdrop {
-  background: rgba(10, 0, 12, 0.62);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+.walk-game:focus-visible {
+  outline: 2px solid rgba(223, 182, 178, 0.55);
+  outline-offset: 4px;
 }
 
 .walk-head {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
-}
-
-.walk-head > div:first-child {
-  margin-right: auto;
+  justify-content: space-between;
+  gap: 10px 16px;
 }
 
 .walk-eyebrow {
@@ -1740,14 +1572,6 @@ body.game-active .game-mode {
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-}
-
-.walk-title {
-  margin: 2px 0 0;
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-style: italic;
-  font-weight: 400;
 }
 
 .walk-levels {
@@ -1788,12 +1612,11 @@ body.game-active .game-mode {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   gap: 20px;
-  align-items: start;
 }
 
 /* The park: a grid of tiles; treats and Bruno sit on top, placed through --x and --y. */
 .walk-board {
-  --tile: 46px;
+  --tile: 50px;
   position: relative;
   display: grid;
   grid-template-columns: repeat(var(--columns), var(--tile));
@@ -1918,16 +1741,17 @@ body.game-active .game-mode {
   animation: walk-heart 0.8s var(--ease) forwards;
 }
 
+/* The code panel takes the park's height and scrolls once a program gets longer. */
 .walk-code-panel {
   display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
   gap: 8px;
   min-width: 0;
+  contain: size;
 }
 
 .walk-code {
   position: relative;
-  min-height: 210px;
-  max-height: 290px;
   padding: 12px 8px;
   overflow-y: auto;
   border: 1px solid var(--glass-border);
@@ -2109,19 +1933,6 @@ body.game-active .game-mode {
 
 /* Phones: the park above the code, bigger buttons. */
 @media (max-width: 680px) {
-  .walk-game {
-    padding: 18px 16px;
-  }
-
-  .walk-head {
-    flex-wrap: wrap;
-  }
-
-  .walk-levels {
-    order: 3;
-    width: 100%;
-  }
-
   .walk-body {
     grid-template-columns: 1fr;
     justify-items: center;
@@ -2133,6 +1944,7 @@ body.game-active .game-mode {
 
   .walk-code-panel {
     width: 100%;
+    contain: none;
   }
 
   .walk-code {
@@ -2147,147 +1959,6 @@ body.game-active .game-mode {
 
   .walk-actions .button {
     flex: 1;
-  }
-}
-
-/* ---------- game: Bruno's run (Padova runner) ---------- */
-
-/* A strip along the bottom of the screen; the page above it stays usable. */
-.run-game {
-  position: fixed;
-  right: 12px;
-  bottom: 12px;
-  left: 12px;
-  z-index: 60;
-  overflow: hidden;
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius);
-  background: var(--plum-900);
-  box-shadow: var(--shadow);
-}
-
-.run-head {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 8px 10px 8px 18px;
-  border-bottom: 1px solid var(--glass-border);
-}
-
-.run-title {
-  margin-right: auto;
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  font-style: italic;
-}
-
-.run-score {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  color: var(--text-soft);
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.run-score strong {
-  min-width: 3ch;
-  color: var(--text);
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  letter-spacing: 0;
-}
-
-.run-stage {
-  position: relative;
-  height: 200px;
-  cursor: pointer;
-  touch-action: none;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.run-stage:focus {
-  outline: none;
-}
-
-.run-canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.run-message {
-  position: absolute;
-  top: 42%;
-  left: 50%;
-  display: grid;
-  gap: 4px;
-  max-width: calc(100% - 32px);
-  padding: 12px 20px;
-  border-radius: var(--radius-small);
-  background: rgba(25, 0, 25, 0.8);
-  text-align: center;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-.run-message[hidden] {
-  display: none;
-}
-
-.run-message-title {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-style: italic;
-}
-
-.run-message-sub {
-  color: var(--text-muted);
-  font-size: 0.84rem;
-}
-
-.run-message-hint {
-  color: var(--accent);
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-@media (max-width: 600px) {
-  .run-game {
-    right: 8px;
-    bottom: 8px;
-    left: 8px;
-  }
-
-  .run-head {
-    gap: 12px;
-    padding-left: 14px;
-  }
-
-  .run-title {
-    font-size: 0.95rem;
-  }
-
-  .run-stage {
-    height: 170px;
-  }
-
-  /* Narrow stage: the message moves right so it never covers Bruno. */
-  .run-message {
-    left: 62%;
-    width: min(230px, 60%);
-    padding: 8px 12px;
-  }
-
-  .run-message-title {
-    font-size: 1rem;
-  }
-
-  .run-message-sub {
-    font-size: 0.74rem;
   }
 }
 
@@ -2720,7 +2391,8 @@ body.game-active .game-mode {
 
 /* ---------- simulations: live demo ---------- */
 
-.lab-lede {
+.lab-lede,
+.play-lede {
   max-width: 760px;
   margin: -16px 0 32px;
   font-size: 0.95rem;
@@ -4156,11 +3828,6 @@ button.pt-task:focus-visible {
 
   .form-actions .button {
     flex: 1 1 100%;
-  }
-
-  .game-mode {
-    bottom: 14px;
-    left: 14px;
   }
 }
 

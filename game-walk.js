@@ -1,7 +1,10 @@
-// Bruno's walk: a coding puzzle where visitors write a tiny Kotlin-style program that walks Bruno to his treats.
-// Depends on content.js (translations) and script.js (t, el, icon, format). gamemode.js calls start(onExit) and stop().
+// Bruno's walk: a coding puzzle in the Play section where visitors write a tiny Kotlin-style program that walks Bruno to his treats.
+// Depends on content.js (translations) and script.js (t, el, icon, format). Keyboard shortcuts work while the game has focus.
 
-const brunoWalkGame = (() => {
+(() => {
+  const root = document.querySelector("[data-walk-game]");
+  if (!root) return;
+
   const STEP_MS = 360;
   const MAX_WALK = 9; // walk(n) stops growing at 9
   const MAX_LINES = 14; // keeps the code panel short on levels without their own limit
@@ -38,7 +41,7 @@ const brunoWalkGame = (() => {
     bruno: null, // { x, y, facing, angle, flipped }
     treats: [], // { x, y, eaten, node }
     status: null, // { key, vars, tone }, kept so it can be translated again
-    onExit: null
+    usingKeyboard: false // decides whether "Next level" takes focus after a win
   };
   const ui = {};
 
@@ -179,7 +182,7 @@ const brunoWalkGame = (() => {
       const outcome = applyStep(step);
       if (step.type === "walk") moves += 1;
       await wait(STEP_MS);
-      if (runId !== state.runId) return; // edited, stopped or closed meanwhile
+      if (runId !== state.runId) return; // edited or stopped meanwhile
       if (outcome !== "ok") return finish(outcome, step.line);
       if (state.treats.every((treat) => treat.eaten)) return finish("passed", step.line, moves);
     }
@@ -229,10 +232,10 @@ const brunoWalkGame = (() => {
       markLine(null, "is-passed");
       state.solved.add(state.levelIndex);
       renderLevels();
-      ui.bruno.animate([{ translate: "0 0" }, { translate: "0 -14px" }, { translate: "0 0" }, { translate: "0 -8px" }, { translate: "0 0" }], { duration: 700 });
+      hop();
       const isLast = state.levelIndex === LEVELS.length - 1;
       showStatus(isLast ? "walkGame.done" : "walkGame.passed", { steps: moves }, "success");
-      ui.status.querySelector("button")?.focus({ preventScroll: true });
+      if (state.usingKeyboard && root.contains(document.activeElement)) ui.status.querySelector("button")?.focus({ preventScroll: true });
       return;
     }
     if (result === "short") {
@@ -245,6 +248,7 @@ const brunoWalkGame = (() => {
   }
 
   function goToLevel(index) {
+    const hadFocus = root.contains(document.activeElement);
     stopRun();
     state.levelIndex = index;
     state.program = [];
@@ -253,7 +257,7 @@ const brunoWalkGame = (() => {
     renderLevels();
     renderTexts();
     edited();
-    if (ui.dialog.open) ui.dialog.focus({ preventScroll: true });
+    if (hadFocus) root.focus({ preventScroll: true });
   }
 
   // ---------- board ----------
@@ -315,6 +319,11 @@ const brunoWalkGame = (() => {
     ui.bruno.classList.toggle("is-flipped", bruno.flipped);
   }
 
+  // A happy little jump: when a level passes and when the mouse arrives on the park.
+  function hop() {
+    ui.bruno.animate([{ translate: "0 0" }, { translate: "0 -14px" }, { translate: "0 0" }, { translate: "0 -8px" }, { translate: "0 0" }], { duration: 700 });
+  }
+
   // A paw print on the tile Bruno just left, toes pointing the way he went.
   function leavePaw(x, y, facing) {
     const paw = icon("paw", "walk-paw");
@@ -366,7 +375,6 @@ const brunoWalkGame = (() => {
       "aria-label": format(t("walkGame.repeatTimes"), { n: command.times })
     });
     count.addEventListener("click", () => cycleTimes(command));
-    keepFocus(count);
     const rows = [codeRow(command.line, depth, [token("tok-fn", "repeat"), "(", count, ") {"])];
     command.body.forEach((inner) => rows.push(...commandRows(inner, depth + 1)));
     if (command === state.openLoop) rows.push(caretRow(depth + 1));
@@ -443,11 +451,10 @@ const brunoWalkGame = (() => {
   }
 
   function renderTexts() {
+    root.setAttribute("aria-label", t("walkGame.name"));
     ui.eyebrow.textContent = format(t("walkGame.level"), { n: state.levelIndex + 1, total: LEVELS.length });
-    ui.title.textContent = t("walkGame.name");
     ui.hint.textContent = t(`walkGame.hint${state.levelIndex + 1}`);
     ui.keys.textContent = t("walkGame.keys");
-    ui.close.setAttribute("aria-label", t("gameMode.close"));
     ui.board.setAttribute("aria-label", t("walkGame.board"));
     ui.code.setAttribute("aria-label", t("walkGame.code"));
     ui.undo.textContent = t("walkGame.undo");
@@ -456,7 +463,7 @@ const brunoWalkGame = (() => {
   }
 
   function renderTools() {
-    ui.dialog.classList.toggle("is-running", state.running);
+    root.classList.toggle("is-running", state.running);
     ui.commands.forEach(({ type, button }) => {
       button.hidden = (type === "repeat" && !level().loops) || (type === "close" && !state.openLoop);
       button.disabled = state.running || (type === "repeat" && Boolean(state.openLoop));
@@ -466,19 +473,11 @@ const brunoWalkGame = (() => {
     ui.run.textContent = t(state.running ? "walkGame.stop" : "walkGame.run");
   }
 
-  // ---------- dialog ----------
-
-  // Mouse clicks leave focus on the dialog, so Enter keeps meaning Run; keyboard users still tab to every button.
-  function keepFocus(button) {
-    button.addEventListener("mousedown", (event) => event.preventDefault());
-  }
+  // ---------- mount ----------
 
   function build() {
-    ui.dialog = el("dialog", { className: "walk-game", "aria-labelledby": "walkGameTitle", tabindex: "-1" });
     ui.eyebrow = el("p", { className: "walk-eyebrow" });
-    ui.title = el("h2", { className: "walk-title", id: "walkGameTitle" });
     ui.levels = el("div", { className: "walk-levels" });
-    ui.close = el("button", { type: "button", className: "game-close", text: "×" });
     ui.hint = el("p", { className: "walk-hint" });
     ui.board = el("div", { className: "walk-board", role: "img" });
     ui.code = el("div", { className: "walk-code" });
@@ -492,11 +491,12 @@ const brunoWalkGame = (() => {
     ui.clear = el("button", { type: "button", className: "button button-ghost button-small" });
     ui.run = el("button", { type: "button", className: "button button-primary button-small", "aria-keyshortcuts": "Enter" });
     ui.status = el("p", { className: "walk-status", role: "status", "aria-live": "polite" });
-    ui.keys = el("p", { className: "walk-keys" });
-    [...ui.commands.map(({ button }) => button), ui.undo, ui.clear, ui.run].forEach(keepFocus);
+    ui.keys = el("p", { className: "walk-keys", id: "walkGameKeys" });
 
-    ui.dialog.append(
-      el("header", { className: "walk-head" }, [el("div", {}, [ui.eyebrow, ui.title]), ui.levels, ui.close]),
+    root.tabIndex = 0;
+    root.setAttribute("aria-describedby", "walkGameKeys");
+    root.replaceChildren(
+      el("div", { className: "walk-head" }, [ui.eyebrow, ui.levels]),
       ui.hint,
       el("div", { className: "walk-body" }, [ui.board, el("div", { className: "walk-code-panel" }, [ui.code, ui.lines])]),
       el("div", { className: "walk-tools" }, [
@@ -506,45 +506,26 @@ const brunoWalkGame = (() => {
       ui.status,
       ui.keys
     );
-    document.body.append(ui.dialog);
 
     ui.undo.addEventListener("click", undo);
     ui.clear.addEventListener("click", clearProgram);
     ui.run.addEventListener("click", run);
-    ui.close.addEventListener("click", () => state.onExit?.());
-    // Escape closes through gamemode.js like every other game.
-    ui.dialog.addEventListener("cancel", (event) => {
-      event.preventDefault();
-      state.onExit?.();
+    ui.board.addEventListener("pointerenter", (event) => {
+      if (event.pointerType === "mouse" && !state.running) hop();
     });
   }
 
-  function start(onExit) {
-    state.onExit = onExit;
-    if (ui.dialog) {
-      renderLevels();
-      renderTexts();
-      edited();
-    } else {
-      build();
-      goToLevel(0);
-    }
-    ui.dialog.showModal();
-    ui.dialog.focus({ preventScroll: true });
-  }
-
-  function stop() {
-    state.onExit = null;
-    if (!ui.dialog) return;
-    edited();
-    ui.dialog.close();
-  }
-
-  // ---------- keyboard & language ----------
+  // Mouse clicks keep focus on the game itself, so the keys below keep working and Enter keeps meaning Run.
+  root.addEventListener("mousedown", (event) => {
+    state.usingKeyboard = false;
+    if (event.target.closest("button")) event.preventDefault();
+    root.focus({ preventScroll: true });
+  });
 
   // ↑ walk, ← → turn, R repeat, } close the block, Backspace undo, Enter run.
-  document.addEventListener("keydown", (event) => {
-    if (!state.onExit || event.metaKey || event.ctrlKey || event.altKey) return;
+  root.addEventListener("keydown", (event) => {
+    state.usingKeyboard = true;
+    if (event.metaKey || event.ctrlKey || event.altKey) return;
     if (COMMAND_KEYS[event.code]) {
       event.preventDefault();
       addCommand(COMMAND_KEYS[event.code]);
@@ -554,14 +535,13 @@ const brunoWalkGame = (() => {
     } else if (event.key === "Backspace") {
       event.preventDefault();
       undo();
-    } else if (event.key === "Enter" && !event.target.closest?.("button")) {
+    } else if (event.key === "Enter" && !event.target.closest("button")) {
       event.preventDefault();
       run();
     }
   });
 
   document.addEventListener("portfolio:languagechange", () => {
-    if (!ui.dialog) return;
     renderTexts();
     renderLevels();
     renderCode();
@@ -569,5 +549,6 @@ const brunoWalkGame = (() => {
     renderStatus();
   });
 
-  return { start, stop };
+  build();
+  goToLevel(0);
 })();

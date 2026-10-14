@@ -24,8 +24,6 @@
     <script src="content.js" defer></script>
     <script src="script.js" defer></script>
     <script src="game-walk.js" defer></script>
-    <script src="game-run.js" defer></script>
-    <script src="gamemode.js" defer></script>
     <script src="simulations.js" defer></script>
   </head>
   <body data-page="home">
@@ -49,6 +47,7 @@
           <a href="#about" data-i18n="nav.about">About</a>
           <a href="#experience" data-i18n="nav.experience">Experience</a>
           <a href="#beyond" data-i18n="nav.beyond">Beyond code</a>
+          <a href="#play" data-i18n="nav.play">Play</a>
           <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
         <div class="language-switch" role="group" aria-label="Language selector" data-i18n-attr="aria-label:language.label">
@@ -241,6 +240,17 @@
         <ul class="beyond-grid" data-beyond-list></ul>
       </section>
 
+      <!-- Play: Bruno's walk, a small coding puzzle that lives in the page (game-walk.js). -->
+      <section class="section" id="play" aria-labelledby="playTitle">
+        <p class="eyebrow reveal" data-i18n="play.eyebrow">Play</p>
+        <h2 class="display section-title reveal" id="playTitle">
+          <span data-i18n="play.titleStart">Take Bruno for a walk,</span>
+          <em data-i18n="play.titleAccent">in code.</em>
+        </h2>
+        <p class="play-lede reveal" data-i18n="play.lede"></p>
+        <div class="glass-panel walk-game reveal" data-walk-game></div>
+      </section>
+
       <!-- Contact: archway art, direct channels and a message form that opens WhatsApp or email. -->
       <section class="section" id="contact" aria-labelledby="contactTitle">
         <div class="glass-panel contact-panel reveal">
@@ -300,6 +310,7 @@
           <a href="#experience" data-i18n="nav.experience">Experience</a>
           <a href="pacetasks.html">PaceTasks</a>
           <a href="#beyond" data-i18n="nav.beyond">Beyond code</a>
+          <a href="#play" data-i18n="nav.play">Play</a>
           <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
       </div>
@@ -313,31 +324,5 @@
         <a href="#top" data-i18n="footer.top">Back to top</a>
       </div>
     </footer>
-
-    <!-- Game mode: a menu of Bruno's games (gamemode.js, game-walk.js, game-run.js). -->
-    <div class="game-mode" data-game-mode>
-      <button class="game-toggle" type="button" aria-expanded="false" aria-controls="gameMenu" title="Play with Bruno" data-i18n-attr="title:gameMode.toggleTitle" data-game-toggle>
-        <img class="game-toggle-avatar" src="assets/bruno/bruno-avatar.webp" width="26" height="26" alt="" />
-        <span data-i18n="gameMode.toggle">game mode</span>
-        <span class="game-toggle-dot" aria-hidden="true"></span>
-      </button>
-      <div class="game-menu" id="gameMenu" data-game-menu hidden>
-        <p class="game-menu-title" data-i18n="gameMode.pick">pick a game</p>
-        <button class="game-menu-item" type="button" data-game-start="walk">
-          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-code" /></svg>
-          <span>
-            <span class="game-menu-name" data-i18n="walkGame.name">Bruno's walk</span>
-            <span class="game-menu-desc" data-i18n="walkGame.tagline">Write a tiny program that walks Bruno to his treat.</span>
-          </span>
-        </button>
-        <button class="game-menu-item" type="button" data-game-start="run">
-          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-paw" /></svg>
-          <span>
-            <span class="game-menu-name" data-i18n="runGame.name">Bruno's run</span>
-            <span class="game-menu-desc" data-i18n="runGame.tagline">Run through Padova: jump over pigeons, bikes and puddles, grab the simit.</span>
-          </span>
-        </button>
-      </div>
-    </div>
   </body>
 </html>
