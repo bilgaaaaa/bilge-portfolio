@@ -21,3 +21,14 @@ Source of truth for facts on the site: the September 2026 CV (EN/IT).
 - No customer names, ticket numbers or internal metrics from work projects.
 - Italian text uses feminine forms (sviluppatrice, sono arrivata, abituata).
 - Do not claim: senior/lead/architect titles, cloud expertise, PaceTasks as launched.
+- Positioning: a software developer (Android, backend, integrations); retail is the current job, not the whole profile.
+- Demos are simplified models (the live demo says so in its note): no real customer data, internal metrics or production rules; the credit calculator says it is not the bank's real policy. Don't use the word "simulated" in the UI.
+
+## Photos
+
+- Source: Bilge's Google Drive folder "Portfolio photos". Bruno and cooking photos are in `assets/beyond/`, portrait looks in `assets/looks/`.
+- Every photo is re-encoded without metadata (no GPS), resized for the web, and screens showing code are blurred.
+- Portrait looks are cut out with a hair-detail model and kept small enough that no card or text covers the face; on screens up to 1100px the hero cards sit below the photo. Captions sit under photos, never on them.
+- Removed on request: the curly-hair look, Bruno following the mouse, the jumping-on-text game (too close to gazijarin.com) and the floating game mode; Bruno's walk now lives in the page as the Play section.
+- Never use photos with other people, swimwear, party or alcohol shots, or anything showing work code, home address or documents.
+- Missing: no climbing, crochet or card-collection photos yet — those cards keep their illustrated demos until photos arrive.
