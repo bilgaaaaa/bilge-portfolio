@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="content.js" defer></script>
     <script src="script.js" defer></script>
+    <script src="game-walk.js" defer></script>
+    <script src="game-run.js" defer></script>
     <script src="gamemode.js" defer></script>
     <script src="simulations.js" defer></script>
   </head>
@@ -312,22 +314,29 @@
       </div>
     </footer>
 
-    <!-- Game mode: Bruno jumps across the page text to squash hidden bugs (gamemode.js). -->
+    <!-- Game mode: a menu of Bruno's games (gamemode.js, game-walk.js, game-run.js). -->
     <div class="game-mode" data-game-mode>
-      <div class="game-toggle-row">
-        <button class="game-toggle" type="button" aria-pressed="false" title="Play with Bruno: help him squash the bugs hidden on this page" data-i18n-attr="title:gameMode.toggleTitle" data-game-toggle>
-          <img class="game-toggle-avatar" src="assets/bruno/bruno-avatar.webp" width="26" height="26" alt="" />
-          <span data-i18n="gameMode.toggle">game mode</span>
-          <span class="game-toggle-dot" aria-hidden="true"></span>
+      <button class="game-toggle" type="button" aria-expanded="false" aria-controls="gameMenu" title="Play with Bruno" data-i18n-attr="title:gameMode.toggleTitle" data-game-toggle>
+        <img class="game-toggle-avatar" src="assets/bruno/bruno-avatar.webp" width="26" height="26" alt="" />
+        <span data-i18n="gameMode.toggle">game mode</span>
+        <span class="game-toggle-dot" aria-hidden="true"></span>
+      </button>
+      <div class="game-menu" id="gameMenu" data-game-menu hidden>
+        <p class="game-menu-title" data-i18n="gameMode.pick">pick a game</p>
+        <button class="game-menu-item" type="button" data-game-start="walk">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-code" /></svg>
+          <span>
+            <span class="game-menu-name" data-i18n="walkGame.name">Bruno's walk</span>
+            <span class="game-menu-desc" data-i18n="walkGame.tagline">Write a tiny program that walks Bruno to his treat.</span>
+          </span>
         </button>
-        <button class="game-info-button" type="button" aria-expanded="false" aria-controls="gameInfo" data-i18n-attr="aria-label:gameMode.info" aria-label="How to play" data-game-info-button hidden>i</button>
-      </div>
-      <div class="game-info" id="gameInfo" data-game-info hidden>
-        <p class="game-info-title" data-i18n="gameMode.howTo">how to play</p>
-        <p class="game-info-goal" data-i18n="gameMode.goal"></p>
-        <p class="game-info-row"><kbd>← →</kbd> <span data-i18n="gameMode.move">move</span></p>
-        <p class="game-info-row"><kbd>space</kbd> <span data-i18n="gameMode.jump">jump</span></p>
-        <p class="game-info-row"><kbd>scroll</kbd> <span data-i18n="gameMode.explore">explore the page</span></p>
+        <button class="game-menu-item" type="button" data-game-start="run">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-paw" /></svg>
+          <span>
+            <span class="game-menu-name" data-i18n="runGame.name">Bruno's run</span>
+            <span class="game-menu-desc" data-i18n="runGame.tagline">Run through Padova: jump over pigeons, bikes and puddles, grab the simit.</span>
+          </span>
+        </button>
       </div>
     </div>
   </body>

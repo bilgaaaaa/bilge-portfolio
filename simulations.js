@@ -21,10 +21,6 @@
 
   const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms * SPEED));
 
-  function format(template, vars = {}) {
-    return template.replace(/\{(\w+)\}/g, (match, key) => (key in vars ? vars[key] : match));
-  }
-
   function locale() {
     return currentLanguage === "it" ? "it-IT" : "en-IE";
   }

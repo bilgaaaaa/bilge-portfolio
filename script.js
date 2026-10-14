@@ -24,6 +24,11 @@ function t(key) {
   return translations[currentLanguage][key] ?? translations.en[key] ?? "";
 }
 
+// Fills {name} placeholders in a translated template; unknown names stay as they are.
+function format(template, vars = {}) {
+  return template.replace(/\{(\w+)\}/g, (match, key) => (key in vars ? vars[key] : match));
+}
+
 // Small element factory to keep rendering code readable; falsy children are skipped.
 function el(tag, options = {}, children = []) {
   const node = document.createElement(tag);
