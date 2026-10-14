@@ -1079,7 +1079,7 @@
     container.replaceChildren(card, el("div", { className: "demo-actions" }, [action]));
   }
 
-  // Bruno's card: every treat gets a reply, a heart on the photo and a happy jump from the Bruno following the mouse.
+  // Bruno's card: every treat gets a reply and a heart on the photo.
   function mountTreatDemo(container) {
     let treats = 0;
     const status = el("p", { className: "demo-status", "aria-live": "polite" });
@@ -1090,7 +1090,6 @@
       treats += 1;
       const lines = localize(brunoTreatLines);
       status.textContent = format(lines[Math.min(treats, lines.length) - 1], { n: treats });
-      document.dispatchEvent(new CustomEvent("bruno:treat"));
       if (!stack) return;
       const heart = el("span", { className: "heart-pop", "aria-hidden": "true" }, [icon("heart")]);
       heart.addEventListener("animationend", () => heart.remove());

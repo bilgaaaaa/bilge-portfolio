@@ -122,19 +122,21 @@ const translations = {
     "footer.top": "Back to top",
 
     "gameMode.toggle": "game mode",
+    "gameMode.toggleTitle": "Play with Bruno: help him squash the bugs hidden on this page",
     "gameMode.info": "How to play",
     "gameMode.howTo": "how to play",
     "gameMode.move": "move",
     "gameMode.jump": "jump",
     "gameMode.explore": "explore the page",
-    "gameMode.goal": "Squash the 5 bugs hiding on the page. Jump across the text — every heading and paragraph is a platform.",
+    "gameMode.goal": "Help Bruno squash the 5 bugs hiding on the page. Jump across the text — every heading and paragraph is a platform.",
+    "gameMode.hello": "woof! I'm Bruno",
     "gameMode.counter": "bugs",
-    "gameMode.fellTitle": "you fell",
+    "gameMode.fellTitle": "Bruno fell",
     "gameMode.fellSub": "the bugs got away",
     "gameMode.retry": "try again",
     "gameMode.retryHint": "or press space",
     "gameMode.wonTitle": "all bugs squashed",
-    "gameMode.wonSub": "5 of 5 fixed — ready to ship",
+    "gameMode.wonSub": "5 of 5 fixed — Bruno earned a treat",
     "gameMode.again": "play again",
     "gameMode.left": "Move left",
     "gameMode.right": "Move right",
@@ -253,12 +255,6 @@ const translations = {
     "beyond.bake.preheat": "Preheating to 180°C…",
     "beyond.bake.baking": "Baking… {n}%",
     "beyond.bake.done": "{build} passed: golden brown ✓",
-
-    "bruno.toggle": "Bruno",
-    "bruno.toggleOn": "Bruno is following you — click to send him to his bed",
-    "bruno.toggleOff": "Bring Bruno back",
-    "bruno.hello": "woof! I'm Bruno",
-    "bruno.treat": "♥ yum!",
 
     "pt.meta.title": "PaceTasks — case study | Bilge Ozcanbaz",
     "pt.meta.description": "PaceTasks: a task app for people with a fixed work schedule, built by Bilge Ozcanbaz with Expo, React Native, TypeScript and Supabase.",
@@ -389,19 +385,21 @@ const translations = {
     "footer.top": "Torna su",
 
     "gameMode.toggle": "modalità gioco",
+    "gameMode.toggleTitle": "Gioca con Bruno: aiutalo a schiacciare i bug nascosti in questa pagina",
     "gameMode.info": "Come si gioca",
     "gameMode.howTo": "come si gioca",
     "gameMode.move": "muoviti",
     "gameMode.jump": "salta",
     "gameMode.explore": "esplora la pagina",
-    "gameMode.goal": "Schiaccia i 5 bug nascosti nella pagina. Salta sul testo — ogni titolo e paragrafo è una piattaforma.",
+    "gameMode.goal": "Aiuta Bruno a schiacciare i 5 bug nascosti nella pagina. Salta sul testo — ogni titolo e paragrafo è una piattaforma.",
+    "gameMode.hello": "bau! sono Bruno",
     "gameMode.counter": "bug",
-    "gameMode.fellTitle": "Bilge è caduta",
+    "gameMode.fellTitle": "Bruno è caduto",
     "gameMode.fellSub": "i bug sono scappati",
     "gameMode.retry": "riprova",
     "gameMode.retryHint": "o premi spazio",
     "gameMode.wonTitle": "tutti i bug schiacciati",
-    "gameMode.wonSub": "5 su 5 risolti — pronto per il rilascio",
+    "gameMode.wonSub": "5 su 5 risolti — Bruno si è meritato un biscottino",
     "gameMode.again": "gioca ancora",
     "gameMode.left": "Vai a sinistra",
     "gameMode.right": "Vai a destra",
@@ -520,12 +518,6 @@ const translations = {
     "beyond.bake.preheat": "Preriscaldo a 180°C…",
     "beyond.bake.baking": "In forno… {n}%",
     "beyond.bake.done": "{build} superata: ben dorata ✓",
-
-    "bruno.toggle": "Bruno",
-    "bruno.toggleOn": "Bruno ti sta seguendo — clicca per mandarlo nella sua cuccia",
-    "bruno.toggleOff": "Richiama Bruno",
-    "bruno.hello": "bau! sono Bruno",
-    "bruno.treat": "♥ gnam!",
 
     "pt.meta.title": "PaceTasks — case study | Bilge Ozcanbaz",
     "pt.meta.description": "PaceTasks: un'app di attività per chi ha un orario di lavoro fisso, sviluppata da Bilge Ozcanbaz con Expo, React Native, TypeScript e Supabase.",
@@ -871,8 +863,8 @@ const beyondItems = [
     demo: "treat",
     title: { en: "Bruno", it: "Bruno" },
     description: {
-      en: "My dog, my most loyal code reviewer and the reason I take my breaks. He's the one following your mouse around this page.",
-      it: "Il mio cane, il mio code reviewer più fedele e il motivo per cui faccio le pause. È lui che segue il tuo mouse in questa pagina."
+      en: "My dog, my most loyal code reviewer and the reason I take my breaks. Turn on game mode and he'll hunt down the bugs on this page.",
+      it: "Il mio cane, il mio code reviewer più fedele e il motivo per cui faccio le pause. Attiva la modalità gioco e darà la caccia ai bug di questa pagina."
     },
     facts: [
       { label: { en: "Role", it: "Ruolo" }, value: { en: "Chief Morale Officer", it: "Responsabile del morale" } },
@@ -945,10 +937,10 @@ const brunoTreatLines = {
   it: ["Bau! Grazie.", "Un altro? Dice di sì.", "Biscottino n. {n} — ora sei ufficialmente il suo preferito.", "Biscottino n. {n}. Direbbe ancora di sì. Dice sempre di sì."]
 };
 
-// Little speech bubbles Bruno shows when he sits down next to the mouse.
+// What Bruno says in game mode each time he squashes a bug.
 const brunoLines = {
-  en: ["woof!", "*sniff sniff*", "treat?", "is that a bug?", "ship it!", "walk later?"],
-  it: ["bau!", "*sniff sniff*", "biscottino?", "è un bug?", "rilascialo!", "passeggiata dopo?"]
+  en: ["woof! got one", "*sniff sniff* … squashed", "bug fixed!", "ship it!", "treat now?", "who's a good debugger?"],
+  it: ["bau! preso", "*sniff sniff* … schiacciato", "bug risolto!", "rilascialo!", "biscottino ora?", "chi è un bravo debugger?"]
 };
 
 // Hero portrait "releases": each look has a version and a short release note.

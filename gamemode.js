@@ -1,5 +1,5 @@
-// Game mode: a pixel-art Bilge runs and jumps across the page's lines of text to squash 5 hidden bugs.
-// Depends on content.js (translations) and script.js (t, el). The page stays fully usable while it runs.
+// Game mode: Bruno, Bilge's dog, runs and jumps across the page's lines of text to squash 5 hidden bugs.
+// Depends on content.js (translations, brunoLines) and script.js (t, el, localize). The page stays fully usable while it runs.
 
 (() => {
   const root = document.querySelector("[data-game-mode]");
@@ -12,10 +12,12 @@
     maxFallSpeed: 950,
     coyoteTime: 0.09, // seconds you can still jump after walking off a ledge
     jumpBuffer: 0.12, // seconds a jump press is remembered before landing
-    pixel: 2, // size of one sprite pixel in CSS px
+    pixel: 2, // size of one bug-sprite pixel in CSS px
     bugCount: 5,
     bugSpeed: 34,
     stompBounce: 0.72,
+    napAfter: 7, // seconds standing still before Bruno lies down for a nap
+    bubbleTime: 1.8, // seconds a speech bubble stays up
     platformRefreshMs: 700,
     followMarginTop: 110,
     followMarginBottom: 160,
@@ -29,34 +31,23 @@
     "main input", "main textarea", ".site-footer p", ".site-footer a"
   ].join(",");
 
-  // Pixel sprites: one character per pixel, "." is transparent.
-  const PLAYER_COLORS = { H: "#5a1f2a", S: "#f1c9b5", G: "#1d1030", M: "#c2566b", B: "#8fb3e0", P: "#ece3d6", K: "#2b124c" };
-  const PLAYER_BODY = [
-    "..HHHHHH..",
-    ".HHHHHHHH.",
-    "HHSSSSSSHH",
-    "HHGGSSGGHH",
-    "HHSSSSSSHH",
-    "HHSSMMSSHH",
-    "HH.SSSS.HH",
-    ".BBBBBBBB.",
-    "BBBBBBBBBB",
-    "SBBBBBBBBS",
-    ".BBBBBBBB.",
-    ".PPPPPPPP."
-  ];
-  const PLAYER_LEGS = [
-    [".PP....PP.", ".KK....KK."],
-    ["..PP..PP..", "..KK..KK.."]
-  ];
+  // Bug sprites: one character per pixel, "." is transparent.
   const BUG_COLORS = { G: "#7dd87d", D: "#2e6b2e", L: "#190019" };
   const BUG_FRAMES = [
     ["..L.L..", ".GGGGG.", "GGDGDGG", ".GGGGG.", "L.L.L.L"],
     ["..L.L..", ".GGGGG.", "GGDGDGG", ".GGGGG.", ".L.L.L."]
   ];
 
-  const playerSize = { width: PLAYER_BODY[0].length * CONFIG.pixel, height: (PLAYER_BODY.length + 2) * CONFIG.pixel };
+  // Bruno's hitbox: his sitting sticker (188×212) drawn 56px tall.
+  const playerSize = { width: 50, height: 56 };
   const bugSize = { width: BUG_FRAMES[0][0].length * CONFIG.pixel, height: BUG_FRAMES[0].length * CONFIG.pixel };
+
+  // Photo stickers of the real Bruno, facing left: sitting (also while he runs and jumps) and lying down for naps.
+  const BRUNO_POSES = {
+    awake: { src: "assets/bruno/bruno-sit.webp", height: playerSize.height },
+    nap: { src: "assets/bruno/bruno-nap.webp", height: 46 }
+  };
+  const NAP_BUBBLE = "z z z";
 
   const ui = {
     toggle: root.querySelector("[data-game-toggle]"),
@@ -76,6 +67,7 @@
     particles: [],
     squashed: 0,
     player: null,
+    bubble: null,
     input: { left: false, right: false },
     jumpBufferedFor: 0,
     lastFrame: 0,
@@ -85,6 +77,8 @@
   };
 
   let ctx = null;
+  let bubbleFont = "";
+  const sprites = {};
   const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
 
   // ---------- platforms ----------
@@ -141,7 +135,7 @@
     return { top: rect.top + window.scrollY, bottom: rect.bottom + window.scrollY };
   }
 
-  // A line is "open" when no other line sits just above it, so Bilge can actually land on it.
+  // A line is "open" when no other line sits just above it, so Bruno can actually land on it.
   function hasHeadroom(platform) {
     const clearance = playerSize.height + 16;
     return !state.platforms.some(
@@ -179,7 +173,7 @@
 
   // ---------- player ----------
 
-  // Drops Bilge onto the first line in the upper part of the current view.
+  // Drops Bruno onto the first line in the upper part of the current view.
   function spawnPlayer() {
     const viewTop = window.scrollY;
     const target =
@@ -194,7 +188,10 @@
       vy: 0,
       grounded: false,
       coyote: 0,
-      facing: 1
+      facing: 1,
+      squash: 0, // 1 right after landing, eases back to 0
+      idleFor: 0,
+      napping: false
     };
   }
 
@@ -204,6 +201,7 @@
 
   function updatePlayer(delta) {
     const player = state.player;
+    const wasGrounded = player.grounded;
     const direction = (state.input.right ? 1 : 0) - (state.input.left ? 1 : 0);
     player.vx = direction * CONFIG.moveSpeed;
     if (direction) player.facing = direction;
@@ -240,11 +238,26 @@
       }
     }
 
+    player.squash = player.grounded && !wasGrounded ? 1 : Math.max(0, player.squash - delta * 7);
     if (direction && player.grounded) state.walkClock += delta;
+    updateNap(player, direction, delta);
     if (player.y > document.documentElement.scrollHeight + 40) lose();
   }
 
-  // Scrolls the page to keep a moving Bilge on screen; idle Bilge lets the visitor scroll freely.
+  // Standing still for a while sends Bruno to sleep; moving or jumping wakes him up.
+  function updateNap(player, direction, delta) {
+    const resting = player.grounded && !direction;
+    player.idleFor = resting ? player.idleFor + delta : 0;
+    if (!player.napping && player.idleFor > CONFIG.napAfter) {
+      player.napping = true;
+      say(NAP_BUBBLE, Infinity);
+    } else if (player.napping && !resting) {
+      player.napping = false;
+      if (state.bubble?.text === NAP_BUBBLE) state.bubble = null;
+    }
+  }
+
+  // Scrolls the page to keep a moving Bruno on screen; an idle Bruno lets the visitor scroll freely.
   function followPlayer() {
     const player = state.player;
     const isMoving = player.vx !== 0 || !player.grounded;
@@ -255,6 +268,24 @@
     } else if (screenY < CONFIG.followMarginTop) {
       window.scrollTo(window.scrollX, Math.max(0, player.y - CONFIG.followMarginTop));
     }
+  }
+
+  // ---------- speech bubbles ----------
+
+  function say(text, duration = CONFIG.bubbleTime) {
+    state.bubble = { text, life: duration };
+  }
+
+  // A random line from brunoLines, never the one already showing.
+  function sayRandomLine() {
+    const lines = localize(brunoLines).filter((line) => line !== state.bubble?.text);
+    say(lines[Math.floor(Math.random() * lines.length)]);
+  }
+
+  function updateBubble(delta) {
+    if (!state.bubble) return;
+    state.bubble.life -= delta;
+    if (state.bubble.life <= 0) state.bubble = null;
   }
 
   // ---------- bugs ----------
@@ -274,7 +305,7 @@
       const overlapsY = player.y + playerSize.height > bugTop && player.y < bug.platform.top;
       if (!overlapsX || !overlapsY) return;
 
-      // Landing on top squashes; touching from the side knocks Bilge off.
+      // Landing on top squashes; touching from the side knocks Bruno off.
       const feet = player.y + playerSize.height;
       if (player.vy > 0 && feet - bugTop < 12) squash(bug);
       else lose();
@@ -286,6 +317,7 @@
     state.squashed += 1;
     state.player.vy = -CONFIG.jumpVelocity * CONFIG.stompBounce;
     burst(bug.x + bugSize.width / 2, bug.platform.top - bugSize.height / 2);
+    sayRandomLine();
     updateCounter();
     if (state.squashed >= state.bugs.length) win();
   }
@@ -317,6 +349,13 @@
 
   // ---------- drawing ----------
 
+  // Bruno's stickers load the first time the game starts; drawPlayer skips frames until they are ready.
+  function loadSprites() {
+    Object.entries(BRUNO_POSES).forEach(([pose, { src }]) => {
+      sprites[pose] ??= Object.assign(new Image(), { src });
+    });
+  }
+
   function drawSprite(rows, colors, x, y, mirror = false) {
     const size = CONFIG.pixel;
     rows.forEach((row, rowIndex) => {
@@ -329,11 +368,56 @@
     });
   }
 
-  function drawPlayer() {
+  // The stickers face left, so Bruno is mirrored while heading right; he hops while running, leans into jumps and squashes on landing.
+  function drawPlayer(time) {
     const player = state.player;
-    const walking = player.grounded && player.vx !== 0;
-    const legs = PLAYER_LEGS[walking ? Math.floor(state.walkClock * 8) % 2 : 0];
-    drawSprite([...PLAYER_BODY, ...legs], PLAYER_COLORS, player.x, player.y, player.facing < 0);
+    const pose = player.napping ? "nap" : "awake";
+    const image = sprites[pose];
+    if (!image?.complete || !image.naturalWidth) return;
+
+    const height = BRUNO_POSES[pose].height;
+    const width = (image.naturalWidth / image.naturalHeight) * height;
+    const running = player.grounded && player.vx !== 0;
+    const step = Math.sin(state.walkClock * 14);
+    const hop = running ? Math.abs(step) * 4 : 0;
+    const lean = player.grounded ? (running ? step * 0.06 : 0) : Math.min(0.22, Math.max(-0.22, -player.vy / 2600));
+    const breath = player.napping ? Math.sin(time / 450) * 0.03 : 0;
+
+    ctx.save();
+    ctx.translate(player.x + playerSize.width / 2, player.y + playerSize.height - hop); // pivot between his paws
+    if (player.facing > 0) ctx.scale(-1, 1);
+    ctx.rotate(lean);
+    ctx.scale(1 + player.squash * 0.12, 1 - player.squash * 0.14 + breath);
+    ctx.imageSmoothingQuality = "high";
+    ctx.shadowColor = "rgba(8, 0, 10, 0.55)";
+    ctx.shadowBlur = 8;
+    ctx.shadowOffsetY = 4;
+    ctx.drawImage(image, -width / 2, -height, width, height);
+    ctx.restore();
+  }
+
+  // Speech bubble above Bruno, kept inside the screen; it fades out in its last quarter second.
+  function drawBubble() {
+    const { bubble, player } = state;
+    if (!bubble || !player) return;
+    ctx.font = bubbleFont;
+    const width = ctx.measureText(bubble.text).width + 22;
+    const height = 24;
+    const centre = player.x + playerSize.width / 2 - width / 2;
+    const left = Math.min(Math.max(centre, window.scrollX + 8), window.scrollX + window.innerWidth - width - 8);
+    const top = player.y - height - 6;
+
+    ctx.globalAlpha = Math.min(1, bubble.life / 0.25);
+    ctx.beginPath();
+    ctx.roundRect(left, top, width, height, height / 2);
+    ctx.fillStyle = "rgba(25, 0, 25, 0.9)";
+    ctx.fill();
+    ctx.strokeStyle = "rgba(223, 182, 178, 0.45)";
+    ctx.stroke();
+    ctx.fillStyle = "#fbe4d8";
+    ctx.textBaseline = "middle";
+    ctx.fillText(bubble.text, left + 11, top + height / 2 + 1);
+    ctx.globalAlpha = 1;
   }
 
   function drawBugs(time) {
@@ -359,7 +443,8 @@
     ctx.translate(-window.scrollX, -window.scrollY); // world is the document; the canvas is the viewport
     drawBugs(time);
     drawParticles();
-    if (state.player) drawPlayer();
+    if (state.player) drawPlayer(time);
+    drawBubble();
   }
 
   function resizeCanvas() {
@@ -383,6 +468,7 @@
       followPlayer();
     }
     updateParticles(delta);
+    updateBubble(delta);
     draw(time);
     state.frameId = requestAnimationFrame(loop);
   }
@@ -391,6 +477,7 @@
     state.phase = "playing";
     state.squashed = 0;
     state.particles = [];
+    state.bubble = null;
     state.input.left = false;
     state.input.right = false;
     refreshPlatforms();
@@ -416,9 +503,11 @@
     document.body.classList.add("game-active");
     ui.toggle.setAttribute("aria-pressed", "true");
     ui.infoButton.hidden = false;
+    loadSprites();
     buildOverlay();
     resizeCanvas();
     startRound();
+    say(t("gameMode.hello"));
     setInfoOpen(true);
     state.lastFrame = performance.now();
     state.frameId = requestAnimationFrame(loop);
@@ -436,6 +525,7 @@
     [ui.canvas, ui.counter, ui.status, ui.touch].forEach((node) => node?.remove());
     ui.canvas = ui.counter = ui.status = ui.touch = null;
     state.player = null;
+    state.bubble = null;
     state.bugs = [];
   }
 
@@ -444,6 +534,7 @@
   function buildOverlay() {
     ui.canvas = el("canvas", { className: "game-canvas", "aria-hidden": "true" });
     ctx = ui.canvas.getContext("2d");
+    bubbleFont = `500 12px ${getComputedStyle(document.body).fontFamily}`;
 
     ui.counter = el("p", { className: "game-counter", role: "status", "aria-live": "polite" });
     ui.status = el("div", { className: "game-status", role: "alertdialog", hidden: "" });
@@ -557,7 +648,7 @@
     refreshPlatforms();
   });
 
-  // Pauses input when the tab is hidden so Bilge doesn't keep running off-screen.
+  // Pauses input when the tab is hidden so Bruno doesn't keep running off-screen.
   document.addEventListener("visibilitychange", () => {
     state.input.left = false;
     state.input.right = false;

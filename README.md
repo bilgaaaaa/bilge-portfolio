@@ -14,12 +14,11 @@ Plain HTML, CSS and JavaScript — no framework, no build step. Bilingual (EN / 
 | `content.js` | **All text and data** — translations, experience, projects, links |
 | `script.js` | Renders `content.js` per page (`<body data-page>`), language switch, typing greeting, tabs, menu, scroll reveal |
 | `simulations.js` | Interactive demos: hero feed and portrait "releases", the scan → RabbitMQ → .NET → SQL → printer live demo, project cards that play on hover, skill map, one demo per job, process run, beyond-code photos and demos, and the PaceTasks phone |
-| `bruno.js` | Bruno (photo stickers of the real dog) follows the mouse (or taps), sits, naps and reacts to treats; the Bruno button turns him off and is remembered |
-| `gamemode.js` | Page-wide Game mode: pixel Bilge jumps across the text to squash 5 bugs (text in `gameMode.*` keys) |
+| `gamemode.js` | Page-wide Game mode: Bruno (a photo sticker of the real dog) jumps across the text to squash 5 bugs, naps when idle and talks in speech bubbles (text in `gameMode.*` keys) |
 | `styles.css` | Plum palette tokens (`--plum-*`, `--rose-300`, `--cream-100`), glass components and layout |
 | `assets/portrait.webp` | Hero portrait (background removed, colour-graded into the palette) |
 | `assets/looks/` | Other portrait looks shown by the "release notes" card, cut out and graded the same way |
-| `assets/bruno/` | Bruno's stickers (sitting, napping) and round avatar, cut out from his photos |
+| `assets/bruno/` | Bruno's game-mode stickers (sitting, napping) and round avatar, cut out from his photos |
 | `assets/beyond/` | Bruno and cooking photos for Beyond code (web size, no location data, screens blurred) |
 | `assets/arch.svg` | Archway illustration used in the process and contact sections |
 | `assets/icons.svg` | Shared icon sprite (`assets/icons.svg#icon-<name>`) |
@@ -35,7 +34,7 @@ Almost every change happens in `content.js`: every text entry has an `en` and `i
 - Simulation text → the `lab.*`, `demo.*`, `skills.*`, `process.*` and `beyond.*` keys; simulation data → `labProducts`, `chartStores`, `invoiceSteps`, `skillGroups`, `heroTicker`, `beyondCards`.
 - New skill → add it to a group in `skillGroups` with the experience/project ids it was used in (`usedIn`).
 - Job demo → set `demo` on an `experience` entry (`migration`, `invoice`, `credit`, `tests`).
-- Portrait looks → `portraitLooks` (version, release note, alt text); Bruno's lines → `brunoLines` and `brunoTreatLines`.
+- Portrait looks → `portraitLooks` (version, release note, alt text); Bruno's lines → `brunoLines` (game mode) and `brunoTreatLines` (his card).
 - Beyond code cards → `beyondItems`; give a card `photos` (with `caption` and `position`) to show a photo stack.
 - PaceTasks page text → `pacetasksCaseStudy` and the `pt.*` keys in `translations`.
 - Profile photo → replace `assets/profile.jpg` and `assets/profile.webp` (square, 640×640).

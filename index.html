@@ -25,7 +25,6 @@
     <script src="script.js" defer></script>
     <script src="gamemode.js" defer></script>
     <script src="simulations.js" defer></script>
-    <script src="bruno.js" defer></script>
   </head>
   <body data-page="home">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -313,12 +312,13 @@
       </div>
     </footer>
 
-    <!-- Game mode: a pixel Bilge that jumps across the page text to squash hidden bugs (gamemode.js). -->
+    <!-- Game mode: Bruno jumps across the page text to squash hidden bugs (gamemode.js). -->
     <div class="game-mode" data-game-mode>
       <div class="game-toggle-row">
-        <button class="game-toggle" type="button" aria-pressed="false" data-game-toggle>
-          <span class="game-toggle-dot" aria-hidden="true"></span>
+        <button class="game-toggle" type="button" aria-pressed="false" title="Play with Bruno: help him squash the bugs hidden on this page" data-i18n-attr="title:gameMode.toggleTitle" data-game-toggle>
+          <img class="game-toggle-avatar" src="assets/bruno/bruno-avatar.webp" width="26" height="26" alt="" />
           <span data-i18n="gameMode.toggle">game mode</span>
+          <span class="game-toggle-dot" aria-hidden="true"></span>
         </button>
         <button class="game-info-button" type="button" aria-expanded="false" aria-controls="gameInfo" data-i18n-attr="aria-label:gameMode.info" aria-label="How to play" data-game-info-button hidden>i</button>
       </div>

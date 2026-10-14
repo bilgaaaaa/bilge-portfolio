@@ -29,6 +29,6 @@ Source of truth for facts on the site: the September 2026 CV (EN/IT).
 - Source: Bilge's Google Drive folder "Portfolio photos". Bruno and cooking photos are in `assets/beyond/`, portrait looks in `assets/looks/`.
 - Every photo is re-encoded without metadata (no GPS), resized for the web, and screens showing code are blurred.
 - Portrait looks are cut out with a hair-detail model and kept small enough that no card or text covers the face; on screens up to 1100px the hero cards sit below the photo. Captions sit under photos, never on them.
-- Removed on request: the curly-hair look.
+- Removed on request: the curly-hair look, and Bruno following the mouse (he now stars in game mode instead).
 - Never use photos with other people, swimwear, party or alcohol shots, or anything showing work code, home address or documents.
 - Missing: no climbing, crochet or card-collection photos yet — those cards keep their illustrated demos until photos arrive.
