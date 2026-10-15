@@ -938,11 +938,7 @@ const beyondItems = [
       it: "Un blocco di boulder è debugging con la magnesite: leggi la via, prova, cadi, correggi."
     },
     photos: [
-      { src: "assets/beyond/climb-reach.webp", position: "50% 30%", caption: { en: "Reading the route — every problem starts with the docs.", it: "Leggere la via — ogni problema parte dalla documentazione." } },
-      { src: "assets/beyond/climb-stretch.webp", position: "50% 22%", caption: { en: "Full extension: the next hold is always one sprint away.", it: "Massima estensione: la prossima presa è sempre a uno sprint di distanza." } },
-      { src: "assets/beyond/climb-traverse.webp", position: "50% 40%", caption: { en: "Traversing sideways — the refactor before the real move.", it: "Traverso laterale — il refactoring prima della mossa vera." } },
-      { src: "assets/beyond/climb-crimp.webp", position: "50% 18%", caption: { en: "Small crimps, small commits, steady progress.", it: "Piccole prese, piccoli commit, progressi costanti." } },
-      { src: "assets/beyond/climb-overhang.webp", position: "50% 45%", caption: { en: "Fall, retry, send — the only retry loop I enjoy.", it: "Cadi, riprova, chiudi il blocco — l'unico retry loop che mi piace." } }
+      { src: "assets/beyond/climb-wall.webp", position: "50% 40%", caption: { en: "The wall before the first attempt — every route starts as an unread spec.", it: "La parete prima del primo tentativo — ogni via è una specifica ancora da leggere." } }
     ]
   },
   {
