@@ -1083,7 +1083,6 @@
     render();
   }
 
-  // Card collection: draws a random card from the box with a small flip.
   // Bruno's card: every treat gets a reply and a heart on the photo.
   function mountTreatDemo(container) {
     let treats = 0;

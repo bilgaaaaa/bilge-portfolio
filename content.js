@@ -972,8 +972,6 @@ const portraitLooks = [
   { src: "assets/looks/look-bruno.webp", version: "v4.0", alt: { en: "Bilge holding Bruno with a surprised face", it: "Bilge con Bruno in braccio e una faccia sorpresa" }, note: { en: "Breaking change: Bruno merged into main.", it: "Breaking change: Bruno è entrato in main." } }
 ];
 
-// Cards the "card collection" demo can draw: kinds of places and cities, no real names.
-
 const languagesSpoken = {
   en: "Turkish (native) · English (professional) · Italian (B1–B2, daily at work)",
   it: "Turco (madrelingua) · Inglese (professionale) · Italiano (B1–B2, uso quotidiano al lavoro)"
