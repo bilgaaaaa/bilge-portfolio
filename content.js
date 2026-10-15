@@ -45,7 +45,7 @@ const translations = {
     "hero.work": "View my work",
     "hero.about": "About me",
     "hero.status": "Based in Padova, Italy",
-    "hero.statusSub": "Currently a developer at System Retail.",
+    "hero.statusSub": "Currently a developer at a retail software company.",
     "hero.portraitAlt": "Portrait of Bilge Ozcanbaz",
     "hero.cardExperienceLabel": "Experience",
     "hero.cardExperienceValue": "4+ years",
@@ -76,7 +76,7 @@ const translations = {
     "about.titleStart": "From Java backends",
     "about.titleAccent": "to Android and beyond.",
     "about.p1":
-      "I started as a Java backend developer, writing Spring Boot services for electronic invoicing and banking. Today I'm the sole developer of a production Android app for retail chains at System Retail, working directly with the product manager and owning features from the device all the way to the service behind it.",
+      "I started as a Java backend developer, writing Spring Boot services for electronic invoicing and banking. Today I'm the sole developer of a production Android app used by retail chains, working directly with the product manager and owning features from the device all the way to the service behind it.",
     "about.p2":
       "When I joined, the app was pure Java. I moved it to Kotlin, rebuilt every screen in Jetpack Compose and migrated the local database from GreenDAO to Room on devices already in stores. The rest of my week goes to .NET microservices, RabbitMQ messaging and drivers for printers, scanners and customer displays.",
     "about.p3":
@@ -162,18 +162,18 @@ const translations = {
     "lab.titleStart": "Follow one sale",
     "lab.titleAccent": "from scan to receipt.",
     "lab.lede":
-      "An interactive, simplified model of the stack I work on every day: an Android handheld that keeps selling offline, a RabbitMQ queue, a .NET service that never saves the same message twice and a fiscal printer at the end of the line. Move your mouse over it to watch a sale, an offline sale and a retry — or drive it yourself with the buttons.",
-    "lab.note": "A simplified model of the real thing — it runs entirely in your browser.",
+      "An interactive, made-up model of a typical retail stack, built from the kind of tools I use: an Android handheld that keeps selling offline, a RabbitMQ queue, a .NET service that never saves the same message twice and a fiscal printer at the end of the line. Move your mouse over it to watch a sale, an offline sale and a retry — or drive it yourself with the buttons.",
+    "lab.note": "An illustrative model, not any real company's system — it runs entirely in your browser.",
     "lab.nodeHandheld": "Handheld",
     "lab.nodeHandheldSub": "Android · Room",
     "lab.nodeQueue": "RabbitMQ",
-    "lab.nodeQueueSub": "store.events → sales",
+    "lab.nodeQueueSub": "demo.events → sales",
     "lab.nodeService": ".NET service",
     "lab.nodeServiceSub": "C# consumer",
     "lab.nodeDatabase": "SQL Server",
     "lab.nodeDatabaseSub": "Back office",
     "lab.nodePrinter": "Fiscal printer",
-    "lab.nodePrinterSub": "Epson · Custom",
+    "lab.nodePrinterSub": "RT · TCP",
     "lab.statHandheld": "{n} in outbox",
     "lab.statQueue": "{n} queued",
     "lab.statService": "duplicates skipped: {n}",
@@ -196,7 +196,7 @@ const translations = {
     "lab.logEmpty": "Events will appear here.",
     "lab.log.scan": "scan {ean} → {name} {price}",
     "lab.log.cartEmpty": "nothing to check out — scan an item first",
-    "lab.log.publish": "publish {id} · exchange store.events · key sale.created",
+    "lab.log.publish": "publish {id} · exchange demo.events · key sale.created",
     "lab.log.offline": "no network — {id} saved to the Room outbox ({n} pending)",
     "lab.log.networkOff": "store Wi-Fi off — the app keeps working offline",
     "lab.log.networkOn": "store Wi-Fi back — syncing {n} pending",
@@ -324,7 +324,7 @@ const translations = {
     "hero.work": "Guarda i progetti",
     "hero.about": "Chi sono",
     "hero.status": "Vivo a Padova",
-    "hero.statusSub": "Oggi sviluppatrice in System Retail.",
+    "hero.statusSub": "Oggi sviluppatrice in un'azienda di software per il retail.",
     "hero.portraitAlt": "Ritratto di Bilge Ozcanbaz",
     "hero.cardExperienceLabel": "Esperienza",
     "hero.cardExperienceValue": "4+ anni",
@@ -355,7 +355,7 @@ const translations = {
     "about.titleStart": "Dal backend Java",
     "about.titleAccent": "ad Android e oltre.",
     "about.p1":
-      "Ho iniziato come sviluppatrice backend Java, scrivendo servizi Spring Boot per la fatturazione elettronica e il settore bancario. Oggi in System Retail sono l'unica sviluppatrice di un'app Android in produzione per catene retail: lavoro a stretto contatto con il product manager e seguo ogni funzionalità dal dispositivo fino al servizio che la supporta.",
+      "Ho iniziato come sviluppatrice backend Java, scrivendo servizi Spring Boot per la fatturazione elettronica e il settore bancario. Oggi sono l'unica sviluppatrice di un'app Android in produzione usata da catene retail: lavoro a stretto contatto con il product manager e seguo ogni funzionalità dal dispositivo fino al servizio che la supporta.",
     "about.p2":
       "Quando sono arrivata l'app era interamente in Java: l'ho migrata a Kotlin, ho ricostruito tutte le schermate in Jetpack Compose e ho portato il database locale da GreenDAO a Room su dispositivi già installati nei negozi. Il resto della settimana lo dedico a microservizi .NET, messaggistica RabbitMQ e driver per stampanti, scanner e display cliente.",
     "about.p3":
@@ -441,18 +441,18 @@ const translations = {
     "lab.titleStart": "Segui una vendita",
     "lab.titleAccent": "dalla scansione allo scontrino.",
     "lab.lede":
-      "Un modello interattivo e semplificato dello stack su cui lavoro ogni giorno: un palmare Android che continua a vendere anche offline, una coda RabbitMQ, un servizio .NET che non salva mai due volte lo stesso messaggio e una stampante fiscale in fondo alla catena. Passa il mouse sopra per vedere una vendita, una vendita offline e un nuovo invio — oppure guidala tu con i pulsanti.",
-    "lab.note": "Un modello semplificato della realtà — gira interamente nel tuo browser.",
+      "Un modello interattivo e inventato di un tipico stack retail, costruito con il tipo di strumenti che uso: un palmare Android che continua a vendere anche offline, una coda RabbitMQ, un servizio .NET che non salva mai due volte lo stesso messaggio e una stampante fiscale in fondo alla catena. Passa il mouse sopra per vedere una vendita, una vendita offline e un nuovo invio — oppure guidala tu con i pulsanti.",
+    "lab.note": "Un modello illustrativo, non il sistema di un'azienda reale — gira interamente nel tuo browser.",
     "lab.nodeHandheld": "Palmare",
     "lab.nodeHandheldSub": "Android · Room",
     "lab.nodeQueue": "RabbitMQ",
-    "lab.nodeQueueSub": "store.events → sales",
+    "lab.nodeQueueSub": "demo.events → sales",
     "lab.nodeService": "Servizio .NET",
     "lab.nodeServiceSub": "Consumer C#",
     "lab.nodeDatabase": "SQL Server",
     "lab.nodeDatabaseSub": "Back-office",
     "lab.nodePrinter": "Stampante fiscale",
-    "lab.nodePrinterSub": "Epson · Custom",
+    "lab.nodePrinterSub": "RT · TCP",
     "lab.statHandheld": "{n} in outbox",
     "lab.statQueue": "{n} in coda",
     "lab.statService": "duplicati scartati: {n}",
@@ -475,7 +475,7 @@ const translations = {
     "lab.logEmpty": "Qui compariranno gli eventi.",
     "lab.log.scan": "scansione {ean} → {name} {price}",
     "lab.log.cartEmpty": "niente da chiudere — scansiona prima un articolo",
-    "lab.log.publish": "pubblica {id} · exchange store.events · chiave sale.created",
+    "lab.log.publish": "pubblica {id} · exchange demo.events · chiave sale.created",
     "lab.log.offline": "rete assente — {id} salvata nell'outbox Room ({n} in attesa)",
     "lab.log.networkOff": "Wi-Fi spento — l'app continua a funzionare offline",
     "lab.log.networkOn": "Wi-Fi tornato — sincronizzo {n} in attesa",
@@ -586,9 +586,9 @@ const focusAreas = {
 // Case-study cards in "Selected work"; `visual` picks the CSS illustration.
 const featuredProjects = [
   {
-    id: "smart",
-    title: "ONEStore SMART",
-    subtitle: { en: "Retail handheld app", it: "App per palmari retail" },
+    id: "handheld-app",
+    title: { en: "Retail handheld app", it: "App per palmari retail" },
+    subtitle: { en: "Android · in production", it: "Android · in produzione" },
     visual: "handheld",
     tech: ["Kotlin", "Compose", "Room"],
     description: {
@@ -697,7 +697,7 @@ const services = [
   {
     icon: "printer",
     title: { en: "Device integration", it: "Integrazione dispositivi" },
-    body: { en: "Drivers for Epson and Custom fiscal printers, scanners and customer displays over TCP and serial.", it: "Driver per stampanti fiscali Epson e Custom, scanner e display cliente via TCP e seriale." }
+    body: { en: "Drivers for fiscal printers, scanners and customer displays over TCP and serial.", it: "Driver per stampanti fiscali, scanner e display cliente via TCP e seriale." }
   },
   {
     icon: "flow",
@@ -797,10 +797,10 @@ const skillGroups = [
   {
     title: { en: "Languages", it: "Linguaggi" },
     skills: [
-      { name: "Kotlin", usedIn: ["system-retail", "smart"] },
-      { name: "Java", usedIn: ["ifin", "iason", "invoice-channel", "credit-calculator", "smart"] },
-      { name: "C# / .NET 8", usedIn: ["system-retail", "pos-drivers", "sync-service", "analytics"] },
-      { name: "SQL", usedIn: ["system-retail", "ifin", "analytics", "sync-service"] },
+      { name: "Kotlin", usedIn: ["retail-company", "handheld-app"] },
+      { name: "Java", usedIn: ["ifin", "iason", "invoice-channel", "credit-calculator", "handheld-app"] },
+      { name: "C# / .NET 8", usedIn: ["retail-company", "pos-drivers", "sync-service", "analytics"] },
+      { name: "SQL", usedIn: ["retail-company", "ifin", "analytics", "sync-service"] },
       { name: "TypeScript", usedIn: ["pacetasks"] },
       { name: "JavaScript", usedIn: ["portfolio"] }
     ]
@@ -808,46 +808,46 @@ const skillGroups = [
   {
     title: { en: "Mobile", it: "Mobile" },
     skills: [
-      { name: "Android SDK", usedIn: ["system-retail", "smart"] },
-      { name: "Jetpack Compose", usedIn: ["system-retail", "smart"] },
-      { name: "MVVM", usedIn: ["system-retail", "smart"] },
-      { name: "Room", usedIn: ["system-retail", "smart"] },
-      { name: "GreenDAO", usedIn: ["system-retail", "smart"] },
-      { name: { en: "Peripheral integration", it: "Integrazione periferiche" }, usedIn: ["system-retail", "pos-drivers", "smart"] },
+      { name: "Android SDK", usedIn: ["retail-company", "handheld-app"] },
+      { name: "Jetpack Compose", usedIn: ["retail-company", "handheld-app"] },
+      { name: "MVVM", usedIn: ["retail-company", "handheld-app"] },
+      { name: "Room", usedIn: ["retail-company", "handheld-app"] },
+      { name: "GreenDAO", usedIn: ["retail-company", "handheld-app"] },
+      { name: { en: "Peripheral integration", it: "Integrazione periferiche" }, usedIn: ["retail-company", "pos-drivers", "handheld-app"] },
       { name: "Expo / React Native", usedIn: ["pacetasks"] }
     ]
   },
   {
     title: { en: "Backend", it: "Backend" },
     skills: [
-      { name: "REST APIs", usedIn: ["system-retail", "ifin", "sync-service"] },
+      { name: "REST APIs", usedIn: ["retail-company", "ifin", "sync-service"] },
       { name: "Spring Boot", usedIn: ["ifin", "iason", "invoice-channel", "credit-calculator"] },
       { name: "Hibernate", usedIn: ["ifin", "iason", "credit-calculator"] },
-      { name: "EF Core", usedIn: ["system-retail", "sync-service"] },
-      { name: "Blazor", usedIn: ["system-retail", "analytics"] },
-      { name: "DevExpress", usedIn: ["system-retail", "analytics"] },
+      { name: "EF Core", usedIn: ["retail-company", "sync-service"] },
+      { name: "Blazor", usedIn: ["retail-company", "analytics"] },
+      { name: "DevExpress", usedIn: ["retail-company", "analytics"] },
       { name: "Supabase", usedIn: ["pacetasks"] }
     ]
   },
   {
     title: { en: "Data & messaging", it: "Dati e messaggistica" },
     skills: [
-      { name: "RabbitMQ", usedIn: ["system-retail", "sync-service"] },
-      { name: "SQL Server", usedIn: ["system-retail", "analytics"] },
+      { name: "RabbitMQ", usedIn: ["retail-company", "sync-service"] },
+      { name: "SQL Server", usedIn: ["retail-company", "analytics"] },
       { name: "PostgreSQL", usedIn: ["ifin", "invoice-channel", "pacetasks"] },
       { name: "MySQL", usedIn: ["ifin"] },
-      { name: "SQLite", usedIn: ["system-retail", "smart"] }
+      { name: "SQLite", usedIn: ["retail-company", "handheld-app"] }
     ]
   },
   {
     title: { en: "Practices & tools", it: "Pratiche e strumenti" },
     skills: [
-      { name: "Azure Pipelines", usedIn: ["system-retail"] },
-      { name: "Docker", usedIn: ["system-retail"] },
+      { name: "Azure Pipelines", usedIn: ["retail-company"] },
+      { name: "Docker", usedIn: ["retail-company"] },
       { name: "Maven", usedIn: ["ifin", "invoice-channel"] },
       { name: { en: "Unit & UI testing", it: "Test unitari e UI" }, usedIn: ["ifin", "ifin-thesis", "remote-tests", "pacetasks"] },
       { name: { en: "Test automation", it: "Automazione dei test" }, usedIn: ["ifin-thesis", "remote-tests"] },
-      { name: "Agile / Scrum", usedIn: ["ifin", "system-retail"] }
+      { name: "Agile / Scrum", usedIn: ["ifin", "retail-company"] }
     ]
   }
 ];
@@ -996,10 +996,10 @@ const languagesSpoken = {
 
 const experience = [
   {
-    id: "system-retail",
+    id: "retail-company",
     demo: "migration",
-    tab: "System Retail",
-    company: "System Retail",
+    tab: { en: "Retail software", it: "Software retail" },
+    company: { en: "a retail software company", it: "un'azienda di software per il retail" },
     location: { en: "Padova, Italy", it: "Padova" },
     role: { en: "Software Development Specialist", it: "Software Development Specialist" },
     dates: { en: "Jun 2024 – Present", it: "Giu 2024 – Oggi" },
@@ -1009,7 +1009,7 @@ const experience = [
         "Migrated the app from Java to Kotlin and rebuilt the entire screen layer in Jetpack Compose with an MVVM architecture.",
         "Planned and shipped the local database migration from GreenDAO to Room, including SQLite schema migrations on devices already in the field.",
         "Build and maintain .NET (C#) microservices, REST APIs and a RabbitMQ pipeline connecting handhelds, in-store POS and back-office services.",
-        "Write drivers for Epson and Custom peripherals — fiscal and receipt printers, barcode scanners and customer displays — over TCP and serial.",
+        "Write drivers for retail peripherals — fiscal and receipt printers, barcode scanners and customer displays — over TCP and serial.",
         "Developed a Blazor + DevExpress web app, now in production, for multi-store performance analysis.",
         "Support the app in production: crash and ANR investigation, releases with Azure Pipelines and Docker."
       ],
@@ -1018,7 +1018,7 @@ const experience = [
         "Ho migrato l'app da Java a Kotlin e ricostruito l'intero livello di interfaccia in Jetpack Compose con architettura MVVM.",
         "Ho pianificato e realizzato la migrazione del database locale da GreenDAO a Room, incluse le migrazioni di schema SQLite sui dispositivi già in campo.",
         "Sviluppo e mantengo microservizi .NET (C#), API REST e una pipeline RabbitMQ che collega palmari, casse in negozio e servizi di back-office.",
-        "Scrivo driver per periferiche Epson e Custom — stampanti fiscali e di scontrini, scanner barcode e display cliente — via TCP e seriale.",
+        "Scrivo driver per periferiche retail — stampanti fiscali e di scontrini, scanner barcode e display cliente — via TCP e seriale.",
         "Ho sviluppato un'applicazione web Blazor + DevExpress, oggi in produzione, per l'analisi delle performance multi-negozio.",
         "Supporto l'app in produzione: analisi di crash e ANR, rilasci con Azure Pipelines e Docker."
       ]

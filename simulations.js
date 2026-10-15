@@ -589,7 +589,7 @@
   // Resolves an id from `usedIn` to an experience tab or a project card.
   function skillTarget(id) {
     const job = experience.find((item) => item.id === id);
-    if (job) return { id, kind: "job", label: job.tab };
+    if (job) return { id, kind: "job", label: localize(job.tab) };
     const project = [...featuredProjects, ...otherProjects].find((item) => item.id === id);
     return project ? { id, kind: "project", label: localize(project.title) } : null;
   }
@@ -680,7 +680,7 @@
 
   // ---------- experience demos ----------
 
-  // System Retail: devices on mixed Room schema versions each run only the migrations they are missing.
+  // Current job: devices on mixed Room schema versions each run only the migrations they are missing.
   function mountMigrationDemo(container, generation) {
     const TARGET_VERSION = 4;
     const DEVICE_COUNT = 8;

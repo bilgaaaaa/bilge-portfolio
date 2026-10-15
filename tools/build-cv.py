@@ -38,13 +38,13 @@ CV = {
             ("Practices & tools", "Git, Azure DevOps & Azure Pipelines, Docker, Postman, Maven, unit and UI testing, code review, Agile/Scrum"),
         ],
         "jobs": [
-            ("Software Development Specialist", "System Retail — Padova, Italy", "Jun 2024 – Present", [
+            ("Software Development Specialist", "Retail software company — Padova, Italy", "Jun 2024 – Present", [
                 "Sole developer on a production Android application for retail chains, working directly with the product manager and owning delivery end to end.",
                 "Migrated the application from Java to Kotlin, rebuilding the entire screen layer in Jetpack Compose with an MVVM architecture.",
                 "Planned and implemented the local database migration from GreenDAO to Room, including SQLite schema migrations on installed devices.",
                 "Built and maintained .NET (C#) microservices and REST APIs supporting the handheld application and administrative tools.",
                 "Integrated RabbitMQ messaging connecting handheld devices, in-store applications and back-office services.",
-                "Integrated Epson and Custom peripherals — barcode scanning and receipt printing — with industrial Android devices.",
+                "Integrated retail peripherals — barcode scanning and receipt printing — with industrial Android devices.",
                 "Developed a Blazor and DevExpress web application, now in production, for multi-store performance analysis.",
                 "Support the application in production: crash and ANR investigation, release work with Azure Pipelines and Docker.",
             ]),
@@ -81,13 +81,13 @@ CV = {
             ("Metodi e strumenti", "Git, Azure DevOps e Azure Pipelines, Docker, Postman, Maven, test unitari e di interfaccia, code review, Agile/Scrum"),
         ],
         "jobs": [
-            ("Software Development Specialist", "System Retail — Padova", "Giu 2024 – Oggi", [
+            ("Software Development Specialist", "Azienda di software per il retail — Padova", "Giu 2024 – Oggi", [
                 "Unica sviluppatrice di un'applicazione Android di produzione per catene retail, in diretto raccordo con il product manager e responsabile della consegna end to end.",
                 "Migrazione dell'applicazione da Java a Kotlin, con la ricostruzione dell'intero livello di interfaccia in Jetpack Compose e architettura MVVM.",
                 "Pianificazione e realizzazione della migrazione del database locale da GreenDAO a Room, incluse le migrazioni di schema SQLite sui dispositivi installati.",
                 "Sviluppo e manutenzione di microservizi .NET (C#) e API REST a supporto dell'app palmare e degli strumenti amministrativi.",
                 "Integrazione della messaggistica RabbitMQ tra palmari, applicazioni in negozio e servizi di back-office.",
-                "Integrazione di periferiche Epson e Custom — lettura barcode e stampa scontrini — con dispositivi Android industriali.",
+                "Integrazione di periferiche retail — lettura barcode e stampa scontrini — con dispositivi Android industriali.",
                 "Sviluppo di un'applicazione web Blazor e DevExpress, oggi in produzione, per l'analisi delle performance multi-negozio.",
                 "Supporto in produzione: analisi di crash e ANR, rilasci con Azure Pipelines e Docker.",
             ]),

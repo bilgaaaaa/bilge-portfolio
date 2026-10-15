@@ -322,7 +322,7 @@ function selectExperience(id, focusTab = false) {
 function renderExperience() {
   const tabList = fill("[data-tab-list]", [
     ...experience.map((job) =>
-      el("button", { type: "button", role: "tab", id: `tab-${job.id}`, "aria-controls": `panel-${job.id}`, "data-id": job.id, text: job.tab })
+      el("button", { type: "button", role: "tab", id: `tab-${job.id}`, "aria-controls": `panel-${job.id}`, "data-id": job.id, text: localize(job.tab) })
     ),
     el("span", { className: "tab-highlight", "aria-hidden": "true" })
   ]);
@@ -334,7 +334,7 @@ function renderExperience() {
       el("div", { role: "tabpanel", id: `panel-${job.id}`, "aria-labelledby": `tab-${job.id}`, "data-id": job.id, tabindex: "0" }, [
         el("h3", { className: "job-title" }, [
           document.createTextNode(`${localize(job.role)} `),
-          el("em", { text: `@ ${job.company}` })
+          el("em", { text: `@ ${localize(job.company)}` })
         ]),
         el("p", { className: "job-meta", text: `${localize(job.dates)} · ${localize(job.location)}` }),
         el("ul", { className: "bullet-list job-bullets" }, localize(job.bullets).map((bullet) => el("li", { text: bullet }))),
