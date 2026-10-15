@@ -24,7 +24,7 @@ Plain HTML, CSS and JavaScript — no framework, no build step. Bilingual (EN / 
 | `assets/icons.svg` | Shared icon sprite (`assets/icons.svg#icon-<name>`) |
 | `assets/cv/` | Public CV in EN/IT (HTML + PDF, no phone number or birth date) |
 | `tools/build-cv.py` | Regenerates the CV HTML pages from one data source |
-| `tools/build-favicon.py` | Rebuilds both icons from `assets/portrait.webp` (`python3 tools/build-favicon.py`) |
+| `tools/build-favicon.py` | Rebuilds both icons from `assets/looks/look-round.webp` (`python3 tools/build-favicon.py`) |
 
 ## Editing content
 

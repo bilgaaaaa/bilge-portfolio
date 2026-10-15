@@ -1,13 +1,13 @@
-"""Builds the favicon and home-screen icon from the hero portrait: a face crop on the plum background."""
+"""Builds the favicon and home-screen icon from the smiling "round glasses" look: a face crop on the plum background."""
 from pathlib import Path
 from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parent.parent
-PORTRAIT = ROOT / "assets" / "portrait.webp"
+PORTRAIT = ROOT / "assets" / "looks" / "look-round.webp"
 PLUM_900, PLUM_700, ROSE_300 = (25, 0, 25), (82, 43, 91), (223, 182, 178)
 # Square crops of the 720×886 portrait as (left, top, size): tight on the face for the tiny tab icon, wider for home screens.
-TAB_CROP = (262, 88, 200)
-HOME_CROP = (205, 30, 300)
+TAB_CROP = (190, 240, 310)
+HOME_CROP = (150, 175, 400)
 SCALE = 4  # Draw large, then downsample, for smooth edges.
 
 
