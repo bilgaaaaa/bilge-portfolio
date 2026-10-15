@@ -8,7 +8,7 @@ Source of truth for facts on the site: the September 2026 CV (EN/IT).
 - 4+ years of experience; Java backend background, then Kotlin/Android and .NET/C#.
 - Sole developer of a production retail handheld Android app: Java → Kotlin, Jetpack Compose, GreenDAO → Room.
 - .NET microservices, RabbitMQ, retail peripheral drivers, Blazor + DevExpress analytics app in production.
-- Previous: Ifin Sistemi (Mar 2023 – Apr 2024), Iason (Sep 2022 – Jan 2023), Ifin thesis internship (Feb – Jul 2022).
+- Previous: an e-invoicing software company (Mar 2023 – Apr 2024), a banking software company (Sep 2022 – Jan 2023), MSc thesis internship (Feb – Jul 2022).
 - Languages: Turkish native, English professional, Italian B1–B2.
 
 ## Public-site rules
@@ -19,6 +19,6 @@ Source of truth for facts on the site: the September 2026 CV (EN/IT).
 - Public contact: email, phone +39 339 204 7793 and WhatsApp (wa.me link). No TikTok.
 - No birth date, nationality or home address on the site or public CVs.
 - No customer names, ticket numbers or internal metrics from work projects.
-- Current job stays anonymous (contract confidentiality clause): no employer, group, product or peripheral-vendor names, and no internal architecture beyond a clearly illustrative demo.
+- All employers stay anonymous (current contract has a confidentiality clause): no company, group, product or peripheral-vendor names for any job, and no internal architecture beyond a clearly illustrative demo. Universities and Bilge's own projects (PaceTasks, this site) are named.
 - Italian text uses feminine forms (sviluppatrice, sono arrivata, abituata).
 - Do not claim: senior/lead/architect titles, cloud expertise, PaceTasks as launched.

@@ -644,8 +644,8 @@ const otherProjects = [
     }
   },
   {
-    id: "invoice-channel",
-    title: "Invoice Channel",
+    id: "e-invoicing-platform",
+    title: { en: "E-invoicing platform", it: "Piattaforma di fatturazione elettronica" },
     tech: ["Java 17", "Spring Boot", "Maven"],
     description: {
       en: "Electronic invoicing microservices with ERP integration: Ant → Maven, Java 8 → 17 and legal-archive integration.",
@@ -798,9 +798,9 @@ const skillGroups = [
     title: { en: "Languages", it: "Linguaggi" },
     skills: [
       { name: "Kotlin", usedIn: ["retail-company", "handheld-app"] },
-      { name: "Java", usedIn: ["ifin", "iason", "invoice-channel", "credit-calculator", "handheld-app"] },
+      { name: "Java", usedIn: ["e-invoicing", "banking", "e-invoicing-platform", "credit-calculator", "handheld-app"] },
       { name: "C# / .NET 8", usedIn: ["retail-company", "pos-drivers", "sync-service", "analytics"] },
-      { name: "SQL", usedIn: ["retail-company", "ifin", "analytics", "sync-service"] },
+      { name: "SQL", usedIn: ["retail-company", "e-invoicing", "analytics", "sync-service"] },
       { name: "TypeScript", usedIn: ["pacetasks"] },
       { name: "JavaScript", usedIn: ["portfolio"] }
     ]
@@ -820,9 +820,9 @@ const skillGroups = [
   {
     title: { en: "Backend", it: "Backend" },
     skills: [
-      { name: "REST APIs", usedIn: ["retail-company", "ifin", "sync-service"] },
-      { name: "Spring Boot", usedIn: ["ifin", "iason", "invoice-channel", "credit-calculator"] },
-      { name: "Hibernate", usedIn: ["ifin", "iason", "credit-calculator"] },
+      { name: "REST APIs", usedIn: ["retail-company", "e-invoicing", "sync-service"] },
+      { name: "Spring Boot", usedIn: ["e-invoicing", "banking", "e-invoicing-platform", "credit-calculator"] },
+      { name: "Hibernate", usedIn: ["e-invoicing", "banking", "credit-calculator"] },
       { name: "EF Core", usedIn: ["retail-company", "sync-service"] },
       { name: "Blazor", usedIn: ["retail-company", "analytics"] },
       { name: "DevExpress", usedIn: ["retail-company", "analytics"] },
@@ -834,8 +834,8 @@ const skillGroups = [
     skills: [
       { name: "RabbitMQ", usedIn: ["retail-company", "sync-service"] },
       { name: "SQL Server", usedIn: ["retail-company", "analytics"] },
-      { name: "PostgreSQL", usedIn: ["ifin", "invoice-channel", "pacetasks"] },
-      { name: "MySQL", usedIn: ["ifin"] },
+      { name: "PostgreSQL", usedIn: ["e-invoicing", "e-invoicing-platform", "pacetasks"] },
+      { name: "MySQL", usedIn: ["e-invoicing"] },
       { name: "SQLite", usedIn: ["retail-company", "handheld-app"] }
     ]
   },
@@ -844,10 +844,10 @@ const skillGroups = [
     skills: [
       { name: "Azure Pipelines", usedIn: ["retail-company"] },
       { name: "Docker", usedIn: ["retail-company"] },
-      { name: "Maven", usedIn: ["ifin", "invoice-channel"] },
-      { name: { en: "Unit & UI testing", it: "Test unitari e UI" }, usedIn: ["ifin", "ifin-thesis", "remote-tests", "pacetasks"] },
-      { name: { en: "Test automation", it: "Automazione dei test" }, usedIn: ["ifin-thesis", "remote-tests"] },
-      { name: "Agile / Scrum", usedIn: ["ifin", "retail-company"] }
+      { name: "Maven", usedIn: ["e-invoicing", "e-invoicing-platform"] },
+      { name: { en: "Unit & UI testing", it: "Test unitari e UI" }, usedIn: ["e-invoicing", "thesis-internship", "remote-tests", "pacetasks"] },
+      { name: { en: "Test automation", it: "Automazione dei test" }, usedIn: ["thesis-internship", "remote-tests"] },
+      { name: "Agile / Scrum", usedIn: ["e-invoicing", "retail-company"] }
     ]
   }
 ];
@@ -1025,22 +1025,22 @@ const experience = [
     }
   },
   {
-    id: "ifin",
+    id: "e-invoicing",
     demo: "invoice",
-    tab: "Ifin Sistemi",
-    company: "Ifin Sistemi",
+    tab: { en: "E-invoicing", it: "Fatturazione elettronica" },
+    company: { en: "an e-invoicing software company", it: "un'azienda di software per la fatturazione elettronica" },
     location: { en: "Padova, Italy", it: "Padova" },
     role: { en: "Software Developer", it: "Sviluppatrice Software" },
     dates: { en: "Mar 2023 – Apr 2024", it: "Mar 2023 – Apr 2024" },
     bullets: {
       en: [
-        "Backend development on Invoice Channel, an electronic invoicing platform built as Java microservices with ERP integration (Spring Boot, Hibernate, PostgreSQL, MySQL).",
+        "Backend development on an electronic invoicing platform built as Java microservices with ERP integration (Spring Boot, Hibernate, PostgreSQL, MySQL).",
         "Migrated the build system from Ant to Maven and upgraded the platform from Java 8 to Java 17.",
         "Implemented the integration with legal archiving software to support digital preservation compliance.",
         "Wrote unit and UI tests, fixed critical production bugs and improved the client onboarding workflow in an Agile team."
       ],
       it: [
-        "Sviluppo backend su Invoice Channel, piattaforma di fatturazione elettronica a microservizi Java integrata con gli ERP (Spring Boot, Hibernate, PostgreSQL, MySQL).",
+        "Sviluppo backend su una piattaforma di fatturazione elettronica a microservizi Java integrata con gli ERP (Spring Boot, Hibernate, PostgreSQL, MySQL).",
         "Ho migrato il sistema di build da Ant a Maven e aggiornato la piattaforma da Java 8 a Java 17.",
         "Ho realizzato l'integrazione con il software di conservazione sostitutiva per la conformità normativa.",
         "Ho scritto test unitari e di interfaccia, risolto bug critici in produzione e migliorato l'onboarding dei clienti in un team Agile."
@@ -1048,10 +1048,10 @@ const experience = [
     }
   },
   {
-    id: "iason",
+    id: "banking",
     demo: "credit",
-    tab: "Iason",
-    company: "Iason",
+    tab: { en: "Banking software", it: "Software bancario" },
+    company: { en: "a banking software company", it: "un'azienda di software bancario" },
     location: { en: "Milan, Italy", it: "Milano" },
     role: { en: "Intern Developer", it: "Sviluppatrice (stage)" },
     dates: { en: "Sep 2022 – Jan 2023", it: "Set 2022 – Gen 2023" },
@@ -1065,10 +1065,10 @@ const experience = [
     }
   },
   {
-    id: "ifin-thesis",
+    id: "thesis-internship",
     demo: "tests",
-    tab: "Ifin (MSc thesis)",
-    company: "Ifin Sistemi",
+    tab: { en: "MSc thesis", it: "Tesi magistrale" },
+    company: { en: "an e-invoicing software company", it: "un'azienda di software per la fatturazione elettronica" },
     location: { en: "Padova, Italy", it: "Padova" },
     role: { en: "Intern — MSc thesis project", it: "Stage — progetto di tesi magistrale" },
     dates: { en: "Feb 2022 – Jul 2022", it: "Feb 2022 – Lug 2022" },

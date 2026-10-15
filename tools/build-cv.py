@@ -48,16 +48,16 @@ CV = {
                 "Developed a Blazor and DevExpress web application, now in production, for multi-store performance analysis.",
                 "Support the application in production: crash and ANR investigation, release work with Azure Pipelines and Docker.",
             ]),
-            ("Software Developer", "Ifin Sistemi — Padova, Italy", "Mar 2023 – Apr 2024", [
-                "Backend development on Invoice Channel, an electronic invoicing platform built as Java microservices with ERP integration, using Spring Boot, Hibernate, PostgreSQL and MySQL.",
+            ("Software Developer", "E-invoicing software company — Padova, Italy", "Mar 2023 – Apr 2024", [
+                "Backend development on an electronic invoicing platform built as Java microservices with ERP integration, using Spring Boot, Hibernate, PostgreSQL and MySQL.",
                 "Migrated the build system from Ant to Maven and upgraded the platform from Java 8 to Java 17.",
                 "Implemented an integration with legal archiving software to support digital preservation compliance.",
                 "Wrote unit and UI tests, resolved critical production bugs, improved the client onboarding workflow and contributed to code reviews, documentation and CI/CD pipelines in an Agile team.",
             ]),
-            ("Intern Developer", "Iason SRL — Milan, Italy", "Sep 2022 – Jan 2023", [
+            ("Intern Developer", "Banking software company — Milan, Italy", "Sep 2022 – Jan 2023", [
                 "Built a Spring Boot and Hibernate application for a banking system, including user data management, a credit limit calculator and the authentication and secure access configuration.",
             ]),
-            ("Intern", "Ifin Sistemi — Padova, Italy", "Feb 2022 – Jul 2022", [
+            ("Intern", "E-invoicing software company — Padova, Italy", "Feb 2022 – Jul 2022", [
                 "Improved test automation for electronic invoicing software as the subject of the MSc thesis project, migrating test execution from local to remote browsers and increasing testing efficiency by 25%. Contributed to documentation and cross-team QA activities.",
             ]),
         ],
@@ -91,16 +91,16 @@ CV = {
                 "Sviluppo di un'applicazione web Blazor e DevExpress, oggi in produzione, per l'analisi delle performance multi-negozio.",
                 "Supporto in produzione: analisi di crash e ANR, rilasci con Azure Pipelines e Docker.",
             ]),
-            ("Sviluppatrice Software", "Ifin Sistemi — Padova", "Mar 2023 – Apr 2024", [
-                "Sviluppo backend su Invoice Channel, piattaforma di fatturazione elettronica a microservizi Java integrata con gli ERP, con Spring Boot, Hibernate, PostgreSQL e MySQL.",
+            ("Sviluppatrice Software", "Azienda di software per la fatturazione elettronica — Padova", "Mar 2023 – Apr 2024", [
+                "Sviluppo backend su una piattaforma di fatturazione elettronica a microservizi Java integrata con gli ERP, con Spring Boot, Hibernate, PostgreSQL e MySQL.",
                 "Migrazione del sistema di build da Ant a Maven e aggiornamento della piattaforma da Java 8 a Java 17.",
                 "Integrazione con il software di conservazione sostitutiva per la conformità normativa.",
                 "Test unitari e di interfaccia, risoluzione di bug critici in produzione, miglioramento dell'onboarding clienti e contributo a code review, documentazione e pipeline CI/CD in un team Agile.",
             ]),
-            ("Sviluppatrice (stage)", "Iason SRL — Milano", "Set 2022 – Gen 2023", [
+            ("Sviluppatrice (stage)", "Azienda di software bancario — Milano", "Set 2022 – Gen 2023", [
                 "Sviluppo di un'applicazione Spring Boot e Hibernate per un sistema bancario: gestione dati utente, calcolo del fido, autenticazione e configurazione degli accessi sicuri.",
             ]),
-            ("Stagista", "Ifin Sistemi — Padova", "Feb 2022 – Lug 2022", [
+            ("Stagista", "Azienda di software per la fatturazione elettronica — Padova", "Feb 2022 – Lug 2022", [
                 "Miglioramento dell'automazione dei test del software di fatturazione elettronica come progetto di tesi magistrale: esecuzione spostata da browser locali a remoti, con un aumento del 25% dell'efficienza. Contributo alla documentazione e alle attività di QA tra team.",
             ]),
         ],

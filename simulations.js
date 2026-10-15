@@ -752,7 +752,7 @@
     render();
   }
 
-  // Ifin: an invoice moves through the e-invoicing steps; a missing VAT number stops it at validation.
+  // E-invoicing job: an invoice moves through the e-invoicing steps; a missing VAT number stops it at validation.
   function mountInvoiceDemo(container, generation) {
     const steps = el("ol", { className: "demo-steps" }, invoiceSteps.map((step) => el("li", { "data-state": "idle", text: localize(step.name) })));
     const breakToggle = el("input", { type: "checkbox" });
@@ -804,7 +804,7 @@
     );
   }
 
-  // Iason: a simplified debt-to-income rule, clearly not the bank's real policy.
+  // Banking internship: a simplified debt-to-income rule, clearly not the bank's real policy.
   function mountCreditDemo(container) {
     const MAX_RATIO = 0.4;
     const REVIEW_RATIO = 0.3;
@@ -890,7 +890,7 @@
     update();
   }
 
-  // Ifin thesis: 12 tests on one local browser vs two remote browsers with a little network overhead each.
+  // Thesis internship: 12 tests on one local browser vs two remote browsers with a little network overhead each.
   function mountTestsDemo(container, generation) {
     const TEST_COUNT = 12;
     const LOCAL_MINUTES = 1;
