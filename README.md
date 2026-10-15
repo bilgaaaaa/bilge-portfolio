@@ -1,7 +1,7 @@
 # Bilge Ozcanbaz — Portfolio
 
 Personal portfolio for Bilge Ozcanbaz, software developer in Padova, Italy (Android, .NET, retail systems).
-Layout inspired by [gazijarin.com](https://www.gazijarin.com/) (including its Game mode) and a plum/rose glass design.
+Layout inspired by [gazijarin.com](https://www.gazijarin.com/) and a plum/rose glass design.
 
 ## Stack
 
@@ -13,9 +13,12 @@ Plain HTML, CSS and JavaScript — no framework, no build step. Bilingual (EN / 
 | `pacetasks.html` | PaceTasks case-study page |
 | `content.js` | **All text and data** — translations, experience, projects, links |
 | `script.js` | Renders `content.js` per page (`<body data-page>`), language switch, typing greeting, tabs, menu, scroll reveal |
-| `gamemode.js` | Page-wide Game mode: pixel Bilge jumps across the text to squash 5 bugs (text in `gameMode.*` keys) |
+| `simulations.js` | Live demo (scan → RabbitMQ → .NET → SQL → fiscal printer), portrait "releases", hero ticker and PaceTasks phone mockup |
+| `game-walk.js` | Play section: take Bruno for a walk by writing small code commands |
 | `styles.css` | Plum palette tokens (`--plum-*`, `--rose-300`, `--cream-100`), glass components and layout |
 | `assets/portrait.webp` | Hero portrait (background removed, colour-graded into the palette) |
+| `assets/looks/` | Alternate portraits cycled by the hero "release notes" card |
+| `assets/beyond/`, `assets/bruno/` | Baking and Bruno photos for Beyond code and the walk game |
 | `assets/arch.svg` | Archway illustration used in the process and contact sections |
 | `assets/icons.svg` | Shared icon sprite (`assets/icons.svg#icon-<name>`) |
 | `assets/cv/` | Public CV in EN/IT (HTML + PDF, no phone number or birth date) |
@@ -28,7 +31,7 @@ Almost every change happens in `content.js`: every text entry has an `en` and `i
 - New job → add an object to `experience`.
 - New project → add to `featuredProjects` (big alternating cards) or `otherProjects` (grid). Give a featured project `caseStudy` and `repo` to show its links.
 - PaceTasks page text → `pacetasksCaseStudy` and the `pt.*` keys in `translations`.
-- Profile photo → replace `assets/profile.jpg` and `assets/profile.webp` (square, 640×640).
+- Profile photo → replace `assets/portrait.webp` (720×886); alternate looks live in `assets/looks/`.
 
 ## CV
 

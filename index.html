@@ -6,12 +6,12 @@
     <title>Bilge Ozcanbaz | Software Developer</title>
     <meta
       name="description"
-      content="Bilge Ozcanbaz is a software developer in Padova, Italy, building Android apps, .NET services, RabbitMQ integrations and retail device drivers."
+      content="Bilge Ozcanbaz is a software developer in Padova, Italy, building Android apps, .NET and Java backend services, message queues and device integrations."
     />
     <meta name="theme-color" content="#190019" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Bilge Ozcanbaz | Software Developer" />
-    <meta property="og:description" content="Android, .NET and retail systems developer based in Padova, Italy." />
+    <meta property="og:description" content="Android, .NET and Java developer based in Padova, Italy." />
     <meta property="og:image" content="assets/og-image.png" />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,7 +23,8 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="content.js" defer></script>
     <script src="script.js" defer></script>
-    <script src="gamemode.js" defer></script>
+    <script src="game-walk.js" defer></script>
+    <script src="simulations.js" defer></script>
   </head>
   <body data-page="home">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -42,9 +43,11 @@
       <div class="header-panel" id="siteNav">
         <nav aria-label="Primary navigation" data-i18n-attr="aria-label:nav.label">
           <a href="#work" data-i18n="nav.work">Work</a>
+          <a href="#lab" data-i18n="nav.lab">Live demo</a>
           <a href="#about" data-i18n="nav.about">About</a>
           <a href="#experience" data-i18n="nav.experience">Experience</a>
           <a href="#beyond" data-i18n="nav.beyond">Beyond code</a>
+          <a href="#play" data-i18n="nav.play">Play</a>
           <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
         <div class="language-switch" role="group" aria-label="Language selector" data-i18n-attr="aria-label:language.label">
@@ -61,8 +64,8 @@
         <div class="hero-copy">
           <p class="eyebrow eyebrow-bracket reveal" data-i18n="hero.eyebrow">Software developer</p>
           <h1 class="display hero-title reveal">
-            <span data-i18n="hero.titleStart">I build software that works</span>
-            <em data-i18n="hero.titleAccent">on the shop floor.</em>
+            <span data-i18n="hero.titleStart">I build software that just works,</span>
+            <em data-i18n="hero.titleAccent">from device to database.</em>
           </h1>
           <p class="hero-intro reveal" data-i18n="hero.intro"></p>
           <div class="hero-actions reveal">
@@ -79,24 +82,38 @@
             <span class="status-dot" aria-hidden="true"></span>
             <span>
               <strong data-i18n="hero.status">Based in Padova, Italy</strong>
-              <span data-i18n="hero.statusSub">Building retail software at System Retail.</span>
+              <span data-i18n="hero.statusSub">Currently a developer at System Retail.</span>
             </span>
+          </p>
+          <p class="hero-ticker reveal" aria-hidden="true">
+            <span class="hero-ticker-label" data-i18n="hero.tickerLabel">behind the scenes</span>
+            <code class="hero-ticker-line" data-hero-ticker></code>
           </p>
         </div>
 
         <div class="hero-visual">
-          <div class="moon" aria-hidden="true"></div>
-          <div class="orbit" aria-hidden="true"></div>
-          <img class="portrait" src="assets/portrait.webp" width="720" height="886" alt="Portrait of Bilge Ozcanbaz" data-i18n-attr="alt:hero.portraitAlt" />
+          <!-- On small screens the cards move below this photo so nothing covers it. -->
+          <div class="hero-photo">
+            <div class="moon" aria-hidden="true"></div>
+            <div class="orbit" aria-hidden="true"></div>
+            <!-- Portrait "releases": simulations.js swaps in the other looks from portraitLooks. -->
+            <div class="portrait-stack" data-portrait-stack>
+              <img class="portrait is-current" src="assets/portrait.webp" width="720" height="886" alt="Portrait of Bilge Ozcanbaz" data-i18n-attr="alt:hero.portraitAlt" />
+            </div>
+          </div>
           <div class="glass-card float-card card-experience">
             <p class="card-label" data-i18n="hero.cardExperienceLabel">Experience</p>
             <p class="card-value" data-i18n="hero.cardExperienceValue">4+ years</p>
             <p class="card-body" data-i18n="hero.cardExperienceBody"></p>
           </div>
-          <div class="glass-card float-card card-craft">
-            <p class="card-label" data-i18n="hero.cardCraftLabel">Building</p>
-            <p class="card-body" data-i18n="hero.cardCraftBody"></p>
-            <svg class="icon heart" aria-hidden="true"><use href="assets/icons.svg#icon-heart" /></svg>
+          <div class="glass-card float-card card-craft card-release" data-release-card>
+            <p class="card-label" data-i18n="hero.releaseLabel">release notes</p>
+            <p class="release-version" data-release-version>v1.0</p>
+            <p class="card-body release-note" data-release-note aria-live="polite"></p>
+            <button class="release-next" type="button" data-release-next data-i18n-attr="aria-label:hero.releaseNextLabel" aria-label="Show the next version of me">
+              <span data-i18n="hero.releaseNext">next release</span>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow" /></svg>
+            </button>
           </div>
           <div class="glass-card float-card card-focus">
             <p class="card-label" data-i18n="hero.cardFocusLabel">Focus areas</p>
@@ -113,7 +130,7 @@
             <h2 class="display section-title" id="workTitle">
               <span data-i18n="work.titleStart">Software that</span>
               <em data-i18n="work.titleAccent">quietly works</em>
-              <span data-i18n="work.titleEnd">every day in stores.</span>
+              <span data-i18n="work.titleEnd">every day.</span>
             </h2>
           </div>
           <a class="text-link" href="https://github.com/bilgaaaaa" target="_blank" rel="noopener">
@@ -124,6 +141,17 @@
         <div class="case-grid" data-featured-list></div>
         <h3 class="subheading reveal" data-i18n="work.moreTitle">More things I've built</h3>
         <ul class="project-grid" data-project-grid></ul>
+      </section>
+
+      <!-- Live demo: an interactive scan → RabbitMQ → .NET → SQL → fiscal printer pipeline (simulations.js). -->
+      <section class="section" id="lab" aria-labelledby="labTitle">
+        <p class="eyebrow reveal" data-i18n="lab.eyebrow">Live demo</p>
+        <h2 class="display section-title reveal" id="labTitle">
+          <span data-i18n="lab.titleStart">Follow one sale</span>
+          <em data-i18n="lab.titleAccent">from scan to receipt.</em>
+        </h2>
+        <p class="lab-lede reveal" data-i18n="lab.lede"></p>
+        <div class="glass-panel lab reveal" data-lab></div>
       </section>
 
       <!-- What I do: intro, four service columns and tool tiles in one glass panel. -->
@@ -142,6 +170,7 @@
             <p class="eyebrow" data-i18n="services.tools">Tools I use</p>
             <ul class="tool-grid" data-tool-grid></ul>
           </div>
+          <div class="skill-map" data-skill-map></div>
         </div>
       </section>
 
@@ -152,7 +181,7 @@
             <p class="eyebrow" data-i18n="about.eyebrow">About me</p>
             <h2 class="display section-title" id="aboutTitle">
               <span data-i18n="about.titleStart">From Java backends</span>
-              <em data-i18n="about.titleAccent">to the shop floor.</em>
+              <em data-i18n="about.titleAccent">to Android and beyond.</em>
             </h2>
             <div class="prose">
               <p data-i18n="about.p1"></p>
@@ -196,6 +225,7 @@
             <span data-i18n="process.titleEnd">approach to shipping software.</span>
           </h2>
           <ol class="process-steps" data-process-steps></ol>
+          <div class="process-run reveal" data-process-run></div>
         </div>
         <img class="arch-art reveal" src="assets/arch.svg" width="320" height="400" alt="" />
       </section>
@@ -208,6 +238,17 @@
           <em data-i18n="beyond.titleAccent">curious.</em>
         </h2>
         <ul class="beyond-grid" data-beyond-list></ul>
+      </section>
+
+      <!-- Play: Bruno's walk, a small coding puzzle that lives in the page (game-walk.js). -->
+      <section class="section" id="play" aria-labelledby="playTitle">
+        <p class="eyebrow reveal" data-i18n="play.eyebrow">Play</p>
+        <h2 class="display section-title reveal" id="playTitle">
+          <span data-i18n="play.titleStart">Take Bruno for a walk,</span>
+          <em data-i18n="play.titleAccent">in code.</em>
+        </h2>
+        <p class="play-lede reveal" data-i18n="play.lede"></p>
+        <div class="glass-panel walk-game reveal" data-walk-game></div>
       </section>
 
       <!-- Contact: archway art, direct channels and a message form that opens WhatsApp or email. -->
@@ -264,10 +305,12 @@
         <p class="eyebrow" data-i18n="footer.explore">Explore</p>
         <nav class="footer-links" aria-label="Footer">
           <a href="#work" data-i18n="nav.work">Work</a>
+          <a href="#lab" data-i18n="nav.lab">Live demo</a>
           <a href="#about" data-i18n="nav.about">About</a>
           <a href="#experience" data-i18n="nav.experience">Experience</a>
           <a href="pacetasks.html">PaceTasks</a>
           <a href="#beyond" data-i18n="nav.beyond">Beyond code</a>
+          <a href="#play" data-i18n="nav.play">Play</a>
           <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
       </div>
@@ -281,23 +324,5 @@
         <a href="#top" data-i18n="footer.top">Back to top</a>
       </div>
     </footer>
-
-    <!-- Game mode: a pixel Bilge that jumps across the page text to squash hidden bugs (gamemode.js). -->
-    <div class="game-mode" data-game-mode>
-      <div class="game-toggle-row">
-        <button class="game-toggle" type="button" aria-pressed="false" data-game-toggle>
-          <span class="game-toggle-dot" aria-hidden="true"></span>
-          <span data-i18n="gameMode.toggle">game mode</span>
-        </button>
-        <button class="game-info-button" type="button" aria-expanded="false" aria-controls="gameInfo" data-i18n-attr="aria-label:gameMode.info" aria-label="How to play" data-game-info-button hidden>i</button>
-      </div>
-      <div class="game-info" id="gameInfo" data-game-info hidden>
-        <p class="game-info-title" data-i18n="gameMode.howTo">how to play</p>
-        <p class="game-info-goal" data-i18n="gameMode.goal"></p>
-        <p class="game-info-row"><kbd>← →</kbd> <span data-i18n="gameMode.move">move</span></p>
-        <p class="game-info-row"><kbd>space</kbd> <span data-i18n="gameMode.jump">jump</span></p>
-        <p class="game-info-row"><kbd>scroll</kbd> <span data-i18n="gameMode.explore">explore the page</span></p>
-      </div>
-    </div>
   </body>
 </html>

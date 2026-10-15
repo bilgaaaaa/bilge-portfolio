@@ -1,5 +1,5 @@
 // Renders every page from content.js and wires up language, tabs, menu, contact form and scroll reveal.
-// Each page sets <body data-page="..."> so only its own renderers run.
+// Each page sets <body data-page="..."> so only its own renderers run; simulations.js adds the interactive demos.
 
 const STORAGE_KEY = "portfolioLanguage";
 const SUPPORTED_LANGUAGES = ["en", "it"];
@@ -22,6 +22,11 @@ function localize(value) {
 
 function t(key) {
   return translations[currentLanguage][key] ?? translations.en[key] ?? "";
+}
+
+// Fills {name} placeholders in a translated template; unknown names stay as they are.
+function format(template, vars = {}) {
+  return template.replace(/\{(\w+)\}/g, (match, key) => (key in vars ? vars[key] : match));
 }
 
 // Small element factory to keep rendering code readable; falsy children are skipped.
@@ -128,10 +133,10 @@ function renderAbout() {
 
 // ---------- home: work ----------
 
-// Decorative illustrations for project cards, drawn with CSS spans.
+// Illustrations for project cards, drawn with CSS spans; simulations.js makes them play on hover.
 function projectVisual(kind) {
   const spanCount = { handheld: 6, receipt: 7, chart: 7, tasks: 7 };
-  const visual = el("div", { className: `case-visual visual-${kind}`, "aria-hidden": "true" });
+  const visual = el("div", { className: `case-visual visual-${kind}`, "data-visual": kind, "aria-hidden": "true" });
   for (let i = 0; i < spanCount[kind]; i += 1) visual.append(el("span"));
   return visual;
 }
@@ -152,7 +157,7 @@ function renderFeaturedProjects() {
   fill(
     "[data-featured-list]",
     featuredProjects.map((project, index) =>
-      el("article", { className: "case-card reveal" }, [
+      el("article", { className: "case-card reveal", "data-project-id": project.id }, [
         projectVisual(project.visual),
         el("div", { className: "case-body" }, [
           el("p", { className: "case-index", text: String(index + 1).padStart(2, "0") }),
@@ -173,7 +178,7 @@ function renderOtherProjects() {
     "[data-project-grid]",
     otherProjects.map((project) => {
       const title = localize(project.title);
-      return el("li", { className: "mini-card reveal" }, [
+      return el("li", { className: "mini-card reveal", "data-project-id": project.id }, [
         el("div", { className: "mini-card-top" }, [
           icon("folder", "icon folder-icon"),
           project.link
@@ -204,13 +209,33 @@ function renderServices() {
 
   fill(
     "[data-tool-grid]",
-    tools.map((tool) =>
-      el("li", { className: "tool", style: `--tint: ${tool.tint}` }, [
+    tools.map((tool, index) =>
+      el("li", { className: "tool", style: `--tint: ${tool.tint}`, tabindex: "0", "aria-describedby": `toolTip${index}` }, [
         el("span", { className: "tool-mark", text: tool.short, "aria-hidden": "true" }),
-        el("span", { className: "tool-name", text: tool.name })
+        el("span", { className: "tool-name", text: tool.name }),
+        el("span", { className: "tool-tip", role: "tooltip", id: `toolTip${index}` }, [
+          el("strong", { text: tool.name }),
+          document.createTextNode(localize(tool.about))
+        ])
       ])
     )
   );
+  document.querySelectorAll("[data-tool-grid] .tool").forEach((tool) => {
+    tool.addEventListener("pointerenter", () => placeToolTip(tool));
+    tool.addEventListener("focus", () => placeToolTip(tool));
+  });
+}
+
+// Shifts a tool popup sideways so it never runs off the edge of the screen.
+function placeToolTip(tool) {
+  const tip = tool.querySelector(".tool-tip");
+  const margin = 12;
+  tip.style.setProperty("--shift", "0px");
+  tip.style.display = "block";
+  const rect = tip.getBoundingClientRect();
+  tip.style.display = "";
+  const shift = Math.max(margin - rect.left, 0) - Math.max(rect.right - (document.documentElement.clientWidth - margin), 0);
+  tip.style.setProperty("--shift", `${shift}px`);
 }
 
 function renderProcess() {
@@ -229,14 +254,47 @@ function renderProcess() {
   );
 }
 
+// A stack of photos with the caption underneath, never on the photo; simulations.js shows the next one on hover.
+function photoStack(photos) {
+  return el("figure", { className: "photo-stack", "data-photo-stack": "" }, [
+    el(
+      "div",
+      { className: "photo-frame" },
+      photos.map((photo, index) =>
+        el("img", {
+          className: index === 0 ? "is-current" : "",
+          src: photo.src,
+          alt: localize(photo.caption),
+          loading: "lazy",
+          decoding: "async",
+          style: `object-position: ${photo.position}`
+        })
+      )
+    ),
+    el("figcaption", { className: "photo-caption", "aria-live": "polite", text: localize(photos[0].caption) })
+  ]);
+}
+
 function renderBeyond() {
   fill(
     "[data-beyond-list]",
     beyondItems.map((item) =>
-      el("li", { className: "glass-card beyond-card reveal" }, [
-        el("span", { className: "icon-ring" }, [icon(item.icon)]),
-        el("h3", { text: localize(item.title) }),
-        el("p", { text: localize(item.description) })
+      el("li", { className: `glass-card beyond-card reveal ${item.wide ? "beyond-card-wide" : ""}`, "data-beyond-id": item.id }, [
+        item.photos && photoStack(item.photos),
+        el("div", { className: "beyond-body" }, [
+          el("span", { className: `icon-ring ${item.avatar ? "icon-ring-photo" : ""}` }, [
+            item.avatar ? el("img", { src: item.avatar, alt: "", width: "46", height: "46" }) : icon(item.icon)
+          ]),
+          el("h3", { text: localize(item.title) }),
+          el("p", { text: localize(item.description) }),
+          item.facts &&
+            el(
+              "dl",
+              { className: "beyond-facts" },
+              item.facts.map((fact) => el("div", {}, [el("dt", { text: localize(fact.label) }), el("dd", { text: localize(fact.value) })]))
+            ),
+          item.demo && el("div", { className: "beyond-demo", "data-beyond-demo": item.demo })
+        ])
       ])
     )
   );
@@ -279,7 +337,8 @@ function renderExperience() {
           el("em", { text: `@ ${job.company}` })
         ]),
         el("p", { className: "job-meta", text: `${localize(job.dates)} · ${localize(job.location)}` }),
-        el("ul", { className: "bullet-list job-bullets" }, localize(job.bullets).map((bullet) => el("li", { text: bullet })))
+        el("ul", { className: "bullet-list job-bullets" }, localize(job.bullets).map((bullet) => el("li", { text: bullet }))),
+        job.demo && el("div", { className: "job-demo", "data-job-demo": job.demo })
       ])
     )
   );
@@ -346,37 +405,8 @@ function renderHome() {
 
 // ---------- PaceTasks case study ----------
 
-// Illustrated "Today" screen in the app's own sage/cream theme.
-function renderPhoneMockup() {
-  const { mockup } = pacetasksCaseStudy;
-  const taskRow = (task) =>
-    el("li", { className: `pt-task ${task.done ? "is-done" : ""}` }, [
-      el("span", { className: "pt-check", "aria-hidden": "true" }),
-      el("span", { className: "pt-task-text" }, [
-        el("span", { className: "pt-task-title", text: localize(task.title) }),
-        el("span", { className: "pt-task-meta" }, [
-          el("span", { className: `pt-dot cat-${task.category}`, "aria-hidden": "true" }),
-          document.createTextNode(localize(task.meta))
-        ])
-      ]),
-      task.focus && el("span", { className: "pt-badge", text: "FOCUS" }),
-      task.running && el("span", { className: "pt-timer", text: "12:40" })
-    ]);
-
-  fill("[data-phone-mockup]", [
-    el("div", { className: "pt-screen" }, [
-      el("p", { className: "pt-eyebrow", text: localize(mockup.greeting).toUpperCase() }),
-      el("p", { className: "pt-title", text: localize(mockup.title) }),
-      el("div", { className: "pt-quickadd", text: localize(mockup.placeholder) }),
-      el("ul", { className: "pt-tasks" }, mockup.tasks.map(taskRow)),
-      el("div", { className: "pt-tabbar" }, localize(mockup.tabs).map((tab, index) => el("span", { className: index === 0 ? "is-active" : "", text: tab })))
-    ])
-  ]);
-}
-
 function renderCaseStudy() {
   const study = pacetasksCaseStudy;
-  renderPhoneMockup();
   fill("[data-pt-stack]", study.stack.map((item) => el("li", { text: item })));
 
   fill(
