@@ -1084,26 +1084,6 @@
   }
 
   // Card collection: draws a random card from the box with a small flip.
-  function mountCardsDemo(container) {
-    let lastIndex = -1;
-    const kind = el("strong", { text: "—" });
-    const city = el("span", { text: t("beyond.cards.idle") });
-    const card = el("div", { className: "collect-card", "aria-live": "polite" }, [kind, city]);
-    const action = button(t("beyond.cards.draw"));
-
-    action.addEventListener("click", () => {
-      let index = Math.floor(Math.random() * beyondCards.length);
-      if (index === lastIndex) index = (index + 1) % beyondCards.length;
-      lastIndex = index;
-      kind.textContent = localize(beyondCards[index].kind);
-      city.textContent = beyondCards[index].city;
-      restartClass(card, "is-flipping");
-    });
-
-    playOnHover(container.closest(".beyond-card") ?? card, action);
-    container.replaceChildren(card, el("div", { className: "demo-actions" }, [action]));
-  }
-
   // Bruno's card: every treat gets a reply and a heart on the photo.
   function mountTreatDemo(container) {
     let treats = 0;
@@ -1180,7 +1160,7 @@
     });
   }
 
-  const beyondDemos = { climb: mountClimbDemo, stitch: mountStitchDemo, cards: mountCardsDemo, treat: mountTreatDemo, bake: mountBakeDemo };
+  const beyondDemos = { climb: mountClimbDemo, stitch: mountStitchDemo, treat: mountTreatDemo, bake: mountBakeDemo };
 
   function mountBeyondDemos(generation) {
     document.querySelectorAll("[data-beyond-demo]").forEach((container) => beyondDemos[container.dataset.beyondDemo]?.(container, generation));

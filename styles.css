@@ -3215,38 +3215,6 @@ main {
   background: #e07a8a;
 }
 
-.collect-card {
-  display: grid;
-  place-content: center;
-  gap: 2px;
-  min-height: 120px;
-  padding: 14px;
-  border-radius: 8px;
-  background: var(--cream-100);
-  color: var(--plum-800);
-  font-size: 0.8rem;
-  text-align: center;
-  box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.8);
-}
-
-.collect-card strong {
-  color: var(--plum-700);
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  font-style: italic;
-  font-weight: 500;
-}
-
-.collect-card.is-flipping {
-  animation: card-flip 0.5s var(--ease);
-}
-
-@keyframes card-flip {
-  50% {
-    transform: rotateY(90deg);
-  }
-}
-
 /* ---------- simulations: PaceTasks phone ---------- */
 
 .pt-phone-wrap {
@@ -3576,7 +3544,6 @@ button.pt-task:focus-visible {
   .is-flash,
   .process-log li,
   .stitch-rows li:last-child span,
-  .collect-card.is-flipping,
   .demo-badge,
   .tool:hover .tool-tip,
   .heart-pop,

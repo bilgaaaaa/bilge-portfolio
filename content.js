@@ -263,8 +263,6 @@ const translations = {
     "beyond.stitch.ok": "Row {n}: 10 stitches",
     "beyond.stitch.bug": "Row {n}: 11 stitches — off by one!",
     "beyond.stitch.fixed": "Row {n} redone: 10 stitches",
-    "beyond.cards.draw": "Draw a card",
-    "beyond.cards.idle": "A box full of cards, one per memorable meal.",
     "beyond.photoNext": "Show the next photo",
     "beyond.treat.give": "Give Bruno a treat",
     "beyond.bake.start": "Bake a batch",
@@ -542,8 +540,6 @@ const translations = {
     "beyond.stitch.ok": "Giro {n}: 10 punti",
     "beyond.stitch.bug": "Giro {n}: 11 punti — uno di troppo!",
     "beyond.stitch.fixed": "Giro {n} rifatto: 10 punti",
-    "beyond.cards.draw": "Pesca un biglietto",
-    "beyond.cards.idle": "Una scatola piena di biglietti, uno per ogni pasto da ricordare.",
     "beyond.photoNext": "Mostra la foto successiva",
     "beyond.treat.give": "Dai un biscottino a Bruno",
     "beyond.bake.start": "Inforna una teglia",
@@ -934,12 +930,20 @@ const beyondItems = [
   {
     id: "climbing",
     icon: "climb",
+    wide: true,
     demo: "climb",
     title: { en: "Climbing", it: "Arrampicata" },
     description: {
       en: "Bouldering problems are just debugging with chalk: read the route, try, fall, adjust.",
       it: "Un blocco di boulder è debugging con la magnesite: leggi la via, prova, cadi, correggi."
-    }
+    },
+    photos: [
+      { src: "assets/beyond/climb-reach.webp", position: "50% 30%", caption: { en: "Reading the route — every problem starts with the docs.", it: "Leggere la via — ogni problema parte dalla documentazione." } },
+      { src: "assets/beyond/climb-stretch.webp", position: "50% 22%", caption: { en: "Full extension: the next hold is always one sprint away.", it: "Massima estensione: la prossima presa è sempre a uno sprint di distanza." } },
+      { src: "assets/beyond/climb-traverse.webp", position: "50% 40%", caption: { en: "Traversing sideways — the refactor before the real move.", it: "Traverso laterale — il refactoring prima della mossa vera." } },
+      { src: "assets/beyond/climb-crimp.webp", position: "50% 18%", caption: { en: "Small crimps, small commits, steady progress.", it: "Piccole prese, piccoli commit, progressi costanti." } },
+      { src: "assets/beyond/climb-overhang.webp", position: "50% 45%", caption: { en: "Fall, retry, send — the only retry loop I enjoy.", it: "Cadi, riprova, chiudi il blocco — l'unico retry loop che mi piace." } }
+    ]
   },
   {
     id: "crochet",
@@ -949,16 +953,6 @@ const beyondItems = [
     description: {
       en: "Patterns, loops and the occasional off-by-one stitch — the most relaxing kind of code.",
       it: "Schemi, cicli e ogni tanto un punto sbagliato di uno — il codice più rilassante che ci sia."
-    }
-  },
-  {
-    id: "cards",
-    icon: "card",
-    demo: "cards",
-    title: { en: "A card collection", it: "Una collezione di biglietti" },
-    description: {
-      en: "Business cards from every restaurant and pasticceria in Italy worth remembering.",
-      it: "Biglietti da visita di ogni ristorante e pasticceria d'Italia che vale la pena ricordare."
     }
   }
 ];
@@ -979,15 +973,6 @@ const portraitLooks = [
 ];
 
 // Cards the "card collection" demo can draw: kinds of places and cities, no real names.
-const beyondCards = [
-  { kind: { en: "Pasticceria", it: "Pasticceria" }, city: "Padova" },
-  { kind: { en: "Trattoria", it: "Trattoria" }, city: "Bologna" },
-  { kind: { en: "Gelateria", it: "Gelateria" }, city: "Verona" },
-  { kind: { en: "Osteria", it: "Osteria" }, city: "Venezia" },
-  { kind: { en: "Pizzeria", it: "Pizzeria" }, city: "Napoli" },
-  { kind: { en: "Pasticceria", it: "Pasticceria" }, city: "Torino" },
-  { kind: { en: "Ristorante", it: "Ristorante" }, city: "Trieste" }
-];
 
 const languagesSpoken = {
   en: "Turkish (native) · English (professional) · Italian (B1–B2, daily at work)",

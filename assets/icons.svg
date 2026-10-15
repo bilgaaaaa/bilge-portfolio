@@ -70,9 +70,6 @@
     <circle cx="11" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6" />
     <path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M5 8c4 1 9 5 11 11M4 13c3 0 7 3 8 7M8 4.8c3 2 6 6 10 7.5M19 12c1.5 2 2.5 5 2.5 8" />
   </symbol>
-  <symbol id="icon-card" viewBox="0 0 24 24">
-    <path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 6h18v12H3zM7 10h6M7 14h4M16 10h2" />
-  </symbol>
   <symbol id="icon-gamepad" viewBox="0 0 24 24">
     <path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M6 11h4M8 9v4M15 12h.01M18 10h.01M17.3 5H6.7a4 4 0 0 0-4 3.6L2 15a3 3 0 0 0 5.2 2.1L9 15h6l1.8 2.1A3 3 0 0 0 22 15l-.7-6.4a4 4 0 0 0-4-3.6z" />
   </symbol>
