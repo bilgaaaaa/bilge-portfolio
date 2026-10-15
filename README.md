@@ -20,6 +20,7 @@ Plain HTML, CSS and JavaScript — no framework, no build step. Bilingual (EN / 
 | `assets/looks/` | Alternate portraits cycled by the hero "release notes" card |
 | `assets/beyond/`, `assets/bruno/` | Baking and Bruno photos for Beyond code and the walk game |
 | `assets/arch.svg` | Archway illustration used in the process and contact sections |
+| `assets/favicon.svg`, `assets/apple-touch-icon.png` | Browser-tab icon and phone home-screen icon (italic "B" brand mark) |
 | `assets/icons.svg` | Shared icon sprite (`assets/icons.svg#icon-<name>`) |
 | `assets/cv/` | Public CV in EN/IT (HTML + PDF, no phone number or birth date) |
 | `tools/build-cv.py` | Regenerates the CV HTML pages from one data source |
