@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Favicon: the header's italic "B" brand mark in the site palette (plum #190019, rose #DFB6B2). -->
+  <defs>
+    <radialGradient id="glow" cx="0.5" cy="0.45" r="0.6">
+      <stop offset="0" stop-color="#522B5B" />
+      <stop offset="1" stop-color="#190019" />
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="url(#glow)" stroke="#DFB6B2" stroke-width="2.5" />
+  <text x="31" y="48" text-anchor="middle" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-size="48" font-style="italic" fill="#FBE4D8">B</text>
+</svg>
