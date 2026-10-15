@@ -17,6 +17,22 @@
   const hoverTimers = new Set();
   const photoStacks = new WeakMap();
 
+  // Touch screens can't hover, so their hover demos play when the element crosses the middle of the screen.
+  const canHover = window.matchMedia("(hover: hover)").matches;
+  const viewHandlers = new WeakMap();
+  const viewObserver =
+    !canHover && "IntersectionObserver" in window
+      ? new IntersectionObserver(
+          (entries) =>
+            entries.forEach((entry) => {
+              const handlers = viewHandlers.get(entry.target);
+              const handler = entry.isIntersecting ? handlers?.enter : handlers?.leave;
+              handler?.();
+            }),
+          { rootMargin: "-35% 0px -35% 0px" }
+        )
+      : null;
+
   // ---------- helpers ----------
 
   const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms * SPEED));
@@ -57,11 +73,18 @@
 
   const isStale = (generation) => generation !== mountGeneration;
 
-  // Runs a demo action when a mouse pointer moves onto `target`; touch users keep the buttons.
+  // Calls `enter` / `leave` as `target` scrolls in and out of view on touch screens; no-op where hover works.
+  function onView(target, enter, leave) {
+    if (!viewObserver || !target) return;
+    viewHandlers.set(target, { enter, leave });
+    viewObserver.observe(target);
+  }
+
+  // Runs a demo action when a mouse pointer moves onto `target`, or when it scrolls into view on touch screens.
   function playOnHover(target, action) {
-    target.addEventListener("pointerenter", (event) => {
-      if (event.pointerType === "mouse" && !action.disabled) action.click();
-    });
+    const play = () => !action.disabled && action.click();
+    target.addEventListener("pointerenter", (event) => event.pointerType === "mouse" && play());
+    onView(target, play);
   }
 
   // Repeats `step` while the mouse is over `hoverTarget`; the first step runs immediately.
@@ -80,12 +103,15 @@
     };
     hoverTarget.addEventListener("pointerenter", (event) => event.pointerType === "mouse" && start());
     hoverTarget.addEventListener("pointerleave", stop);
+    onView(hoverTarget, start, stop);
     return { start, stop };
   }
 
   // Hover triggers on static containers are attached once and always run the latest mounted action.
   function onHoverOnce(target, key, run) {
-    if (!target || target.dataset[key]) return;
+    if (!target) return;
+    onView(target, run);
+    if (target.dataset[key]) return;
     target.dataset[key] = "true";
     target.addEventListener("pointerenter", (event) => event.pointerType === "mouse" && run());
   }
@@ -758,12 +784,14 @@
 
     // Hovering alternates a valid invoice and one with the VAT number left empty, so both outcomes show.
     let hoverRuns = 0;
-    container.addEventListener("pointerenter", (event) => {
-      if (event.pointerType !== "mouse" || action.disabled) return;
+    const playNext = () => {
+      if (action.disabled) return;
       breakToggle.checked = hoverRuns % 2 === 1;
       hoverRuns += 1;
       action.click();
-    });
+    };
+    container.addEventListener("pointerenter", (event) => event.pointerType === "mouse" && playNext());
+    onView(container, playNext);
 
     container.replaceChildren(
       demoHeader("demo.invoice.title", "demo.invoice.body"),
@@ -844,6 +872,7 @@
 
     [income.input, commitments.input].forEach((input) => input.addEventListener("input", update));
     container.addEventListener("pointerenter", (event) => event.pointerType === "mouse" && slideToNextScenario());
+    onView(container, slideToNextScenario);
     container.replaceChildren(
       demoHeader("demo.credit.title", "demo.credit.body"),
       el("div", { className: "demo-credit" }, [
@@ -1275,6 +1304,8 @@
     mountGeneration += 1;
     hoverTimers.forEach(clearInterval);
     hoverTimers.clear();
+    // Mounts below re-observe their current elements, so detached ones from the last render are dropped.
+    viewObserver?.disconnect();
     const generation = mountGeneration;
     try {
       mountHeroTicker();
