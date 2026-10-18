@@ -8,7 +8,7 @@ from pathlib import Path
 OUT_DIR = Path(__file__).resolve().parent.parent / "assets" / "cv"
 
 # Change WEBSITE here once the custom domain is live; everything else follows.
-WEBSITE = "bilgaaaaa.github.io/bilge-portfolio"
+WEBSITE = "bilgalog.dev"
 
 # Contact items as (label, link), one list per line of the CV header.
 CONTACT_LINES = [

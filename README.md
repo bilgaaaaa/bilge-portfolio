@@ -52,4 +52,4 @@ python3 -m http.server 4173
 ## Publishing
 
 The site is static, so GitHub Pages works out of the box: **Settings → Pages → Deploy from branch → `main` / root**.
-For a custom domain, add a `CNAME` file containing the domain and point the DNS records to GitHub Pages.
+Live at **https://bilgalog.dev** (domain registered at Cloudflare). The `CNAME` file holds the domain; DNS has four `A` records for `@` (185.199.108–111.153) and a `www` CNAME to `bilgaaaaa.github.io`, all set to **DNS only** so GitHub can issue the HTTPS certificate.
