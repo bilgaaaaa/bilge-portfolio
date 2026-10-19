@@ -297,7 +297,7 @@ const translations = {
   it: {
     "meta.title": "Bilge Ozcanbaz | Sviluppatrice Software",
     "meta.description":
-      "Bilge Ozcanbaz è una sviluppatrice software a Padova: app Android, servizi backend .NET e Java, code di messaggi e integrazioni con dispositivi.",
+      "Bilge Ozcanbaz è una sviluppatrice software a Padova: app Android, servizi backend .NET e Java e integrazioni con dispositivi.",
     "brand.role": "Sviluppatrice software",
     "brand.aka": "detta bilga",
     "brand.akaTitle": "Gli amici mi chiamano Bilga — online mi trovi come bilga, bilgaaa o bilgaaaaa",
@@ -315,10 +315,10 @@ const translations = {
     "social.label": "Link social",
 
     "hero.eyebrow": "Sviluppatrice software",
-    "hero.titleStart": "Sviluppo software che funziona,",
+    "hero.titleStart": "Sviluppo software che funzionano,",
     "hero.titleAccent": "dal dispositivo al database.",
     "hero.intro":
-      "App Android su cui le persone contano ogni giorno, e i servizi backend, le code di messaggi e le integrazioni che ci stanno dietro. Oggi lavoro nel software per il retail; prima, nella fatturazione elettronica e nel settore bancario.",
+      "App Android su cui le persone contano ogni giorno, i servizi backend e le integrazioni che ci stanno dietro. In passato ho lavorato per servizi di fatturazione elettronica e per il settore bancario. Oggi mi occupo di software per il retail.",
     "hero.work": "Guarda i progetti",
     "hero.about": "Chi sono",
     "hero.status": "Vivo a Padova",
