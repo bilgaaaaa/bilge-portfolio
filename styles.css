@@ -390,12 +390,27 @@ img {
   transition: transform 0.3s var(--ease), background-color 0.3s var(--ease), height 0.3s var(--ease);
 }
 
-.site-header.is-scrolled {
-  height: 64px;
+/* Scrolled backdrop lives on a pseudo-layer: a backdrop-filter on the header itself would trap the fixed mobile menu inside the header box. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background: rgba(25, 0, 25, 0.78);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 10px 30px -20px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+}
+
+.site-header.is-scrolled {
+  height: 64px;
+}
+
+.site-header.is-scrolled::before {
+  opacity: 1;
 }
 
 .site-header.is-hidden {
