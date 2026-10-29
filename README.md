@@ -23,7 +23,7 @@ Plain HTML, CSS and JavaScript — no framework, no build step. Bilingual (EN / 
 | `assets/favicon.svg`, `assets/apple-touch-icon.png` | Browser-tab icon and phone home-screen icon (italic "B" brand mark) |
 | `assets/icons.svg` | Shared icon sprite (`assets/icons.svg#icon-<name>`) |
 | `assets/cv/` | Public CV in EN/IT (HTML + PDF, no phone number or birth date) |
-| `tools/build-cv.py` | Regenerates the CV HTML pages from one data source |
+| `tools/build-cv.py` | Regenerates the CV HTML pages and PDFs from one data source |
 
 ## Editing content
 
@@ -37,10 +37,10 @@ Almost every change happens in `content.js`: every text entry has an `en` and `i
 ## CV
 
 ```bash
-python3 tools/build-cv.py          # regenerate assets/cv/*.html
+python3 tools/build-cv.py          # regenerate assets/cv/*.html and the A4 PDFs (needs: pip install playwright)
 ```
 
-Then print each HTML page to PDF (A4) with the same file name.
+The public CV keeps employer names, birth date and availability out; the job-application CV lives separately in Drive.
 
 ## Local preview
 
